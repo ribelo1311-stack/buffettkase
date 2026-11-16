@@ -571,8 +571,16 @@ footer b{color:#a9b8cb}
       <!-- 4. 더 사랑스러운 강아지 더보기 배너 -->
       <div id="moreDogsBanner"></div>
 
-      <!-- 4-2. 무료 분양·입양 (전국 민간 구조단체) -->
-      <div id="freeAdoption"></div>
+      <!-- 4-2. 무료 분양·입양 (전국 민간 구조단체) — 정적 마크업(정기 data.js 재생성에도 유지) -->
+      <div class="more-dogs-banner free-adopt">
+        <div class="mdb-text">
+          <b>🏠 무료 분양·입양 · 전국 민간 구조단체</b>
+          <span><b style="color:#fecdd3">강릉이모 · 댕하숙원</b> — 임시보호 가정에서 아이들을 돌보며 입양을 홍보하는 곳입니다. 10기 비세트·드세트 입양신청서, 임시보호 신청서, 임보일기·국내입양 졸업생 명단까지 이 페이지 한 곳에서 확인하실 수 있습니다. <i style="color:#94a3b8">(입양신청서 · 임시보호 신청서 · 임보일기 · 졸업생 명단)</i></span>
+        </div>
+        <div class="mdb-actions">
+          <a class="mdb-btn adopt" href="https://litt.ly/gangneung_2mo" target="_blank" rel="noopener">🐕 강릉이모 입양·임보 신청서 ↗</a>
+        </div>
+      </div>
 
       <!-- 5. 반려용품 / 간식 (Weekly Pick + 쿠팡 + 네이버) -->
       <div class="cpbanner">
@@ -1102,21 +1110,6 @@ footer b{color:#a9b8cb}
         <a class="mdb-btn call" href="tel:${ms.tel}">📞 평택 보호센터 (${ms.tel})</a>
         <a class="mdb-btn site" href="${ms.shelterUrl||'https://pawday.kr/shelters/pyeongtaeksidongmulbohosenteo'}" target="_blank" rel="noopener">🐶 보호동물 전체 보기 ↗</a>
         <a class="mdb-btn portal" href="${ms.portalUrl||'https://www.animal.go.kr/front/index.do'}" target="_blank" rel="noopener">🏛️ 국가동물보호시스템 ↗</a>
-      </div>
-    </div>`;
-  }
-
-  // 3-2. 무료 분양·입양 (전국 민간 구조단체) — 링크만 거는 가벼운 배너
-  const fa = $('#freeAdoption');
-  const partners = (D.dogs && D.dogs.adoptionPartners) ? D.dogs.adoptionPartners : [];
-  if (fa && partners.length) {
-    fa.innerHTML = `<div class="more-dogs-banner free-adopt">
-      <div class="mdb-text">
-        <b>🏠 무료 분양·입양 · 전국 민간 구조단체</b>
-        ${partners.map(p => `<span><b style="color:#fecdd3">${p.name}</b> — ${p.desc}${(p.tags||[]).length ? ' <i style="color:#94a3b8">(' + p.tags.join(' · ') + ')</i>' : ''}</span>`).join('')}
-      </div>
-      <div class="mdb-actions">
-        ${partners.map(p => `<a class="mdb-btn adopt" href="${p.url}" target="_blank" rel="noopener">${p.label||'🐕 입양·임보 신청서 ↗'}</a>`).join('')}
       </div>
     </div>`;
   }

@@ -800,7 +800,7 @@ footer b{color:#a9b8cb}
     const box = document.getElementById('flowLine');
     if (!box || !D.flow || !D.flow.kospi) return;
     const k = D.flow.kospi, q = D.flow.kosdaq || {};
-    box.innerHTML = `<b style="color:#cbd5e1">시장 전체 수급</b> <span style="color:#64748b">(${D.flow.asOf} 장중 · 억원 · 상승/하락 종목수)</span> — `
+    box.innerHTML = `<b style="color:#cbd5e1">시장 전체 수급</b> <span style="color:#64748b">(${D.flow.asOf} 정규장 마감 · 억원 · 상승/하락 종목수)</span> — `
       + `코스피 외국인 <b style="color:#f87171">${sgn(k.foreign)}</b> · 기관 <b style="color:#60a5fa">${sgn(k.institution)}</b> · 개인 <b style="color:#4ade80">${sgn(k.personal)}</b> <span style="color:#64748b">(↑${k.rise} ↓${k.fall})</span> / `
       + `코스닥 외국인 <b style="color:#f87171">${sgn(q.foreign)}</b> · 기관 <b style="color:#60a5fa">${sgn(q.institution)}</b> · 개인 <b style="color:#4ade80">${sgn(q.personal)}</b> <span style="color:#64748b">(↑${q.rise} ↓${q.fall})</span>`;
   }

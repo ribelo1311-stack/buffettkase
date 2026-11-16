@@ -1093,7 +1093,7 @@ footer b{color:#a9b8cb}
   (D.coupang||[]).forEach(p => {
     const item = el('div','cpitem');
     item.innerHTML = `<a class="cplink cp-main" href="${p.url}" target="_blank" rel="noopener nofollow sponsored">${p.label} (쿠팡) 🚀</a>` +
-      (p.naverUrl ? `<a class="cplink cp-naver" href="${p.naverUrl}" target="_blank" rel="noopener">네이버 최저가 ↗</a>` : '');
+      (p.naverUrl ? `<a class="cplink cp-naver" href="${p.naverUrl}" target="_blank" rel="noopener sponsored">네이버 쇼핑 ↗</a>` : '');
     cpl.appendChild(item);
   });
   $('#cpDisclosure').textContent = D.coupangNote || '';

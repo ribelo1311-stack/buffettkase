@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>월억버핏 · 유기동물 입양·실종 레이더 | 평택시 동물보호센터 공고중</title>
+<meta name="description" content="평택시 동물보호센터 공고중 유기동물 24마리(강아지·고양이·기타)를 실제 보호소 사진과 공고 마감일까지 한눈에. 월억버핏이 매일 아침 실사해 갱신하는 유기동물 입양·실종 레이더입니다. 사지 말고 입양해 주세요.">
+<meta name="theme-color" content="#f6f7fb">
+<meta property="og:title" content="월억버핏 · 유기동물 입양·실종 레이더">
+<meta property="og:description" content="평택시 동물보호센터 공고중 24마리 · 실제 보호소 사진 · 마감 임박순 정렬">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://cdn.jsdelivr.net">
+<link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" rel="stylesheet">
+<style>
+:root{
+  --bg:#f5f6fa; --card:#fff; --line:#e6e9f2; --line2:#eef0f6;
+  --tx:#171d2b; --tx2:#3d465c; --mut:#6f7a90;
+  --brand:#f0b429; --brand2:#b45309; --mint:#10b981; --mint2:#047857;
+  --rose:#e11d48; --rose2:#be123c; --blue:#2563eb; --purple:#7c3aed;
+  --sh:0 1px 2px rgba(23,29,43,.04), 0 8px 24px -12px rgba(23,29,43,.14);
+}
+*{box-sizing:border-box;margin:0;padding:0;font-family:'Pretendard',-apple-system,BlinkMacSystemFont,'Malgun Gothic',sans-serif}
+html{scroll-behavior:smooth;scroll-padding-top:120px;-webkit-text-size-adjust:100%}
+body{background:var(--bg);color:var(--tx);font-size:14px;line-height:1.55;
+  background-image:radial-gradient(680px 380px at 12% -8%,rgba(240,180,41,.12),transparent 65%),radial-gradient(620px 360px at 92% -4%,rgba(16,185,129,.10),transparent 62%)}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%}
+.wrap{max-width:1240px;margin:0 auto;padding:0 16px 56px}
+
+/* ---------- HEADER ---------- */
+.topbar{position:sticky;top:0;z-index:70;background:rgba(255,255,255,.93);backdrop-filter:blur(12px) saturate(1.2);
+  border-bottom:1px solid var(--line);margin:0;padding:0 16px;overflow:visible}
+.topbar .in{max-width:1240px;margin:0 auto;display:flex;align-items:center;gap:12px;height:60px}
+.brand{display:flex;align-items:center;gap:9px;min-width:0}
+.brand .paw{width:34px;height:34px;border-radius:11px;display:grid;place-items:center;font-size:17px;
+  background:linear-gradient(135deg,#fff3cf,#ffe08a);border:1px solid #f6dfa0;flex:0 0 auto}
+.brand .bt{display:flex;flex-direction:column;line-height:1.25;min-width:0}
+.brand b{font-size:15.5px;font-weight:900;letter-spacing:-.4px;white-space:nowrap}
+.brand span{font-size:11px;color:var(--mut);font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.navm{margin-left:auto;display:flex;gap:7px;flex-wrap:nowrap}
+.navm a{font-size:12px;font-weight:800;padding:8px 12px;border-radius:10px;border:1px solid var(--line);
+  color:var(--tx2);background:#fff;white-space:nowrap;transition:.15s}
+.navm a:hover{border-color:#c9d2e4;color:var(--tx);transform:translateY(-1px)}
+.navm a.gold{background:linear-gradient(135deg,#fff6dd,#ffe9ae);border-color:#f2d894;color:#7c4a03}
+@media(max-width:640px){
+  .topbar .in{height:auto;padding:9px 0;flex-wrap:wrap;gap:8px}
+  .brand span{display:none}
+  .navm{width:100%;margin-left:0}
+  .navm a{flex:1;text-align:center;padding:7px 6px;font-size:11.5px}
+}
+
+/* ---------- HERO ---------- */
+.hero{padding:24px 0 6px}
+.hero h1{font-size:26px;line-height:1.28;font-weight:900;letter-spacing:-.9px}
+.hero h1 em{font-style:normal;color:var(--brand2);background:linear-gradient(180deg,transparent 62%,rgba(240,180,41,.38) 62%)}
+.hero p.lead{margin-top:9px;font-size:13.5px;color:var(--tx2);max-width:760px}
+.hero p.lead b{color:var(--rose2)}
+.statrow{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px;margin-top:16px}
+.stat{background:#fff;border:1px solid var(--line);border-radius:14px;padding:11px 12px;box-shadow:var(--sh)}
+.stat .k{font-size:11px;font-weight:800;color:var(--mut);letter-spacing:-.1px}
+.stat .v{font-size:20px;font-weight:900;letter-spacing:-.7px;margin-top:2px}
+.stat .v small{font-size:11px;font-weight:800;color:var(--mut);margin-left:2px}
+.stat.hot{border-color:#fbd0da;background:linear-gradient(180deg,#fff,#fff7f9)}
+.stat.hot .v{color:var(--rose)}
+.stat.warm{border-color:#fbe3b5;background:linear-gradient(180deg,#fff,#fffaf0)}
+.stat.warm .v{color:#b45309}
+@media(max-width:760px){.hero h1{font-size:21px}}
+@media(max-width:420px){.statrow{grid-template-columns:repeat(2,minmax(0,1fr))}.stat .v{font-size:18px}.stat .v[style]{font-size:14px!important}}
+
+.syncbar{display:flex;flex-wrap:wrap;align-items:center;gap:6px 14px;margin-top:12px;font-size:11.5px;color:var(--mut)}
+.syncbar .dot{width:6px;height:6px;border-radius:50%;background:var(--mint);display:inline-block;margin-right:5px;animation:blink 2s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+.syncbar b{color:var(--tx2)}
+.syncbar a.call{display:inline-flex;align-items:center;gap:6px;background:#eff6ff;border:1px solid #bfdbfe;color:#1d4ed8;
+  font-weight:900;padding:6px 11px;border-radius:9px;font-size:12px}
+.syncbar a.call:hover{background:#dbeafe}
+
+/* ---------- BANNER (강릉이모) ---------- */
+.gnbanner{display:flex;gap:14px;align-items:center;flex-wrap:wrap;margin-top:18px;padding:16px 18px;border-radius:16px;
+  background:linear-gradient(115deg,#fff1f5 0%,#ffe4ec 45%,#ffeef4 100%);border:1px solid #fbcfe0;box-shadow:var(--sh)}
+.gnbanner .ic{font-size:26px;flex:0 0 auto}
+.gnbanner .tx{flex:1;min-width:220px}
+.gnbanner .tx b{display:block;font-size:14px;font-weight:900;color:#9f1239;letter-spacing:-.3px}
+.gnbanner .tx span{font-size:12px;color:#7f4a5c;line-height:1.6}
+.gnbanner .tx i{font-style:normal;color:#a86b7d}
+.gnbanner a.go{background:linear-gradient(135deg,#f43f5e,#be123c);color:#fff;font-weight:900;font-size:12.5px;
+  padding:10px 15px;border-radius:11px;white-space:nowrap;box-shadow:0 6px 16px -6px rgba(190,18,60,.6)}
+.gnbanner a.go:hover{filter:brightness(1.06)}
+@media(max-width:560px){.gnbanner{padding:14px}.gnbanner a.go{width:100%;text-align:center}}
+
+/* ---------- AD SLOT (애드센스 자리) ---------- */
+.adslot{margin:16px 0;border-radius:14px;overflow:hidden}
+.adslot[hidden]{display:none}
+
+/* ---------- LOST / 실종 제보 ---------- */
+.sectitle{display:flex;align-items:center;gap:9px;margin:26px 0 11px;flex-wrap:wrap}
+.sectitle h2{font-size:16.5px;font-weight:900;letter-spacing:-.5px;display:flex;align-items:center;gap:7px}
+.sectitle .pill{font-size:10.5px;font-weight:900;padding:3px 9px;border-radius:20px;background:#fff1f3;color:#be123c;border:1px solid #fecdd3}
+.sectitle p{margin-left:auto;font-size:11.5px;color:var(--mut);text-align:right}
+@media(max-width:600px){.sectitle p{margin-left:0;text-align:left}}
+
+.lostcard{display:grid;grid-template-columns:minmax(0,300px) 1fr;gap:0;background:#fff;border:1px solid #fbd0da;
+  border-radius:18px;overflow:hidden;box-shadow:var(--sh)}
+.lostcard .ph{position:relative;min-height:230px;background:#f1f3f8}
+.lostcard .ph img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0}
+.lostcard .body{padding:18px 20px;display:flex;flex-direction:column;gap:9px}
+.lostcard .tag{display:inline-flex;align-items:center;gap:6px;align-self:flex-start;font-size:11px;font-weight:900;
+  color:#9f1239;background:#fff1f3;border:1px solid #fecdd3;padding:4px 10px;border-radius:20px}
+.lostcard h3{font-size:17px;font-weight:900;letter-spacing:-.5px;line-height:1.35}
+.lostcard p{font-size:12.5px;color:var(--tx2);line-height:1.65}
+.lostcard .kv{display:flex;flex-wrap:wrap;gap:6px}
+.lostcard .kv span{font-size:11px;font-weight:800;color:#7a8296;background:#f5f7fb;border:1px solid var(--line);padding:3px 8px;border-radius:7px}
+.lostcard .acts{display:flex;gap:8px;flex-wrap:wrap;margin-top:2px}
+.lostcard .acts a{font-size:12px;font-weight:900;padding:9px 14px;border-radius:10px}
+.lostcard .acts a.p{background:#111827;color:#fff}
+.lostcard .acts a.c{background:#eff6ff;color:#1d4ed8;border:1px solid #bfdbfe}
+@media(max-width:700px){.lostcard{grid-template-columns:1fr}.lostcard .ph{min-height:210px;position:relative}}
+
+/* ---------- CONTROLS ---------- */
+.controls{position:sticky;top:60px;z-index:60;background:rgba(245,246,250,.94);backdrop-filter:blur(10px);
+  padding:11px 0 9px;border-bottom:1px solid var(--line2);margin-bottom:14px}
+@media(max-width:640px){.controls{top:0}}
+.ctop{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.tabs{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;flex:1 1 auto;padding-bottom:2px}
+.tabs::-webkit-scrollbar{display:none}
+.tab{flex:0 0 auto;border:1px solid var(--line);background:#fff;color:var(--tx2);font-size:12.5px;font-weight:800;
+  padding:8px 13px;border-radius:11px;cursor:pointer;transition:.15s;white-space:nowrap}
+.tab:hover{border-color:#c9d2e4}
+.tab .n{font-size:11px;font-weight:900;color:var(--mut);margin-left:4px}
+.tab.on{background:#111827;border-color:#111827;color:#fff;box-shadow:0 6px 14px -8px rgba(17,24,39,.9)}
+.tab.on .n{color:#fbbf24}
+.tab.urg.on{background:linear-gradient(135deg,#f43f5e,#be123c);border-color:#be123c}
+.searchbox{position:relative;flex:0 0 240px}
+.searchbox input{width:100%;padding:9px 34px 9px 33px;border-radius:11px;border:1px solid var(--line);background:#fff;
+  font-size:12.5px;outline:none;color:var(--tx)}
+.searchbox input:focus{border-color:#93b4fb;box-shadow:0 0 0 3px rgba(37,99,235,.12)}
+.searchbox .ic{position:absolute;left:11px;top:50%;transform:translateY(-50%);font-size:13px;color:#98a2b6}
+.searchbox .clr{position:absolute;right:6px;top:50%;transform:translateY(-50%);border:0;background:#eef1f7;color:#69738a;
+  width:22px;height:22px;border-radius:50%;cursor:pointer;font-size:12px;line-height:1;display:none}
+.searchbox.has .clr{display:block}
+.sortsel{border:1px solid var(--line);background:#fff;border-radius:11px;padding:9px 10px;font-size:12.5px;
+  font-weight:800;color:var(--tx2);cursor:pointer;outline:none}
+@media(max-width:640px){.searchbox{flex:1 1 100%;order:3}.sortsel{order:2}}
+.resline{display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-size:11.5px;color:var(--mut);margin-top:9px}
+.resline b{color:var(--tx)}
+
+/* ---------- GRID / CARD ---------- */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(258px,1fr));gap:14px}
+.pet{background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:var(--sh);
+  display:flex;flex-direction:column;transition:.16s}
+.pet:hover{transform:translateY(-2px);box-shadow:0 2px 4px rgba(23,29,43,.05),0 16px 32px -18px rgba(23,29,43,.28);border-color:#d7dceb}
+.pet .ph{position:relative;display:block;aspect-ratio:4/3;background:#eef1f7;overflow:hidden}
+.pet .ph img{width:100%;height:100%;object-fit:cover;transition:transform .35s}
+.pet:hover .ph img{transform:scale(1.035)}
+.pet .dd{position:absolute;left:9px;top:9px;font-size:11.5px;font-weight:900;color:#fff;padding:4px 9px;border-radius:8px;
+  background:#475569;box-shadow:0 4px 12px -4px rgba(0,0,0,.45);letter-spacing:-.2px}
+.pet .dd.d1{background:linear-gradient(135deg,#f43f5e,#be123c);animation:pulse 1.8s infinite}
+.pet .dd.d2{background:linear-gradient(135deg,#fb923c,#ea580c)}
+.pet .dd.d3{background:linear-gradient(135deg,#fbbf24,#d97706)}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(190,18,60,.55)}50%{box-shadow:0 0 0 7px rgba(190,18,60,0)}}
+.pet .sp{position:absolute;right:9px;top:9px;font-size:10.5px;font-weight:900;padding:4px 8px;border-radius:8px;
+  background:rgba(255,255,255,.94);color:#334155;border:1px solid rgba(255,255,255,.7);backdrop-filter:blur(4px)}
+.pet .sp.cat{color:#6d28d9}.pet .sp.etc{color:#0f766e}
+.pet .body{padding:12px 13px 13px;display:flex;flex-direction:column;gap:7px;flex:1}
+.pet h3{font-size:14px;font-weight:900;letter-spacing:-.3px;display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.pet h3 .sx{font-size:10.5px;font-weight:900;color:#475569;background:#f1f4f9;border:1px solid var(--line);border-radius:6px;padding:1px 6px}
+.pet .meta{font-size:11.5px;color:var(--mut);font-weight:700;display:flex;gap:6px;flex-wrap:wrap}
+.pet .meta i{font-style:normal;color:#cbd5e1}
+.pet .feat{font-size:12px;color:var(--tx2);line-height:1.55;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;min-height:37px}
+.pet .loc{font-size:11px;color:var(--mut);line-height:1.5;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.pet .per{font-size:11px;color:#475569;font-weight:800;background:#f6f8fc;border:1px dashed #dde3ee;border-radius:9px;padding:6px 8px;line-height:1.45}
+.pet .per .ln{display:flex;align-items:center;justify-content:space-between;gap:6px}
+.pet .per b{color:#111827}
+.pet .per .cbtn{flex:0 0 auto;font-size:10.5px;font-weight:900;color:#475569;background:#fff;border:1px solid #d8dfec;
+  border-radius:6px;padding:2px 7px;cursor:pointer;line-height:1.5}
+.pet .per .cbtn:hover{background:#eef2f9;color:#111827}
+.pet .per .no{color:#69738a;font-weight:700;font-size:10.5px}
+.pet .acts{margin-top:auto;display:flex;gap:6px}
+.pet .acts a{flex:1;text-align:center;font-size:11.5px;font-weight:900;padding:8px 6px;border-radius:9px;transition:.15s}
+.pet .acts a.p{background:#111827;color:#fff}
+.pet .acts a.p:hover{background:#000}
+.pet .acts a.c{background:#eff6ff;color:#1d4ed8;border:1px solid #bfdbfe;flex:0 0 92px}
+.pet .acts a.c:hover{background:#dbeafe}
+.empty{grid-column:1/-1;text-align:center;padding:60px 20px;color:var(--mut);font-size:13px;background:#fff;border:1px dashed var(--line);border-radius:16px}
+
+/* ---------- GUIDE ---------- */
+.guide{margin-top:26px;background:#fff;border:1px solid var(--line);border-radius:16px;padding:16px 18px;box-shadow:var(--sh)}
+.guide h3{font-size:13.5px;font-weight:900;letter-spacing:-.3px;margin-bottom:9px;display:flex;align-items:center;gap:7px}
+.guide ul{list-style:none;display:grid;gap:7px}
+.guide li{font-size:12px;color:var(--tx2);line-height:1.6;padding-left:18px;position:relative}
+.guide li:before{content:'•';position:absolute;left:4px;color:var(--brand);font-weight:900}
+.guide li b{color:var(--tx)}
+.guide .warn{margin-top:10px;font-size:11.5px;background:#fffbeb;border:1px solid #fde68a;color:#92400e;border-radius:10px;padding:9px 11px;line-height:1.6}
+
+/* ---------- 반려용품 ---------- */
+.cpbanner{margin-top:26px;background:linear-gradient(160deg,#ffffff,#fbfcff);border:1px solid var(--line);
+  border-radius:18px;padding:18px 18px 16px;box-shadow:var(--sh)}
+.cpbanner .t{font-size:14.5px;font-weight:900;letter-spacing:-.4px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.cpbanner .d{font-size:12px;color:var(--mut);margin-top:5px;line-height:1.6}
+.cplist{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:9px;margin-top:13px}
+.cpitem{display:flex;gap:10px;align-items:flex-start;background:#fff;border:1px solid var(--line2);border-radius:12px;padding:10px 11px}
+.cpnum{flex:0 0 auto;font-size:11px;font-weight:900;color:#b45309;background:#fff7e6;border:1px solid #fde5b0;border-radius:7px;padding:2px 6px;margin-top:1px}
+.cpbody{min-width:0;flex:1}
+.cpname{font-size:12px;font-weight:800;color:var(--tx);line-height:1.45}
+.cpname b{color:var(--brand2);white-space:nowrap}
+.cprow{display:flex;gap:6px;flex-wrap:wrap;margin-top:7px}
+.cpbtn{font-size:11px;font-weight:900;padding:6px 9px;border-radius:8px;white-space:nowrap;transition:.15s}
+.cpbtn.nv{background:#03c75a;color:#fff}
+.cpbtn.nv:hover{filter:brightness(.95)}
+.cpbtn.cp{background:#fff3e0;color:#b45309;border:1px solid #fad9a5}
+.cpbtn.cp:hover{background:#ffe9c7}
+.disclosure{margin-top:11px;font-size:10.5px;color:#98a2b6;line-height:1.65}
+
+/* ---------- FOOTER ---------- */
+footer{margin-top:30px;border-top:1px solid var(--line);padding-top:16px;font-size:11px;color:var(--mut);line-height:1.75}
+footer b{color:var(--tx2)}
+footer .links{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:9px}
+footer .links a{font-size:11.5px;font-weight:800;padding:6px 11px;border-radius:9px;background:#fff;border:1px solid var(--line);color:var(--tx2)}
+footer .links a:hover{border-color:#c9d2e4}
+.toast{position:fixed;left:50%;bottom:26px;transform:translate(-50%,14px);background:#111827;color:#fff;font-size:12.5px;
+  font-weight:800;padding:10px 16px;border-radius:12px;opacity:0;pointer-events:none;transition:.22s;z-index:200;box-shadow:0 12px 30px -10px rgba(0,0,0,.5)}
+.toast.on{opacity:1;transform:translate(-50%,0)}
+</style>
+</head>
+<body>
+
+<!-- ================= HEADER ================= -->
+<header class="topbar">
+  <div class="in">
+    <a class="brand" href="pets.html">
+      <span class="paw">🐾</span>
+      <span class="bt"><b>월억버핏</b><span>유기동물 입양·실종 레이더</span></span>
+    </a>
+    <nav class="navm">
+      <a class="gold" href="dashboard.html">📊 시황판</a>
+      <a href="index.html">💧 물타기 계산기</a>
+      <a href="tel:03180248080">📞 보호소 031-8024-8080</a>
+    </nav>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <!-- ================= HERO ================= -->
+  <section class="hero">
+    <h1>평택에서 <em>평생 가족</em>을 기다리는 아이들</h1>
+    <p class="lead">평택시 동물보호센터에 <b>공고중인 24마리</b>를 실제 보호소 사진 그대로 모았습니다. 공고 마감이 지나면 아이의 운명이 보호소 처리 방침에 따라 달라지니, 마감 임박한 아이부터 순서대로 봐 주세요. <b>사지 말고 입양해 주세요.</b></p>
+    <div class="statrow">
+      <div class="stat"><div class="k">공고중 전체</div><div class="v">24<small>마리</small></div></div>
+      <div class="stat hot"><div class="k">D-1 · 내일 마감</div><div class="v">7<small>마리</small></div></div>
+      <div class="stat warm"><div class="k">D-2 · 모레 마감</div><div class="v">2<small>마리</small></div></div>
+      <div class="stat"><div class="k">강아지 · 고양이 · 기타</div><div class="v" style="font-size:15px;letter-spacing:-.4px">16 · 5 · 3</div></div>
+    </div>
+    <div class="syncbar">
+      <span><i class="dot"></i>포데이 · 국가동물보호정보시스템 <b>2026-11-18 07:07 동기화</b> 기준</span>
+      <span>공고 마감일은 <b>D-day</b>로 표시 · 매일 아침 자동 갱신</span>
+      <a class="call" href="tel:03180248080">📞 평택시 동물보호센터 031-8024-8080</a>
+    </div>
+  </section>
+
+  <!-- ================= 상단 배너 : 강릉이모 ================= -->
+  <div class="gnbanner">
+    <div class="ic">🐕</div>
+    <div class="tx">
+      <b>강릉이모 · 댕하숙원 — 임시보호 가정에서 입양을 홍보하는 곳</b>
+      <span>10기 비세트·드세트 입양신청서, 임시보호 신청서, 임보일기, 국내입양 졸업생 명단까지 한 페이지에서 확인하실 수 있습니다. <i>(입양신청서 · 임시보호 신청서 · 임보일기 · 졸업생 명단)</i></span>
+    </div>
+    <a class="go" href="https://litt.ly/gangneung_2mo" target="_blank" rel="noopener">강릉이모 입양·임보 신청서 ↗</a>
+  </div>
+
+  <!-- AD SLOT : 상단 (애드센스 승인 후 이 div에 광고 코드를 넣으면 됩니다) -->
+  <div class="adslot" id="adTop" data-ad-slot="pets-top" hidden></div>
+
+  <!-- ================= 실종·제보 ================= -->
+  <section id="lost">
+    <div class="sectitle">
+      <h2>🚨 주인을 찾습니다 <span class="pill">실종견일 수 있어요</span></h2>
+      <p>목줄을 찬 채 구조된 아이 · 제보는 보호소로</p>
+    </div>
+    <div class="lostcard">
+      <div class="ph"><img src="assets/pets/441391202602117_1200.webp" alt="평택 팽성읍 평궁리에서 낡은 목줄을 찬 채 구조된 믹스견" loading="lazy" onerror="this.onerror=null;this.src='https://img.pawday.kr/441391202602117/1/w1200.webp'"></div>
+      <div class="body">
+        <span class="tag">🚨 낡은 목줄 착용 · 보호자 찾는 중</span>
+        <h3>팽성읍 평궁리에서 구조된 믹스견 — 누군가의 가족이었을 수 있습니다</h3>
+        <p>2026년 11월 12일 평택시 팽성읍 평궁리 394-6에서 <b>낡은 목줄을 찬 채</b> 구조됐습니다. 4~5살 추정 암컷, 25kg 대형견. 목줄을 하고 있던 아이인 만큼 보호자가 찾고 있을 가능성이 있어, 같은 아이를 기르시던 분이나 목격하신 분의 제보를 기다립니다.</p>
+        <div class="kv">
+          <span>공고번호 경기-평택-2026-00799</span><span>공고 마감 2026. 11. 23. (D-5)</span><span>평택시 동물보호센터(청북)</span><span>중성화 전</span>
+        </div>
+        <div class="acts">
+          <a class="p" href="https://pawday.kr/animals/441391202602117" target="_blank" rel="noopener">포데이 상세·사진 보기 ↗</a>
+          <a class="c" href="tel:03180248080">📞 031-8024-8080 제보</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- AD SLOT : 목록 위 -->
+  <div class="adslot" id="adList" data-ad-slot="pets-list" hidden></div>
+
+  <!-- ================= 목록 ================= -->
+  <div class="controls">
+    <div class="ctop">
+      <div class="tabs" id="tabs">
+        <button class="tab on" data-f="all">전체 <span class="n">24</span></button>
+        <button class="tab urg" data-f="urgent">⏰ D-DAY 긴급 <span class="n">9</span></button>
+        <button class="tab" data-f="dog">🐶 강아지 <span class="n">16</span></button>
+        <button class="tab" data-f="cat">🐱 고양이 <span class="n">5</span></button>
+        <button class="tab" data-f="etc">🐾 기타 <span class="n">3</span></button>
+      </div>
+      <div class="searchbox" id="sbox">
+        <span class="ic">🔍</span>
+        <input id="q" type="search" placeholder="견종·지역·공고번호 검색" autocomplete="off" aria-label="유기동물 검색">
+        <button class="clr" id="qclr" type="button" aria-label="검색어 지우기">✕</button>
+      </div>
+      <select class="sortsel" id="sortsel" aria-label="정렬">
+        <option value="dday">마감 임박순</option>
+        <option value="new">최근 등록순</option>
+        <option value="sp">강아지 → 고양이 → 기타</option>
+      </select>
+    </div>
+    <div class="resline"><span id="resline">24마리 전체</span></div>
+  </div>
+
+  <div class="grid" id="grid"></div>
+
+  <!-- ================= 안내 ================= -->
+  <section class="guide">
+    <h3>📋 전화 문의 전에 꼭 확인하세요</h3>
+    <ul>
+      <li><b>공고번호를 먼저 메모하세요.</b> 보호소에 전화하실 때 공고번호(예: 경기-평택-2026-00785)를 말씀하셔야 착오 없이 그 아이를 바로 찾을 수 있습니다. 카드의 <b>공고번호 복사</b> 버튼을 누르면 복사됩니다.</li>
+      <li><b>방문 전 유선 상담이 필수</b>입니다. 보호소 운영 시간과 방문 가능 여부를 먼저 확인하세요. 평택시 동물보호센터는 경기도 평택시 청북읍 청북로 497에 있습니다.</li>
+      <li><b>입양 전 교육 이수</b> — 동물사랑배움터 온라인 교육 수료가 필요합니다. 입양 절차와 조건은 보호소마다 다릅니다.</li>
+      <li><b>공고 마감 뒤에는</b> 보호소 처리 방침에 따라 입양·소유주 반환·자연사 등으로 상황이 달라집니다. 마감 임박 아이일수록 문의가 급합니다.</li>
+    </ul>
+    <div class="warn">이 페이지의 사진·나이·체중은 포데이가 국가동물보호정보시스템 공공데이터를 가공한 값으로, 나이는 추정값입니다. 최종 확인은 반드시 보호소(031-8024-8080)에 문의해 주세요. 사진은 보호소가 등록한 실제 사진이며 스톡 이미지는 쓰지 않았습니다.</div>
+  </section>
+
+  <!-- ================= 밍키 반려용품 ================= -->
+  <section class="cpbanner" id="shop">
+    <div class="t">🐾 밍키 반려용품 — 월억버핏 네이버 스토어 &amp; 쿠팡 매칭</div>
+    <div class="d">밍키가 실제로 먹고 쓰는 용품만 모았습니다. 초록 버튼은 네이버 크리에이터샵 <b>buffettlife</b> 등록 상품(실제 판가), 주황 버튼은 같은 브랜드·용량으로 맞춘 쿠팡 링크입니다. 상품명을 누르면 각 스토어로 이동합니다.</div>
+    <div class="cplist">
+      <div class="cpitem">
+        <div class="cpnum">01</div>
+        <div class="cpbody">
+          <div class="cpname">테비 사시미 대용량 육포 강아지간식 <b>10,800원</b></div>
+          <div class="cprow"><a class="cpbtn nv" href="https://brandconnect.naver.com/affiliates/1017836010322016?channelProductNo=13735570428&ac=crtshp&cid=1017835745140128&ctid=1017850028949088&t=AWr8TpQAA523WgddoAAAAAMytCv8T8eQ9fA0tZ0" target="_blank" rel="noopener nofollow sponsored">🐾 월억버핏 스토어 10,800원</a><a class="cpbtn cp" href="https://link.coupang.com/a/iKNCjG7Tdk" target="_blank" rel="noopener nofollow sponsored">🛒 쿠팡 테비 사사미 1kg 12,400원</a></div>
+        </div>
+      </div>
+      <div class="cpitem">
+        <div class="cpnum">02</div>
+        <div class="cpbody">
+          <div class="cpname">포켄스 덴티페어리 벌크팩 덴탈껌 1.02kg <b>55,000원</b></div>
+          <div class="cprow"><a class="cpbtn nv" href="https://brandconnect.naver.com/affiliates/1017849663031465?channelProductNo=10573369565&ac=crtshp&cid=1017835745140128&ctid=1017850028949088&t=AWr8TpQAA523WgddoAAAAAJ2ONDdNky0nmMZY-8" target="_blank" rel="noopener nofollow sponsored">🐾 월억버핏 스토어 55,000원</a><a class="cpbtn cp" href="https://link.coupang.com/a/iKNEHsYl3s" target="_blank" rel="noopener nofollow sponsored">🛒 쿠팡 덴티페어리 1.02kg 46,900원</a></div>
+        </div>
+      </div>
+      <div class="cpitem">
+        <div class="cpnum">03</div>
+        <div class="cpbody">
+          <div class="cpname">포켄스 덴티페어리 디스펜서 덴탈껌 584g <b>35,000원</b></div>
+          <div class="cprow"><a class="cpbtn nv" href="https://brandconnect.naver.com/affiliates/1017849663031464?channelProductNo=4577116116&ac=crtshp&cid=1017835745140128&ctid=1017850028949088&t=AWr8TpQAA523WgddoAAAAAEQ0T_UzSCQ-fJJEaQ" target="_blank" rel="noopener nofollow sponsored">🐾 월억버핏 스토어 35,000원</a></div>
+        </div>
+      </div>
+      <div class="cpitem">
+        <div class="cpnum">04</div>
+        <div class="cpbody">
+          <div class="cpname">참숯 몬스터패드 대형 4팩 80매 배변패드 <b>39,600원</b></div>
+          <div class="cprow"><a class="cpbtn nv" href="https://brandconnect.naver.com/affiliates/1017849663031463?channelProductNo=2463177491&ac=crtshp&cid=1017835745140128&ctid=1017850028949088&t=AWr8TpQAA523WgddoAAAAACS0RsT1SvjVvCdUPE" target="_blank" rel="noopener nofollow sponsored">🐾 월억버핏 스토어 39,600원</a><a class="cpbtn cp" href="https://link.coupang.com/a/iKNI7rzjG0" target="_blank" rel="noopener nofollow sponsored">🛒 쿠팡 몬스터패드 50매×4개 42,500원</a></div>
+        </div>
+      </div>
+      <div class="cpitem">
+        <div class="cpnum">05</div>
+        <div class="cpbody">
+          <div class="cpname">펫츠랜드 X형 하네스 가슴줄 하트팝 (소형견) <b>19,900원</b></div>
+          <div class="cprow"><a class="cpbtn nv" href="https://brandconnect.naver.com/affiliates/1017849663031456?channelProductNo=12085908226&ac=crtshp&cid=1017835745140128&ctid=1017850028949088&t=AWr8TpQAA523WgddoAAAAALQYFMCtXu-wryUw2k" target="_blank" rel="noopener nofollow sponsored">🐾 월억버핏 스토어 19,900원</a></div>
+        </div>
+      </div>
+      <div class="cpitem">
+        <div class="cpnum">06</div>
+        <div class="cpbody">
+          <div class="cpname">울리 봉봉 펫 소파 메모리폼 방석 S <b>37,900원</b></div>
+          <div class="cprow"><a class="cpbtn nv" href="https://brandconnect.naver.com/affiliates/1017849663031459?channelProductNo=9439920800&ac=crtshp&cid=1017835745140128&ctid=1017850028949088&t=AWr8TpQAA523WgddoAAAAAIyqcKgSn00VQWtCnI" target="_blank" rel="noopener nofollow sponsored">🐾 월억버핏 스토어 37,900원</a></div>
+        </div>
+      </div>
+    </div>
+    <div class="disclosure">이 페이지는 쿠팡 파트너스 활동의 일환으로 일정액의 수수료를 제공받으며, 네이버 쇼핑 커넥트 활동의 일환으로 판매 발생 시 수수료를 제공받습니다. 발생한 수익금의 일부는 유기견 보호소 지원 및 임시보호 아이들의 치료비 후원에 쓰입니다. (쿠팡 파트너스 ID: AF2387959)</div>
+  </section>
+
+  <!-- AD SLOT : 하단 (애드센스) -->
+  <div class="adslot" id="adBottom" data-ad-slot="pets-bottom" hidden></div>
+
+  <!-- ================= FOOTER ================= -->
+  <footer>
+    <div class="links">
+      <a href="pets.html">🐾 유기동물 전용관</a>
+      <a href="dashboard.html">📊 시황판</a>
+      <a href="index.html">💧 물타기 계산기</a>
+      <a href="https://pawday.kr/shelters/pyeongtaeksidongmulbohosenteo" target="_blank" rel="noopener">포데이 평택시동물보호센터 ↗</a>
+      <a href="https://www.animal.go.kr/front/index.do" target="_blank" rel="noopener">국가동물보호정보시스템 ↗</a>
+    </div>
+    <div><b>월억버핏 · 유기동물 입양·실종 레이더</b> — 15년 직장 생활을 마무리하고 월백·월천·월억에 도전하는 사람이 매일 아침 직접 확인해 올리는 페이지입니다. 시황판은 <a href="dashboard.html" style="text-decoration:underline">/dashboard</a>, 물타기 계산기는 <a href="index.html" style="text-decoration:underline">/</a>에서 보실 수 있습니다.</div>
+    <div>유기동물 정보 출처: 국가동물보호정보시스템 공공데이터 · 포데이(pawday.kr) · 평택시 동물보호센터(031-8024-8080) · 최종 동기화 2026-11-18 07:07 · 사진은 보호소 등록 실제 사진</div>
+    <div>보호소 정보는 사정에 따라 수시로 바뀝니다. 이 페이지는 참고용이며, 입양·제보의 최종 판단과 확인은 보호소에 문의해 주세요.</div>
+  </footer>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const PETS = [{"id":"441391202602022","sp":"DOG","spLabel":"강아지","breed":"웰시 코기 펨브로크","sex":"암컷","age":"약 11개월 (2026년생 추정)","weight":"7kg","color":"갈색&흰색","neuter":"중성화 안 됨","features":"11개월-1살 추정, 중성화 여부 확인 어려움, 깨끗한 상태로 발견","foundDate":"11/9","foundPlace":"경기도 평택시 팽성읍 팽성송화로 172","nStart":"2026. 11. 9.","nEnd":"2026. 11. 19.","dday":1,"noticeNo":"경기-평택-2026-00785","url":"https://pawday.kr/animals/441391202602022","photo":"assets/pets/441391202602022_1200.webp","remote":"https://img.pawday.kr/441391202602022/1/w1200.webp","photos":"2","sexLine":"암컷 · 약 11개월 · 7kg"},{"id":"441391202602027","sp":"DOG","spLabel":"강아지","breed":"믹스견","sex":"수컷","age":"생후 2개월 미만 추정 (2026년생)","weight":"1.7kg","color":"갈색&검정","neuter":"중성화 안 됨","features":"2개월 추정, 모견1+자견4 동시 입소, 농장 안 출산","foundDate":"11/9","foundPlace":"경기도 평택시 현덕면 대안리 258-1","nStart":"2026. 11. 9.","nEnd":"2026. 11. 19.","dday":1,"noticeNo":"경기-평택-2026-00787","url":"https://pawday.kr/animals/441391202602027","photo":"assets/pets/441391202602027_1200.webp","remote":"https://img.pawday.kr/441391202602027/1/w1200.webp","photos":"2","sexLine":"수컷 · 생후 2개월 미만 · 1.7kg"},{"id":"441391202602028","sp":"DOG","spLabel":"강아지","breed":"믹스견","sex":"수컷","age":"생후 2개월 미만 추정 (2026년생)","weight":"1.9kg","color":"흰색","neuter":"중성화 안 됨","features":"2개월 추정, 모견1+자견4 동시 입소, 농장 안 출산","foundDate":"11/9","foundPlace":"경기도 평택시 현덕면 대안리 258-1","nStart":"2026. 11. 9.","nEnd":"2026. 11. 19.","dday":1,"noticeNo":"경기-평택-2026-00788","url":"https://pawday.kr/animals/441391202602028","photo":"assets/pets/441391202602028_1200.webp","remote":"https://img.pawday.kr/441391202602028/1/w1200.webp","photos":"2","sexLine":"수컷 · 생후 2개월 미만 · 1.9kg"},{"id":"441391202602029","sp":"DOG","spLabel":"강아지","breed":"믹스견","sex":"암컷","age":"생후 2개월 미만 추정 (2026년생)","weight":"1.7kg","color":"검정&황갈색","neuter":"중성화 안 됨","features":"2개월 추정, 모견1+자견4 동시 입소, 농장 안 출산","foundDate":"11/9","foundPlace":"경기도 평택시 현덕면 대안리 258-1","nStart":"2026. 11. 9.","nEnd":"2026. 11. 19.","dday":1,"noticeNo":"경기-평택-2026-00789","url":"https://pawday.kr/animals/441391202602029","photo":"assets/pets/441391202602029_1200.webp","remote":"https://img.pawday.kr/441391202602029/1/w1200.webp","photos":"2","sexLine":"암컷 · 생후 2개월 미만 · 1.7kg"},{"id":"441391202602030","sp":"DOG","spLabel":"강아지","breed":"믹스견","sex":"암컷","age":"약 3살 (2023년생 추정)","weight":"19.2kg","color":"검정&황갈색","neuter":"중성화 안 됨","features":"모견1+자견4 동시 입소, 농장 안 출산, 예민하고 매우마름","foundDate":"11/9","foundPlace":"경기도 평택시 현덕면 대안리 258-1","nStart":"2026. 11. 9.","nEnd":"2026. 11. 19.","dday":1,"noticeNo":"경기-평택-2026-00790","url":"https://pawday.kr/animals/441391202602030","photo":"assets/pets/441391202602030_1200.webp","remote":"https://img.pawday.kr/441391202602030/1/w1200.webp","photos":"2","sexLine":"암컷 · 약 3살 · 대형 · 19.2kg"},{"id":"441391202602013","sp":"CAT","spLabel":"고양이","breed":"한국 고양이","sex":"성별 미상","age":"생후 2개월 미만 추정 (2026년생)","weight":"230g","color":"레몬색&흰색","neuter":"중성화 안 됨","features":"10/24 구조 후 개인수유임보, 11/9 센터 입소","foundDate":"10/24","foundPlace":"경기도 평택시 진위새싹길 41-14","nStart":"2026. 11. 9.","nEnd":"2026. 11. 19.","dday":1,"noticeNo":"경기-평택-2026-00784","url":"https://pawday.kr/animals/441391202602013","photo":"assets/pets/441391202602013_1200.webp","remote":"https://img.pawday.kr/441391202602013/1/w1200.webp","photos":"2","sexLine":"생후 2개월 미만 · 230g"},{"id":"441391202602024","sp":"ETC","spLabel":"기타","breed":"기타축종","sex":"수컷","age":"약 4개월 (2026년생 추정)","weight":"820g","color":"기타(흰색)","neuter":"중성화 안 됨","features":"고덕수변공원 주변에서 자주 돌아다님,사람 손 잘탐, 3-4개월령 추정","foundDate":"11/9","foundPlace":"경기도 평택시 GS25 고덕프라임점","nStart":"2026. 11. 9.","nEnd":"2026. 11. 19.","dday":1,"noticeNo":"경기-평택-2026-00786","url":"https://pawday.kr/animals/441391202602024","photo":"assets/pets/441391202602024_1200.webp","remote":"https://img.pawday.kr/441391202602024/1/w1200.webp","photos":"2","sexLine":"수컷 · 약 4개월 · 820g"},{"id":"441391202602054","sp":"DOG","spLabel":"강아지","breed":"믹스견","sex":"암컷","age":"생후 2개월 미만 추정 (2026년생)","weight":"1.8kg","color":"흰색","neuter":"중성화 안 됨","features":"2개월 추정,모견1+자견4 동시 입소, 농장 안 출산","foundDate":"11/9","foundPlace":"경기도 평택시 현덕면 대안리 258-1","nStart":"2026. 11. 10.","nEnd":"2026. 11. 20.","dday":2,"noticeNo":"경기-평택-2026-00792","url":"https://pawday.kr/animals/441391202602054","photo":"assets/pets/441391202602054_1200.webp","remote":"https://img.pawday.kr/441391202602054/1/w1200.webp","photos":"2","sexLine":"암컷 · 생후 2개월 미만 · 1.8kg"},{"id":"441391202602053","sp":"CAT","spLabel":"고양이","breed":"한국 고양이","sex":"수컷","age":"생후 2개월 미만 추정 (2026년생)","weight":"200g","color":"기타(흰색/검정)","neuter":"중성화 안 됨","features":"10월15일 구조, 수유 임보 후 11/10 센터 입소, 현재 이유단계 생후6주령","foundDate":"10/15","foundPlace":"경기도 평택시 비전동 885-1 성당 앞 공원","nStart":"2026. 11. 10.","nEnd":"2026. 11. 20.","dday":2,"noticeNo":"경기-평택-2026-00791","url":"https://pawday.kr/animals/441391202602053","photo":"assets/pets/441391202602053_1200.webp","remote":"https://img.pawday.kr/441391202602053/1/w1200.webp","photos":"2","sexLine":"수컷 · 생후 2개월 미만 · 200g"},{"id":"441391202602109","sp":"DOG","spLabel":"강아지","breed":"믹스견","sex":"암컷","age":"약 5개월 (2026년생 추정)","weight":"8.2kg","color":"흰색&황갈색","neuter":"중성화 안 됨","features":"5개월령 추정,798과 동시입소","foundDate":"11/12","foundPlace":"경기도 평택시 서탄면 서탄로 236-50","nStart":"2026. 11. 12.","nEnd":"2026. 11. 23.","dday":5,"noticeNo":"경기-평택-2026-00797","url":"https://pawday.kr/animals/441391202602109","photo":"assets/pets/441391202602109_1200.webp","remote":"https://img.pawday.kr/441391202602109/1/w1200.webp","photos":"2","sexLine":"암컷 · 약 5개월 · 8.2kg"},{"id":"441391202602110","sp":"DOG","spLabel":"강아지","breed":"믹스견","sex":"수컷","age":"약 5개월 (2026년생 추정)","weight":"6.7kg","color":"흰색&황갈색","neuter":"중성화 안 됨","features":"5개월령 추정, 797과 동시입소","foundDate":"11/12","foundPlace":"경기도 평택시 서탄면 서탄로 236-50","nStart":"2026. 11. 12.","nEnd":"2026. 11. 23.","dday":5,"noticeNo":"경기-평택-2026-00798","url":"https://pawday.kr/animals/441391202602110","photo":"assets/pets/441391202602110_1200.webp","remote":"https://img.pawday.kr/441391202602110/1/w1200.webp","photos":"2","sexLine":"수컷 · 약 5개월 · 6.7kg"},{"id":"441391202602117","sp":"DOG","spLabel":"강아지","breed":"믹스견","sex":"암컷","age":"약 5살 (2022년생 추정)","weight":"25kg","color":"검정색","neuter":"중성화 안 됨","features":"4~5살 추정, 낡은 목줄 착용","foundDate":"11/12","foundPlace":"경기도 평택시 팽성읍 평궁리 394-6","nStart":"2026. 11. 12.","nEnd":"2026. 11. 23.","dday":5,"noticeNo":"경기-평택-2026-00799","url":"https://pawday.kr/animals/441391202602117","photo":"assets/pets/441391202602117_1200.webp","remote":"https://img.pawday.kr/441391202602117/1/w1200.webp","photos":"2","sexLine":"암컷 · 약 5살 · 대형 · 25kg"},{"id":"441391202602119","sp":"DOG","spLabel":"강아지","breed":"믹스견","sex":"암컷","age":"약 3개월 (2026년생 추정)","weight":"2.6kg","color":"흰색","neuter":"중성화 안 됨","features":"3개월 추정, 801와 동시 입소, 안중백병원 옆 버스정류장에서 구조,피부염","foundDate":"11/12","foundPlace":"경기도 평택시 안중읍 서동대로 1931-21 안중백병원","nStart":"2026. 11. 12.","nEnd":"2026. 11. 23.","dday":5,"noticeNo":"경기-평택-2026-00800","url":"https://pawday.kr/animals/441391202602119","photo":"assets/pets/441391202602119_1200.webp","remote":"https://img.pawday.kr/441391202602119/1/w1200.webp","photos":"2","sexLine":"암컷 · 약 3개월 · 2.6kg"},{"id":"441391202602120","sp":"DOG","spLabel":"강아지","breed":"믹스견","sex":"암컷","age":"약 3개월 (2026년생 추정)","weight":"2.7kg","color":"흰색","neuter":"중성화 안 됨","features":"3개월 추정, 800과 동시 입소, 안중백병원 옆 버스정류장에서 구조,피부염","foundDate":"11/12","foundPlace":"경기도 평택시 안중읍 서동대로 1931-21 안중백병원","nStart":"2026. 11. 12.","nEnd":"2026. 11. 23.","dday":5,"noticeNo":"경기-평택-2026-00801","url":"https://pawday.kr/animals/441391202602120","photo":"assets/pets/441391202602120_1200.webp","remote":"https://img.pawday.kr/441391202602120/1/w1200.webp","photos":"2","sexLine":"암컷 · 약 3개월 · 2.7kg"},{"id":"441391202602096","sp":"CAT","spLabel":"고양이","breed":"한국 고양이","sex":"수컷","age":"약 4개월 (2026년생 추정)","weight":"800g","color":"검정색","neuter":"중성화 안 됨","features":"4개월 추정, 각막 파열 심함(치료중)","foundDate":"11/11","foundPlace":"경기도 평택시 청북읍 현곡리324-5","nStart":"2026. 11. 11.","nEnd":"2026. 11. 23.","dday":5,"noticeNo":"경기-평택-2026-00796","url":"https://pawday.kr/animals/441391202602096","photo":"assets/pets/441391202602096_1200.webp","remote":"https://img.pawday.kr/441391202602096/1/w1200.webp","photos":"2","sexLine":"수컷 · 약 4개월 · 800g"},{"id":"441391202602094","sp":"ETC","spLabel":"기타","breed":"기타축종","sex":"성별 미상","age":"생후 2개월 미만 추정 (2026년생)","weight":"200g","color":"기타(노랑)","neuter":"중성화 안 됨","features":"쓰레기장에 사육 케이지와 함께 발견됨, 나이 및 성별 확인 어려움","foundDate":"11/10","foundPlace":"경기도 평택시 고덕면 동고리 135-11 쓰레기장","nStart":"2026. 11. 11.","nEnd":"2026. 11. 23.","dday":5,"noticeNo":"경기-평택-2026-00794","url":"https://pawday.kr/animals/441391202602094","photo":"assets/pets/441391202602094_1200.webp","remote":"https://img.pawday.kr/441391202602094/1/w1200.webp","photos":"2","sexLine":"생후 2개월 미만 · 200g"},{"id":"441391202602095","sp":"ETC","spLabel":"기타","breed":"기타축종","sex":"성별 미상","age":"약 1살 (2025년생 추정)","weight":"800g","color":"기타(연한 노랑)","neuter":"중성화 안 됨","features":"쓰레기장에서 사육 케이지와 함께 발견됨. 나이 및 성별 확인 어려움","foundDate":"11/10","foundPlace":"경기도 평택시 고덕면 동고리 135-11 쓰레기장","nStart":"2026. 11. 11.","nEnd":"2026. 11. 23.","dday":5,"noticeNo":"경기-평택-2026-00795","url":"https://pawday.kr/animals/441391202602095","photo":"assets/pets/441391202602095_1200.webp","remote":"https://img.pawday.kr/441391202602095/1/w1200.webp","photos":"2","sexLine":"약 1살 · 800g"},{"id":"441391202602126","sp":"DOG","spLabel":"강아지","breed":"믹스견","sex":"암컷","age":"약 3살 (2023년생 추정)","weight":"7.8kg","color":"흰색","neuter":"중성화 미상","features":"구조지 주변 일주일정도 배회, 중성화 유무 판단 불가","foundDate":"11/14","foundPlace":"경기도 평택시 오성면 강변로 468 (아카이브카페 주변)","nStart":"2026. 11. 14.","nEnd":"2026. 11. 24.","dday":6,"noticeNo":"경기-평택-2026-00802","url":"https://pawday.kr/animals/441391202602126","photo":"assets/pets/441391202602126_1200.webp","remote":"https://img.pawday.kr/441391202602126/1/w1200.webp","photos":"2","sexLine":"암컷 · 약 3살 · 중형 · 7.8kg"},{"id":"441391202602150","sp":"DOG","spLabel":"강아지","breed":"믹스견","sex":"암컷","age":"약 2살 (2024년생 추정)","weight":"13kg","color":"호반색(호랑이무늬)","neuter":"중성화 안 됨","features":"포획틀에 잡힘, 최근 출산 추정, 겁 매우 많음(경계 입질)","foundDate":"11/16","foundPlace":"경기도 평택시 포승읍 충열길 25","nStart":"2026. 11. 16.","nEnd":"2026. 11. 26.","dday":8,"noticeNo":"경기-평택-2026-00803","url":"https://pawday.kr/animals/441391202602150","photo":"assets/pets/441391202602150_1200.webp","remote":"https://img.pawday.kr/441391202602150/1/w1200.webp","photos":"2","sexLine":"암컷 · 약 2살 · 중형 · 13kg"},{"id":"441391202602151","sp":"DOG","spLabel":"강아지","breed":"믹스견","sex":"수컷","age":"약 1살 (2025년생 추정)","weight":"13.2kg","color":"검정 황갈색&흰색","neuter":"중성화 안 됨","features":"11월 2일 부터 목격, 보더콜리 믹스 추정","foundDate":"11/16","foundPlace":"경기도 평택시 청북읍 백봉2리 마을회관 앞 (백봉길 191)","nStart":"2026. 11. 16.","nEnd":"2026. 11. 26.","dday":8,"noticeNo":"경기-평택-2026-00804","url":"https://pawday.kr/animals/441391202602151","photo":"assets/pets/441391202602151_1200.webp","remote":"https://img.pawday.kr/441391202602151/1/w1200.webp","photos":"2","sexLine":"수컷 · 약 1살 · 중형 · 13.2kg"},{"id":"441391202602165","sp":"DOG","spLabel":"강아지","breed":"시바","sex":"수컷","age":"약 4살 (2023년생 추정)","weight":"8.5kg","color":"황갈색","neuter":"중성화 안 됨","features":"3~4살 추정, 우측뒷다리 옆 피부딱지, 털갈이 중","foundDate":"11/17","foundPlace":"경기도 평택시 세교동 432-50","nStart":"2026. 11. 17.","nEnd":"2026. 11. 27.","dday":9,"noticeNo":"경기-평택-2026-00807","url":"https://pawday.kr/animals/441391202602165","photo":"assets/pets/441391202602165_1200.webp","remote":"https://img.pawday.kr/441391202602165/1/w1200.webp","photos":"2","sexLine":"수컷 · 약 4살 · 중형 · 8.5kg"},{"id":"441391202602166","sp":"DOG","spLabel":"강아지","breed":"믹스견","sex":"수컷","age":"약 10살 (2016년생 추정)","weight":"8.1kg","color":"기타(베이지)","neuter":"중성화 안 됨","features":"두들 추정, 치아는 깨끗하나 나이 많아보임, 앞니2개 빠짐, 청색목줄착용,잠복고환","foundDate":"11/17","foundPlace":"경기도 평택시 팽성읍 객사리 170-2 (행정복지센터 뒤 쓰레기장)","nStart":"2026. 11. 17.","nEnd":"2026. 11. 27.","dday":9,"noticeNo":"경기-평택-2026-00808","url":"https://pawday.kr/animals/441391202602166","photo":"assets/pets/441391202602166_1200.webp","remote":"https://img.pawday.kr/441391202602166/1/w1200.webp","photos":"2","sexLine":"수컷 · 약 10살 · 중형 · 8.1kg"},{"id":"441391202601961","sp":"CAT","spLabel":"고양이","breed":"한국 고양이","sex":"수컷","age":"약 6개월 (2026년생 추정)","weight":"1.6kg","color":"레몬색&흰색","neuter":"중성화 안 됨","features":"입소 당시 직장탈 심함(교정술 실시), 탈수, 5-6개월령 추정","foundDate":"11/3","foundPlace":"경기도 평택시 청북읍 광승길 159-36","nStart":"2026. 11. 17.","nEnd":"2026. 11. 27.","dday":9,"noticeNo":"경기-평택-2026-00805","url":"https://pawday.kr/animals/441391202601961","photo":"assets/pets/441391202601961_1200.webp","remote":"https://img.pawday.kr/441391202601961/1/w1200.webp","photos":"2","sexLine":"수컷 · 약 6개월 · 1.6kg"},{"id":"441391202602162","sp":"CAT","spLabel":"고양이","breed":"한국 고양이","sex":"암컷","age":"약 3개월 (2026년생 추정)","weight":"420g","color":"레몬색&흰색","neuter":"중성화 안 됨","features":"2-3개월 추정, 탈수 매우심함, 입소당시 저체온증 및 기력없음( 치료중)","foundDate":"11/13","foundPlace":"경기도 평택시 서정동 159-57 유성홈타운101동 앞","nStart":"2026. 11. 17.","nEnd":"2026. 11. 27.","dday":9,"noticeNo":"경기-평택-2026-00806","url":"https://pawday.kr/animals/441391202602162","photo":"assets/pets/441391202602162_1200.webp","remote":"https://img.pawday.kr/441391202602162/1/w1200.webp","photos":"2","sexLine":"암컷 · 약 3개월 · 420g"}];
+const TEL = '03180248080';
+const grid = document.getElementById('grid');
+const qEl = document.getElementById('q');
+const sbox = document.getElementById('sbox');
+const sortSel = document.getElementById('sortsel');
+const resline = document.getElementById('resline');
+let filter = 'all';
+let keyword = '';
+
+function ddayClass(d){ if(d<=1) return 'd1'; if(d===2) return 'd2'; if(d===3) return 'd3'; return ''; }
+function dlabel(d){ return d<=0 ? 'D-DAY' : 'D-'+d; }
+function spClass(sp){ return sp==='CAT' ? 'cat' : (sp==='ETC' ? 'etc' : ''); }
+function esc(s){ return String(s==null?'':s).replace(/[&<>"]/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
+function phoneFmt(){ return '031-8024-8080'; }
+function ageShort(a){ return String(a).replace(' 추정','').replace(' (2026년생 추정)','').replace(/\s*\((19|20)\d\d년생 추정\)/,'').trim(); }
+
+function visible(){
+  return PETS.filter(p=>{
+    if(filter==='urgent' && p.dday>3) return false;
+    if(filter==='dog' && p.sp!=='DOG') return false;
+    if(filter==='cat' && p.sp!=='CAT') return false;
+    if(filter==='etc' && p.sp!=='ETC') return false;
+    if(keyword){
+      const hay = [p.breed,p.features,p.foundPlace,p.noticeNo,p.spLabel,p.sex,p.color,p.age].join(' ').toLowerCase();
+      if(!hay.includes(keyword)) return false;
+    }
+    return true;
+  });
+}
+
+function sortList(list){
+  const s = sortSel.value;
+  const cp = list.slice();
+  if(s==='dday') cp.sort((a,b)=>a.dday-b.dday || a.id.localeCompare(b.id));
+  else if(s==='new') cp.sort((a,b)=> (a.foundDate<b.foundDate?1:(a.foundDate>b.foundDate?-1:0)) || a.dday-b.dday);
+  else cp.sort((a,b)=> ({DOG:0,CAT:1,ETC:2}[a.sp]-{DOG:0,CAT:1,ETC:2}[b.sp]) || a.dday-b.dday);
+  return cp;
+}
+
+function card(p){
+  const sex = p.sex==='성별 미상' ? '성별 미상' : p.sex;
+  const meta = [esc(p.sexLine), esc(p.neuter)].filter(Boolean).join(' · ');
+  return `<article class="pet" data-id="${p.id}">
+    <a class="ph" href="${p.url}" target="_blank" rel="noopener" aria-label="${esc(p.breed)} 포데이 상세 보기">
+      <img src="${p.photo}" alt="${esc(p.breed)} · 평택시 동물보호센터 보호중" loading="lazy" onerror="this.onerror=null;this.src='${p.remote}'">
+      <span class="dd ${ddayClass(p.dday)}">${dlabel(p.dday)}</span>
+      <span class="sp ${spClass(p.sp)}">${p.spLabel}</span>
+    </a>
+    <div class="body">
+      <h3>${esc(p.breed)}<span class="sx">${esc(sex)}</span></h3>
+      <div class="meta">${meta}</div>
+      <p class="feat">${esc(p.features)}</p>
+      <div class="loc">📍 ${esc(p.foundPlace)} <i>· ${esc(p.foundDate)} 구조</i></div>
+      <div class="per">
+        <div class="ln"><span>공고 <b>${esc(p.nStart)} ~ ${esc(p.nEnd)}</b></span><button class="cbtn" type="button" data-copy="${esc(p.noticeNo)}">복사</button></div>
+        <div class="no">공고번호 ${esc(p.noticeNo)}</div>
+      </div>
+      <div class="acts">
+        <a class="p" href="${p.url}" target="_blank" rel="noopener">포데이 상세·사진</a>
+        <a class="c" href="tel:${TEL}">📞 보호소</a>
+      </div>
+    </div>
+  </article>`;
+}
+
+function render(){
+  const list = sortList(visible());
+  grid.innerHTML = list.length ? list.map(card).join('')
+    : `<div class="empty">조건에 맞는 아이가 없습니다.<br>검색어를 지우거나 다른 탭을 눌러 보세요.</div>`;
+  const t = filter==='all' ? '전체' : (filter==='urgent' ? 'D-DAY 긴급(D-1~D-3)' : (filter==='dog'?'강아지':(filter==='cat'?'고양이':'기타')));
+  resline.innerHTML = `<b>${t}</b> ${list.length}마리` + (keyword?` · ‘${esc(keyword)}’ 검색결과`:'') ;
+  history.replaceState(null,'', location.pathname + (filter==='all'&&!keyword?'':('#'+filter)));
+}
+
+document.getElementById('tabs').addEventListener('click', e=>{
+  const b = e.target.closest('.tab'); if(!b) return;
+  document.querySelectorAll('.tab').forEach(x=>x.classList.toggle('on', x===b));
+  filter = b.dataset.f; render();
+});
+let tmr=0;
+qEl.addEventListener('input', ()=>{
+  clearTimeout(tmr);
+  tmr = setTimeout(()=>{
+    keyword = qEl.value.trim().toLowerCase();
+    sbox.classList.toggle('has', !!qEl.value);
+    render();
+  }, 120);
+});
+document.getElementById('qclr').addEventListener('click', ()=>{ qEl.value=''; keyword=''; sbox.classList.remove('has'); render(); qEl.focus(); });
+sortSel.addEventListener('change', render);
+
+/* 공고번호 복사 — 카드의 공고번호를 길게 눌러도 복사 */
+grid.addEventListener('click', async e=>{
+  const btn = e.target.closest('[data-copy]');
+  const per = e.target.closest('.per');
+  if(!btn && !per) return;
+  const no = btn ? btn.dataset.copy : (per.textContent.match(/경기-평택-\d{4}-\d{5}/)||[])[0];
+  if(!no) return;
+  try{
+    await navigator.clipboard.writeText(no);
+    toast('공고번호 ' + no + ' 복사 완료');
+  }catch(err){
+    toast('복사가 막혀 있어요 · ' + no);
+  }
+});
+let tt=0;
+function toast(msg){
+  const el = document.getElementById('toast');
+  el.textContent = msg; el.classList.add('on');
+  clearTimeout(tt); tt = setTimeout(()=>el.classList.remove('on'), 2200);
+}
+
+/* 해시로 탭 진입 (#urgent 등) */
+const h = location.hash.replace('#','');
+if(['urgent','dog','cat','etc'].includes(h)){
+  filter = h;
+  document.querySelectorAll('.tab').forEach(x=>x.classList.toggle('on', x.dataset.f===h));
+}
+render();
+</script>
+</body>
+</html>

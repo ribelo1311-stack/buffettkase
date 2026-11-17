@@ -259,9 +259,14 @@ td.name .d{display:inline-block;width:5px;height:5px;border-radius:50%;margin-ri
   border-radius:9px;padding:12px 14px}
 .cpbanner .t{display:flex;align-items:center;gap:8px;font-size:12.5px;font-weight:900;color:#fde68a;margin-bottom:5px}
 .cpbanner .d{font-size:11px;color:#c7b189;line-height:1.5;margin-bottom:9px}
-.cplinks{display:flex;gap:8px;flex-wrap:wrap}
-.cpitem{display:inline-flex;border:1px solid #475569;border-radius:6px;overflow:hidden}
-.cplink{font-size:11px;font-weight:800;padding:5px 10px;text-decoration:none}
+.cplinks{display:grid;grid-template-columns:repeat(auto-fill,minmax(235px,1fr));gap:8px}
+.cpitem{display:flex;flex-direction:column;gap:6px;border:1px solid #3b4a63;border-radius:8px;padding:8px 10px;background:rgba(11,17,30,.55)}
+.cpname{font-size:12px;font-weight:800;color:#e8eef8;line-height:1.35}
+.cpname b{color:var(--gold);font-size:11px;font-weight:900;margin-left:3px}
+.cprow{display:flex;gap:6px;flex-wrap:wrap}
+.cplink{font-size:11px;font-weight:800;padding:5px 10px;text-decoration:none;border-radius:5px;white-space:nowrap}
+.cplink.cp-store{color:#fff;background:#03c75a}
+.cplink.cp-store:hover{background:#02b152}
 .cplink.cp-main{color:#0b0f19;background:var(--gold)}
 .cplink.cp-main:hover{background:#ffd45e}
 .cplink.cp-naver{color:#86efac;background:#064e3b;border-left:1px solid #14532d}
@@ -1120,8 +1125,26 @@ footer b{color:#a9b8cb}
   const cpl = $('#cpLinks');
   (D.coupang||[]).forEach(p => {
     const item = el('div','cpitem');
-    item.innerHTML = `<a class="cplink cp-main" href="${p.url}" target="_blank" rel="noopener nofollow sponsored">${p.label} (쿠팡) 🚀</a>` +
-      (p.naverUrl ? `<a class="cplink cp-naver" href="${p.naverUrl}" target="_blank" rel="noopener sponsored">네이버 쇼핑 ↗</a>` : '');
+    if (p.label) {
+      const nm = el('div','cpname');
+      nm.appendChild(document.createTextNode(p.label));
+      if (p.price) { const b = el('b'); b.textContent = p.price; nm.appendChild(document.createTextNode(' ')); nm.appendChild(b); }
+      item.appendChild(nm);
+    }
+    const row = el('div','cprow');
+    if (p.naverUrl) {
+      const a = el('a','cplink cp-store');
+      a.href = p.naverUrl; a.target = '_blank'; a.rel = 'noopener sponsored';
+      a.textContent = (p.naverText || '네이버 스토어') + ' ↗';
+      row.appendChild(a);
+    }
+    if (p.url) {
+      const a = el('a','cplink cp-main');
+      a.href = p.url; a.target = '_blank'; a.rel = 'noopener nofollow sponsored';
+      a.textContent = (p.urlText || (p.label || '상품') + ' · 쿠팡') + ' ↗';
+      row.appendChild(a);
+    }
+    item.appendChild(row);
     cpl.appendChild(item);
   });
   $('#cpDisclosure').textContent = D.coupangNote || '';

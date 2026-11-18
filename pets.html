@@ -3,11 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>월억버핏 · 유기동물 입양·실종 레이더 | 평택시 동물보호센터 공고중</title>
-<meta name="description" content="평택시 동물보호센터 공고중 유기동물 24마리(강아지·고양이·기타)를 실제 보호소 사진과 공고 마감일까지 한눈에. 월억버핏이 매일 아침 실사해 갱신하는 유기동물 입양·실종 레이더입니다. 사지 말고 입양해 주세요.">
+<title>월억버핏 · 전국 임보·구조 + 평택 보호소 레이더</title>
+<meta name="description" content="전국 임보·구조·입양 사연 16건(PAWARDING)과 평택시 동물보호센터 공고중 마감 임박 12마리를 실제 사진 그대로 한 페이지에. 월억버핏이 직접 실사해 올리는 유기동물 입양 레이더입니다. 사지 말고 입양해 주세요.">
 <meta name="theme-color" content="#f6f7fb">
-<meta property="og:title" content="월억버핏 · 유기동물 입양·실종 레이더">
-<meta property="og:description" content="평택시 동물보호센터 공고중 24마리 · 실제 보호소 사진 · 마감 임박순 정렬">
+<meta property="og:title" content="월억버핏 · 전국 임보·구조 + 평택 보호소 레이더">
+<meta property="og:description" content="전국 임보·구조 16건 + 평택 보호소 마감 임박 12마리 · 실제 사진 · 원문 바로가기">
 <meta property="og:type" content="website">
 <link rel="preconnect" href="https://cdn.jsdelivr.net">
 <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" rel="stylesheet">
@@ -130,6 +130,7 @@ img{display:block;max-width:100%}
 .tab.on{background:#111827;border-color:#111827;color:#fff;box-shadow:0 6px 14px -8px rgba(17,24,39,.9)}
 .tab.on .n{color:#fbbf24}
 .tab.urg.on{background:linear-gradient(135deg,#f43f5e,#be123c);border-color:#be123c}
+.tab.paw.on{background:linear-gradient(135deg,#0d9488,#047857);border-color:#047857}
 .searchbox{position:relative;flex:0 0 240px}
 .searchbox input{width:100%;padding:9px 34px 9px 33px;border-radius:11px;border:1px solid var(--line);background:#fff;
   font-size:12.5px;outline:none;color:var(--tx)}
@@ -220,6 +221,31 @@ footer .links a:hover{border-color:#c9d2e4}
 .toast{position:fixed;left:50%;bottom:26px;transform:translate(-50%,14px);background:#111827;color:#fff;font-size:12.5px;
   font-weight:800;padding:10px 16px;border-radius:12px;opacity:0;pointer-events:none;transition:.22s;z-index:200;box-shadow:0 12px 30px -10px rgba(0,0,0,.5)}
 .toast.on{opacity:1;transform:translate(-50%,0)}
+
+/* ---------- MIXED (임보·구조 + 평택 보호소) ---------- */
+.pet.paw{border-color:#cfe8db}
+.pet.paw:hover{border-color:#a9d6c1}
+.pet .dd.pawbd{background:linear-gradient(135deg,#0d9488,#047857)}
+.pet .dd.ptbd{background:#334155}
+.pet .dd.ptbd.d1{background:linear-gradient(135deg,#f43f5e,#be123c);animation:pulse 1.8s infinite}
+.pet .dd.ptbd.d2{background:linear-gradient(135deg,#fb923c,#ea580c)}
+.pet .dd.ptbd.d3{background:linear-gradient(135deg,#fbbf24,#d97706)}
+.pet .st{position:absolute;left:9px;bottom:9px;max-width:calc(100% - 18px);font-size:10.5px;font-weight:900;
+  color:#065f46;background:rgba(236,253,245,.96);border:1px solid #a7f3d0;padding:3px 8px;border-radius:8px;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;backdrop-filter:blur(4px)}
+.pet .st.res{color:#9f1239;background:rgba(255,241,243,.97);border-color:#fecdd3}
+.pet .ptitle{font-size:11.5px;color:#5b6579;line-height:1.45;font-weight:700;
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.pet.paw h3{color:#0f172a}
+.pet.paw .per{background:#f2faf6;border-color:#cfe8db}
+.pet.paw .acts a.p{background:linear-gradient(135deg,#0d9488,#047857)}
+.pet.paw .acts a.p:hover{filter:brightness(1.06)}
+.srcnote{display:flex;flex-wrap:wrap;gap:6px 12px;align-items:center;margin:0 0 12px;padding:10px 12px;border-radius:12px;
+  background:#fff;border:1px solid var(--line);font-size:11.5px;color:var(--mut);line-height:1.6}
+.srcnote b{color:var(--tx2)}
+.srcnote .k{display:inline-flex;align-items:center;gap:5px;font-weight:900;font-size:11px;padding:3px 8px;border-radius:7px}
+.srcnote .k.pw{color:#065f46;background:#ecfdf5;border:1px solid #a7f3d0}
+.srcnote .k.pt{color:#9f1239;background:#fff1f3;border:1px solid #fecdd3}
 </style>
 </head>
 <body>
@@ -229,7 +255,7 @@ footer .links a:hover{border-color:#c9d2e4}
   <div class="in">
     <a class="brand" href="pets.html">
       <span class="paw">🐾</span>
-      <span class="bt"><b>월억버핏</b><span>유기동물 입양·실종 레이더</span></span>
+      <span class="bt"><b>월억버핏</b><span>전국 임보·구조 + 평택 보호소</span></span>
     </a>
     <nav class="navm">
       <a class="gold" href="dashboard.html">📊 시황판</a>
@@ -243,17 +269,17 @@ footer .links a:hover{border-color:#c9d2e4}
 
   <!-- ================= HERO ================= -->
   <section class="hero">
-    <h1>평택에서 <em>평생 가족</em>을 기다리는 아이들</h1>
-    <p class="lead">평택시 동물보호센터에 <b>공고중인 24마리</b>를 실제 보호소 사진 그대로 모았습니다. 공고 마감이 지나면 아이의 운명이 보호소 처리 방침에 따라 달라지니, 마감 임박한 아이부터 순서대로 봐 주세요. <b>사지 말고 입양해 주세요.</b></p>
+    <h1>전국에서 <em>평생 가족</em>을 기다리는 아이들</h1>
+    <p class="lead">강아지·고양이만 골라, 전국 임보·구조·입양 사연 <b>16건</b>과 평택시 동물보호센터 공고중 마감 임박 <b>12마리</b>를 실제 사진 그대로 모았습니다. 사연 카드는 작성자가 직접 올린 글이니 원문에서 최신 상태를 확인해 주세요. <b>사지 말고 입양해 주세요.</b></p>
     <div class="statrow">
-      <div class="stat"><div class="k">공고중 전체</div><div class="v">24<small>마리</small></div></div>
-      <div class="stat hot"><div class="k">D-1 · 내일 마감</div><div class="v">7<small>마리</small></div></div>
-      <div class="stat warm"><div class="k">D-2 · 모레 마감</div><div class="v">2<small>마리</small></div></div>
-      <div class="stat"><div class="k">강아지 · 고양이 · 기타</div><div class="v" style="font-size:15px;letter-spacing:-.4px">16 · 5 · 3</div></div>
+      <div class="stat"><div class="k">임보·구조 · 전국</div><div class="v">16<small>건</small></div></div>
+      <div class="stat hot"><div class="k">평택 보호소 D-1·D-2</div><div class="v">7<small>마리</small></div></div>
+      <div class="stat warm"><div class="k">평택 공고중 (마감 임박순)</div><div class="v">12<small>마리</small></div></div>
+      <div class="stat"><div class="k">강아지 · 고양이</div><div class="v" style="font-size:15px;letter-spacing:-.4px">16 · 12</div></div>
     </div>
     <div class="syncbar">
-      <span><i class="dot"></i>포데이 · 국가동물보호정보시스템 <b>2026-11-18 07:07 동기화</b> 기준</span>
-      <span>공고 마감일은 <b>D-day</b>로 표시 · 매일 아침 자동 갱신</span>
+      <span><i class="dot"></i>포데이 · 국가동물보호정보시스템 <b>2026-11-18 07:07 동기화</b></span>
+      <span>PAWARDING 임보·구조 최신 글 <b>2026-11-08 확인</b> · 원문 등록일 표기</span>
       <a class="call" href="tel:03180248080">📞 평택시 동물보호센터 031-8024-8080</a>
     </div>
   </section>
@@ -301,38 +327,47 @@ footer .links a:hover{border-color:#c9d2e4}
   <div class="controls">
     <div class="ctop">
       <div class="tabs" id="tabs">
-        <button class="tab on" data-f="all">전체 <span class="n">24</span></button>
-        <button class="tab urg" data-f="urgent">⏰ D-DAY 긴급 <span class="n">9</span></button>
+        <button class="tab on" data-f="all">전체 <span class="n">28</span></button>
+        <button class="tab paw" data-f="paw">🏠 임보·구조 <span class="n">16</span></button>
+        <button class="tab" data-f="pday">🏢 평택 보호소 <span class="n">12</span></button>
+        <button class="tab urg" data-f="urgent">⏰ D-1·D-2 긴급 <span class="n">7</span></button>
         <button class="tab" data-f="dog">🐶 강아지 <span class="n">16</span></button>
-        <button class="tab" data-f="cat">🐱 고양이 <span class="n">5</span></button>
-        <button class="tab" data-f="etc">🐾 기타 <span class="n">3</span></button>
+        <button class="tab" data-f="cat">🐱 고양이 <span class="n">12</span></button>
       </div>
       <div class="searchbox" id="sbox">
         <span class="ic">🔍</span>
-        <input id="q" type="search" placeholder="견종·지역·공고번호 검색" autocomplete="off" aria-label="유기동물 검색">
+        <input id="q" type="search" placeholder="이름·지역·견종 검색" autocomplete="off" aria-label="임보·구조·보호소 동물 검색">
         <button class="clr" id="qclr" type="button" aria-label="검색어 지우기">✕</button>
       </div>
       <select class="sortsel" id="sortsel" aria-label="정렬">
-        <option value="dday">마감 임박순</option>
+        <option value="mix">혼합 (임보·구조 ↔ 평택)</option>
         <option value="new">최근 등록순</option>
-        <option value="sp">강아지 → 고양이 → 기타</option>
+        <option value="dday">평택 마감 임박순</option>
+        <option value="sp">강아지 → 고양이</option>
       </select>
     </div>
-    <div class="resline"><span id="resline">24마리 전체</span></div>
+    <div class="resline"><span id="resline">28마리·건 전체</span></div>
+  </div>
+
+  <div class="srcnote">
+    <span class="k pw">🏠 임보·구조</span> 전국 PAWARDING 임보/입양·구조/구호 글 16건 (작성자 직접 게시 · 원문 링크)
+    <span class="k pt">🏢 평택 보호소</span> 평택시동물보호센터 공고중 D-1·D-2 전체 + 마감이 닥친 D-5 5마리, 합계 12마리
   </div>
 
   <div class="grid" id="grid"></div>
 
   <!-- ================= 안내 ================= -->
   <section class="guide">
-    <h3>📋 전화 문의 전에 꼭 확인하세요</h3>
+    <h3>📋 연락 전에 꼭 확인하세요</h3>
     <ul>
+      <li><b>🏠 임보·구조 카드는 원문에서 연락하세요.</b> PAWARDING에 작성자가 직접 올린 글이고, 카드의 사진·사연은 그 글에 실제로 올라온 내용입니다. 연락은 카드의 <b>원문·연락</b> 버튼으로 가서 글쓴이(스레드·X 계정 또는 댓글)에게 하시면 됩니다.</li>
+      <li><b>임보·구조 글은 등록일을 꼭 보세요.</b> 카드에 <b>원문 등록일</b>을 적어 두었습니다. 임보처·입양이 이미 정해졌거나 사연이 진행된 경우가 있으니 원문의 최신 댓글로 현재 상태를 확인해 주세요.</li>
       <li><b>공고번호를 먼저 메모하세요.</b> 보호소에 전화하실 때 공고번호(예: 경기-평택-2026-00785)를 말씀하셔야 착오 없이 그 아이를 바로 찾을 수 있습니다. 카드의 <b>공고번호 복사</b> 버튼을 누르면 복사됩니다.</li>
       <li><b>방문 전 유선 상담이 필수</b>입니다. 보호소 운영 시간과 방문 가능 여부를 먼저 확인하세요. 평택시 동물보호센터는 경기도 평택시 청북읍 청북로 497에 있습니다.</li>
       <li><b>입양 전 교육 이수</b> — 동물사랑배움터 온라인 교육 수료가 필요합니다. 입양 절차와 조건은 보호소마다 다릅니다.</li>
       <li><b>공고 마감 뒤에는</b> 보호소 처리 방침에 따라 입양·소유주 반환·자연사 등으로 상황이 달라집니다. 마감 임박 아이일수록 문의가 급합니다.</li>
     </ul>
-    <div class="warn">이 페이지의 사진·나이·체중은 포데이가 국가동물보호정보시스템 공공데이터를 가공한 값으로, 나이는 추정값입니다. 최종 확인은 반드시 보호소(031-8024-8080)에 문의해 주세요. 사진은 보호소가 등록한 실제 사진이며 스톡 이미지는 쓰지 않았습니다.</div>
+    <div class="warn">평택 보호소 카드의 사진·나이·체중은 포데이가 국가동물보호정보시스템 공공데이터를 가공한 값으로, 나이는 추정값입니다. 최종 확인은 반드시 보호소(031-8024-8080)에 문의해 주세요. 임보·구조 카드는 PAWARDING 원문의 글·사진을 그대로 옮겼고, 사진은 모두 해당 글의 실제 첨부 이미지입니다. 스톡 이미지는 쓰지 않았습니다.</div>
   </section>
 
   <!-- ================= 밍키 반려용품 ================= -->
@@ -395,11 +430,12 @@ footer .links a:hover{border-color:#c9d2e4}
       <a href="pets.html">🐾 유기동물 전용관</a>
       <a href="dashboard.html">📊 시황판</a>
       <a href="index.html">💧 물타기 계산기</a>
+      <a href="https://pawarding.com/ko/board/adopt" target="_blank" rel="noopener">PAWARDING 입양/구조 ↗</a>
       <a href="https://pawday.kr/shelters/pyeongtaeksidongmulbohosenteo" target="_blank" rel="noopener">포데이 평택시동물보호센터 ↗</a>
       <a href="https://www.animal.go.kr/front/index.do" target="_blank" rel="noopener">국가동물보호정보시스템 ↗</a>
     </div>
-    <div><b>월억버핏 · 유기동물 입양·실종 레이더</b> — 15년 직장 생활을 마무리하고 월백·월천·월억에 도전하는 사람이 매일 아침 직접 확인해 올리는 페이지입니다. 시황판은 <a href="dashboard.html" style="text-decoration:underline">/dashboard</a>, 물타기 계산기는 <a href="index.html" style="text-decoration:underline">/</a>에서 보실 수 있습니다.</div>
-    <div>유기동물 정보 출처: 국가동물보호정보시스템 공공데이터 · 포데이(pawday.kr) · 평택시 동물보호센터(031-8024-8080) · 최종 동기화 2026-11-18 07:07 · 사진은 보호소 등록 실제 사진</div>
+    <div><b>월억버핏 · 전국 임보·구조 + 평택 보호소 레이더</b> — 15년 직장 생활을 마무리하고 월백·월천·월억에 도전하는 사람이 매일 아침 직접 확인해 올리는 페이지입니다. 시황판은 <a href="dashboard.html" style="text-decoration:underline">/dashboard</a>, 물타기 계산기는 <a href="index.html" style="text-decoration:underline">/</a>에서 보실 수 있습니다.</div>
+    <div>출처: PAWARDING 입양/구조 게시판(pawarding.com · 카드별 원문 링크) · 국가동물보호정보시스템 공공데이터 · 포데이(pawday.kr) · 평택시 동물보호센터(031-8024-8080) · 평택 동기화 2026-11-18 07:07 · 임보·구조 최신 글 2026-11-08 확인 · 사진은 각 글의 실제 첨부 이미지</div>
     <div>보호소 정보는 사정에 따라 수시로 바뀝니다. 이 페이지는 참고용이며, 입양·제보의 최종 판단과 확인은 보호소에 문의해 주세요.</div>
   </footer>
 </div>
@@ -407,7 +443,7 @@ footer .links a:hover{border-color:#c9d2e4}
 <div class="toast" id="toast"></div>
 
 <script>
-const PETS = [{"id":"441391202602022","sp":"DOG","spLabel":"강아지","breed":"웰시 코기 펨브로크","sex":"암컷","age":"약 11개월 (2026년생 추정)","weight":"7kg","color":"갈색&흰색","neuter":"중성화 안 됨","features":"11개월-1살 추정, 중성화 여부 확인 어려움, 깨끗한 상태로 발견","foundDate":"11/9","foundPlace":"경기도 평택시 팽성읍 팽성송화로 172","nStart":"2026. 11. 9.","nEnd":"2026. 11. 19.","dday":1,"noticeNo":"경기-평택-2026-00785","url":"https://pawday.kr/animals/441391202602022","photo":"assets/pets/441391202602022_1200.webp","remote":"https://img.pawday.kr/441391202602022/1/w1200.webp","photos":"2","sexLine":"암컷 · 약 11개월 · 7kg"},{"id":"441391202602027","sp":"DOG","spLabel":"강아지","breed":"믹스견","sex":"수컷","age":"생후 2개월 미만 추정 (2026년생)","weight":"1.7kg","color":"갈색&검정","neuter":"중성화 안 됨","features":"2개월 추정, 모견1+자견4 동시 입소, 농장 안 출산","foundDate":"11/9","foundPlace":"경기도 평택시 현덕면 대안리 258-1","nStart":"2026. 11. 9.","nEnd":"2026. 11. 19.","dday":1,"noticeNo":"경기-평택-2026-00787","url":"https://pawday.kr/animals/441391202602027","photo":"assets/pets/441391202602027_1200.webp","remote":"https://img.pawday.kr/441391202602027/1/w1200.webp","photos":"2","sexLine":"수컷 · 생후 2개월 미만 · 1.7kg"},{"id":"441391202602028","sp":"DOG","spLabel":"강아지","breed":"믹스견","sex":"수컷","age":"생후 2개월 미만 추정 (2026년생)","weight":"1.9kg","color":"흰색","neuter":"중성화 안 됨","features":"2개월 추정, 모견1+자견4 동시 입소, 농장 안 출산","foundDate":"11/9","foundPlace":"경기도 평택시 현덕면 대안리 258-1","nStart":"2026. 11. 9.","nEnd":"2026. 11. 19.","dday":1,"noticeNo":"경기-평택-2026-00788","url":"https://pawday.kr/animals/441391202602028","photo":"assets/pets/441391202602028_1200.webp","remote":"https://img.pawday.kr/441391202602028/1/w1200.webp","photos":"2","sexLine":"수컷 · 생후 2개월 미만 · 1.9kg"},{"id":"441391202602029","sp":"DOG","spLabel":"강아지","breed":"믹스견","sex":"암컷","age":"생후 2개월 미만 추정 (2026년생)","weight":"1.7kg","color":"검정&황갈색","neuter":"중성화 안 됨","features":"2개월 추정, 모견1+자견4 동시 입소, 농장 안 출산","foundDate":"11/9","foundPlace":"경기도 평택시 현덕면 대안리 258-1","nStart":"2026. 11. 9.","nEnd":"2026. 11. 19.","dday":1,"noticeNo":"경기-평택-2026-00789","url":"https://pawday.kr/animals/441391202602029","photo":"assets/pets/441391202602029_1200.webp","remote":"https://img.pawday.kr/441391202602029/1/w1200.webp","photos":"2","sexLine":"암컷 · 생후 2개월 미만 · 1.7kg"},{"id":"441391202602030","sp":"DOG","spLabel":"강아지","breed":"믹스견","sex":"암컷","age":"약 3살 (2023년생 추정)","weight":"19.2kg","color":"검정&황갈색","neuter":"중성화 안 됨","features":"모견1+자견4 동시 입소, 농장 안 출산, 예민하고 매우마름","foundDate":"11/9","foundPlace":"경기도 평택시 현덕면 대안리 258-1","nStart":"2026. 11. 9.","nEnd":"2026. 11. 19.","dday":1,"noticeNo":"경기-평택-2026-00790","url":"https://pawday.kr/animals/441391202602030","photo":"assets/pets/441391202602030_1200.webp","remote":"https://img.pawday.kr/441391202602030/1/w1200.webp","photos":"2","sexLine":"암컷 · 약 3살 · 대형 · 19.2kg"},{"id":"441391202602013","sp":"CAT","spLabel":"고양이","breed":"한국 고양이","sex":"성별 미상","age":"생후 2개월 미만 추정 (2026년생)","weight":"230g","color":"레몬색&흰색","neuter":"중성화 안 됨","features":"10/24 구조 후 개인수유임보, 11/9 센터 입소","foundDate":"10/24","foundPlace":"경기도 평택시 진위새싹길 41-14","nStart":"2026. 11. 9.","nEnd":"2026. 11. 19.","dday":1,"noticeNo":"경기-평택-2026-00784","url":"https://pawday.kr/animals/441391202602013","photo":"assets/pets/441391202602013_1200.webp","remote":"https://img.pawday.kr/441391202602013/1/w1200.webp","photos":"2","sexLine":"생후 2개월 미만 · 230g"},{"id":"441391202602024","sp":"ETC","spLabel":"기타","breed":"기타축종","sex":"수컷","age":"약 4개월 (2026년생 추정)","weight":"820g","color":"기타(흰색)","neuter":"중성화 안 됨","features":"고덕수변공원 주변에서 자주 돌아다님,사람 손 잘탐, 3-4개월령 추정","foundDate":"11/9","foundPlace":"경기도 평택시 GS25 고덕프라임점","nStart":"2026. 11. 9.","nEnd":"2026. 11. 19.","dday":1,"noticeNo":"경기-평택-2026-00786","url":"https://pawday.kr/animals/441391202602024","photo":"assets/pets/441391202602024_1200.webp","remote":"https://img.pawday.kr/441391202602024/1/w1200.webp","photos":"2","sexLine":"수컷 · 약 4개월 · 820g"},{"id":"441391202602054","sp":"DOG","spLabel":"강아지","breed":"믹스견","sex":"암컷","age":"생후 2개월 미만 추정 (2026년생)","weight":"1.8kg","color":"흰색","neuter":"중성화 안 됨","features":"2개월 추정,모견1+자견4 동시 입소, 농장 안 출산","foundDate":"11/9","foundPlace":"경기도 평택시 현덕면 대안리 258-1","nStart":"2026. 11. 10.","nEnd":"2026. 11. 20.","dday":2,"noticeNo":"경기-평택-2026-00792","url":"https://pawday.kr/animals/441391202602054","photo":"assets/pets/441391202602054_1200.webp","remote":"https://img.pawday.kr/441391202602054/1/w1200.webp","photos":"2","sexLine":"암컷 · 생후 2개월 미만 · 1.8kg"},{"id":"441391202602053","sp":"CAT","spLabel":"고양이","breed":"한국 고양이","sex":"수컷","age":"생후 2개월 미만 추정 (2026년생)","weight":"200g","color":"기타(흰색/검정)","neuter":"중성화 안 됨","features":"10월15일 구조, 수유 임보 후 11/10 센터 입소, 현재 이유단계 생후6주령","foundDate":"10/15","foundPlace":"경기도 평택시 비전동 885-1 성당 앞 공원","nStart":"2026. 11. 10.","nEnd":"2026. 11. 20.","dday":2,"noticeNo":"경기-평택-2026-00791","url":"https://pawday.kr/animals/441391202602053","photo":"assets/pets/441391202602053_1200.webp","remote":"https://img.pawday.kr/441391202602053/1/w1200.webp","photos":"2","sexLine":"수컷 · 생후 2개월 미만 · 200g"},{"id":"441391202602109","sp":"DOG","spLabel":"강아지","breed":"믹스견","sex":"암컷","age":"약 5개월 (2026년생 추정)","weight":"8.2kg","color":"흰색&황갈색","neuter":"중성화 안 됨","features":"5개월령 추정,798과 동시입소","foundDate":"11/12","foundPlace":"경기도 평택시 서탄면 서탄로 236-50","nStart":"2026. 11. 12.","nEnd":"2026. 11. 23.","dday":5,"noticeNo":"경기-평택-2026-00797","url":"https://pawday.kr/animals/441391202602109","photo":"assets/pets/441391202602109_1200.webp","remote":"https://img.pawday.kr/441391202602109/1/w1200.webp","photos":"2","sexLine":"암컷 · 약 5개월 · 8.2kg"},{"id":"441391202602110","sp":"DOG","spLabel":"강아지","breed":"믹스견","sex":"수컷","age":"약 5개월 (2026년생 추정)","weight":"6.7kg","color":"흰색&황갈색","neuter":"중성화 안 됨","features":"5개월령 추정, 797과 동시입소","foundDate":"11/12","foundPlace":"경기도 평택시 서탄면 서탄로 236-50","nStart":"2026. 11. 12.","nEnd":"2026. 11. 23.","dday":5,"noticeNo":"경기-평택-2026-00798","url":"https://pawday.kr/animals/441391202602110","photo":"assets/pets/441391202602110_1200.webp","remote":"https://img.pawday.kr/441391202602110/1/w1200.webp","photos":"2","sexLine":"수컷 · 약 5개월 · 6.7kg"},{"id":"441391202602117","sp":"DOG","spLabel":"강아지","breed":"믹스견","sex":"암컷","age":"약 5살 (2022년생 추정)","weight":"25kg","color":"검정색","neuter":"중성화 안 됨","features":"4~5살 추정, 낡은 목줄 착용","foundDate":"11/12","foundPlace":"경기도 평택시 팽성읍 평궁리 394-6","nStart":"2026. 11. 12.","nEnd":"2026. 11. 23.","dday":5,"noticeNo":"경기-평택-2026-00799","url":"https://pawday.kr/animals/441391202602117","photo":"assets/pets/441391202602117_1200.webp","remote":"https://img.pawday.kr/441391202602117/1/w1200.webp","photos":"2","sexLine":"암컷 · 약 5살 · 대형 · 25kg"},{"id":"441391202602119","sp":"DOG","spLabel":"강아지","breed":"믹스견","sex":"암컷","age":"약 3개월 (2026년생 추정)","weight":"2.6kg","color":"흰색","neuter":"중성화 안 됨","features":"3개월 추정, 801와 동시 입소, 안중백병원 옆 버스정류장에서 구조,피부염","foundDate":"11/12","foundPlace":"경기도 평택시 안중읍 서동대로 1931-21 안중백병원","nStart":"2026. 11. 12.","nEnd":"2026. 11. 23.","dday":5,"noticeNo":"경기-평택-2026-00800","url":"https://pawday.kr/animals/441391202602119","photo":"assets/pets/441391202602119_1200.webp","remote":"https://img.pawday.kr/441391202602119/1/w1200.webp","photos":"2","sexLine":"암컷 · 약 3개월 · 2.6kg"},{"id":"441391202602120","sp":"DOG","spLabel":"강아지","breed":"믹스견","sex":"암컷","age":"약 3개월 (2026년생 추정)","weight":"2.7kg","color":"흰색","neuter":"중성화 안 됨","features":"3개월 추정, 800과 동시 입소, 안중백병원 옆 버스정류장에서 구조,피부염","foundDate":"11/12","foundPlace":"경기도 평택시 안중읍 서동대로 1931-21 안중백병원","nStart":"2026. 11. 12.","nEnd":"2026. 11. 23.","dday":5,"noticeNo":"경기-평택-2026-00801","url":"https://pawday.kr/animals/441391202602120","photo":"assets/pets/441391202602120_1200.webp","remote":"https://img.pawday.kr/441391202602120/1/w1200.webp","photos":"2","sexLine":"암컷 · 약 3개월 · 2.7kg"},{"id":"441391202602096","sp":"CAT","spLabel":"고양이","breed":"한국 고양이","sex":"수컷","age":"약 4개월 (2026년생 추정)","weight":"800g","color":"검정색","neuter":"중성화 안 됨","features":"4개월 추정, 각막 파열 심함(치료중)","foundDate":"11/11","foundPlace":"경기도 평택시 청북읍 현곡리324-5","nStart":"2026. 11. 11.","nEnd":"2026. 11. 23.","dday":5,"noticeNo":"경기-평택-2026-00796","url":"https://pawday.kr/animals/441391202602096","photo":"assets/pets/441391202602096_1200.webp","remote":"https://img.pawday.kr/441391202602096/1/w1200.webp","photos":"2","sexLine":"수컷 · 약 4개월 · 800g"},{"id":"441391202602094","sp":"ETC","spLabel":"기타","breed":"기타축종","sex":"성별 미상","age":"생후 2개월 미만 추정 (2026년생)","weight":"200g","color":"기타(노랑)","neuter":"중성화 안 됨","features":"쓰레기장에 사육 케이지와 함께 발견됨, 나이 및 성별 확인 어려움","foundDate":"11/10","foundPlace":"경기도 평택시 고덕면 동고리 135-11 쓰레기장","nStart":"2026. 11. 11.","nEnd":"2026. 11. 23.","dday":5,"noticeNo":"경기-평택-2026-00794","url":"https://pawday.kr/animals/441391202602094","photo":"assets/pets/441391202602094_1200.webp","remote":"https://img.pawday.kr/441391202602094/1/w1200.webp","photos":"2","sexLine":"생후 2개월 미만 · 200g"},{"id":"441391202602095","sp":"ETC","spLabel":"기타","breed":"기타축종","sex":"성별 미상","age":"약 1살 (2025년생 추정)","weight":"800g","color":"기타(연한 노랑)","neuter":"중성화 안 됨","features":"쓰레기장에서 사육 케이지와 함께 발견됨. 나이 및 성별 확인 어려움","foundDate":"11/10","foundPlace":"경기도 평택시 고덕면 동고리 135-11 쓰레기장","nStart":"2026. 11. 11.","nEnd":"2026. 11. 23.","dday":5,"noticeNo":"경기-평택-2026-00795","url":"https://pawday.kr/animals/441391202602095","photo":"assets/pets/441391202602095_1200.webp","remote":"https://img.pawday.kr/441391202602095/1/w1200.webp","photos":"2","sexLine":"약 1살 · 800g"},{"id":"441391202602126","sp":"DOG","spLabel":"강아지","breed":"믹스견","sex":"암컷","age":"약 3살 (2023년생 추정)","weight":"7.8kg","color":"흰색","neuter":"중성화 미상","features":"구조지 주변 일주일정도 배회, 중성화 유무 판단 불가","foundDate":"11/14","foundPlace":"경기도 평택시 오성면 강변로 468 (아카이브카페 주변)","nStart":"2026. 11. 14.","nEnd":"2026. 11. 24.","dday":6,"noticeNo":"경기-평택-2026-00802","url":"https://pawday.kr/animals/441391202602126","photo":"assets/pets/441391202602126_1200.webp","remote":"https://img.pawday.kr/441391202602126/1/w1200.webp","photos":"2","sexLine":"암컷 · 약 3살 · 중형 · 7.8kg"},{"id":"441391202602150","sp":"DOG","spLabel":"강아지","breed":"믹스견","sex":"암컷","age":"약 2살 (2024년생 추정)","weight":"13kg","color":"호반색(호랑이무늬)","neuter":"중성화 안 됨","features":"포획틀에 잡힘, 최근 출산 추정, 겁 매우 많음(경계 입질)","foundDate":"11/16","foundPlace":"경기도 평택시 포승읍 충열길 25","nStart":"2026. 11. 16.","nEnd":"2026. 11. 26.","dday":8,"noticeNo":"경기-평택-2026-00803","url":"https://pawday.kr/animals/441391202602150","photo":"assets/pets/441391202602150_1200.webp","remote":"https://img.pawday.kr/441391202602150/1/w1200.webp","photos":"2","sexLine":"암컷 · 약 2살 · 중형 · 13kg"},{"id":"441391202602151","sp":"DOG","spLabel":"강아지","breed":"믹스견","sex":"수컷","age":"약 1살 (2025년생 추정)","weight":"13.2kg","color":"검정 황갈색&흰색","neuter":"중성화 안 됨","features":"11월 2일 부터 목격, 보더콜리 믹스 추정","foundDate":"11/16","foundPlace":"경기도 평택시 청북읍 백봉2리 마을회관 앞 (백봉길 191)","nStart":"2026. 11. 16.","nEnd":"2026. 11. 26.","dday":8,"noticeNo":"경기-평택-2026-00804","url":"https://pawday.kr/animals/441391202602151","photo":"assets/pets/441391202602151_1200.webp","remote":"https://img.pawday.kr/441391202602151/1/w1200.webp","photos":"2","sexLine":"수컷 · 약 1살 · 중형 · 13.2kg"},{"id":"441391202602165","sp":"DOG","spLabel":"강아지","breed":"시바","sex":"수컷","age":"약 4살 (2023년생 추정)","weight":"8.5kg","color":"황갈색","neuter":"중성화 안 됨","features":"3~4살 추정, 우측뒷다리 옆 피부딱지, 털갈이 중","foundDate":"11/17","foundPlace":"경기도 평택시 세교동 432-50","nStart":"2026. 11. 17.","nEnd":"2026. 11. 27.","dday":9,"noticeNo":"경기-평택-2026-00807","url":"https://pawday.kr/animals/441391202602165","photo":"assets/pets/441391202602165_1200.webp","remote":"https://img.pawday.kr/441391202602165/1/w1200.webp","photos":"2","sexLine":"수컷 · 약 4살 · 중형 · 8.5kg"},{"id":"441391202602166","sp":"DOG","spLabel":"강아지","breed":"믹스견","sex":"수컷","age":"약 10살 (2016년생 추정)","weight":"8.1kg","color":"기타(베이지)","neuter":"중성화 안 됨","features":"두들 추정, 치아는 깨끗하나 나이 많아보임, 앞니2개 빠짐, 청색목줄착용,잠복고환","foundDate":"11/17","foundPlace":"경기도 평택시 팽성읍 객사리 170-2 (행정복지센터 뒤 쓰레기장)","nStart":"2026. 11. 17.","nEnd":"2026. 11. 27.","dday":9,"noticeNo":"경기-평택-2026-00808","url":"https://pawday.kr/animals/441391202602166","photo":"assets/pets/441391202602166_1200.webp","remote":"https://img.pawday.kr/441391202602166/1/w1200.webp","photos":"2","sexLine":"수컷 · 약 10살 · 중형 · 8.1kg"},{"id":"441391202601961","sp":"CAT","spLabel":"고양이","breed":"한국 고양이","sex":"수컷","age":"약 6개월 (2026년생 추정)","weight":"1.6kg","color":"레몬색&흰색","neuter":"중성화 안 됨","features":"입소 당시 직장탈 심함(교정술 실시), 탈수, 5-6개월령 추정","foundDate":"11/3","foundPlace":"경기도 평택시 청북읍 광승길 159-36","nStart":"2026. 11. 17.","nEnd":"2026. 11. 27.","dday":9,"noticeNo":"경기-평택-2026-00805","url":"https://pawday.kr/animals/441391202601961","photo":"assets/pets/441391202601961_1200.webp","remote":"https://img.pawday.kr/441391202601961/1/w1200.webp","photos":"2","sexLine":"수컷 · 약 6개월 · 1.6kg"},{"id":"441391202602162","sp":"CAT","spLabel":"고양이","breed":"한국 고양이","sex":"암컷","age":"약 3개월 (2026년생 추정)","weight":"420g","color":"레몬색&흰색","neuter":"중성화 안 됨","features":"2-3개월 추정, 탈수 매우심함, 입소당시 저체온증 및 기력없음( 치료중)","foundDate":"11/13","foundPlace":"경기도 평택시 서정동 159-57 유성홈타운101동 앞","nStart":"2026. 11. 17.","nEnd":"2026. 11. 27.","dday":9,"noticeNo":"경기-평택-2026-00806","url":"https://pawday.kr/animals/441391202602162","photo":"assets/pets/441391202602162_1200.webp","remote":"https://img.pawday.kr/441391202602162/1/w1200.webp","photos":"2","sexLine":"암컷 · 약 3개월 · 420g"}];
+const PETS = [{"id":"pw29448","kind":"paw","src":"PAWARDING","pid":29448,"name":"왕자","flair":"임보/입양","status":"임보처 종료 임박","sp":"DOG","spLabel":"강아지","region":"지역 미표기","age":"1살","sex":"수컷","weight":"10kg","summary":"사람에게 겁이 많아 방어적 입질이 있지만 이제 산책도 하고 실내배변도 되는 아이. 글 작성 시점(11/7) 기준 ‘12일 임보처 종료’로 지낼 곳이 없어 가정임보처를 급히 찾고 있습니다.","title":"왕자 · 임보/입양","posted":"2026-11-07","author":"홈트","contact":"스레드 @pawme_animals DM","url":"https://pawarding.com/ko/post/29448","photo":"assets/pets/pw/29448.webp","remote":"https://img.allpetpage.com/posts/29448/29448_1_6a6335_thumb.webp"},{"id":"pw29525","kind":"paw","src":"PAWARDING","pid":29525,"name":"론빵","flair":"임보/입양","status":"입양 취소 후 재입양","sp":"CAT","spLabel":"고양이","region":"지역 미표기","age":"나이 미표기","sex":"성별 미표기","weight":"","summary":"입양이 취소된 뒤에도 가족을 기다리는 아이. 뽀뽀·골골송이 가능하고 자기보다 큰 개와도 잘 지낼 만큼 사회성이 좋습니다.","title":"론빵 · 임보/입양","posted":"2026-11-08","author":"코코아","contact":"X @Ronbbang00","url":"https://pawarding.com/ko/post/29525","photo":"assets/pets/pw/29525.webp","remote":"https://img.allpetpage.com/posts/29525/29525_1_0ec46c_thumb.webp"},{"id":"pw29465","kind":"paw","src":"PAWARDING","pid":29465,"name":"몽이","flair":"임보/입양","status":"보호소 1년째","sp":"DOG","spLabel":"강아지","region":"전국","age":"3살","sex":"남아","weight":"","summary":"가족의 알레르기 문제로 보호소에 들어와 1년째 가족을 기다리는 푸들. 다시는 이별을 겪지 않도록 두 번째 평생 가족을 찾습니다.","title":"몽이 · 임보/입양","posted":"2026-11-08","author":"검은고양이","contact":"원문 DM","url":"https://pawarding.com/ko/post/29465","photo":"assets/pets/pw/29465.webp","remote":"https://img.allpetpage.com/posts/29465/29465_5_471ac8.webp"},{"id":"pw29461","kind":"paw","src":"PAWARDING","pid":29461,"name":"짜장이","flair":"임보/입양","status":"치료 막바지 · 임보 종료 예정","sp":"DOG","spLabel":"강아지","region":"지역 미표기","age":"5살","sex":"여아","weight":"","summary":"시골 마당개로 지내다 심장사상충 진단을 받고 임보 중인 시고르자브종. 치료가 끝날 때까지 가족을 찾지 못하면 원래 살던 마당으로 돌아가야 합니다.","title":"짜장이 · 임보/입양","posted":"2026-11-08","author":"커피중독","contact":"원문 DM","url":"https://pawarding.com/ko/post/29461","photo":"assets/pets/pw/29461.webp","remote":"https://img.allpetpage.com/posts/29461/29461_1_a52050_thumb.webp"},{"id":"pw29450","kind":"paw","src":"PAWARDING","pid":29450,"name":"라떼","flair":"임보/입양","status":"성남 임보 중","sp":"DOG","spLabel":"강아지","region":"경기 성남","age":"나이 미표기","sex":"암컷","weight":"","summary":"사람에게 순하지만 겁이 많아 산책 때 약간 줄당김이 있고 교육 중. 짖음·저지레 없이 밥과 간식을 기다릴 줄 아는 순둥이입니다.","title":"라떼 · 임보/입양","posted":"2026-11-08","author":"연애중","contact":"스레드 @taean041 DM","url":"https://pawarding.com/ko/post/29450","photo":"assets/pets/pw/29450.webp","remote":"https://img.allpetpage.com/posts/29450/29450_1_63b0b9_thumb.webp"},{"id":"pw29449","kind":"paw","src":"PAWARDING","pid":29449,"name":"치즈 아기","flair":"임보/입양","status":"마트 벽에서 구조","sp":"CAT","spLabel":"고양이","region":"부산","age":"2~3개월","sex":"수컷","weight":"880g","summary":"마트 벽에 갇혀 있다 구조된 아기. 범백·전염성 검사 음성이고 눈 결막염을 치료 중이며, 입양하면 모래·화장실·스크래쳐·키튼사료·접종을 지원합니다.","title":"치즈 아기 · 임보/입양","posted":"2026-11-07","author":"신혼생활","contact":"원문 댓글","url":"https://pawarding.com/ko/post/29449","photo":"assets/pets/pw/29449.webp","remote":"https://img.allpetpage.com/posts/29449/29449_1_9be410_thumb.webp"},{"id":"pw29447","kind":"paw","src":"PAWARDING","pid":29447,"name":"프랑","flair":"임보/입양","status":"1차 접종 완료","sp":"CAT","spLabel":"고양이","region":"전국","age":"6주","sex":"여아","weight":"","summary":"오늘 1차 접종을 마친 6주 턱시도 아기. 입양신청서를 받고 있습니다.","title":"프랑 · 임보/입양","posted":"2026-11-07","author":"연애중","contact":"원문 스레드","url":"https://pawarding.com/ko/post/29447","photo":"assets/pets/pw/29447.webp","remote":"https://img.allpetpage.com/posts/29447/29447_1_8b4a73_thumb.webp"},{"id":"pw29445","kind":"paw","src":"PAWARDING","pid":29445,"name":"당진 아기들","flair":"임보/입양","status":"공장 출생 · 6마리","sp":"CAT","spLabel":"고양이","region":"충남 당진","age":"3~4주","sex":"성별 미표기","weight":"","summary":"공장에서 태어난 7마리 중 1마리는 이미 입양을 갔고, 나머지 아이들이 추워지기 전 따뜻한 집을 기다립니다.","title":"당진 아기들 · 임보/입양","posted":"2026-11-07","author":"전업백수","contact":"원문 스레드","url":"https://pawarding.com/ko/post/29445","photo":"assets/pets/pw/29445.webp","remote":"https://img.allpetpage.com/posts/29445/29445_1_b97ed0_thumb.webp"},{"id":"pw28989","kind":"paw","src":"PAWARDING","pid":28989,"name":"호동이","flair":"임보/입양","status":"가족 찾는 중","sp":"CAT","spLabel":"고양이","region":"경남","age":"2025년 9월생","sex":"남아","weight":"","summary":"공장단지 좁은 우리에서 새끼 때부터 자란 아이. 얼굴이 크고 꼬리가 휘어 있으며 성격은 ‘왕쫄보 까불이’입니다.","title":"호동이 · 임보/입양","posted":"2026-11-06","author":"요가중","contact":"X @dongi1056741","url":"https://pawarding.com/ko/post/28989","photo":"assets/pets/pw/28989.webp","remote":"https://img.allpetpage.com/posts/28989/28989_1_508b7d_thumb.webp"},{"id":"pw29180","kind":"paw","src":"PAWARDING","pid":29180,"name":"달콤이","flair":"임보/입양","status":"감기 치료 후 회복","sp":"CAT","spLabel":"고양이","region":"전국","age":"2개월","sex":"여아","weight":"","summary":"감기에 걸려 치료를 받고 좋아진 아기. 다시 밖으로 내보낼 수 없어 가족을 찾고, 구충·레볼은 마쳤고 접종은 일주일 뒤 예정입니다.","title":"달콤이 · 임보/입양","posted":"2026-11-06","author":"맵찔이","contact":"X @guricatshelter","url":"https://pawarding.com/ko/post/29180","photo":"assets/pets/pw/29180.webp","remote":"https://img.allpetpage.com/posts/29180/29180_1_039970_thumb.webp"},{"id":"pw27127","kind":"paw","src":"PAWARDING","pid":27127,"name":"해동이","flair":"임보/입양","status":"평생 가족 찾는 중","sp":"DOG","spLabel":"강아지","region":"전국","age":"5살","sex":"성별 미표기","weight":"","summary":"할아버지가 ‘내 목숨보다 귀한’이라 부르며 직접 닭을 삶아 먹이던 포메라니안. 더 오래 곁에 있어 주지 못해 미안하다는 마음으로 평생 가족을 찾습니다.","title":"해동이 · 임보/입양","posted":"2026-10-30","author":"맘카페","contact":"원문 스레드","url":"https://pawarding.com/ko/post/27127","photo":"assets/pets/pw/27127.webp","remote":"https://img.allpetpage.com/posts/27127/27127_1_e0c9ed_thumb.webp"},{"id":"pw27076","kind":"paw","src":"PAWARDING","pid":27076,"name":"초코공주","flair":"임보/입양","status":"구조 9일차","sp":"CAT","spLabel":"고양이","region":"전국","age":"나이 미표기","sex":"성별 미표기","weight":"","summary":"구조 9일 만에 배를 보여 주고 골골송을 부르는 개냥이가 된 검은 고양이. 눈도 거의 나았고 임보집사 가족도 초코를 보면 웃는다고 합니다.","title":"초코공주 · 임보/입양","posted":"2026-10-29","author":"좋을때다","contact":"원문 스레드","url":"https://pawarding.com/ko/post/27076","photo":"assets/pets/pw/27076.webp","remote":"https://img.allpetpage.com/posts/27076/27076_2_ad6615.webp"},{"id":"pw27081","kind":"paw","src":"PAWARDING","pid":27081,"name":"턱시도 네 형제","flair":"임보/입양","status":"겨울 전 가족 찾는 중","sp":"CAT","spLabel":"고양이","region":"전국","age":"나이 미표기","sex":"네 마리","weight":"","summary":"길에서 지내며 중성화 수술을 진행 중인 네 형제 코점이·깻잎이·짜장이·양말이. 코점이는 애교가 많고 등에 하트 무늬가 있습니다.","title":"턱시도 네 형제 · 임보/입양","posted":"2026-10-30","author":"결혼했음","contact":"원문 스레드","url":"https://pawarding.com/ko/post/27081","photo":"assets/pets/pw/27081.webp","remote":"https://img.allpetpage.com/posts/27081/27081_1_2e4a06_thumb.webp"},{"id":"pw27074","kind":"paw","src":"PAWARDING","pid":27074,"name":"양주 흰 강아지","flair":"구조/구호","status":"구조 요청","sp":"DOG","spLabel":"강아지","region":"경기 양주","age":"나이 미표기","sex":"성별 미표기","weight":"","summary":"옥정·덕정 사이 R4지구 공원에 며칠째 머무는 하얀 강아지. 주민들이 사료와 물을 주지만 겁이 많아 사람 앞에서 먹지 못하고 많이 마른 상태입니다.","title":"양주 흰 강아지 · 구조/구호","posted":"2026-10-29","author":"아이라이너","contact":"원문 스레드","url":"https://pawarding.com/ko/post/27074","photo":"assets/pets/pw/27074.webp","remote":"https://img.allpetpage.com/posts/27074/27074_1_515dd6_thumb.webp"},{"id":"pw27073","kind":"paw","src":"PAWARDING","pid":27073,"name":"용인·분당 아기 고양이 3마리","flair":"구조/구호","status":"임보처 급구","sp":"CAT","spLabel":"고양이","region":"경기","age":"새끼","sex":"세 마리","weight":"","summary":"회사에 들어온 아기 고양이 세 마리, 어미가 돌아오지 않습니다. 기간 제한 없이 입양될 때까지 보호해 줄 곳을 찾습니다(용인·분당이면 더 좋습니다).","title":"용인·분당 아기 고양이 3마리 · 구조/구호","posted":"2026-10-29","author":"시아","contact":"원문 스레드","url":"https://pawarding.com/ko/post/27073","photo":"assets/pets/pw/27073.webp","remote":"https://img.allpetpage.com/posts/27073/27073_1_701943_thumb.webp"},{"id":"pw23149","kind":"paw","src":"PAWARDING","pid":23149,"name":"안양 세발냥","flair":"구조/구호","status":"구조 요청","sp":"CAT","spLabel":"고양이","region":"경기 안양 만안구","age":"나이 미표기","sex":"성별 미표기","weight":"","summary":"만안구에서 세 발로 지내는 치즈색 길고양이. 추워지기 전에 구조해 줄 사람을 찾습니다.","title":"안양 세발냥 · 구조/구호","posted":"2026-10-28","author":"밥잘사주는누나","contact":"원문 스레드","url":"https://pawarding.com/ko/post/23149","photo":"assets/pets/pw/23149.webp","remote":"https://img.allpetpage.com/posts/23149/23149_1_723411_thumb.webp"},{"id":"441391202602022","sp":"DOG","spLabel":"강아지","breed":"웰시 코기 펨브로크","sex":"암컷","age":"약 11개월 (2026년생 추정)","weight":"7kg","color":"갈색&흰색","neuter":"중성화 안 됨","features":"11개월-1살 추정, 중성화 여부 확인 어려움, 깨끗한 상태로 발견","foundDate":"11/9","foundPlace":"경기도 평택시 팽성읍 팽성송화로 172","nStart":"2026. 11. 9.","nEnd":"2026. 11. 19.","dday":1,"noticeNo":"경기-평택-2026-00785","url":"https://pawday.kr/animals/441391202602022","photo":"assets/pets/441391202602022_1200.webp","remote":"https://img.pawday.kr/441391202602022/1/w1200.webp","photos":"2","sexLine":"암컷 · 약 11개월 · 7kg","kind":"pday","posted":"2026-11-9"},{"id":"441391202602027","sp":"DOG","spLabel":"강아지","breed":"믹스견","sex":"수컷","age":"생후 2개월 미만 추정 (2026년생)","weight":"1.7kg","color":"갈색&검정","neuter":"중성화 안 됨","features":"2개월 추정, 모견1+자견4 동시 입소, 농장 안 출산","foundDate":"11/9","foundPlace":"경기도 평택시 현덕면 대안리 258-1","nStart":"2026. 11. 9.","nEnd":"2026. 11. 19.","dday":1,"noticeNo":"경기-평택-2026-00787","url":"https://pawday.kr/animals/441391202602027","photo":"assets/pets/441391202602027_1200.webp","remote":"https://img.pawday.kr/441391202602027/1/w1200.webp","photos":"2","sexLine":"수컷 · 생후 2개월 미만 · 1.7kg","kind":"pday","posted":"2026-11-9"},{"id":"441391202602028","sp":"DOG","spLabel":"강아지","breed":"믹스견","sex":"수컷","age":"생후 2개월 미만 추정 (2026년생)","weight":"1.9kg","color":"흰색","neuter":"중성화 안 됨","features":"2개월 추정, 모견1+자견4 동시 입소, 농장 안 출산","foundDate":"11/9","foundPlace":"경기도 평택시 현덕면 대안리 258-1","nStart":"2026. 11. 9.","nEnd":"2026. 11. 19.","dday":1,"noticeNo":"경기-평택-2026-00788","url":"https://pawday.kr/animals/441391202602028","photo":"assets/pets/441391202602028_1200.webp","remote":"https://img.pawday.kr/441391202602028/1/w1200.webp","photos":"2","sexLine":"수컷 · 생후 2개월 미만 · 1.9kg","kind":"pday","posted":"2026-11-9"},{"id":"441391202602029","sp":"DOG","spLabel":"강아지","breed":"믹스견","sex":"암컷","age":"생후 2개월 미만 추정 (2026년생)","weight":"1.7kg","color":"검정&황갈색","neuter":"중성화 안 됨","features":"2개월 추정, 모견1+자견4 동시 입소, 농장 안 출산","foundDate":"11/9","foundPlace":"경기도 평택시 현덕면 대안리 258-1","nStart":"2026. 11. 9.","nEnd":"2026. 11. 19.","dday":1,"noticeNo":"경기-평택-2026-00789","url":"https://pawday.kr/animals/441391202602029","photo":"assets/pets/441391202602029_1200.webp","remote":"https://img.pawday.kr/441391202602029/1/w1200.webp","photos":"2","sexLine":"암컷 · 생후 2개월 미만 · 1.7kg","kind":"pday","posted":"2026-11-9"},{"id":"441391202602013","sp":"CAT","spLabel":"고양이","breed":"한국 고양이","sex":"성별 미상","age":"생후 2개월 미만 추정 (2026년생)","weight":"230g","color":"레몬색&흰색","neuter":"중성화 안 됨","features":"10/24 구조 후 개인수유임보, 11/9 센터 입소","foundDate":"10/24","foundPlace":"경기도 평택시 진위새싹길 41-14","nStart":"2026. 11. 9.","nEnd":"2026. 11. 19.","dday":1,"noticeNo":"경기-평택-2026-00784","url":"https://pawday.kr/animals/441391202602013","photo":"assets/pets/441391202602013_1200.webp","remote":"https://img.pawday.kr/441391202602013/1/w1200.webp","photos":"2","sexLine":"생후 2개월 미만 · 230g","kind":"pday","posted":"2026-11-9"},{"id":"441391202602054","sp":"DOG","spLabel":"강아지","breed":"믹스견","sex":"암컷","age":"생후 2개월 미만 추정 (2026년생)","weight":"1.8kg","color":"흰색","neuter":"중성화 안 됨","features":"2개월 추정,모견1+자견4 동시 입소, 농장 안 출산","foundDate":"11/9","foundPlace":"경기도 평택시 현덕면 대안리 258-1","nStart":"2026. 11. 10.","nEnd":"2026. 11. 20.","dday":2,"noticeNo":"경기-평택-2026-00792","url":"https://pawday.kr/animals/441391202602054","photo":"assets/pets/441391202602054_1200.webp","remote":"https://img.pawday.kr/441391202602054/1/w1200.webp","photos":"2","sexLine":"암컷 · 생후 2개월 미만 · 1.8kg","kind":"pday","posted":"2026-11-10"},{"id":"441391202602053","sp":"CAT","spLabel":"고양이","breed":"한국 고양이","sex":"수컷","age":"생후 2개월 미만 추정 (2026년생)","weight":"200g","color":"기타(흰색/검정)","neuter":"중성화 안 됨","features":"10월15일 구조, 수유 임보 후 11/10 센터 입소, 현재 이유단계 생후6주령","foundDate":"10/15","foundPlace":"경기도 평택시 비전동 885-1 성당 앞 공원","nStart":"2026. 11. 10.","nEnd":"2026. 11. 20.","dday":2,"noticeNo":"경기-평택-2026-00791","url":"https://pawday.kr/animals/441391202602053","photo":"assets/pets/441391202602053_1200.webp","remote":"https://img.pawday.kr/441391202602053/1/w1200.webp","photos":"2","sexLine":"수컷 · 생후 2개월 미만 · 200g","kind":"pday","posted":"2026-11-10"},{"id":"441391202602109","sp":"DOG","spLabel":"강아지","breed":"믹스견","sex":"암컷","age":"약 5개월 (2026년생 추정)","weight":"8.2kg","color":"흰색&황갈색","neuter":"중성화 안 됨","features":"5개월령 추정,798과 동시입소","foundDate":"11/12","foundPlace":"경기도 평택시 서탄면 서탄로 236-50","nStart":"2026. 11. 12.","nEnd":"2026. 11. 23.","dday":5,"noticeNo":"경기-평택-2026-00797","url":"https://pawday.kr/animals/441391202602109","photo":"assets/pets/441391202602109_1200.webp","remote":"https://img.pawday.kr/441391202602109/1/w1200.webp","photos":"2","sexLine":"암컷 · 약 5개월 · 8.2kg","kind":"pday","posted":"2026-11-12"},{"id":"441391202602110","sp":"DOG","spLabel":"강아지","breed":"믹스견","sex":"수컷","age":"약 5개월 (2026년생 추정)","weight":"6.7kg","color":"흰색&황갈색","neuter":"중성화 안 됨","features":"5개월령 추정, 797과 동시입소","foundDate":"11/12","foundPlace":"경기도 평택시 서탄면 서탄로 236-50","nStart":"2026. 11. 12.","nEnd":"2026. 11. 23.","dday":5,"noticeNo":"경기-평택-2026-00798","url":"https://pawday.kr/animals/441391202602110","photo":"assets/pets/441391202602110_1200.webp","remote":"https://img.pawday.kr/441391202602110/1/w1200.webp","photos":"2","sexLine":"수컷 · 약 5개월 · 6.7kg","kind":"pday","posted":"2026-11-12"},{"id":"441391202602117","sp":"DOG","spLabel":"강아지","breed":"믹스견","sex":"암컷","age":"약 5살 (2022년생 추정)","weight":"25kg","color":"검정색","neuter":"중성화 안 됨","features":"4~5살 추정, 낡은 목줄 착용","foundDate":"11/12","foundPlace":"경기도 평택시 팽성읍 평궁리 394-6","nStart":"2026. 11. 12.","nEnd":"2026. 11. 23.","dday":5,"noticeNo":"경기-평택-2026-00799","url":"https://pawday.kr/animals/441391202602117","photo":"assets/pets/441391202602117_1200.webp","remote":"https://img.pawday.kr/441391202602117/1/w1200.webp","photos":"2","sexLine":"암컷 · 약 5살 · 대형 · 25kg","kind":"pday","posted":"2026-11-12"},{"id":"441391202602119","sp":"DOG","spLabel":"강아지","breed":"믹스견","sex":"암컷","age":"약 3개월 (2026년생 추정)","weight":"2.6kg","color":"흰색","neuter":"중성화 안 됨","features":"3개월 추정, 801와 동시 입소, 안중백병원 옆 버스정류장에서 구조,피부염","foundDate":"11/12","foundPlace":"경기도 평택시 안중읍 서동대로 1931-21 안중백병원","nStart":"2026. 11. 12.","nEnd":"2026. 11. 23.","dday":5,"noticeNo":"경기-평택-2026-00800","url":"https://pawday.kr/animals/441391202602119","photo":"assets/pets/441391202602119_1200.webp","remote":"https://img.pawday.kr/441391202602119/1/w1200.webp","photos":"2","sexLine":"암컷 · 약 3개월 · 2.6kg","kind":"pday","posted":"2026-11-12"},{"id":"441391202602120","sp":"DOG","spLabel":"강아지","breed":"믹스견","sex":"암컷","age":"약 3개월 (2026년생 추정)","weight":"2.7kg","color":"흰색","neuter":"중성화 안 됨","features":"3개월 추정, 800과 동시 입소, 안중백병원 옆 버스정류장에서 구조,피부염","foundDate":"11/12","foundPlace":"경기도 평택시 안중읍 서동대로 1931-21 안중백병원","nStart":"2026. 11. 12.","nEnd":"2026. 11. 23.","dday":5,"noticeNo":"경기-평택-2026-00801","url":"https://pawday.kr/animals/441391202602120","photo":"assets/pets/441391202602120_1200.webp","remote":"https://img.pawday.kr/441391202602120/1/w1200.webp","photos":"2","sexLine":"암컷 · 약 3개월 · 2.7kg","kind":"pday","posted":"2026-11-12"}];
 const TEL = '03180248080';
 const grid = document.getElementById('grid');
 const qEl = document.getElementById('q');
@@ -426,34 +462,77 @@ function ageShort(a){ return String(a).replace(' 추정','').replace(' (2026년�
 
 function visible(){
   return PETS.filter(p=>{
-    if(filter==='urgent' && p.dday>3) return false;
+    if(filter==='paw' && p.kind!=='paw') return false;
+    if(filter==='pday' && p.kind!=='pday') return false;
+    if(filter==='urgent' && !(p.kind==='pday' && p.dday<=2)) return false;
     if(filter==='dog' && p.sp!=='DOG') return false;
     if(filter==='cat' && p.sp!=='CAT') return false;
-    if(filter==='etc' && p.sp!=='ETC') return false;
     if(keyword){
-      const hay = [p.breed,p.features,p.foundPlace,p.noticeNo,p.spLabel,p.sex,p.color,p.age].join(' ').toLowerCase();
+      const hay = [p.breed,p.features,p.foundPlace,p.noticeNo,p.spLabel,p.sex,p.color,p.age,
+                   p.name,p.summary,p.region,p.flair,p.status,p.author].join(' ').toLowerCase();
       if(!hay.includes(keyword)) return false;
     }
     return true;
   });
 }
 
+function postedCmp(a,b){ return a.posted<b.posted ? 1 : (a.posted>b.posted ? -1 : 0); }
+function pawSorted(list){ return list.slice().sort(postedCmp); }
+function pdaySorted(list){ return list.slice().sort((a,b)=>a.dday-b.dday || a.id.localeCompare(b.id)); }
+/* 기본 혼합: 임보·구조 4 : 평택 3 비율로 교차해 둘 다 첫 화면에서 보이게 */
+function interleave(paws, pd){
+  const out=[]; let i=0, j=0;
+  while(i<paws.length || j<pd.length){
+    for(let k=0;k<4 && i<paws.length;k++) out.push(paws[i++]);
+    for(let k=0;k<3 && j<pd.length;k++) out.push(pd[j++]);
+  }
+  return out;
+}
 function sortList(list){
   const s = sortSel.value;
-  const cp = list.slice();
-  if(s==='dday') cp.sort((a,b)=>a.dday-b.dday || a.id.localeCompare(b.id));
-  else if(s==='new') cp.sort((a,b)=> (a.foundDate<b.foundDate?1:(a.foundDate>b.foundDate?-1:0)) || a.dday-b.dday);
-  else cp.sort((a,b)=> ({DOG:0,CAT:1,ETC:2}[a.sp]-{DOG:0,CAT:1,ETC:2}[b.sp]) || a.dday-b.dday);
-  return cp;
+  const paws = list.filter(p=>p.kind==='paw');
+  const pd = list.filter(p=>p.kind==='pday');
+  if(s==='mix') return interleave(pawSorted(paws), pdaySorted(pd));
+  if(s==='new') return list.slice().sort(postedCmp);
+  if(s==='dday') return pdaySorted(pd).concat(pawSorted(paws));
+  return list.slice().sort((a,b)=> ({DOG:0,CAT:1,ETC:2}[a.sp]-{DOG:0,CAT:1,ETC:2}[b.sp])
+    || (a.kind===b.kind?0:(a.kind==='paw'?-1:1)) || postedCmp(a,b));
 }
 
-function card(p){
+function cardPaw(p){
+  const isRes = p.flair==='구조/구호';
+  const sexChip = (p.sex && p.sex!=='성별 미표기') ? `<span class="sx">${esc(p.sex)}</span>` : '';
+  const bits = [p.region, p.age, p.weight].filter(v=>v && v!=='나이 미표기').map(esc).join(' · ');
+  const where = p.region;
+  return `<article class="pet paw" data-id="${p.id}">
+    <a class="ph" href="${p.url}" target="_blank" rel="noopener" aria-label="${esc(p.name)} PAWARDING 원문 보기">
+      <img src="${p.photo}" alt="${esc(p.name)} · PAWARDING ${esc(p.flair)} 글 실제 첨부 사진" loading="lazy" onerror="this.onerror=null;this.src='${p.remote}'">
+      <span class="dd pawbd">🏠 ${esc(p.flair)} · ${esc(where)}</span>
+      <span class="sp ${spClass(p.sp)}">${p.spLabel}</span>
+      <span class="st ${isRes?'res':''}">${esc(p.status)}</span>
+    </a>
+    <div class="body">
+      <h3>${esc(p.name)}${sexChip}</h3>
+      <div class="meta">${bits}</div>
+      <p class="feat">${esc(p.summary)}</p>
+      <div class="per">
+        <div class="ln"><span>원문 등록 <b>${esc(p.posted)}</b></span><span class="no">작성자 ${esc(p.author)}</span></div>
+        <div class="no">연락처 ${esc(p.contact)}</div>
+      </div>
+      <div class="acts">
+        <a class="p" href="${p.url}" target="_blank" rel="noopener">PAWARDING 원문·연락</a>
+      </div>
+    </div>
+  </article>`;
+}
+
+function cardPday(p){
   const sex = p.sex==='성별 미상' ? '성별 미상' : p.sex;
   const meta = [esc(p.sexLine), esc(p.neuter)].filter(Boolean).join(' · ');
   return `<article class="pet" data-id="${p.id}">
     <a class="ph" href="${p.url}" target="_blank" rel="noopener" aria-label="${esc(p.breed)} 포데이 상세 보기">
-      <img src="${p.photo}" alt="${esc(p.breed)} · 평택시 동물보호센터 보호중" loading="lazy" onerror="this.onerror=null;this.src='${p.remote}'">
-      <span class="dd ${ddayClass(p.dday)}">${dlabel(p.dday)}</span>
+      <img src="${p.photo}" alt="${esc(p.breed)} · 평택시 동물보호센터 보호중 보호소 실제 사진" loading="lazy" onerror="this.onerror=null;this.src='${p.remote}'">
+      <span class="dd ptbd ${ddayClass(p.dday)}">🏢 평택 보호소 · ${dlabel(p.dday)}</span>
       <span class="sp ${spClass(p.sp)}">${p.spLabel}</span>
     </a>
     <div class="body">
@@ -473,12 +552,15 @@ function card(p){
   </article>`;
 }
 
+function card(p){ return p.kind==='paw' ? cardPaw(p) : cardPday(p); }
+
 function render(){
   const list = sortList(visible());
   grid.innerHTML = list.length ? list.map(card).join('')
     : `<div class="empty">조건에 맞는 아이가 없습니다.<br>검색어를 지우거나 다른 탭을 눌러 보세요.</div>`;
-  const t = filter==='all' ? '전체' : (filter==='urgent' ? 'D-DAY 긴급(D-1~D-3)' : (filter==='dog'?'강아지':(filter==='cat'?'고양이':'기타')));
-  resline.innerHTML = `<b>${t}</b> ${list.length}마리` + (keyword?` · ‘${esc(keyword)}’ 검색결과`:'') ;
+  const names = {all:'전체', paw:'임보·구조', pday:'평택 보호소', urgent:'D-1·D-2 긴급', dog:'강아지', cat:'고양이'};
+  const t = names[filter] || '전체';
+  resline.innerHTML = `<b>${t}</b> ${list.length}건` + (keyword?` · ‘${esc(keyword)}’ 검색결과`:'') ;
   history.replaceState(null,'', location.pathname + (filter==='all'&&!keyword?'':('#'+filter)));
 }
 
@@ -522,7 +604,7 @@ function toast(msg){
 
 /* 해시로 탭 진입 (#urgent 등) */
 const h = location.hash.replace('#','');
-if(['urgent','dog','cat','etc'].includes(h)){
+if(['urgent','dog','cat','paw','pday'].includes(h)){
   filter = h;
   document.querySelectorAll('.tab').forEach(x=>x.classList.toggle('on', x.dataset.f===h));
 }

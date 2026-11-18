@@ -156,6 +156,13 @@ td.name .d{display:inline-block;width:5px;height:5px;border-radius:50%;margin-ri
 .ptools input{width:180px;padding:5px 9px;background:#0b1220;color:var(--tx);border:1px solid var(--line2);border-radius:6px;font-size:11.5px;outline:none}
 .chip{font-size:10.5px;font-weight:800;padding:4px 9px;border-radius:20px;border:1px solid var(--line2);background:#16202f;color:var(--tx2);cursor:pointer}
 .chip.on{background:#1d4ed8;border-color:#2563eb;color:#fff}
+.sortgrp{display:flex;align-items:center;gap:4px;margin-left:auto}
+.sortgrp .lb{font-size:10px;font-weight:800;color:#64748b;margin-right:1px}
+.sbtn{font-family:inherit;font-size:10.5px;font-weight:800;padding:4px 9px;border-radius:6px;border:1px solid var(--line2);background:#16202f;color:var(--tx2);cursor:pointer;white-space:nowrap}
+.sbtn:hover{background:#1c2a3c;color:#e2e8f0}
+.sbtn.on{background:#0f766e;border-color:#0d9488;color:#fff}
+.rt-table thead th.sortable{cursor:pointer;color:#93c5fd}
+.rt-table thead th.sortable:hover{background:#1b2637}
 .scroll{overflow-x:auto}
 .rt-table{width:100%;border-collapse:collapse;font-size:11.5px;font-variant-numeric:tabular-nums;min-width:860px}
 .rt-table thead th{position:sticky;top:0;background:#151f2d;color:#9fb0c6;font-size:10.5px;font-weight:800;
@@ -225,6 +232,17 @@ td.name .d{display:inline-block;width:5px;height:5px;border-radius:50%;margin-ri
   border-radius:7px;padding:8px 11px;margin-bottom:10px;line-height:1.5}
 .dognote b{color:#fde68a}
 .dogs{display:grid;grid-template-columns:repeat(auto-fill,minmax(215px,1fr));gap:9px}
+.pawstrip{margin-bottom:12px}
+.ps-head{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:8px}
+.ps-head b{font-size:12px;font-weight:900;color:#5eead4}
+.ps-head span{font-size:10.5px;color:#94a3b8}
+.ps-head a{font-size:10.5px;font-weight:800;color:#5eead4;text-decoration:none;border:1px solid rgba(13,148,136,.5);background:rgba(13,148,136,.12);border-radius:20px;padding:2px 9px;white-space:nowrap}
+.ps-head a:hover{background:rgba(13,148,136,.25)}
+.dog.paw{border-color:#155e56}
+.dog.paw:hover{border-color:#0d9488}
+.dog.paw .b{background:#5eead4;color:#0b0f19}
+.dog-btn.paw{color:#fff;background:#0d9488}
+.dog-btn.paw:hover{background:#0f766e}
 .dog{background:#111827;border:1px solid #2a3646;border-radius:9px;overflow:hidden;position:relative}
 .dog .ph{height:124px;overflow:hidden;background:#151f2d;position:relative}
 .dog .ph img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .2s}
@@ -481,13 +499,18 @@ footer b{color:#a9b8cb}
         <span class="chip" data-sig="gap">괴리율 30%+</span>
         <span class="chip" data-sig="up">🔺 제목 상향</span>
         <span class="chip" data-sig="week">이번 주 발간</span>
-        <span style="margin-left:auto;font-size:10.5px;color:#64748b" id="radarCount"></span>
+        <span class="sortgrp" role="group" aria-label="리포트 발행순 정렬">
+          <span class="lb">발행순</span>
+          <button type="button" class="sbtn on" id="radarSortDesc" data-order="desc" aria-pressed="true" title="발행일 최신순(내림차순)으로 정렬">최신순 ↓</button>
+          <button type="button" class="sbtn" id="radarSortAsc" data-order="asc" aria-pressed="false" title="발행일 오래된순(오름차순)으로 정렬">오래된순 ↑</button>
+        </span>
+        <span style="font-size:10.5px;color:#64748b" id="radarCount"></span>
       </div>
       <div class="scroll">
         <table class="rt-table">
           <thead><tr>
             <th class="l">종목</th><th>현재가</th><th>등락률</th><th class="l">증권사</th>
-            <th class="l">리포트 제목</th><th>목표주가</th><th>괴리율</th><th>의견</th><th>발간일</th>
+            <th class="l">리포트 제목</th><th>목표주가</th><th>괴리율</th><th>의견</th><th class="sortable" id="radarDateTh" title="발행일 정렬 전환">발간일 <span id="radarDateMark">↓</span></th>
           </tr></thead>
           <tbody id="radarBody"></tbody>
         </table>
@@ -495,6 +518,7 @@ footer b{color:#a9b8cb}
       <div style="padding:7px 11px;font-size:10px;color:#64748b;border-top:1px solid #17202c;line-height:1.6">
         · 목표주가 = 애널리스트 컨센서스 평균(네이버 금융 제공) · 의견 = 컨센서스 투자의견(5점 환산, 3.75 이상 매수)
         · 🔺/🔻는 리포트 <b>제목</b>에 상·하향 문구가 확인된 경우만 표시하며, 표시가 없으면 유지·미확인입니다.
+        · <b>발행순</b> 버튼(또는 <b>발간일</b> 열 제목)을 누르면 최신순 ↓ / 오래된순 ↑ 정렬이 바뀝니다. 기본은 최신순이며, 발행일이 같은 리포트는 괴리율 순서를 유지합니다.
       </div>
     </div>
   </section>
@@ -561,18 +585,22 @@ footer b{color:#a9b8cb}
     <div class="sec-head">
       <h2>🐶 월억버핏의 동행 <span class="tag g">긴급 구조 &amp; 평생 가족 찾기</span>
         <a href="pets.html" style="font-size:11.5px;font-weight:900;color:#fde68a;background:rgba(240,180,41,.12);border:1px solid rgba(240,180,41,.35);border-radius:20px;padding:3px 10px;white-space:nowrap">🐾 유기동물 전용관 (/pets) →</a></h2>
-      <p>실제 평택시 동물보호센터 입소 아이들 · 사지 말고 입양해 주세요</p>
+      <p>평택시 동물보호센터 공고 + 전국 PAWARDING 임보·구조 · 실제 사진 · 사지 말고 입양해 주세요</p>
     </div>
     <div class="dogwrap">
       <!-- 1. 크고 시원한 실종견/주인 찾는 아이 HERO 배너 -->
       <div id="lostHero"></div>
+
+      <!-- 1-2. 임보·구조(PAWARDING) 미리보기 — /pets 혼합 개편과 같은 기준(강아지·고양이만) -->
+      <div class="pawstrip" id="pawStrip"></div>
 
       <!-- 2. 오정보 방지 및 보호소 유선 안내 -->
       <div class="dognote">
         <b>🚨 오정보 방지 및 보호소 유선 문의 안내</b> — 보호소에 전화하실 때는 반드시 공고의 <b>'공고번호'</b>를 메모하신 후 말씀해 주셔야 착오 없이 즉시 해당 아이를 찾으실 수 있습니다. 방문 전 유선 상담 및 「동물사랑배움터」 온라인 교육 수료가 필수입니다.
       </div>
 
-      <!-- 3. 긴급 공고 아이들 실사 카드 그리드 -->
+      <!-- 3. 평택시 보호센터 긴급 공고 아이들 실사 카드 그리드 -->
+      <div class="ps-head" style="margin:2px 0 8px"><b style="color:#fde68a">🏢 평택시 동물보호센터 · 긴급 공고</b><span>공고번호를 메모해 보호소(031-8024-8080)로 문의하세요</span></div>
       <div class="dogs" id="dogGrid"></div>
 
       <!-- 4. 더 사랑스러운 강아지 더보기 배너 -->
@@ -927,20 +955,66 @@ footer b{color:#a9b8cb}
   /* ---------- 목표가 레이더 ---------- */
   const radarBody = $('#radarBody');
   let sig = 'all';
+  let radarOrder = 'desc';   // 발행순: desc = 최신순 ↓(기본) · asc = 오래된순 ↑
+
+  // 발행일 파싱 — data.js는 YYYYMMDD(20261118). YYYY-MM-DD · YYYY.MM.DD · YY.MM.DD · MM.DD도 받는다.
+  // 돌려주는 값은 YYYYMMDD 숫자, 확인할 수 없으면 0.
+  function radarDateKey(v){
+    const p = String(v==null?'':v).split(/[^0-9]+/).filter(Boolean);
+    if (!p.length) return 0;
+    let y = 0, m = 0, d = 0;
+    if (p[0].length === 8){ y = +p[0].slice(0,4); m = +p[0].slice(4,6); d = +p[0].slice(6,8); }
+    else if (p.length >= 3){ y = +p[0]; m = +p[1]; d = +p[2]; if (y < 100) y += 2000; }
+    else if (p.length === 2){
+      const now = new Date(); y = now.getFullYear(); m = +p[0]; d = +p[1];
+      // 연도가 없는 MM.DD는 아직 오지 않은 날이면 지난해 발행으로 본다.
+      if (m > now.getMonth()+1 || (m === now.getMonth()+1 && d > now.getDate())) y -= 1;
+    }
+    return (y > 1900 && m >= 1 && m <= 12 && d >= 1 && d <= 31) ? y*10000 + m*100 + d : 0;
+  }
+  // '이번 주 발간' 기준일 = 이번 주 월요일(YYYYMMDD). 고정 문자열이면 주가 바뀌어도 그대로라 매번 틀린다.
+  function thisWeekStart(){
+    const n = new Date();
+    const mon = new Date(n.getFullYear(), n.getMonth(), n.getDate() - ((n.getDay()+6) % 7));
+    return mon.getFullYear()*10000 + (mon.getMonth()+1)*100 + mon.getDate();
+  }
+  const WEEK_START = thisWeekStart();
+
+  function setRadarOrder(order){
+    radarOrder = (order === 'asc') ? 'asc' : 'desc';
+    document.querySelectorAll('.sbtn').forEach(b => {
+      const on = b.dataset.order === radarOrder;
+      b.classList.toggle('on', on);
+      b.setAttribute('aria-pressed', on ? 'true' : 'false');
+    });
+    const mk = $('#radarDateMark'); if (mk) mk.textContent = (radarOrder === 'desc') ? '↓' : '↑';
+    buildRadar();
+  }
+
   function buildRadar(){
     const q = ($('#radarSearch').value||'').trim().toLowerCase();
-    radarBody.innerHTML = '';
-    let n = 0;
-    D.radar.forEach(r => {
+    const rows = [];
+    D.radar.forEach((r, i) => {
       if (sig==='buy' && r.recLabel!=='매수' && r.recLabel!=='강력매수') return;
       if (sig==='gap' && r.gap < 30) return;
       if (sig==='up' && r.sig!=='up') return;
-      if (sig==='week' && (r.date||'') < '20261109') return;
+      if (sig==='week' && radarDateKey(r.date) < WEEK_START) return;
       if (q && !(r.name.toLowerCase().includes(q) || (r.broker||'').toLowerCase().includes(q) || (r.title||'').toLowerCase().includes(q))) return;
-      n++;
+      rows.push({ r, i, k: radarDateKey(r.date) });
+    });
+    // 발행순 정렬. 발행일이 같은 리포트는 원래 순서(괴리율 순)를 그대로 두고, 발행일 미확인은 항상 뒤로 보낸다.
+    rows.sort((a, b) => {
+      if (!a.k || !b.k) return a.k === b.k ? a.i - b.i : (a.k ? -1 : 1);
+      if (a.k !== b.k) return radarOrder === 'asc' ? a.k - b.k : b.k - a.k;
+      return a.i - b.i;
+    });
+    radarBody.innerHTML = '';
+    rows.forEach(({ r }) => {
       const g = Math.min(Math.abs(r.gap),60)/60*44;
       const recCls = (r.recLabel==='매수'||r.recLabel==='강력매수') ? 'up' : ((r.recLabel==='중립') ? 'keep' : 'down');
       const evid = r.sig==='up' ? ' 🔺' : (r.sig==='down' ? ' 🔻' : '');
+      const dk = radarDateKey(r.date);
+      const dateTxt = dk ? String(dk).replace(/(\d{4})(\d{2})(\d{2})/,'$1-$2-$3') : (r.date||'-');
       const tr = el('tr');
       tr.innerHTML = `<td class="l"><div class="stk">${r.name}</div><div class="sub">${r.code}</div></td>
         <td>${won(r.price)}${r.nxt?'<span class="nxt">NXT</span>':''}</td><td class="${cls(r.pct)}">${pctTxt(r.pct)}</td>
@@ -949,13 +1023,17 @@ footer b{color:#a9b8cb}
         <td style="font-weight:800;color:#fde68a">${won(r.target)}</td>
         <td class="${r.gap>0?'up':'dn'}" style="font-weight:800">${pctTxt(r.gap)}<span class="gapbar" style="width:${g}px"></span></td>
         <td><span class="sig ${recCls}">${r.recLabel}${evid}</span></td>
-        <td style="color:#8b98ab">${(r.date||'').replace(/(\d{4})(\d{2})(\d{2})/,'$1-$2-$3')}</td>`;
+        <td style="color:#8b98ab">${dateTxt}</td>`;
       radarBody.appendChild(tr);
     });
-    if (!n) radarBody.innerHTML = '<tr><td colspan="9" class="empty">조건에 맞는 리포트가 없습니다.</td></tr>';
-    $('#radarCount').textContent = n + '건 표시 · 컨센서스 참조 리포트 ' + D.radar.reduce((a,r)=>a+r.n,0) + '건';
+    if (!rows.length) radarBody.innerHTML = '<tr><td colspan="9" class="empty">조건에 맞는 리포트가 없습니다.</td></tr>';
+    $('#radarCount').textContent = rows.length + '건 표시 · ' + (radarOrder==='desc' ? '최신 발행일 순 ↓' : '오래된 발행일 순 ↑')
+      + ' · 컨센서스 참조 리포트 ' + D.radar.reduce((a,r)=>a+r.n,0) + '건';
   }
   $('#radarSearch').addEventListener('input', buildRadar);
+  document.querySelectorAll('.sbtn').forEach(b => b.addEventListener('click', () => setRadarOrder(b.dataset.order)));
+  const radarDateTh = $('#radarDateTh');
+  if (radarDateTh) radarDateTh.addEventListener('click', () => setRadarOrder(radarOrder === 'desc' ? 'asc' : 'desc'));
   document.querySelectorAll('.chip').forEach(ch => ch.addEventListener('click', () => {
     document.querySelectorAll('.chip').forEach(c=>c.classList.remove('on'));
     ch.classList.add('on'); sig = ch.dataset.sig; buildRadar();
@@ -1080,7 +1158,48 @@ footer b{color:#a9b8cb}
     </div>`;
   }
 
-  // 2. 긴급 아이들 실사 카드 그리드
+  // 2. 임보·구조(PAWARDING) 미리보기 — /pets 혼합 개편과 같은 기준(강아지·고양이만, 거북한 사진 제외)
+  //    data.js의 dogs 객체는 07:30·13:00·15:50 정기 갱신이 새로 만들기 때문에, 이 미리보기 데이터는
+  //    dashboard.html 안에 둔다(정기 갱신에도 사라지지 않게). 원천은 projects/_build/pets_mix/paw_data.json.
+  const PAW_PREVIEW = [
+    { name:'왕자', sp:'강아지', flair:'임보/입양', badge:'임보 종료 임박', status:'임보처 종료 임박 · 가정임보처 급구',
+      info:'1살 · 수컷 · 10kg · 지역 미표기',
+      summary:'사람에게 겁이 많아 방어적 입질이 있지만 이제 산책도 하고 실내배변도 하는 아이. 11/7 글 기준 12일 뒤 임보처가 끝나 지낼 곳이 없습니다.',
+      posted:'2026-11-07', author:'홈트', url:'https://pawarding.com/ko/post/29448', photo:'assets/pets/pw/29448.webp' },
+    { name:'론빵', sp:'고양이', flair:'임보/입양', badge:'재입양 대기', status:'입양 취소 후 재입양',
+      info:'나이 미표기 · 성별 미표기',
+      summary:'입양이 취소된 뒤에도 가족을 기다리는 아이. 뽀뽀·골골송이 가능하고 자기보다 큰 개와도 잘 지낼 만큼 사회성이 좋습니다.',
+      posted:'2026-11-08', author:'코코아', url:'https://pawarding.com/ko/post/29525', photo:'assets/pets/pw/29525.webp' },
+    { name:'몽이', sp:'강아지', flair:'임보/입양', badge:'보호소 1년째', status:'보호소 1년째 · 두 번째 가족 찾는 중',
+      info:'3살 · 남아 · 푸들',
+      summary:'가족의 알레르기 문제로 보호소에 들어와 1년째 가족을 기다리는 푸들. 다시는 이별을 겪지 않도록 두 번째 평생 가족을 찾습니다.',
+      posted:'2026-11-08', author:'검은고양이', url:'https://pawarding.com/ko/post/29465', photo:'assets/pets/pw/29465.webp' }
+  ];
+  const pawStrip = $('#pawStrip');
+  if (pawStrip) {
+    pawStrip.innerHTML = `<div class="ps-head">
+        <b>🏠 임보·구조 · 전국 (PAWARDING)</b>
+        <span>강아지·고양이 16건 중 3건 미리보기 · 사진은 각 글의 실제 첨부 이미지</span>
+        <a href="pets.html">전체 16건 보기 →</a>
+      </div>
+      <div class="dogs">${PAW_PREVIEW.map(p => `
+        <div class="dog paw">
+          <div class="ph"><img src="${p.photo}" alt="${p.name} (${p.sp})" loading="lazy"></div>
+          <span class="b">🏠 ${p.flair}</span>
+          <span class="dd" style="background:linear-gradient(135deg,#0d9488,#047857);border-color:#0d9488;color:#fff">${p.badge}</span>
+          <div class="info">
+            <h4>${p.name} <em style="font-size:10.5px;color:#94a3b8;font-weight:400">(${p.sp})</em></h4>
+            <div class="meta" style="color:#5eead4;font-weight:800;font-size:10.5px">${p.info}</div>
+            <div class="traits">${p.summary}</div>
+            <div class="shelter">📌 ${p.status} · 원문 등록 ${p.posted} · 작성자 ${p.author}</div>
+            <div class="dog-actions">
+              <a class="dog-btn paw" href="${p.url}" target="_blank" rel="noopener">PAWARDING 원문·연락 ↗</a>
+            </div>
+          </div>
+        </div>`).join('')}</div>`;
+  }
+
+  // 3. 긴급 아이들 실사 카드 그리드
   const dgrid = $('#dogGrid');
   const urgentList = (D.dogs && D.dogs.urgentDogs) ? D.dogs.urgentDogs : [];
   urgentList.forEach(d => {

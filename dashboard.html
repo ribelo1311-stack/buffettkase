@@ -136,16 +136,32 @@ td.name .d{display:inline-block;width:5px;height:5px;border-radius:50%;margin-ri
 .surgetbl td:first-child{text-align:left}
 .folded .ratio{opacity:.35}
 /* 상단 시장 전체 수급 막대 */
-.flowbars{margin-top:8px}
-.flowbars .fbh{font-size:11.5px;font-weight:900;color:#cbd5e1;margin-bottom:6px}
-.flowbars .fbh span{font-size:10.5px;font-weight:700;color:#64748b;margin-left:4px}
-.fbgrid{display:grid;grid-template-columns:1fr 1fr;gap:8px 18px}
+.flowbars{margin-top:10px}
+.flowbars .fbh{font-size:14px;font-weight:900;color:#e5ecf6;margin-bottom:4px;letter-spacing:-.3px}
+.flowbars .fbh span{display:block;font-size:11.5px;font-weight:700;color:#7c8aa0;margin:3px 0 0;line-height:1.5;letter-spacing:0}
+.fblegend{display:flex;align-items:center;gap:8px;font-size:12px;font-weight:900;color:#8fa3bd;margin:6px 0 7px;letter-spacing:-.2px}
+.fblegend .dn{color:#60a5fa}
+.fblegend .up{color:#f87171}
+.fblegend .zero{display:inline-block;width:1px;height:12px;background:#9fb0c6}
+.fbgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px 22px}
 .fbcol{min-width:0}
-.fbcol .fbt{display:flex;align-items:center;justify-content:space-between;gap:8px;font-size:10.5px;font-weight:900;color:#94a3b8;margin-bottom:3px}
-.fbcol .fbt em{font-style:normal;font-weight:800;color:#64748b;font-size:10px}
-.fbcol .bar .k{width:34px;font-size:10px}
-.fbcol .bar .v{width:58px;font-size:10px}
-@media(max-width:760px){.fbgrid{grid-template-columns:1fr;gap:6px}.fbcol .bar .k{width:32px}}
+.fbcol .fbt{display:flex;align-items:baseline;justify-content:space-between;gap:8px;font-size:14px;font-weight:900;color:#dbe5f1;margin-bottom:5px;letter-spacing:-.3px}
+.fbcol .fbt em{font-style:normal;font-weight:800;color:#8fa3bd;font-size:11.5px;letter-spacing:0}
+.fbcol .bar{gap:7px}
+.fbcol .bar .k{width:48px;flex:0 0 48px;font-size:12.5px;font-weight:800;color:#c3ceda}
+.fbcol .bar .v{width:94px;flex:0 0 94px;font-size:13px;font-weight:900;letter-spacing:-.3px}
+.fbcol .bar .track{position:relative;flex:1 1 auto;min-width:0;height:12px;border-radius:6px;overflow:hidden;
+  background:linear-gradient(90deg,rgba(59,130,246,.06) 0 50%,rgba(239,68,68,.06) 50% 100%),#131e2c}
+.fbcol .bar .track::after{content:'';position:absolute;left:50%;top:0;bottom:0;width:1px;margin-left:-.5px;background:#a9b8ca;opacity:.9;z-index:2}
+.fbcol .bar .fill{position:absolute;top:0;bottom:0;height:auto;min-width:3px;border-radius:3px}
+.fbcol .bar .fill.pos{left:50%;background:linear-gradient(90deg,#b91c1c,#f05252)}
+.fbcol .bar .fill.neg{right:50%;background:linear-gradient(90deg,#3b82f6,#1e40af)}
+.fbcol .bar .fill.even{left:50%;width:3px!important;margin-left:-1.5px;background:#64748b;border-radius:2px}
+@media(max-width:760px){.fbgrid{grid-template-columns:1fr;gap:13px}
+  .fbcol .bar .k{width:44px;flex:0 0 44px;font-size:12px}
+  .fbcol .bar .v{width:88px;flex:0 0 88px;font-size:12.5px}
+  .fbcol .fbt{font-size:13.5px}
+  .fblegend{font-size:11.5px}}
 /* 급등 카드 상승 사유 한 줄 (모바일에서도 노출) */
 .why{display:flex;gap:5px;align-items:flex-start;margin-top:7px;padding-top:7px;border-top:1px dashed #2a3646;
   font-size:11px;line-height:1.5;font-weight:700;color:#e2e8f0;word-break:keep-all;overflow-wrap:anywhere}
@@ -961,21 +977,25 @@ footer b{color:#a9b8cb}
     const box = document.getElementById('flowLine');
     if (!box || !D.flow || !D.flow.kospi) return;
     const k = D.flow.kospi, q = D.flow.kosdaq || {};
-    const F = [['foreign','외국인','#ef4444'],['institution','기관','#3b82f6'],['personal','개인','#10b981']];
+    const F = [['foreign','외국인'],['institution','기관'],['personal','개인']];
     let mx = 1;
     F.forEach(([f]) => { mx = Math.max(mx, Math.abs(k[f]||0), Math.abs(q[f]||0)); });
     const col = (title, o) => `<div class="fbcol">
         <div class="fbt"><b>${title}</b><em>↑${o.rise!=null?o.rise:'-'} ↓${o.fall!=null?o.fall:'-'}</em></div>
-        ${F.map(([f,label,c]) => {
+        ${F.map(([f,label]) => {
           const v = o[f] || 0;
-          const w = Math.max(2, Math.min(100, Math.abs(v)/mx*100));
-          return `<div class="bar" title="${title} ${label} ${sgn(v)}억"><span class="k">${label}</span>`
-            + `<span class="track"><span class="fill" style="width:${w}%;background:${c}"></span></span>`
-            + `<span class="v" style="color:${c}">${v>0?'+':''}${Math.round(v).toLocaleString()}억</span></div>`;
+          const w = Math.min(50, Math.abs(v)/mx*50);       /* 0 기준선 ~ 좌/우 끝 = mx */
+          const dir = v>0 ? 'pos' : (v<0 ? 'neg' : 'even');
+          const tone = v>0 ? '#f87171' : (v<0 ? '#60a5fa' : '#94a3b8');
+          const nm = v>0 ? '순매수' : (v<0 ? '순매도' : '보합');
+          return `<div class="bar" title="${title} ${label} ${nm} ${sgn(v)}억"><span class="k">${label}</span>`
+            + `<span class="track"><span class="fill ${dir}" style="width:${w}%"></span></span>`
+            + `<span class="v" style="color:${tone}">${v>0?'+':''}${Math.round(v).toLocaleString()}억</span></div>`;
         }).join('')}
       </div>`;
     box.innerHTML = `<div class="flowbars">
-        <div class="fbh">📊 시장 전체 수급 막대<span>${D.flow.asOf} · 단위 억원 · 막대 길이 = 순매수 금액 크기(외국인·기관·개인)</span></div>
+        <div class="fbh">📊 시장 전체 수급 막대<span>${D.flow.asOf} · 단위 억원 · 막대 길이 = 순매수·순매도 금액 크기</span></div>
+        <div class="fblegend"><span class="dn">◀ 순매도</span><span class="zero"></span><span class="up">순매수 ▶</span></div>
         <div class="fbgrid">${col('코스피', k)}${col('코스닥', q)}</div>
       </div>`;
   }

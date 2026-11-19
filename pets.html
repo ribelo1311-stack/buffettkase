@@ -218,6 +218,10 @@ footer b{color:var(--tx2)}
 footer .links{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:9px}
 footer .links a{font-size:11.5px;font-weight:800;padding:6px 11px;border-radius:9px;background:#fff;border:1px solid var(--line);color:var(--tx2)}
 footer .links a:hover{border-color:#c9d2e4}
+/* 방문자 카운터 (실제 집계 · KST 자정 기준) */
+.vcount{display:none;align-items:center;justify-content:center;gap:5px;flex-wrap:nowrap;width:-moz-fit-content;width:fit-content;max-width:100%;margin:0 0 10px;padding:5px 11px;border-radius:999px;background:#fff;border:1px solid var(--line);color:var(--mut);font-size:11.5px;font-weight:800;letter-spacing:.1px;white-space:nowrap;box-shadow:var(--sh)}
+.vcount b{color:var(--brand2);font-weight:900;font-variant-numeric:tabular-nums}
+.vcount .vcsep{opacity:.4}
 .toast{position:fixed;left:50%;bottom:26px;transform:translate(-50%,14px);background:#111827;color:#fff;font-size:12.5px;
   font-weight:800;padding:10px 16px;border-radius:12px;opacity:0;pointer-events:none;transition:.22s;z-index:200;box-shadow:0 12px 30px -10px rgba(0,0,0,.5)}
 .toast.on{opacity:1;transform:translate(-50%,0)}
@@ -426,6 +430,7 @@ footer .links a:hover{border-color:#c9d2e4}
 
   <!-- ================= FOOTER ================= -->
   <footer>
+    <div class="vcount" id="vcount"><span aria-hidden="true">👀</span> 오늘 <b id="vcToday">–</b> <span class="vcsep">·</span> 누적 <b id="vcTotal">–</b></div>
     <div class="links">
       <a href="pets.html">🐾 유기동물 전용관</a>
       <a href="dashboard.html">📊 시황판</a>
@@ -609,6 +614,28 @@ if(['urgent','dog','cat','paw','pday'].includes(h)){
   document.querySelectorAll('.tab').forEach(x=>x.classList.toggle('on', x.dataset.f===h));
 }
 render();
+</script>
+
+<!-- 방문자 카운터: 실제 방문 집계 (Worker + Durable Object) · 같은 탭 세션에서 새로고침은 중복 집계하지 않음 -->
+<script>
+(function () {
+  var API = 'https://buffettkase-visits.ribelo1311.workers.dev';
+  var box = document.getElementById('vcount');
+  if (!box || !window.fetch) return;
+  var KEY = 'bk_visit_v1', seen = false;
+  try { seen = sessionStorage.getItem(KEY) === '1'; } catch (e) {}
+  fetch(API + (seen ? '/stats' : '/hit'), { cache: 'no-store' })
+    .then(function (r) { return r.ok ? r.json() : null; })
+    .then(function (d) {
+      if (!d || typeof d.total !== 'number' || typeof d.today !== 'number') return;
+      document.getElementById('vcToday').textContent = d.today.toLocaleString('ko-KR');
+      document.getElementById('vcTotal').textContent = d.total.toLocaleString('ko-KR');
+      box.title = d.date + '(KST) 기준 · 오늘 방문자는 한국시간 자정에 새로 시작합니다';
+      box.style.display = 'block';
+      if (!seen) { try { sessionStorage.setItem(KEY, '1'); } catch (e) {} }
+    })
+    .catch(function () {});
+})();
 </script>
 </body>
 </html>

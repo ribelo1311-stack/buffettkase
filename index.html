@@ -64,6 +64,10 @@
     
     .ad-placeholder { background: rgba(255,255,255,0.03); border: 1px dashed var(--card-border); border-radius: 12px; padding: 20px; text-align: center; color: var(--text-muted); font-size: 12px; margin-top: 20px; }
     footer { text-align: center; font-size: 12px; color: var(--text-muted); margin-top: 24px; padding-bottom: 30px; }
+    /* 방문자 카운터 (실제 집계 · KST 자정 기준) */
+    .vcount { display: none; align-items: center; justify-content: center; gap: 5px; flex-wrap: nowrap; width: -moz-fit-content; width: fit-content; max-width: 100%; margin: 0 auto 10px; padding: 4px 11px; border-radius: 999px; background: rgba(56, 189, 248, 0.10); border: 1px solid rgba(56, 189, 248, 0.28); color: #cbd5e1; font-size: 11px; font-weight: 700; letter-spacing: 0.1px; white-space: nowrap; }
+    .vcount b { color: var(--primary); font-weight: 800; font-variant-numeric: tabular-nums; }
+    .vcount .vcsep { opacity: 0.45; }
   </style>
 </head>
 <body>
@@ -186,6 +190,7 @@
     </div>
 
     <footer>
+      <div class="vcount" id="vcount"><span aria-hidden="true">👀</span> 오늘 <b id="vcToday">–</b> <span class="vcsep">·</span> 누적 <b id="vcTotal">–</b></div>
       전업투자자 월억버핏의 실전 트레이딩 연구소 @chatstrange9<br>
       <span style="opacity: 0.8; font-size: 11px;">📩 비즈니스 & 제휴 문의: <a href="mailto:ribelo1311@naver.com" style="color: var(--primary); text-decoration: none;">ribelo1311@naver.com</a></span><br>
       © 2026 월억버핏. All rights reserved.
@@ -268,6 +273,28 @@
 
     // 초기 계산 1회 실행
     calculate();
+  </script>
+
+  <!-- 방문자 카운터: 실제 방문 집계 (Worker + Durable Object) · 같은 탭 세션에서 새로고침은 중복 집계하지 않음 -->
+  <script>
+  (function () {
+    var API = 'https://buffettkase-visits.ribelo1311.workers.dev';
+    var box = document.getElementById('vcount');
+    if (!box || !window.fetch) return;
+    var KEY = 'bk_visit_v1', seen = false;
+    try { seen = sessionStorage.getItem(KEY) === '1'; } catch (e) {}
+    fetch(API + (seen ? '/stats' : '/hit'), { cache: 'no-store' })
+      .then(function (r) { return r.ok ? r.json() : null; })
+      .then(function (d) {
+        if (!d || typeof d.total !== 'number' || typeof d.today !== 'number') return;
+        document.getElementById('vcToday').textContent = d.today.toLocaleString('ko-KR');
+        document.getElementById('vcTotal').textContent = d.total.toLocaleString('ko-KR');
+        box.title = d.date + '(KST) 기준 · 오늘 방문자는 한국시간 자정에 새로 시작합니다';
+        box.style.display = 'block';
+        if (!seen) { try { sessionStorage.setItem(KEY, '1'); } catch (e) {} }
+      })
+      .catch(function () {});
+  })();
   </script>
 </body>
 </html>

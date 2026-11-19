@@ -114,6 +114,18 @@ footer .links{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px}
 footer .links a{font-size:11.5px;font-weight:800;padding:6px 11px;border-radius:9px;background:#fff;border:1px solid var(--line);color:var(--tx2)}
 footer .links a:hover{border-color:#c9d2e4}
 footer .links a.on{background:#fffaec;border-color:#f2dfae;color:#8a5a06}
+
+/* ===== 플로팅 맨 위/맨 아래 버튼 ===== */
+footer{padding-bottom:44px}
+.scrollnav{position:fixed;right:10px;bottom:14px;z-index:120;display:flex;flex-direction:column;gap:6px}
+.scrollnav button{width:44px;height:40px;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  border-radius:11px;border:1px solid var(--line);background:rgba(255,255,255,.95);color:var(--tx2);cursor:pointer;font-family:inherit;
+  line-height:1;backdrop-filter:blur(6px);box-shadow:0 8px 20px -14px rgba(23,29,43,.8);transition:opacity .15s,border-color .15s,color .15s}
+.scrollnav button b{font-size:14px;font-weight:900;line-height:1}
+.scrollnav button i{font-style:normal;font-size:7.5px;font-weight:800;color:var(--mut);margin-top:3px;letter-spacing:-.2px}
+.scrollnav button:hover{border-color:#c9d2e4;color:var(--tx)}
+.scrollnav button.off{opacity:.3;pointer-events:none}
+@media(max-width:480px){.scrollnav{right:8px;bottom:10px;gap:5px}.scrollnav button{width:40px;height:37px}.scrollnav button b{font-size:13px}}
 </style>
 </head>
 <body>
@@ -309,6 +321,29 @@ footer .links a.on{background:#fffaec;border-color:#f2dfae;color:#8a5a06}
     <div>© 2026 월억버핏. All rights reserved. · 문의 <a href="mailto:ribelo1311@gmail.com" style="text-decoration:underline">ribelo1311@gmail.com</a></div>
   </footer>
 </div>
+
+<!-- 플로팅 맨 위/맨 아래 이동 버튼 -->
+<div class="scrollnav" aria-label="페이지 이동">
+  <button type="button" id="snTop" aria-label="맨 위로" title="맨 위로"><b>↑</b><i>맨 위로</i></button>
+  <button type="button" id="snBottom" aria-label="맨 아래로" title="맨 아래로"><b>↓</b><i>맨 아래</i></button>
+</div>
+
+<script>
+(function () {
+  var top = document.getElementById('snTop'), bot = document.getElementById('snBottom');
+  function sync() {
+    var y = window.pageYOffset || document.documentElement.scrollTop || 0;
+    var max = document.documentElement.scrollHeight - window.innerHeight;
+    if (top) top.classList.toggle('off', y < 40);
+    if (bot) bot.classList.toggle('off', max - y < 40);
+  }
+  if (top) top.addEventListener('click', function () { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+  if (bot) bot.addEventListener('click', function () { window.scrollTo({ top: document.documentElement.scrollHeight, behavior: 'smooth' }); });
+  window.addEventListener('scroll', sync, { passive: true });
+  window.addEventListener('resize', sync);
+  sync();
+})();
+</script>
 
 </body>
 </html>

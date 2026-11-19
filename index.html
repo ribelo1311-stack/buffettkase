@@ -73,6 +73,33 @@
     .flinks a { color: #8FA0BA; font-weight: 700; text-decoration: none; padding: 4px 9px; border-radius: 7px; border: 1px solid rgba(148, 163, 184, 0.22); }
     .flinks a:hover { color: #CBD5E1; border-color: rgba(148, 163, 184, 0.42); }
     .flinks .sep { opacity: 0.3; }
+
+    /* ===== 하단 큰 바로가기 3종 (푸터 바로 위) ===== */
+    .biglinks { margin-top: 22px; padding: 16px 14px 15px; border: 1px solid #26374f; border-radius: 16px; background: linear-gradient(160deg, #101b2e, #0d1626); }
+    .biglinks .bh { font-size: 13.5px; font-weight: 900; letter-spacing: -0.3px; margin-bottom: 11px; color: #f1f5f9; }
+    .biglinks .bh em { font-style: normal; color: #fbbf24; }
+    .blgrid { display: flex; flex-direction: column; gap: 9px; }
+    .blcard { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 11px; padding: 14px 13px; border-radius: 13px; border: 1px solid #2b3d57; background: #0f1a2b; text-decoration: none; transition: transform 0.15s, border-color 0.15s, box-shadow 0.15s; }
+    .blcard:hover { transform: translateY(-1px); box-shadow: 0 14px 30px -18px rgba(0,0,0,0.9); }
+    .blcard .ic { font-size: 23px; line-height: 1; }
+    .blcard .t { display: block; font-size: 14.5px; font-weight: 900; letter-spacing: -0.4px; color: #f1f5f9; }
+    .blcard .d { display: block; font-size: 11px; font-weight: 600; color: #94a3b8; margin-top: 3px; line-height: 1.5; }
+    .blcard .ar { font-size: 14px; font-weight: 900; }
+    .blcard.sup { border-color: #4a3a12; background: linear-gradient(160deg, #221a08, #151006); }
+    .blcard.sup .ar { color: #fbbf24; }
+    .blcard.calc { border-color: #123a4f; background: linear-gradient(160deg, #081e2b, #07131d); }
+    .blcard.calc .ar { color: #38bdf8; }
+    .blcard.pets { border-color: #123f33; background: linear-gradient(160deg, #08241d, #07160f); }
+    .blcard.pets .ar { color: #34d399; }
+
+    /* ===== 플로팅 맨 위/맨 아래 버튼 ===== */
+    .scrollnav { position: fixed; right: 10px; bottom: 14px; z-index: 120; display: flex; flex-direction: column; gap: 6px; }
+    .scrollnav button { width: 44px; height: 40px; display: flex; flex-direction: column; align-items: center; justify-content: center; border-radius: 11px; border: 1px solid #33465e; background: rgba(13,22,38,0.93); color: #cbd5e1; cursor: pointer; font-family: inherit; line-height: 1; backdrop-filter: blur(6px); box-shadow: 0 8px 20px -12px rgba(0,0,0,0.9); transition: opacity 0.15s, border-color 0.15s, color 0.15s; }
+    .scrollnav button b { font-size: 14px; font-weight: 900; line-height: 1; }
+    .scrollnav button i { font-style: normal; font-size: 7.5px; font-weight: 800; color: #8b98ab; margin-top: 3px; letter-spacing: -0.2px; }
+    .scrollnav button:hover { border-color: #4a6382; color: #fff; }
+    .scrollnav button.off { opacity: 0.25; pointer-events: none; }
+    @media (max-width: 480px) { .scrollnav { right: 8px; bottom: 10px; gap: 5px; } .scrollnav button { width: 40px; height: 37px; } }
   </style>
 </head>
 <body>
@@ -194,6 +221,28 @@
       <span style="font-size: 11px; opacity: 0.7;">매월 달러 광고 수익이 적립되는 공간</span>
     </div>
 
+    <!-- ===== 하단 큰 바로가기 3종 ===== -->
+    <section class="biglinks" aria-label="버핏카세 주요 바로가기">
+      <div class="bh">버핏카세에서 바로 쓰는 <em>3가지</em></div>
+      <div class="blgrid">
+        <a class="blcard sup" href="dashboard.html#support">
+          <span class="ic" aria-hidden="true">☕</span>
+          <span><span class="t">버핏카세 후원하기</span><span class="d">더 정밀한 전광판과 무료 트레이딩 툴 개발을 응원해 주세요.</span></span>
+          <span class="ar" aria-hidden="true">→</span>
+        </a>
+        <a class="blcard calc" href="index.html">
+          <span class="ic" aria-hidden="true">🧮</span>
+          <span><span class="t">주식 물타기 계산기</span><span class="d">평단가를 낮추고 본전 탈출가를 1초에 확인합니다.</span></span>
+          <span class="ar" aria-hidden="true">→</span>
+        </a>
+        <a class="blcard pets" href="pets.html">
+          <span class="ic" aria-hidden="true">🐾</span>
+          <span><span class="t">유기동물 · 임보 전용</span><span class="d">평택 보호소 공고 + 전국 임보·구조 28건, 실제 사진.</span></span>
+          <span class="ar" aria-hidden="true">→</span>
+        </a>
+      </div>
+    </section>
+
     <footer>
       <div class="vcount" id="vcount"><span aria-hidden="true">👀</span> 오늘 <b id="vcToday">–</b> <span class="vcsep">·</span> 누적 <b id="vcTotal">–</b></div>
       전업투자자 월억버핏의 실전 트레이딩 연구소 @chatstrange9<br>
@@ -204,6 +253,12 @@
         <a href="privacy.html">🔒 개인정보처리방침</a>
       </div>
     </footer>
+  </div>
+
+  <!-- 플로팅 맨 위/맨 아래 이동 버튼 -->
+  <div class="scrollnav" aria-label="페이지 이동">
+    <button type="button" id="snTop" aria-label="맨 위로" title="맨 위로"><b>↑</b><i>맨 위로</i></button>
+    <button type="button" id="snBottom" aria-label="맨 아래로" title="맨 아래로"><b>↓</b><i>맨 아래</i></button>
   </div>
 
   <script>
@@ -282,6 +337,24 @@
 
     // 초기 계산 1회 실행
     calculate();
+  </script>
+
+  <!-- 플로팅 맨 위/맨 아래 -->
+  <script>
+  (function () {
+    var top = document.getElementById('snTop'), bot = document.getElementById('snBottom');
+    function sync() {
+      var y = window.pageYOffset || document.documentElement.scrollTop || 0;
+      var max = document.documentElement.scrollHeight - window.innerHeight;
+      if (top) top.classList.toggle('off', y < 40);
+      if (bot) bot.classList.toggle('off', max - y < 40);
+    }
+    if (top) top.addEventListener('click', function () { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+    if (bot) bot.addEventListener('click', function () { window.scrollTo({ top: document.documentElement.scrollHeight, behavior: 'smooth' }); });
+    window.addEventListener('scroll', sync, { passive: true });
+    window.addEventListener('resize', sync);
+    sync();
+  })();
   </script>
 
   <!-- 방문자 카운터: 실제 방문 집계 (Worker + Durable Object) · 같은 탭 세션에서 새로고침은 중복 집계하지 않음 -->

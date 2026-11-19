@@ -269,6 +269,27 @@ td.name .d{display:inline-block;width:5px;height:5px;border-radius:50%;margin-ri
   padding:2px 7px;border-radius:20px;cursor:pointer}
 .ntag:hover{background:rgba(59,130,246,.28);color:#fff}
 .nmeta{font-size:9.5px;color:#5c6b80;display:flex;gap:8px;align-items:center}
+.nfilter{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin:0 0 9px;padding:8px 10px;
+  background:#0f1725;border:1px solid #26313f;border-radius:9px}
+.nfchip{display:inline-flex;align-items:center;gap:5px;font-family:inherit;font-size:11px;font-weight:800;
+  padding:5px 10px;border-radius:20px;border:1px solid var(--line2);background:#16202f;color:var(--tx2);
+  cursor:pointer;white-space:nowrap;transition:background .12s,border-color .12s,color .12s}
+.nfchip:hover{background:#1c2a3c;color:#e2e8f0}
+.nfchip:focus-visible{outline:2px solid #38bdf8;outline-offset:1px}
+.nfchip i{font-style:normal;font-size:9.5px;font-weight:900;padding:1px 5px;border-radius:9px;
+  background:rgba(148,163,184,.18);color:#cbd5e1;font-variant-numeric:tabular-nums;min-width:15px;text-align:center}
+.nfchip.on{color:#fff}
+.nfchip.on i{background:rgba(255,255,255,.24);color:#fff}
+.nfchip[data-sent="all"].on{background:#1d4ed8;border-color:#2563eb}
+.nfchip.pos.on{background:#15803d;border-color:#16a34a}
+.nfchip.neg.on{background:#b91c1c;border-color:#dc2626}
+.nfchip.neu.on{background:#a16207;border-color:#ca8a04}
+.nfnote{margin-left:auto;font-size:10.5px;color:#64748b;font-weight:700;font-variant-numeric:tabular-nums}
+.nempty{grid-column:1/-1;padding:22px 14px;text-align:center;font-size:12px;color:#8b98ab;line-height:1.6;
+  background:#0f1725;border:1px dashed #2d3a4b;border-radius:9px}
+.nempty b{color:#c7d2e0}
+@media(max-width:480px){.nfilter{gap:5px;padding:7px 8px}.nfchip{font-size:10.5px;padding:4px 8px}
+  .nfnote{margin-left:0;width:100%;order:9}.nempty{padding:18px 12px}}
 
 /* ===== DUAL ===== */
 .dualgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:8px}
@@ -636,7 +657,14 @@ footer b{color:#a9b8cb}
   <section id="news">
     <div class="sec-head">
       <h2>🤖 AI 뉴스 &amp; 감성 태깅 <span class="tag">퀀티랩 벤치마크</span></h2>
-      <p>3줄 요약 · 시장 영향도 배지 · 관련 수혜주 태그(누르면 전광판에서 바로 검색)</p>
+      <p>3줄 요약 · 시장 영향도 배지 · 감성 필터(최신순 / 긍정 / 부정 / 중립) · 관련 수혜주 태그(누르면 전광판에서 바로 검색)</p>
+    </div>
+    <div class="nfilter" id="newsFilter" role="group" aria-label="AI 뉴스 감성 필터">
+      <button type="button" class="nfchip on" data-sent="all" aria-pressed="true" title="감성 구분 없이 전체 기사를 최신 발행순으로">최신순(전체) <i>0</i></button>
+      <button type="button" class="nfchip pos" data-sent="pos" aria-pressed="false" title="호재·상승 재료 기사만 최신 발행순으로">긍정 <i>0</i></button>
+      <button type="button" class="nfchip neg" data-sent="neg" aria-pressed="false" title="약재·하락 재료 기사만 최신 발행순으로">부정 <i>0</i></button>
+      <button type="button" class="nfchip neu" data-sent="neu" aria-pressed="false" title="중립·혼조 기사만 최신 발행순으로">중립 <i>0</i></button>
+      <span class="nfnote" id="newsFilterNote">최신 발행순 ↓</span>
     </div>
     <div class="ncards" id="newsCards"></div>
   </section>
@@ -1185,18 +1213,102 @@ footer b{color:#a9b8cb}
   }));
   buildRadar();
 
-  /* ---------- 뉴스 ---------- */
+  /* ---------- 뉴스 (최신 발행순 기본 정렬 + 감성 필터) ---------- */
   const newsBox = $('#newsCards');
-  (D.news||[]).forEach(n => {
-    const card = el('div','ncard');
-    const sentClass = n.sent==='pos'?'pos':(n.sent==='neg'?'neg':'neu');
-    card.innerHTML = `<div class="nhead"><span class="sent ${sentClass}">${n.badge}</span>
+  const newsFilter = $('#newsFilter');
+  const NEWS_LABEL = { all:'전체', pos:'긍정', neg:'부정', neu:'중립' };
+  function newsYmd(y, m, d){
+    if (!(m >= 1 && m <= 12 && d >= 1 && d <= 31)) return 0;
+    return y*10000 + m*100 + d;
+  }
+  // 연도 없는 MM.DD는 기준 연도(baseY)가 있으면 그 해, 없으면 '아직 오지 않은 날이면 지난해'로 본다.
+  function newsMonthDay(m, d, baseY, baseMd){
+    if (!(m >= 1 && m <= 12 && d >= 1 && d <= 31)) return 0;
+    if (baseY) return (baseMd && (m*100+d) > baseMd ? baseY-1 : baseY)*10000 + m*100 + d;
+    const n = new Date(); let y = n.getFullYear();
+    if (m > n.getMonth()+1 || (m === n.getMonth()+1 && d > n.getDate())) y -= 1;
+    return y*10000 + m*100 + d;
+  }
+  // date 필드 안전 파싱 → YYYYMMDD. '2026-11-20'·'2026.11.20'·'20261120'·'11/20'·'11-20 07:30'·ISO 전부 수용.
+  function newsDate(v){
+    const s = String(v==null ? '' : v);
+    let m = s.match(/(\d{4})[-\/.]?(\d{2})[-\/.]?(\d{2})/);
+    if (m) return newsYmd(+m[1], +m[2], +m[3]);
+    m = s.match(/(\d{1,2})[-\/.](\d{1,2})/);
+    return m ? newsMonthDay(+m[1], +m[2], 0, 0) : 0;
+  }
+  // 정렬 키 = 발행일 + (읽을 수 있으면) 발행 시각. src에 '11/20 07:07'처럼 시각이 있으면 그쪽이 더 정확하다.
+  function newsStamp(n){
+    const dk = newsDate(n && n.date);
+    const baseY = Math.floor(dk/10000), baseMd = dk % 10000;
+    const src = String((n && n.src) || '');
+    let m = src.match(/(\d{4})[-\/.]?(\d{2})[-\/.]?(\d{2})[ T]+(\d{1,2}):(\d{2})/);
+    let ymd = 0, hh = -1, mi = 0;
+    if (m){ ymd = newsYmd(+m[1], +m[2], +m[3]); hh = +m[4]; mi = +m[5]; }
+    else {
+      m = src.match(/(\d{1,2})[-\/.](\d{1,2})[ T]+(\d{1,2}):(\d{2})/);
+      if (m){ ymd = newsMonthDay(+m[1], +m[2], baseY, baseMd); hh = +m[3]; mi = +m[4]; }
+    }
+    // src에 날짜가 없으면 date 필드의 날짜를 쓰고, date에 붙은 시각('11-20 07:30'·ISO)도 살린다.
+    if (!ymd) ymd = dk;
+    if (!ymd) return 0;
+    if (hh < 0){
+      m = String((n && n.date) || '').match(/[ T](\d{1,2}):(\d{2})/);
+      if (m){ hh = +m[1]; mi = +m[2]; }
+    }
+    return (hh >= 0 && hh < 24 && mi < 60) ? ymd*10000 + hh*100 + mi : ymd*10000;
+  }
+  const newsSentOf = n => (n && n.sent==='pos') ? 'pos' : ((n && n.sent==='neg') ? 'neg' : 'neu');
+  // 기본 정렬 = 최신 발행순(내림차순). 발행일·시각이 같으면 원래 배열 순서를 유지하고, 확인 불가는 항상 뒤로.
+  const newsAll = (D.news||[]).map((n,i) => ({ n, i, k: newsStamp(n) })).sort((a,b) => {
+    if (!a.k || !b.k) return a.k === b.k ? a.i - b.i : (a.k ? -1 : 1);
+    if (a.k !== b.k) return b.k - a.k;
+    return a.i - b.i;
+  });
+  const newsCount = { all: newsAll.length, pos:0, neg:0, neu:0 };
+  newsAll.forEach(o => { newsCount[newsSentOf(o.n)]++; });
+  let newsSent = 'all';
+
+  function newsCardHTML(n){
+    return `<div class="nhead"><span class="sent ${newsSentOf(n)}">${n.badge}</span>
         <span class="sub" style="font-size:10px;color:#64748b">${n.src||''}</span></div>
       <h3>${n.title}</h3>
       <ul class="nsum">${(n.sum||[]).map(s=>`<li>${s}</li>`).join('')}</ul>
       <div class="ntags">${(n.tags||[]).map(t=>`<span class="ntag" data-q="${t.q||t.label}">${t.label}</span>`).join('')}</div>
       <div class="nmeta">${n.link?`<a href="${n.link}" target="_blank" rel="noopener" style="color:#93c5fd">원문 보기 ↗</a>`:''}<span>${n.date||''}</span></div>`;
-    newsBox.appendChild(card);
+  }
+  function renderNews(){
+    const rows = newsAll.filter(o => newsSent === 'all' || newsSentOf(o.n) === newsSent);
+    newsBox.innerHTML = '';
+    rows.forEach(({ n }) => {
+      const card = el('div','ncard');
+      card.innerHTML = newsCardHTML(n);
+      newsBox.appendChild(card);
+    });
+    if (!rows.length){
+      newsBox.innerHTML = `<div class="nempty">${newsSent === 'all'
+        ? '표시할 <b>AI 뉴스</b>가 아직 없습니다. 잠시 후 다시 확인해 주세요.'
+        : `이번에는 <b>${NEWS_LABEL[newsSent]}</b> 감성 뉴스가 없습니다. <b>최신순(전체)</b>를 누르면 전체 뉴스를 볼 수 있습니다.`}</div>`;
+    }
+    if (newsFilter){
+      newsFilter.querySelectorAll('.nfchip').forEach(b => {
+        const on = b.dataset.sent === newsSent;
+        b.classList.toggle('on', on);
+        b.setAttribute('aria-pressed', on ? 'true' : 'false');
+        const i = b.querySelector('i'); if (i) i.textContent = newsCount[b.dataset.sent];
+      });
+      const note = $('#newsFilterNote');
+      if (note) note.textContent = (newsSent === 'all')
+        ? `최신 발행순 \u2193 \u00b7 전체 ${newsCount.all}건`
+        : `${NEWS_LABEL[newsSent]} ${newsCount[newsSent]}건 \u00b7 최신 발행순 \u2193`;
+    }
+  }
+  renderNews();
+  if (newsFilter) newsFilter.addEventListener('click', e => {
+    const b = e.target.closest('.nfchip'); if (!b) return;
+    const s = b.dataset.sent;
+    newsSent = (s === 'pos' || s === 'neg' || s === 'neu') ? s : 'all';
+    renderNews();
   });
   newsBox.addEventListener('click', e => {
     const t = e.target.closest('.ntag'); if (!t) return;

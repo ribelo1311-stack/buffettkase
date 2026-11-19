@@ -309,6 +309,10 @@ footer b{color:#a9b8cb}
 .vcount{display:none;align-items:center;justify-content:center;gap:5px;flex-wrap:nowrap;width:-moz-fit-content;width:fit-content;max-width:100%;margin:0 auto 10px;padding:3px 10px;border-radius:20px;background:rgba(148,163,184,.10);border:1px solid var(--line2);color:var(--tx2);font-size:10.5px;font-weight:800;letter-spacing:.1px;white-space:nowrap}
 .vcount b{color:#7dd3fc;font-weight:900;font-variant-numeric:tabular-nums}
 .vcount .vcsep{opacity:.45}
+/* 정책·소개 페이지 링크 */
+.flinks{margin-top:8px;display:flex;align-items:center;justify-content:center;gap:7px;flex-wrap:wrap;font-size:10.5px}
+.flinks a{color:#8d9db4;font-weight:800;text-decoration:none;padding:3px 8px;border-radius:6px;border:1px solid rgba(148,163,184,.22)}
+.flinks a:hover{color:#c7d2e0;border-color:rgba(148,163,184,.42)}
 .empty{padding:26px;text-align:center;color:#64748b;font-size:12px}
 @media(max-width:720px){
   .topbar{position:static} .nav{top:0}
@@ -610,17 +614,6 @@ footer b{color:#a9b8cb}
       <!-- 4. 더 사랑스러운 강아지 더보기 배너 -->
       <div id="moreDogsBanner"></div>
 
-      <!-- 4-2. 무료 분양·입양 (전국 민간 구조단체) — 정적 마크업(정기 data.js 재생성에도 유지) -->
-      <div class="more-dogs-banner free-adopt">
-        <div class="mdb-text">
-          <b>🏠 무료 분양·입양 · 전국 민간 구조단체</b>
-          <span><b style="color:#fecdd3">강릉이모 · 댕하숙원</b> — 임시보호 가정에서 아이들을 돌보며 입양을 홍보하는 곳입니다. 10기 비세트·드세트 입양신청서, 임시보호 신청서, 임보일기·국내입양 졸업생 명단까지 이 페이지 한 곳에서 확인하실 수 있습니다. <i style="color:#94a3b8">(입양신청서 · 임시보호 신청서 · 임보일기 · 졸업생 명단)</i></span>
-        </div>
-        <div class="mdb-actions">
-          <a class="mdb-btn adopt" href="https://litt.ly/gangneung_2mo" target="_blank" rel="noopener">🐕 강릉이모 입양·임보 신청서 ↗</a>
-        </div>
-      </div>
-
       <!-- 5. 반려용품 / 간식 (Weekly Pick + 쿠팡 + 네이버) -->
       <div class="cpbanner">
         <div class="t" id="cpTitle">🐾 월억버핏's Weekly Pick : 이번 주 인기 반려용품 &amp; 밍키 최애 꿀템</div>
@@ -665,6 +658,10 @@ footer b{color:#a9b8cb}
     지수·국내 종목 시세: 네이버 금융 실시간(지연 0~20분) · 미국 10년물·나스닥 야간선물: 야후 파이낸스 · 실시간 속보: 네이버 금융 주요뉴스 · AI 뉴스·증권사 리포트·테마 시세·급등: 2026-11-19(목) 07:37 갱신 기준(국내 시세 11/18 정규장 종가) · 종목별 외인·기관 수급·쌍끌이: 2026-11-18(수) 정규장 마감 기준<br>
     본 페이지는 투자 참고용 데이터 전광판이며 투자 권유가 아닙니다. 모든 투자의 판단과 책임은 투자자 본인에게 있습니다.<br>
     제휴·광고 문의: ribelo1311@naver.com
+    <div class="flinks">
+      <a href="about.html">ℹ️ 사이트 소개</a>
+      <a href="privacy.html">🔒 개인정보처리방침</a>
+    </div>
   </footer>
 </div>
 

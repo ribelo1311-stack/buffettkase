@@ -359,6 +359,18 @@ td.name .d{display:inline-block;width:5px;height:5px;border-radius:50%;margin-ri
 .acct .k{color:#94a3b8}
 .acct .v{font-weight:800}
 .modal button{width:100%;background:#2563eb;color:#fff;border:0;border-radius:8px;padding:10px;font-size:13px;font-weight:800;cursor:pointer}
+/* 후원 계좌 원터치 복사 */
+.acct .r.acctline{cursor:pointer;align-items:center;margin:-4px -6px 7px;padding:4px 6px;border-radius:7px;transition:background .15s ease}
+.acct .r.acctline:hover,.acct .r.acctline:focus-visible{background:#1a2537;outline:none}
+.acct .r.acctline.on{background:#14351f}
+.acct .r.acctline .v{color:#fff;text-decoration:underline dashed rgba(148,163,184,.55);text-underline-offset:3px;user-select:text;-webkit-user-select:text}
+.modal .copybtn{display:block;width:100%;background:linear-gradient(180deg,#f7cb57,#e2a92e);color:#1a1206;border:0;border-radius:8px;padding:11px 10px;margin-bottom:9px;font-size:13px;font-weight:900;letter-spacing:-.1px;cursor:pointer;transition:filter .15s ease,transform .08s ease}
+.modal .copybtn:hover{filter:brightness(1.05)}
+.modal .copybtn:active{transform:translateY(1px)}
+.modal .copybtn.done{background:linear-gradient(180deg,#34d399,#10b981);color:#06251a}
+.toast{position:fixed;left:50%;bottom:26px;transform:translate(-50%,14px);max-width:calc(100vw - 32px);background:#0b2a1c;color:#7ff0b8;border:1px solid #1f8a5c;font-size:12.5px;font-weight:800;line-height:1.45;text-align:center;padding:10px 16px;border-radius:12px;opacity:0;pointer-events:none;transition:.22s;z-index:500;box-shadow:0 12px 30px -10px rgba(0,0,0,.65)}
+.toast.on{opacity:1;transform:translate(-50%,0)}
+.toast.warn{background:#2a1e05;color:#fcd34d;border-color:#a16207}
 footer{margin-top:8px;border-top:1px solid var(--line);padding:16px 4px;color:#7c8aa0;font-size:10.5px;line-height:1.7;text-align:center}
 footer b{color:#a9b8cb}
 /* 방문자 카운터 (실제 집계 · KST 자정 기준) */
@@ -765,13 +777,15 @@ footer b{color:#a9b8cb}
     <h3>☕ 전업투자자 월억버핏 후원하기</h3>
     <p>더 정밀한 전광판과 무료 트레이딩 툴 개발을 응원해 주세요.<br>보내주신 커피 한 잔이 큰 힘이 됩니다.</p>
     <div class="acct">
-      <div class="r"><span class="k">후원 계좌</span><span class="v">카카오뱅크 3333-05-0589711</span></div>
+      <div class="r acctline" id="acctLine" role="button" tabindex="0" aria-label="후원 계좌번호 3333-05-0589711 복사" title="눌러서 계좌번호만 복사"><span class="k">후원 계좌</span><span class="v">카카오뱅크 <b>3333-05-0589711</b></span></div>
       <div class="r"><span class="k">예금주</span><span class="v">김*진</span></div>
       <div class="r"><span class="k">제휴 문의</span><span class="v">ribelo1311@naver.com</span></div>
     </div>
+    <button type="button" class="copybtn" id="acctCopy" data-acct="3333-05-0589711">📋 계좌번호 복사</button>
     <button id="closeModal">닫기</button>
   </div>
 </div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
 
 <script src="data.js"></script>
 <script>
@@ -1619,6 +1633,74 @@ footer b{color:#a9b8cb}
   pullNews();
 
   /* ---------- 후원 ---------- */
+  /* 후원 계좌 원터치 복사: 계좌번호만(은행명 제외) 클립보드로 복사 + 알림 */
+  const acctCopyBtn = $('#acctCopy');
+  const acctLine = $('#acctLine');
+  const ACCT = (acctCopyBtn && acctCopyBtn.dataset.acct) || '3333-05-0589711';
+  let copyToastT = 0, copyLabelT = 0;
+  function acctToast(msg, warn){
+    const t = $('#toast');
+    if (!t) return;
+    t.textContent = msg;
+    t.classList.toggle('warn', !!warn);
+    t.classList.add('on');
+    clearTimeout(copyToastT);
+    copyToastT = setTimeout(() => t.classList.remove('on'), 2600);
+  }
+  function acctLegacyCopy(text){
+    /* 인앱 브라우저·구형 웹뷰 폴백: 임시 textarea + execCommand('copy') */
+    let ok = false, ta = null;
+    try {
+      ta = document.createElement('textarea');
+      ta.value = text;
+      ta.setAttribute('readonly', '');
+      ta.setAttribute('aria-hidden', 'true');
+      ta.style.cssText = 'position:fixed;top:0;left:0;width:1px;height:1px;padding:0;border:0;outline:none;box-shadow:none;background:transparent;opacity:0;z-index:-1;font-size:16px';
+      document.body.appendChild(ta);
+      const sel = document.getSelection ? document.getSelection() : null;
+      const saved = sel && sel.rangeCount ? sel.getRangeAt(0) : null;
+      try { ta.focus({ preventScroll: true }); } catch (_e) { ta.focus(); }
+      ta.select();
+      try { ta.setSelectionRange(0, text.length); } catch (_e) {}
+      ok = document.execCommand && document.execCommand('copy');
+      if (saved && sel) { sel.removeAllRanges(); sel.addRange(saved); }
+    } catch (_e) { ok = false; }
+    finally { if (ta && ta.parentNode) ta.parentNode.removeChild(ta); }
+    return !!ok;
+  }
+  function acctDone(ok){
+    if (!ok){ acctToast('복사가 막혀 있어요 · 계좌번호를 길게 눌러 복사해 주세요', true); return; }
+    acctToast('✅ 계좌번호가 복사되었습니다');
+    if (acctCopyBtn){
+      acctCopyBtn.classList.add('done');
+      acctCopyBtn.textContent = '✅ 복사 완료';
+      clearTimeout(copyLabelT);
+      copyLabelT = setTimeout(() => { acctCopyBtn.classList.remove('done'); acctCopyBtn.textContent = '📋 계좌번호 복사'; }, 2400);
+    }
+    if (acctLine){
+      acctLine.classList.add('on');
+      setTimeout(() => acctLine.classList.remove('on'), 900);
+    }
+  }
+  function acctCopy(){
+    if (navigator.clipboard && navigator.clipboard.writeText){
+      try {
+        navigator.clipboard.writeText(ACCT)
+          .then(() => acctDone(true))
+          .catch(() => acctDone(acctLegacyCopy(ACCT)));
+      } catch (_e) { acctDone(acctLegacyCopy(ACCT)); }
+    } else {
+      acctDone(acctLegacyCopy(ACCT));
+    }
+  }
+  if (acctCopyBtn) acctCopyBtn.addEventListener('click', acctCopy);
+  if (acctLine){
+    acctLine.addEventListener('click', acctCopy);
+    acctLine.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ' || e.key === 'Spacebar'){ e.preventDefault(); acctCopy(); }
+    });
+  }
+
   $('#sponsorBtn').addEventListener('click', ()=> $('#overlay').classList.add('on'));
   $('#closeModal').addEventListener('click', ()=> { $('#overlay').classList.remove('on'); clearSupportHash(); });
   $('#overlay').addEventListener('click', e => { if (e.target.id==='overlay'){ $('#overlay').classList.remove('on'); clearSupportHash(); } });

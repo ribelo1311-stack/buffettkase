@@ -1,0 +1,14 @@
+# 버핏카세 · 월억버핏 (buffettkase.pages.dev)
+# 2026-11-22 신설 — Cloudflare Pages SPA 폴백 HTML 대신 실제 TXT / XML 이 반환되도록 정적 파일로 둔다.
+
+User-agent: *
+Allow: /
+
+# 검색엔진·소셜 미리보기 수집기는 전부 허용
+User-agent: Yeti
+Allow: /
+
+User-agent: Googlebot
+Allow: /
+
+Sitemap: https://buffettkase.pages.dev/sitemap.xml

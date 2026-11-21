@@ -1497,14 +1497,32 @@ footer b{color:#a9b8cb}
   // 3. 긴급 아이들 실사 카드 그리드
   const dgrid = $('#dogGrid');
   const urgentList = (D.dogs && D.dogs.urgentDogs) ? D.dogs.urgentDogs : [];
+  /* 공고 마감일(M/D)에서 남은 날짜를 화면에서 다시 계산 — data.js를 갱신하지 않아도 D-day 배지와 빨간 배지가 어깋나지 않게 힌다 */
+  const daysLeftOf = (d) => {
+    const m = /\((\d{1,2})\/(\d{1,2})\s*마감\)/.exec(d.dday || '');
+    if (!m) return null;
+    const now = new Date();
+    let t = new Date(now.getFullYear(), +m[1]-1, +m[2]);
+    if (t - now < -180*86400000) t = new Date(now.getFullYear()+1, +m[1]-1, +m[2]);
+    const a = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+    return Math.round((t - a)/86400000);
+  };
+  const ddayText = (d) => {
+    const n = daysLeftOf(d);
+    const mm = /\((\d{1,2}\/\d{1,2})\s*마감\)/.exec(d.dday || '');
+    if (n === null || !mm) return d.dday;
+    const head = n > 0 ? ('D-' + n) : (n === 0 ? 'D-DAY' : '공고 종료');
+    return head + ' (' + mm[1] + ' 마감)';
+  };
   urgentList.forEach(d => {
     const c = el('div','dog');
-    const isUrgent = d.urgent || (d.dday && (d.dday.includes('D-5') || d.dday.includes('만료')));
+    const left = daysLeftOf(d);
+    const isUrgent = d.urgent || (left !== null && left <= 5) || (d.dday && d.dday.includes('만료'));
     c.innerHTML = `<div class="ph">
         <img src="${d.photo}" alt="${d.breed}" loading="lazy" onerror="this.onerror=null;this.src='${d.remotePhoto||d.photo}'">
       </div>
       <span class="b">${d.found||'경기 평택'}</span>
-      <span class="dd" style="background:${isUrgent?'rgba(239,68,68,.25)':'rgba(234,179,8,.2)'};border-color:${isUrgent?'#ef4444':'#eab308'};color:${isUrgent?'#fca5a5':'#fde68a'}">${d.dday}</span>
+      <span class="dd" style="background:${isUrgent?'rgba(239,68,68,.25)':'rgba(234,179,8,.2)'};border-color:${isUrgent?'#ef4444':'#eab308'};color:${isUrgent?'#fca5a5':'#fde68a'}">${ddayText(d)}</span>
       <div class="info">
         <h4>${d.breed} <em style="font-size:10.5px;color:#94a3b8;font-weight:400">(${d.age}, ${d.weight})</em></h4>
         <div class="meta" style="color:#38bdf8;font-weight:800;font-size:10.5px">📋 ${d.id}</div>

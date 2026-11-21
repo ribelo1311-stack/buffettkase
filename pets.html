@@ -4,10 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>월억버핏 · 전국 임보·구조 + 평택 보호소 레이더</title>
-<meta name="description" content="전국 임보·구조·입양 사연 22건(PAWARDING·스레드)과 평택시 동물보호센터 공고중 마감 임박 13마리를 실제 사진 그대로 한 페이지에. 월억버핏이 직접 실사해 올리는 유기동물 입양 레이더입니다. 사지 말고 입양해 주세요.">
+<meta name="description" content="전국 임보·구조·입양 사연 22건(PAWARDING·스레드)과 평택시 동물보호센터 공고중 17마리 가운데 사진 검수 후 13마리를 실제 사진 그대로 한 페이지에. 월억버핏이 직접 실사해 올리는 유기동물 입양 레이더입니다. 사지 말고 입양해 주세요.">
 <meta name="theme-color" content="#f6f7fb">
 <meta property="og:title" content="월억버핏 · 전국 임보·구조 + 평택 보호소 레이더">
-<meta property="og:description" content="전국 임보·구조 22건 + 평택 보호소 마감 임박 13마리 · 실제 사진 · 원문 바로가기">
+<meta property="og:description" content="전국 임보·구조 22건 + 평택 보호소 공고중 17마리 중 게재 13마리 · 실제 사진 · 원문 바로가기">
 <meta property="og:type" content="website">
 <link rel="preconnect" href="https://cdn.jsdelivr.net">
 <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" rel="stylesheet">
@@ -341,11 +341,11 @@ footer .links a:hover{border-color:#c9d2e4}
   <!-- ================= HERO ================= -->
   <section class="hero">
     <h1>전국에서 <em>평생 가족</em>을 기다리는 아이들</h1>
-    <p class="lead">강아지·고양이만 골라, 전국 임보·입양·보호소공고 사연 <b>22건</b>과 평택시 동물보호센터 공고중 <b>13마리</b>를 실제 사진 그대로 모았습니다. 사연 카드는 작성자가 직접 올린 글이니 원문에서 최신 상태를 확인해 주세요. <b>사지 말고 입양해 주세요.</b></p>
+    <p class="lead">강아지·고양이만 골라, 전국 임보·입양·보호소공고 사연 <b>22건</b>과 평택시 동물보호센터 공고중 <b>17마리</b> 가운데 사진 검수 후 <b>13마리</b>를 실제 사진 그대로 모았습니다. 사연 카드는 작성자가 직접 올린 글이니 원문에서 최신 상태를 확인해 주세요. <b>사지 말고 입양해 주세요.</b></p>
     <div class="statrow">
       <div class="stat"><div class="k">임보·구조 · 전국</div><div class="v">22<small>건</small></div></div>
-      <div class="stat hot"><div class="k">평택 보호소 오늘·내일 마감</div><div class="v">2<small>마리</small></div></div>
-      <div class="stat warm"><div class="k">평택 공고중 (마감 임박순)</div><div class="v">13<small>마리</small></div></div>
+      <div class="stat hot"><div class="k">평택 보호소 오늘·내일 마감</div><div class="v"><span id="statNear">5</span><small>마리</small></div></div>
+      <div class="stat warm"><div class="k">평택 공고중 (마감 임박순)</div><div class="v"><span id="statPday">13</span><small>마리</small></div></div>
       <div class="stat"><div class="k">강아지 · 고양이</div><div class="v" style="font-size:15px;letter-spacing:-.4px">23 · 12</div></div>
     </div>
     <div class="syncbar">
@@ -388,7 +388,7 @@ footer .links a:hover{border-color:#c9d2e4}
         <h3>청북읍 마을에서 2주 가까이 목격된 보더콜리 믹스 — 누군가의 가족이었을 수 있습니다</h3>
         <p>2026년 11월 2일부터 평택시 청북읍 백봉2리 일대에서 목격되다, 11월 16일 마을회관 앞(백봉길 191)에서 구조됐습니다. 약 1살 추정 수컷, 13.2kg 중형견, 검정·황갈색&amp;흰색 털로 보더콜리 믹스로 추정됩니다. 2주 가까이 사람 곁을 떠돌았던 아이인 만큼 보호자가 찾고 있을 가능성이 있어, 같은 아이를 기르시던 분이나 목격하신 분의 제보를 기다립니다.</p>
         <div class="kv">
-          <span>공고번호 경기-평택-2026-00804</span><span>공고 마감 2026. 11. 26. (D-6)</span><span>평택시 동물보호센터(청북)</span><span>중성화 전</span>
+          <span>공고번호 경기-평택-2026-00804</span><span>공고 마감 2026. 11. 26. <b id="lostDday" style="font-weight:900">(D-6)</b></span><span>평택시 동물보호센터(청북)</span><span>중성화 전</span>
         </div>
         <div class="acts">
           <a class="p" href="https://pawday.kr/animals/441391202602151" target="_blank" rel="noopener">포데이 상세·사진 보기 ↗</a>
@@ -408,7 +408,7 @@ footer .links a:hover{border-color:#c9d2e4}
         <button class="tab on" data-f="all">전체 <span class="n">35</span></button>
         <button class="tab paw" data-f="paw">🏠 임보·구조 <span class="n">22</span></button>
         <button class="tab" data-f="pday">🏢 평택 보호소 <span class="n">13</span></button>
-        <button class="tab urg" data-f="urgent">⏰ 오늘·내일 마감 <span class="n">2</span></button>
+        <button class="tab urg" data-f="urgent">⏰ 오늘·내일 마감 <span class="n" id="tabUrgentN">5</span></button>
         <button class="tab" data-f="dog">🐶 강아지 <span class="n">23</span></button>
         <button class="tab" data-f="cat">🐱 고양이 <span class="n">12</span></button>
       </div>
@@ -429,7 +429,7 @@ footer .links a:hover{border-color:#c9d2e4}
 
   <div class="srcnote">
     <span class="k pw">🏠 임보·구조</span> 전국 PAWARDING 임보/입양·구조/구호·보호소공고 21건 + 스레드 사연 1건(돌배) (원문 링크·보호소 연락처)
-    <span class="k pt">🏢 평택 보호소</span> 평택시동물보호센터 공고중 강아지·고양이 13마리(오늘 마감 2마리), 기타축종·치료 중 사진 제외
+    <span class="k pt">🏢 평택 보호소</span> 평택시동물보호센터 공고중 17마리(강아지 12·고양이 3·기타 2) 중 강아지·고양이 사진 검수 후 13마리 게재 · 기타축종 2·치료 중 2 제외
   </div>
 
   <div class="grid" id="grid"></div>
@@ -569,8 +569,21 @@ const resline = document.getElementById('resline');
 let filter = 'all';
 let keyword = '';
 
-function ddayClass(d){ if(d<=1) return 'd1'; if(d===2) return 'd2'; if(d===3) return 'd3'; return ''; }
-function dlabel(d){ return d<=0 ? 'D-DAY' : 'D-'+d; }
+function ddayClass(d){ if(d==null||d<0) return ''; if(d<=1) return 'd1'; if(d<=3) return 'd2'; if(d<=7) return 'd3'; return ''; }
+function dlabel(d){ if(d==null) return '공고 확인'; if(d<0) return '공고 종료'; return d===0 ? 'D-DAY' : 'D-'+d; }
+/* 공고 마감일(nEnd)에서 남은 날을 화면에서 매번 다시 계산 — PETS를 새로 동기화하지 않아도 D-day 배지가 어긋나지 않게 한다 */
+function leftOf(p){
+  if(p && p.nEnd){
+    const m = /(\d{4})\.\s*(\d{1,2})\.\s*(\d{1,2})/.exec(p.nEnd);
+    if(m){
+      const now = new Date();
+      const end = new Date(+m[1], +m[2]-1, +m[3]);
+      const a = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+      return Math.round((end - a) / 86400000);
+    }
+  }
+  return (p && typeof p.dday === 'number') ? p.dday : null;
+}
 function spClass(sp){ return sp==='CAT' ? 'cat' : (sp==='ETC' ? 'etc' : ''); }
 function esc(s){ return String(s==null?'':s).replace(/[&<>"]/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
 function phoneFmt(){ return '031-8024-8080'; }
@@ -580,7 +593,7 @@ function visible(){
   return PETS.filter(p=>{
     if(filter==='paw' && p.kind!=='paw') return false;
     if(filter==='pday' && p.kind!=='pday') return false;
-    if(filter==='urgent' && !(p.kind==='pday' && p.dday<=1)) return false;
+    if(filter==='urgent'){ const dl = leftOf(p); if(!(p.kind==='pday' && dl!==null && dl>=0 && dl<=1)) return false; }
     if(filter==='dog' && p.sp!=='DOG') return false;
     if(filter==='cat' && p.sp!=='CAT') return false;
     if(keyword){
@@ -594,7 +607,7 @@ function visible(){
 
 function postedCmp(a,b){ return a.posted<b.posted ? 1 : (a.posted>b.posted ? -1 : 0); }
 function pawSorted(list){ return list.slice().sort(postedCmp); }
-function pdaySorted(list){ return list.slice().sort((a,b)=>a.dday-b.dday || a.id.localeCompare(b.id)); }
+function pdaySorted(list){ const L=p=>{ const v = leftOf(p); return v===null ? 9999 : (v<0 ? 9000 : v); }; return list.slice().sort((a,b)=> (L(a)-L(b)) || a.id.localeCompare(b.id)); }
 /* 기본 혼합: 임보·구조 4 : 평택 3 비율로 교차해 둘 다 첫 화면에서 보이게 */
 function interleave(paws, pd){
   const out=[]; let i=0, j=0;
@@ -648,7 +661,7 @@ function cardPday(p){
   return `<article class="pet" data-id="${p.id}">
     <a class="ph" href="${p.url}" target="_blank" rel="noopener" aria-label="${esc(p.breed)} 포데이 상세 보기">
       <img src="${p.photo}" alt="${esc(p.breed)} · 평택시 동물보호센터 보호중 보호소 실제 사진" loading="lazy" onerror="this.onerror=null;this.src='${p.remote}'">
-      <span class="dd ptbd ${ddayClass(p.dday)}">🏢 평택 보호소 · ${dlabel(p.dday)}</span>
+      <span class="dd ptbd ${ddayClass(leftOf(p))}">🏢 평택 보호소 · ${dlabel(leftOf(p))}</span>
       <span class="sp ${spClass(p.sp)}">${p.spLabel}</span>
     </a>
     <div class="body">
@@ -671,6 +684,13 @@ function cardPday(p){
 function card(p){ return p.kind==='paw' ? cardPaw(p) : cardPday(p); }
 
 function render(){
+  const lostEl = document.getElementById('lostDday');
+  if(lostEl){ const dl = leftOf({nEnd:'2026. 11. 26.'}); lostEl.textContent = dl===null ? '' : '(' + dlabel(dl) + ')'; }
+  const pdAll = PETS.filter(p=>p.kind==='pday');
+  const near = pdAll.filter(p=>{ const d = leftOf(p); return d!==null && d>=0 && d<=1; }).length;
+  const nearEl = document.getElementById('statNear'); if(nearEl) nearEl.textContent = near;
+  const tabUrg = document.getElementById('tabUrgentN'); if(tabUrg) tabUrg.textContent = near;
+  const totEl = document.getElementById('statPday'); if(totEl) totEl.textContent = pdAll.length;
   const list = sortList(visible());
   grid.innerHTML = list.length ? list.map(card).join('')
     : `<div class="empty">조건에 맞는 아이가 없습니다.<br>검색어를 지우거나 다른 탭을 눌러 보세요.</div>`;

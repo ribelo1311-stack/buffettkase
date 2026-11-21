@@ -51,7 +51,26 @@
   .notice b { color:#7DD3FC; }
 
   .card { background:var(--card); border:1px solid var(--line); border-radius:16px;
-           padding:14px; margin-bottom:13px; }
+           padding:14px; margin-bottom:13px; overflow:hidden; }
+
+  /* 상품 대표 이미지 — 카드 폭까지 꽉 차게(4:3 · contain 이라 상품이 잘리지 않는다) */
+  .thumb { margin:-14px -14px 12px; background:#fff; }
+  .thumb img { display:block; width:100%; height:auto; aspect-ratio:4/3;
+                object-fit:contain; padding:10px; }
+
+  /* 할인 체감 배지 — 기준가가 확인된 상품만 '아낌 금액·%' 강조 */
+  .savebar { display:flex; align-items:center; gap:6px; flex-wrap:wrap; margin-top:10px; }
+  .save { font-size:13px; font-weight:900; color:#1C1305; letter-spacing:-.3px;
+           background:linear-gradient(135deg,#FCD34D,#FBBF24); padding:4px 10px;
+           border-radius:8px; box-shadow:0 0 0 1px rgba(251,191,36,.5) inset; }
+  .off { font-size:12px; font-weight:900; color:#FDA4AF;
+          background:rgba(251,113,133,.14); border:1px solid rgba(251,113,133,.35);
+          padding:3px 7px; border-radius:8px; }
+  .base { font-size:10.5px; color:#7C8CA6; font-weight:700; }
+  .base s { color:#94A3B8; }
+  .savebar.point .pt { font-size:10.5px; font-weight:800; color:#A7F3D0;
+        background:rgba(16,185,129,.10); border:1px solid rgba(16,185,129,.24);
+        padding:3px 8px; border-radius:999px; }
   .crow1 { display:flex; align-items:center; gap:6px; flex-wrap:wrap; margin-bottom:9px; }
   .cat { background:rgba(251,191,36,.15); color:#FCD34D; font-size:10.5px; font-weight:900;
           padding:3px 8px; border-radius:6px; }
@@ -106,16 +125,20 @@
     <div class="hd-badge">🔥 카더라 통신 제1호</div>
     <h1>핫딜이라 <em>카더라</em></h1>
     <p class="sub">최저가일껄.?.? — 직접 열어보고 확인한 것만 올립니다</p>
-    <p class="asof">마지막 가격 확인 2026-11-22 08:45 KST · 6건</p>
+    <p class="asof">마지막 가격 확인 2026-11-22 08:52 KST · 6건</p>
   </header>
 
   <div class="notice" role="note">
-    <b>가격 고지</b> · 표시된 가격 및 할인율은 확인 시점 기준이며, 쿠팡 실시간 판매가·재고에 따라 변동되거나 품절될 수 있습니다.<br>
+    <b>가격 고지</b> · 표시된 가격 및 할인율은 확인 시점 기준이며, 쿠팡 실시간 판매가·재고에 따라 변동되거나 품절될 수 있습니다. '아낌 금액'은 쿠팡 상세페이지에 함께 표기된 정가(기준가)에서 현재 판매가를 뺀 값이고, 정가 표기가 없는 상품은 정가 대신 확인된 포인트만 적었습니다.<br>
     카드마다 <b>확인 시각</b>을 적어뒀습니다. 그 시각 이후에 바뀌었으면 이 페이지가 틀린 것이고,
     쿠팡이 맞습니다. 좋은 딜은 늘 빨리 사라진다 카더라.
   </div>
 
     <article class="card" id="deal-1">
+      <figure class="thumb">
+        <img src="/assets/hotdeal/wetissue.webp" alt="코멧 오리지널 유아용 아기물티슈 캡형 10팩 상품 이미지" width="480" height="480"
+             loading="eager" decoding="async">
+      </figure>
       <div class="crow1">
         <span class="cat">생활</span>
         <span class="pf">쿠팡</span>
@@ -123,7 +146,8 @@
       </div>
       <h2 class="tit">코멧 오리지널 유아용 아기물티슈 캡형</h2>
       <p class="opt">50g · 100매 · 10개</p>
-      <div class="price"><b>10,890원</b><s class="org">18,000원</s><span class="dc">-39%</span><span class="unit">1매당 11원</span></div>
+      <div class="savebar"><span class="save">7,110원 아낌</span><span class="off">-39%</span><span class="base">정가 <s>18,000원</s></span></div>
+      <div class="price"><b>10,890원</b><span class="unit">1매당 11원</span></div>
       <div class="badges"><span class="bdg">한 달 10만명 이상 구매</span><span class="bdg">로켓배송</span></div>
       <p class="meta">⭐ 49만 2,028건 · 최고 85%<br>🚚 내일(월) 11/23 도착 보장</p>
       <p class="note"><span aria-hidden="true">💬</span> 아기 있는 집은 이거 10팩 쌓아두고 겨울 난다 카더라. 1매당 11원이면 물티슈값 걱정은 접는 셈.</p>
@@ -133,6 +157,10 @@
       <p class="plink">링크: <a href="https://link.coupang.com/a/iR9DRSjjem" target="_blank" rel="noopener noreferrer sponsored">link.coupang.com/a/iR9DRSjjem</a></p>
     </article>
     <article class="card" id="deal-2">
+      <figure class="thumb">
+        <img src="/assets/hotdeal/hotpack-neck.webp" alt="해피데이 찜질패드 목어깨용 핫팩 60g 30개 상품 이미지" width="480" height="480"
+             loading="lazy" decoding="async">
+      </figure>
       <div class="crow1">
         <span class="cat">겨울</span>
         <span class="pf">쿠팡</span>
@@ -140,8 +168,9 @@
       </div>
       <h2 class="tit">해피데이 찜질패드 목어깨용 핫팩</h2>
       <p class="opt">60g · 30개</p>
+      <div class="savebar point"><span class="pt">로켓배송</span><span class="pt">한 달 800명 이상 구매</span></div>
       <div class="price"><b>17,280원</b><span class="unit">1개당 576원</span></div>
-      <div class="badges"><span class="bdg">로켓배송</span><span class="bdg">한 달 800명 이상 구매</span></div>
+      
       <p class="meta">⭐ 3,569건 · 최고 83%<br>🚚 내일(월) 11/23 도착 보장</p>
       <p class="note"><span aria-hidden="true">💬</span> 목·어깨에 붙이고 다니면 난방비가 아깝지 않다 카더라. 30개면 한 달은 버팁니다.</p>
       <p class="ship">로켓배송 19,800원 이상 무료 — 2,520원 차이로 기준 미달입니다.</p>
@@ -150,6 +179,10 @@
       <p class="plink">링크: <a href="https://link.coupang.com/a/iR9NwKyVMq" target="_blank" rel="noopener noreferrer sponsored">link.coupang.com/a/iR9NwKyVMq</a></p>
     </article>
     <article class="card" id="deal-3">
+      <figure class="thumb">
+        <img src="/assets/hotdeal/hotpack-brens.webp" alt="국산 브렌스 김중사 대용량 핫팩 160g 40개 + 핫팩주머니 상품 이미지" width="480" height="480"
+             loading="lazy" decoding="async">
+      </figure>
       <div class="crow1">
         <span class="cat">겨울</span>
         <span class="pf">쿠팡</span>
@@ -157,8 +190,9 @@
       </div>
       <h2 class="tit">국산 브렌스 김중사 대용량 핫팩 160g</h2>
       <p class="opt">40개 + 핫팩주머니 증정</p>
+      <div class="savebar point"><span class="pt">무료배송</span><span class="pt">26년 1월 제조</span></div>
       <div class="price"><b>22,900원</b><span class="unit">1개당 573원</span></div>
-      <div class="badges"><span class="bdg">무료배송</span><span class="bdg">26년 1월 제조</span></div>
+      
       <p class="meta">⭐ 183건 · 최고 83%<br>🚚 모레(화) 11/24 도착 예정</p>
       <p class="note"><span aria-hidden="true">💬</span> 주머니까지 얹어준다니 이건 뭐 거의 서비스다 카더라. 160g 대용량은 주머니에 넣고 다니기 딱.</p>
       <p class="ship">판매자 무료배송(브렌스 코퍼레이션 · CJ대한통운).</p>
@@ -167,6 +201,10 @@
       <p class="plink">링크: <a href="https://link.coupang.com/a/iR9OzS16gS" target="_blank" rel="noopener noreferrer sponsored">link.coupang.com/a/iR9OzS16gS</a></p>
     </article>
     <article class="card" id="deal-4">
+      <figure class="thumb">
+        <img src="/assets/hotdeal/meal-kit.webp" alt="핫앤쿡 발열도시락 발열전투식량 5종 상품 이미지" width="480" height="480"
+             loading="lazy" decoding="async">
+      </figure>
       <div class="crow1">
         <span class="cat">식품</span>
         <span class="pf">쿠팡</span>
@@ -174,7 +212,8 @@
       </div>
       <h2 class="tit">핫앤쿡 발열도시락 발열전투식량 5종</h2>
       <p class="opt">쇠고기+제육+김치비빔밥+라면애밥 짬뽕맛+김치찌개 · 1세트 580g</p>
-      <div class="price"><b>25,900원</b><s class="org">28,000원</s><span class="dc">-7%</span><span class="unit">100g당 4,466원</span></div>
+      <div class="savebar"><span class="save">2,100원 아낌</span><span class="off">-7%</span><span class="base">정가 <s>28,000원</s></span></div>
+      <div class="price"><b>25,900원</b><span class="unit">100g당 4,466원</span></div>
       <div class="badges"><span class="bdg">무료배송</span><span class="bdg">물만 부으면 따뜻한 밥</span></div>
       <p class="meta">⭐ 203건 · 최고 65% · 좋음 22%<br>🚚 수요일 11/25 도착 예정</p>
       <p class="note"><span aria-hidden="true">💬</span> 전기 없이 물만 부으면 김이 오른다 카더라. 캠핑·등산·정전 대비용으로 한 세트 채워두면 든든.</p>
@@ -184,6 +223,10 @@
       <p class="plink">링크: <a href="https://link.coupang.com/a/iR9Ppq7nWK" target="_blank" rel="noopener noreferrer sponsored">link.coupang.com/a/iR9Ppq7nWK</a></p>
     </article>
     <article class="card" id="deal-5">
+      <figure class="thumb">
+        <img src="/assets/hotdeal/powerbank.webp" alt="KLIFE 고속충전 대용량 보조배터리 20000mAh 블랙 상품 이미지" width="480" height="480"
+             loading="lazy" decoding="async">
+      </figure>
       <div class="crow1">
         <span class="cat">IT</span>
         <span class="pf">쿠팡</span>
@@ -191,7 +234,8 @@
       </div>
       <h2 class="tit">KLIFE 고속충전 대용량 보조배터리 20000mAh</h2>
       <p class="opt">PD 22.5W QC3.0 잔량표시 · PD-Q2 블랙</p>
-      <div class="price"><b>18,800원</b><s class="org">56,800원</s><span class="dc">-66%</span><span class="unit">3포트 · LCD 잔량표시</span></div>
+      <div class="savebar"><span class="save">38,000원 아낌</span><span class="off">-66%</span><span class="base">정가 <s>56,800원</s></span></div>
+      <div class="price"><b>18,800원</b><span class="unit">3포트 · LCD 잔량표시</span></div>
       <div class="badges"><span class="bdg">한 달 1,000명 이상 구매</span><span class="bdg">로켓배송</span><span class="bdg">KC 인증</span></div>
       <p class="meta">⭐ 9,837건 · 최고 86% · 좋음 8%<br>🚚 내일(월) 11/23 도착 보장</p>
       <p class="note"><span aria-hidden="true">💬</span> 2만 밀리암페어를 2만 원 아래로 사는 건 흔한 일이 아니다 카더라. 잔량이 숫자로 보이는 것도 은근 편하고.</p>
@@ -201,6 +245,10 @@
       <p class="plink">링크: <a href="https://link.coupang.com/a/iPtqGEgPvw" target="_blank" rel="noopener noreferrer sponsored">link.coupang.com/a/iPtqGEgPvw</a></p>
     </article>
     <article class="card" id="deal-6">
+      <figure class="thumb">
+        <img src="/assets/hotdeal/heating-pad.webp" alt="한일의료기 1인용 전기방석 HL-100(20) 45x45 황토 상품 이미지" width="480" height="480"
+             loading="lazy" decoding="async">
+      </figure>
       <div class="crow1">
         <span class="cat">겨울</span>
         <span class="pf">쿠팡</span>
@@ -208,7 +256,8 @@
       </div>
       <h2 class="tit">한일의료기 1인용 전기방석 HL-100(20)</h2>
       <p class="opt">45 × 45cm · 황토</p>
-      <div class="price"><b>14,360원</b><s class="org">30,800원</s><span class="dc">-53%</span><span class="unit">코드분리형 · 인조가죽</span></div>
+      <div class="savebar"><span class="save">16,440원 아낌</span><span class="off">-53%</span><span class="base">정가 <s>30,800원</s></span></div>
+      <div class="price"><b>14,360원</b><span class="unit">코드분리형 · 인조가죽</span></div>
       <div class="badges"><span class="bdg">한 달 3,000명 이상 구매</span><span class="bdg">국산 탄소열선</span><span class="bdg">KC 인증</span></div>
       <p class="meta">⭐ 7,645건 · 최고 79%<br>🚚 내일(월) 11/23 도착 보장</p>
       <p class="note"><span aria-hidden="true">💬</span> 큰 전기장판 켜기 애매할 때 의자에 하나 깔면 그게 난로다 카더라. 색상·옵션에 따라 가격이 다를 수 있습니다.</p>
@@ -221,6 +270,8 @@
   <div class="endnote">
     <b>품절되면?</b> 이 페이지는 실시간 재고를 보지 않습니다. 카드에 적힌 건 확인한 순간의 가격이고,
     지금 들어가면 품절이거나 값이 올라 있을 수 있습니다. 그럴 땐 다음 카드로 넘어가면 됩니다.<br><br>
+    <b>사진</b> · 각 상품 페이지의 대표 이미지를 내려받아 썼습니다. 색상·구성은 고른 옵션에 따라
+    달라 보일 수 있으니 결제 전에 옵션을 한 번 더 확인하세요.<br><br>
     <b>다음 플랫폼</b> · 토스쇼핑 셰어링크 · 네이버 쇼핑커넥트 상품은 다음 업데이트부터 같은 카드 형식으로 추가됩니다.
   </div>
 

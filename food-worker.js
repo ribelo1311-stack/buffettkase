@@ -8,6 +8,10 @@
  * POST /api/food/reports/:id/flag       신고 (서로 다른 기기 3회 누적 시 숨김)
  * GET  /api/food/photo/:id              제보 사진 (JPEG)
  *
+ * 2026-11-23: pinned 컬럼(운영자 상시 고정) — pinned=1이면 60분 만료·3시간 미노출·
+ *   7일 자동 삭제를 무시하고 항상 목록에 남는다(김경림 님 /food 직접 등록 글).
+ *   기존 DB에는 `ALTER TABLE food_reports ADD COLUMN pinned INTEGER NOT NULL DEFAULT 0`.
+ *
  * 0원 원칙: D1 무료 한도(5GB·500만 읽기/일·10만 쓰기/일) 안에서만 동작한다.
  * 개인정보: 제보자 위치·전화번호·기기 ID는 저장하지 않는다. 중복 확인 판별은
  *           (IP+UA+일자+솔트) 해시로만 하며 원문은 어디에도 남기지 않는다.
@@ -67,6 +71,8 @@ async function deviceHash(req, env) {
   return sha256hex(`${ip}|${ua}|${day}|${env.FOOD_SALT || "bk-food"}`);
 }
 function derive(row, now) {
+  /* pinned(상시 고정) 제보는 60분 만료·3시간 미노출·7일 삭제를 모두 무시하고 항상 활성 */
+  if (row.pinned) return "confirmed";
   if (row.reports >= PROMOTE_AT) return "confirmed";
   if (now - row.created_at < TEMP_MIN * 60000) return "temp";
   return "expired";
@@ -79,10 +85,10 @@ async function listReports(req, env, url) {
   const now = Date.now();
   const cat = clean(url.searchParams.get("cat"), 20);
   const st = env.DB.prepare(
-    `SELECT id, cat, menu, place, memo, reports, created_at, lat, lng, (photo IS NOT NULL) AS has_photo
+    `SELECT id, cat, menu, place, memo, reports, created_at, lat, lng, pinned, (photo IS NOT NULL) AS has_photo
        FROM food_reports
-      WHERE flagged = 0 AND created_at > ?1 AND (reports >= ?3 OR created_at > ?2)
-      ORDER BY (reports >= ?3) DESC, created_at DESC
+      WHERE flagged = 0 AND (pinned = 1 OR (created_at > ?1 AND (reports >= ?3 OR created_at > ?2)))
+      ORDER BY pinned DESC, (reports >= ?3) DESC, created_at DESC
       LIMIT 60`
   ).bind(now - KEEP_MS, now - LIVE_EXPIRED_MS, PROMOTE_AT);
   const { results } = await st.all();
@@ -99,6 +105,7 @@ async function listReports(req, env, url) {
       createdAt: r.created_at,
       lat: r.lat == null ? null : Number(r.lat),
       lng: r.lng == null ? null : Number(r.lng),
+      pinned: !!r.pinned,
       status: derive(r, now),
       photo: r.has_photo ? `${origin}/api/food/photo/${encodeURIComponent(r.id)}` : null,
     }));
@@ -182,11 +189,11 @@ async function createReport(req, env) {
 async function confirmReport(req, env, id) {
   const now = Date.now();
   const row = await env.DB.prepare(
-    "SELECT id, reports, created_at, flagged FROM food_reports WHERE id = ?1"
+    "SELECT id, reports, created_at, flagged, pinned FROM food_reports WHERE id = ?1"
   ).bind(id).first();
   if (!row) return txt("이미 사라진 제보입니다.", 404);
   if (row.flagged) return txt("숨김 처리된 제보입니다.", 410);
-  if (row.reports < PROMOTE_AT && now - row.created_at >= TEMP_MIN * 60000) {
+  if (!row.pinned && row.reports < PROMOTE_AT && now - row.created_at >= TEMP_MIN * 60000) {
     return json({ ok: false, error: "만료된 제보는 확인할 수 없습니다.", reports: row.reports, status: "expired" }, 409);
   }
   const dh = await deviceHash(req, env);
@@ -206,7 +213,7 @@ async function confirmReport(req, env, id) {
     ok: true,
     changed,
     reports,
-    status: reports >= PROMOTE_AT ? "confirmed" : now - row.created_at < TEMP_MIN * 60000 ? "temp" : "expired",
+    status: row.pinned || reports >= PROMOTE_AT ? "confirmed" : now - row.created_at < TEMP_MIN * 60000 ? "temp" : "expired",
   });
 }
 
@@ -259,7 +266,7 @@ async function photo(env, id) {
 async function health(env) {
   const now = Date.now();
   const r = await env.DB.prepare(
-    "SELECT COUNT(*) AS n FROM food_reports WHERE flagged = 0 AND created_at > ?1"
+    "SELECT COUNT(*) AS n FROM food_reports WHERE flagged = 0 AND (pinned = 1 OR created_at > ?1)"
   ).bind(now - LIVE_EXPIRED_MS).first();
   return json({ ok: true, t: now, live: (r && r.n) || 0 });
 }
@@ -288,7 +295,7 @@ export default {
   async scheduled(event, env) {
     const now = Date.now();
     await env.DB.batch([
-      env.DB.prepare("DELETE FROM food_reports WHERE created_at < ?1").bind(now - KEEP_MS),
+      env.DB.prepare("DELETE FROM food_reports WHERE pinned = 0 AND created_at < ?1").bind(now - KEEP_MS),
       env.DB.prepare("DELETE FROM food_confirms WHERE created_at < ?1").bind(now - KEEP_MS),
       env.DB.prepare("DELETE FROM food_events WHERE created_at < ?1").bind(now - 2 * 24 * 3600 * 1000),
     ]);

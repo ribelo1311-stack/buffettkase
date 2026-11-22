@@ -247,6 +247,7 @@
   .bpin{width:26px;height:26px;border-radius:999px;display:grid;place-items:center;font-size:13px;line-height:1;
     background:#131F37;border:2px solid var(--amber2);box-shadow:0 5px 12px -4px rgba(0,0,0,.9)}
   .bpin.conf{border-color:#34D399}
+  .bpin.pin{border-color:#38BDF8;box-shadow:0 0 0 3px rgba(56,189,248,.18),0 5px 12px -4px rgba(0,0,0,.9)}
   .bpin.exp{border-color:#64748B;opacity:.62}
   .bpin.demo{border-style:dashed}
   .ppin{width:30px;height:30px;border-radius:999px;display:grid;place-items:center;font-size:15px;line-height:1;
@@ -273,6 +274,7 @@
   @media(min-width:760px){ .board{grid-template-columns:1fr 1fr} }
   .bc{background:var(--card);border:1px solid var(--line);border-radius:15px;padding:12px 12px 11px;box-shadow:var(--shadow);position:relative}
   .bc.conf{border-color:rgba(16,185,129,.35)}
+  .bc.pinned{border-color:rgba(56,189,248,.4);box-shadow:0 0 0 1px rgba(56,189,248,.12),var(--shadow)}
   .bc.exp{opacity:.58;background:#0E1828}
   .bc .top{display:flex;gap:10px}
   .bc .thumb{flex:0 0 auto;width:52px;height:52px;border-radius:12px;overflow:hidden;background:#0A1222;border:1px solid var(--line);display:grid;place-items:center}
@@ -288,10 +290,12 @@
   .b-badge.t{background:var(--amberSoft);color:var(--amber2);border:1px solid var(--amberLine)}
   .b-badge.e{background:rgba(148,163,184,.1);color:#94A3B8;border:1px solid rgba(148,163,184,.25)}
   .b-badge.demo{background:rgba(251,191,36,.12);color:#FDE68A;border:1px dashed rgba(251,191,36,.5)}
+  .b-badge.p{background:rgba(56,189,248,.13);color:#7DD3FC;border:1px solid rgba(56,189,248,.42)}
   .bc .meta{margin-top:8px;display:flex;align-items:center;gap:7px;flex-wrap:wrap;font-size:10.5px;color:var(--dim);font-weight:700}
   .bc .timer{margin-left:auto;font-weight:900;color:var(--amber2);font-variant-numeric:tabular-nums}
   .bc .timer.urgent{color:#FCA5A5}
   .bc .timer.done{color:#6EE7B7}
+  .bc .timer.pin{color:#7DD3FC}
   .bc .foot{margin-top:10px;display:flex;align-items:center;gap:8px}
   .dots{display:flex;gap:2px;flex:1;min-width:0}
   .dots i{flex:1;height:4px;border-radius:2px;background:rgba(148,163,184,.18)}
@@ -472,7 +476,7 @@
 
     <div class="rules">
       <div class="rule"><span class="no">1</span><div><b>사진 1장 제보</b><span>사진은 필수, 메뉴·메모 함께</span></div></div>
-      <div class="rule"><span class="no">2</span><div><b>60분 임시 노출</b><span>60분 지나면 자동 만료</span></div></div>
+      <div class="rule"><span class="no">2</span><div><b>60분 임시 노출</b><span>60분 지나면 자동 만료 · <b style="color:#7DD3FC">📌 상시 노출</b> 글은 예외</span></div></div>
       <div class="rule"><span class="no">3</span><div><b>10명 확인 시 확정</b><span>확인 10명이면 확정 승격</span></div></div>
       <div class="rule"><span class="no">4</span><div><b>위치는 가게만</b><span>저장은 가게 위치만</span></div></div>
     </div>
@@ -496,7 +500,7 @@
     </div>
 
     <div class="bnote">
-      <b>운영 범위</b> : 제보는 서버에 저장되어 모든 방문자에게 보입니다. 사진은 올릴 때 640px·JPEG로 줄여 저장하고(촬영 위치 정보 제거), 좌표는 지도에서 찍은 가게 위치만 남깁니다. 만료된 제보는 목록에서 흐리게 남깁니다. 같은 기기 1회 확인 제한, 신고 3회 누적 시 자동 숨김, 7일 지난 제보는 자동 삭제됩니다.
+      <b>운영 범위</b> : 제보는 서버에 저장되어 모든 방문자에게 보입니다. 사진은 올릴 때 640px·JPEG로 줄여 저장하고(촬영 위치 정보 제거), 좌표는 지도에서 찍은 가게 위치만 남깁니다. 만료된 제보는 목록에서 흐리게 남깁니다. 같은 기기 1회 확인 제한, 신고 3회 누적 시 자동 숨김, 7일 지난 제보는 자동 삭제됩니다. <b style="color:#7DD3FC">📌 상시 노출</b> 제보는 60분 만료·7일 삭제 없이 계속 남습니다.
       <div style="margin-top:6px">‘시연 예시’ 항목은 실제 가게가 아니라 동작 확인용 표본입니다. 실제 제보가 들어오기 전까지 지도 핀·목록에서 활성 상태(체험용 예시)로 유지되고, 실제 제보가 하나라도 들어오면 목록에서 빠집니다.</div>
     </div>
   </section>
@@ -939,7 +943,7 @@ function normalizeServer(x){
     name: CATS[cat].label + ' · ' + (place.split(' ').slice(-2).join(' ') || '동네'),
     menu: x.menu || '', place, memo: x.memo || '',
     photo: x.photo || null, reports: Number(x.reports) || 1, createdAt: Number(x.createdAt) || Date.now(),
-    lat, lng, server: true
+    pinned: !!x.pinned, lat, lng, server: true
   };
 }
 async function pullReports(){
@@ -1012,6 +1016,7 @@ function save(){
 }
 function statusOfStore(s){
   if(s.demo) return s.reports >= PROMOTE_AT ? 'confirmed' : 'temp';   /* 시연 예시는 만료로 흐려지지 않는다 */
+  if(s.pinned) return 'confirmed';                                    /* 📌 상시 노출 — 만료 없음 */
   if(s.reports >= PROMOTE_AT) return 'confirmed';
   if(Date.now() - s.createdAt < TEMP_MIN*60000) return 'temp';
   return 'expired';
@@ -1027,6 +1032,7 @@ function agoText(ts){
 }
 function timerText(s){
   if(s.demo) return '체험용 예시';
+  if(s.pinned) return '📌 상시 노출';
   const st = statusOfStore(s);
   if(st === 'confirmed') return '확정';
   if(st === 'expired') return '만료';
@@ -1053,6 +1059,8 @@ function storeCardHTML(s){
   const st = statusOfStore(s);
   const badge = s.demo
     ? '<span class="b-badge demo">시연 예시 · 실제 가게 아님</span>'
+    : s.pinned
+      ? '<span class="b-badge p">📌 상시 노출</span>'
     : st === 'confirmed'
       ? '<span class="b-badge c">확정 영업 중</span>'
       : st === 'temp'
@@ -1060,14 +1068,16 @@ function storeCardHTML(s){
         : '<span class="b-badge e">영업 종료 추정</span>';
   const dots = Array.from({length:PROMOTE_AT}, (_,i) => `<i class="${i < Math.min(s.reports, PROMOTE_AT) ? 'on':''}"></i>`).join('');
   const cntText = st === 'expired' ? `확인 ${s.reports}명` : `확인 ${s.reports}/${PROMOTE_AT}명`;
-  const done = myConfirms.has(s.id) || st === 'expired' || st === 'confirmed';
-  const btnLabel = st === 'confirmed' ? '확정됨' : (myConfirms.has(s.id) ? '확인함' : '＋1 나도 봤어요');
-  const timerCls = s.demo ? '' : (st === 'temp' && minutesLeft(s) <= 15) ? ' urgent' : (st === 'confirmed' ? ' done' : '');
+  const done = myConfirms.has(s.id) || st === 'expired' || (st === 'confirmed' && !s.pinned);
+  const btnLabel = s.pinned
+    ? (myConfirms.has(s.id) ? '확인함' : '＋1 나도 봤어요')
+    : st === 'confirmed' ? '확정됨' : (myConfirms.has(s.id) ? '확인함' : '＋1 나도 봤어요');
+  const timerCls = s.demo ? '' : s.pinned ? ' pin' : (st === 'temp' && minutesLeft(s) <= 15) ? ' urgent' : (st === 'confirmed' ? ' done' : '');
   /* 목록 카드에는 주소 글자로 길찾기를 걸지 않는다 — 위 지도 핀으로 이동해 좌표 기준으로 길찾기 */
   const mapAction = coordsOf(s)
     ? `<div class="f-act"><button type="button" class="maplink mapshow" data-show="${s.id}" aria-label="${esc(s.name)} 위치를 위 지도에서 보기">📍 지도에서 보기</button></div>`
     : '';
-  return `<article class="bc ${st} ${s.demo ? 'demo' : ''}" data-card="${s.id}">
+  return `<article class="bc ${st} ${s.demo ? 'demo' : ''}${s.pinned ? ' pinned' : ''}" data-card="${s.id}">
     <div class="top">
       <div class="thumb">${s.photo ? `<img src="${s.photo}" alt="${esc(CATS[s.cat].label)} 제보 사진">` : '<span class="ph">無</span>'}</div>
       <div class="id">
@@ -1076,7 +1086,7 @@ function storeCardHTML(s){
         <div class="place">${esc(s.place || '위치 미기재')}</div>
       </div>
     </div>
-    <div class="meta">${badge}<span>${agoText(s.createdAt)}</span><span class="timer${timerCls}" data-timer="${s.id}">${timerText(s)}</span></div>
+    <div class="meta">${badge}<span>${agoText(s.createdAt)}</span>${s.pinned ? '' : `<span class="timer${timerCls}" data-timer="${s.id}">${timerText(s)}</span>`}</div>
     ${s.memo ? `<div class="f-note">${esc(s.memo)}</div>` : ''}
     ${mapAction}
     <div class="foot">
@@ -1153,7 +1163,7 @@ function ensureBoardMap(){
 }
 function popupHTML(s, c){
   const st = statusOfStore(s);
-  const label = st === 'confirmed' ? '확정 영업 중' : st === 'temp' ? '방금 제보 · 임시' : '영업 종료 추정';
+  const label = s.pinned ? '📌 상시 노출' : st === 'confirmed' ? '확정 영업 중' : st === 'temp' ? '방금 제보 · 임시' : '영업 종료 추정';
   return '<div class="pop">'
     + '<b>' + (CAT_EMOJI[s.cat] || '🍢') + ' ' + esc(s.name) + '</b>'
     + '<div class="pm">' + esc(s.menu || '메뉴 미기재') + '</div>'
@@ -1176,7 +1186,7 @@ function syncBoardMarkers(force){
   pinned.forEach(s => {
     const c = coordsOf(s), st = statusOfStore(s);
     const icon = L.divIcon({className:'', iconSize:[26,26], iconAnchor:[13,13], popupAnchor:[0,-14],
-      html:'<div class="bpin ' + st + (s.demo ? ' demo' : '') + '">' + (CAT_EMOJI[s.cat] || '🍢') + '</div>'});
+      html:'<div class="bpin ' + st + (s.demo ? ' demo' : '') + (s.pinned ? ' pin' : '') + '">' + (CAT_EMOJI[s.cat] || '🍢') + '</div>'});
     const mk = L.marker([c.lat, c.lng], {icon, title:s.name, keyboard:true})
       .bindPopup(popupHTML(s, c), {autoPan:true, autoPanPadding:[18,18]}).addTo(boardLayer);
     markerById[s.id] = mk;

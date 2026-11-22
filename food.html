@@ -152,6 +152,12 @@
   .f-src .lab.data{color:#93C5FD;border-color:rgba(147,197,253,.3);background:rgba(59,130,246,.08)}
   .f-src .lab.news{color:#FCD34D;border-color:rgba(252,211,77,.3);background:rgba(245,158,11,.08)}
   .f-src a{color:#93C5FD;font-weight:800;text-decoration:underline;text-underline-offset:2px;overflow-wrap:anywhere}
+  .f-act{margin-top:9px;display:flex;flex-wrap:wrap;gap:6px}
+  .maplink{display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:900;line-height:1;
+    padding:7px 10px;border-radius:9px;border:1px solid rgba(254,229,0,.32);background:rgba(254,229,0,.10);
+    color:#FDE68A;text-decoration:none;white-space:nowrap}
+  .maplink:hover{background:rgba(254,229,0,.18);border-color:rgba(254,229,0,.55);color:#FEF3C7}
+  .bc .f-act{margin-top:8px}
 
   .empty{padding:26px 18px;border:1px dashed var(--line2);border-radius:14px;text-align:center;color:var(--mut);font-size:12.5px}
   .empty b{display:block;color:var(--tx2);font-size:13.5px;margin-bottom:4px}
@@ -460,7 +466,7 @@
     <div class="field">
       <label for="placeInput">위치 (동네 · 가게 앞)</label>
       <input type="text" id="placeInput" placeholder="예: 평택 비전동 ○○아파트 정문 앞">
-      <div class="hint">정확한 집 주소는 적지 마세요. 가게를 찾을 수 있는 정도만 적습니다.</div>
+      <div class="hint">정확한 집 주소는 적지 마세요. 동네·역명·가게명 기준으로 적으면 카카오맵 길찾기와 바로 연결됩니다.</div>
     </div>
 
     <div class="field">
@@ -600,12 +606,46 @@ const FEST = [
    srcLabel:'전국문화축제표준데이터·연수구', srcType:'data', srcUrl:'https://www.yeonsu.go.kr/tour/festival/christmas/info.asp'}
 ];
 
+/* 카카오맵 검색어 — 장소명이 길거나 괄호 주석·주소가 섞인 항목은 지도에서 실제로 잡히는 이름으로 지정한다.
+   2026-11-22 카카오 로컬 검색으로 19건 전수 확인(결과 0건인 문구는 쓰지 않았다).
+   지정이 없는 항목은 place에서 괄호를 뺀 문구를 그대로 검색어로 쓴다. */
+const MAPQ = {
+  ggmi:'경기미 디저트 페스타',
+  osan:'오산오색시장',
+  toto:'대전중앙시장',
+  cheongju:'육거리종합시장',
+  ulsan:'울산 크리스마스 마켓',
+  yuseong:'유성온천 크리스마스 축제',
+  acc:'국립아시아문화전당 아시아문화광장',
+  hampyeong:'함평 겨울빛축제',
+  namhae:'남해 이동면 행정복지센터',
+  gwanghwamun:'광화문 마켓',
+  lantern:'서울빛초롱축제',
+  cheonggye:'청계천의 빛',
+  hangang:'로맨틱한강 크리스마스 마켓',
+  magok:'마곡위시빌리지',
+  ansan:'안산문화광장',
+  ohslow:'오슬로우 빈티지 크리스마스 마켓',
+  pyeongtaek:'신장근린공원',
+  busanvillage:'크리스마스 빌리지 부산 2026',
+  yeonsu:'연수구청 한마음광장'
+};
+
 /* ============================================================
    2) 공통 유틸
    ============================================================ */
 const $ = id => document.getElementById(id);
 const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const DAY = 86400000;
+/* 카카오맵 길찾기 링크 (API 키 0원 · 위치정보 저장 없음)
+   — 장소명 텍스트만 검색어로 넘기고, 사용자 GPS 좌표는 어디에도 저장·전송하지 않는다. */
+function mapQuery(text){ return String(text || '').replace(/\s*\([^)]*\)/g, ' ').replace(/\s+/g, ' ').trim(); }
+function mapHref(query){ return 'https://map.kakao.com/link/search/' + encodeURIComponent(mapQuery(query)); }
+function mapBtn(label, query){
+  const q = mapQuery(query);
+  if(!q) return '';
+  return `<div class="f-act"><a class="maplink" href="${mapHref(q)}" target="_blank" rel="noopener noreferrer" aria-label="${esc(label)} 카카오맵에서 길찾기 (새 창)" title="카카오맵에서 찾기 · 검색어: ${esc(q)}">🗺️ 카카오맵 길찾기</a></div>`;
+}
 const startOfDay = d => { const x = new Date(d); x.setHours(0,0,0,0); return x; };
 const parseDate = s => { const [y,m,d] = s.split('-').map(Number); return new Date(y, m-1, d); };
 const TODAY = startOfDay(new Date());
@@ -710,6 +750,7 @@ function cardHTML(e){
     </div>
     <div class="f-note">${esc(e.note)}</div>
     ${e.flag ? `<div class="f-note flag">확인 필요 — ${esc(e.flag)}</div>` : ''}
+    ${mapBtn(e.title, MAPQ[e.id] || e.place)}
     <div class="f-src">
       <span class="lab ${srcClass}">${srcWord}</span>
       <span>${esc(e.srcLabel)}</span>
@@ -903,6 +944,7 @@ function storeCardHTML(s){
     </div>
     <div class="meta">${badge}${demo}<span>${agoText(s.createdAt)}</span><span class="timer${timerCls}" data-timer="${s.id}">${timerText(s)}</span></div>
     ${s.memo ? `<div class="f-note">${esc(s.memo)}</div>` : ''}
+    ${mapBtn(s.name, s.place)}
     <div class="foot">
       <span class="dots" aria-hidden="true">${dots}</span>
       <span class="cnt">${cntText}</span>

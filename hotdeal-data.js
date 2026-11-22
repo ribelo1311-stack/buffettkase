@@ -1,4 +1,4 @@
-/* 버핏카세 /hotdeal 데이터 (2026-11-22 12:20 KST 실사 · 2차 업데이트)
+/* 버핏카세 /hotdeal 데이터 (2026-11-22 17:15 KST 실사 · 3차 업데이트)
    구조 확장 규칙: items[] 각 항목은
    { platform: "coupang" | "toss" | "naver", title, price, affiliate_url, note, updated_at, ... }
    platform 값만 늘리면 토스쇼핑 셰어링크·네이버 쇼핑커넥트를 같은 카드로 붙일 수 있게 설계했다.
@@ -6,7 +6,7 @@
    ※ naverShop = 네이버 크리에이터샵(buffettlife) 고마진 섹션. 쿠팡파트너스 영역과 섞지 않도록 분리해 렌더한다.
    ※ 본문은 JSON 호환 형식(키·문자열 큰따옴표) — projects/build_hotdeal.py 가 그대로 파싱해 hotdeal.html 을 만든다. */
 window.HOTDEAL = {
-  "asOf": "2026-11-22 12:20 KST",
+  "asOf": "2026-11-22 17:15 KST",
   "coupangTag": "AF2387959",
   "disclosure": "이 페이지는 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.",
   "priceNotice": "표시된 가격 및 할인율은 확인 시점 기준이며, 쿠팡 실시간 판매가·재고에 따라 변동되거나 품절될 수 있습니다. '아낌 금액'은 쿠팡 상세페이지에 함께 표기된 정가(기준가)에서 현재 판매가를 뺀 값이고, 정가 표기가 없는 상품은 정가 대신 확인된 포인트만 적었습니다.",
@@ -61,25 +61,26 @@ window.HOTDEAL = {
     {
       "platform": "coupang",
       "cat": "겨울",
-      "title": "국산 브렌스 김중사 대용량 핫팩 160g",
-      "option": "40개 + 핫팩주머니 증정",
-      "price": 22900,
-      "origin": null,
-      "discount": null,
-      "unit": "1개당 573원",
-      "reviews": "183건 · 최고 83%",
+      "title": "불곰하사 포켓형 핫핸드 핫팩 100g",
+      "option": "100g · 30개 · 1개당 299원",
+      "price": 8970,
+      "origin": 12900,
+      "discount": 30,
+      "unit": "1개당 299원",
+      "reviews": "4,613건 · 최고 85%",
       "badges": [
-        "무료배송",
-        "26년 1월 제조"
+        "한 달 5,000명 이상 구매",
+        "로켓배송",
+        "유통기한 2028-01-08 이후"
       ],
-      "delivery": "모레(화) 11/24 도착 예정",
-      "shipping": "판매자 무료배송(브렌스 코퍼레이션 · CJ대한통운).",
-      "note": "주머니까지 얹어준다니 이건 뭐 거의 서비스다 카더라. 160g 대용량은 주머니에 넣고 다니기 딱.",
-      "image": "/assets/hotdeal/hotpack-brens.webp",
-      "image_alt": "국산 브렌스 김중사 대용량 핫팩 160g 40개 + 핫팩주머니 상품 이미지",
-      "affiliate_url": "https://link.coupang.com/a/iR9OzS16gS",
-      "product_url": "https://www.coupang.com/vp/products/8730553142",
-      "updated_at": "2026-11-22 08:37 KST"
+      "delivery": "내일(월) 11/23 도착 보장",
+      "shipping": "로켓배송 19,800원 이상 무료 — 단품 8,970원은 배송비가 붙습니다. 20개 7,180원·60개 17,940원·90개 26,910원 옵션도 있습니다.",
+      "note": "군인들이 쓰는 그 핫팩이라 카더라. 100g이면 주머니에 넣고 하루는 버틴다는 후기가 많고, 30개면 한 겨울은 갑니다. 다만 1개당 283원짜리 코멧이 더 싸니 '최저가'는 아닙니다.",
+      "image": "/assets/hotdeal/hotpack-bulgom.webp",
+      "image_alt": "불곰하사 포켓형 핫핸드 핫팩 100g 30개 상품 이미지",
+      "affiliate_url": "https://link.coupang.com/a/iSLkUlEo44",
+      "product_url": "https://www.coupang.com/vp/products/8990153687",
+      "updated_at": "2026-11-22 17:12 KST"
     },
     {
       "platform": "coupang",
@@ -246,6 +247,30 @@ window.HOTDEAL = {
       "affiliate_url": "https://link.coupang.com/a/iSp5P996Bg",
       "product_url": "https://www.coupang.com/vp/products/8409016423",
       "updated_at": "2026-11-22 12:09 KST"
+    },
+    {
+      "platform": "coupang",
+      "cat": "겨울",
+      "title": "USB 발열 숄담요 인조 토끼털 지퍼형",
+      "option": "그레이 · 152 × 85cm · 9구역 발열 3단 온도조절",
+      "price": 35800,
+      "origin": 49800,
+      "discount": 28,
+      "unit": "USB 5V · 보조배터리 전원",
+      "reviews": "227건 · 최고 84% · 200명 이상 만족",
+      "badges": [
+        "한 달 1,000명 이상 구매",
+        "무료배송",
+        "KC 전자파 적합"
+      ],
+      "delivery": "내일(월) 11/23 도착 보장",
+      "shipping": "판매자 무료배송(신영테크날라지 · 순차배송). 색상 그레이·베이지, 와우 가입쿠폰가 16,800원은 가입 조건이라 대표가로 쓰지 않았습니다.",
+      "note": "콘센트 없이 보조배터리로 켜서 입고 다니는 담요라 카더라. 9구역 발열에 지퍼형이라 어깨에 걸치고 손을 넣을 수 있어 사무실·차 안에서 쓰기 좋습니다.",
+      "image": "/assets/hotdeal/blanket-shawl.webp",
+      "image_alt": "USB 발열 숄담요 인조 토끼털 지퍼형 그레이 152x85cm 상품 이미지",
+      "affiliate_url": "https://link.coupang.com/a/iSLlYmeWtg",
+      "product_url": "https://www.coupang.com/vp/products/9730302110",
+      "updated_at": "2026-11-22 17:13 KST"
     },
     {
       "platform": "coupang",

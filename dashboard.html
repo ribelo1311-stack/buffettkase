@@ -3,16 +3,16 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>버핏카세 | 월억버핏 시황 전광판 · 61테마 · 목표가 레이더</title>
+<title>버핏카세 | 월억버핏 시황 전광판 · 69테마 · 목표가 레이더</title>
 <meta name="naver-site-verification" content="179eab886c7dde3e52341835dab2969e66cdc807" />
 <meta name="google-site-verification" content="_ft3sJsLoNq8qK5OzqchVg0ZBUdR3TMiyNhJTISoV9o" />
-<meta name="description" content="월억버핏의 실전 트레이딩 시황 전광판. 코스피·코스닥·해외지수·국내 종목 시세는 실시간(지연 0~20분) 반영, 61개 테마 등락·거래대금, 증권사 목표주가 레이더, AI 뉴스 감성 태깅, 외인·기관 쌍끌이 수급은 장 마감 기준 시황·테마 분석판입니다.">
+<meta name="description" content="월억버핏의 실전 트레이딩 시황 전광판. 코스피·코스닥·해외지수·국내 종목 시세는 실시간(지연 0~20분) 반영, 69개 테마 등락·거래대금, 증권사 목표주가 레이더, AI 뉴스 감성 태깅, 외인·기관 쌍끌이 수급은 장 마감 기준 시황·테마 분석판입니다.">
 <link rel="canonical" href="https://buffettkase.pages.dev/dashboard">
 <meta name="robots" content="index,follow">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="버핏카세 · 월억버핏">
-<meta property="og:title" content="버핏카세 | 월억버핏 시황 전광판 · 61테마 · 목표가 레이더">
-<meta property="og:description" content="코스피·코스닥·해외지수 실시간(지연 0~20분) + 61개 테마 등락·거래대금 + 증권사 목표주가 레이더 + 외인·기관 수급.">
+<meta property="og:title" content="버핏카세 | 월억버핏 시황 전광판 · 69테마 · 목표가 레이더">
+<meta property="og:description" content="코스피·코스닥·해외지수 실시간(지연 0~20분) + 69개 테마 등락·거래대금 + 증권사 목표주가 레이더 + 외인·기관 수급.">
 <meta property="og:url" content="https://buffettkase.pages.dev/dashboard">
 <link rel="preconnect" href="https://cdn.jsdelivr.net">
 <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" rel="stylesheet">
@@ -144,6 +144,21 @@ td.name .d{display:inline-block;width:5px;height:5px;border-radius:50%;margin-ri
 .surgetbl td{width:auto!important;text-align:right}
 .surgetbl td:first-child{text-align:left}
 .folded .ratio{opacity:.35}
+/* 슬림 보기 · 정렬 4종 */
+.btn.view{background:#0e2a20;border-color:#1f8a5c;color:#7ff0b8}
+.btn.view:hover{background:#123a2b;color:#a7f3d0}
+.slimsep{grid-column:1/-1;display:flex;align-items:center;gap:8px;margin:6px 2px 0}
+.slimsep:before,.slimsep:after{content:'';flex:1;height:1px;background:#1e2a3a}
+.slimsep .sm{flex:0 0 auto;padding:2px 10px;border-radius:20px;border:1px solid #2b3a50;
+  background:#141d2a;color:#9fb0c6;font-size:10.5px;font-weight:800;letter-spacing:.2px}
+.slimsep.up .sm{color:#fca5a5;border-color:rgba(239,68,68,.38);background:rgba(239,68,68,.10)}
+.slimsep.dn .sm{color:#93c5fd;border-color:rgba(59,130,246,.38);background:rgba(59,130,246,.10)}
+.morecard{grid-column:1/-1;width:100%;display:flex;align-items:center;justify-content:center;gap:6px;
+  padding:11px 12px;border-radius:8px;border:1px dashed #3b4a60;background:#101a28;
+  color:#dbe6f3;font-size:12px;font-weight:800;cursor:pointer;font-family:inherit;transition:.15s}
+.morecard:hover{border-color:#2563eb;background:#122033;color:#fff}
+.morecard b{color:#93c5fd}
+@media(max-width:720px){.slimsep .sm{font-size:10px}.morecard{padding:10px;font-size:11.5px}}
 /* 상단 시장 전체 수급 막대 */
 .flowbars{margin-top:10px}
 .flowbars .fbh{font-size:14px;font-weight:900;color:#e5ecf6;margin-bottom:4px;letter-spacing:-.3px}
@@ -520,8 +535,9 @@ footer b{color:#a9b8cb}
     <div class="tools">
       <input id="search" type="search" placeholder="🔍 종목·테마 검색 (예: 한미반도체)" autocomplete="off">
       <button class="btn" id="refreshBtn" title="지금 시세를 다시 받아옵니다">⟳ 시세 새로고침</button>
-      <button class="btn" id="sortBtn">등락률순</button>
+      <button class="btn" id="sortBtn">등락률 높은순 ↓</button>
       <button class="btn" id="foldBtn">모두 접기</button>
+      <button class="btn view" id="viewBtn">전체 테마 보기</button>
       <button class="btn gold" id="sponsorBtn">☕ 후원</button>
       <a class="btn ghost" href="index.html" style="border-color:#4a3a12;color:#fcd34d">🏠 홈</a>
       <a class="btn ghost" href="calc.html">💧 물타기 계산기</a>
@@ -570,7 +586,7 @@ footer b{color:#a9b8cb}
 
   <!-- ================= NAV ================= -->
   <nav class="nav">
-    <a href="#board">📊 61테마 전광판</a>
+    <a href="#board">📊 69테마 전광판</a>
     <a href="#radar">🎯 증권사 목표가 레이더</a>
     <a href="#liveNews">📰 실시간 속보</a>
     <a href="#news">🤖 AI 뉴스·감성</a>
@@ -595,9 +611,9 @@ footer b{color:#a9b8cb}
   <!-- ================= BOARD ================= -->
   <section id="board">
     <div class="sec-head">
-      <h2>📊 테마 전광판 <span class="tag" id="themeCount">61개 테마</span></h2>
+      <h2>📊 테마 전광판 <span class="tag" id="themeCount">69개 테마</span></h2>
       <span class="tag g">실데이터</span>
-      <p id="boardNote">테마 헤더에 마우스를 올리면 ‘왜 오르나요?’ 근거가 뜹니다 · 종목 클릭 시 상세</p>
+      <p id="boardNote">슬림 보기 · 등락 상위 10·하위 10 테마만 표시 — 검색하면 전체 69개에서 찾습니다</p>
     </div>
     <div class="legend">
       <span><b>종목명 색</b> = 오늘 여러 테마에 겹친 수</span>
@@ -973,43 +989,115 @@ footer b{color:#a9b8cb}
     } else if (tipLock){ tipLock = false; hideTip(); }
   });
 
-  /* ---------- 테마 보드 ---------- */
+  /* ---------- 테마 보드 (정렬 4종 · 슬림/전체 보기 · 전체 테마 검색) ---------- */
   const grid = $('#grid');
-  let themeOrder = 'pct';
-  function buildBoard(){
-    grid.innerHTML = '';
-    const list = [...D.themes];
-    if (themeOrder === 'val') list.sort((a,b)=>b.val-a.val); else list.sort((a,b)=>b.avg-a.avg);
-    list.forEach(t => {
-      const c = t.avg>0?'up':(t.avg<0?'dn':'flat');
-      const upPct = Math.round(t.up/Math.max(t.count,1)*100);
-      const card = el('div','card');
-      card.dataset.th = t.name;
-      const head = el('div','ch',
-        `<span class="nm">▼ ${t.name} <em>${t.count}</em></span>
-         <span class="st"><span class="am">${amt(t.val)}</span><span class="rt ${c}">${pctTxt(t.avg)}</span></span>`);
-      head.dataset.tip = JSON.stringify({k:'t', v:{name:t.name,count:t.count,avg:t.avg,why:t.why,whyNews:t.whyNews}});
-      const ratio = el('div','ratio', `<i class="bup" style="width:${upPct}%"></i><i class="bdn" style="width:${100-upPct}%"></i>`);
-      const rt = el('div','rt-text', `<span>상승 <b>${t.up}</b> / ${t.count}</span><span>${upPct}% 상승 · 하락 ${t.down}</span>`);
-      const tb = el('table');
-      const body = el('tbody');
-      t.rows.forEach(r => {
-        const tr = el('tr');
-        tr.dataset.c = r.c;
-        const dot = r.th>=4?'#a855f7':(r.th===3?'#f97316':(r.th===2?'#22c55e':'transparent'));
-        const hot = r.pct>=5 ? '<span class="hot">▲</span>' : '';
-        tr.innerHTML = `<td class="name" title="${r.n}"><span class="d" style="background:${dot}"></span>${r.n}${r.nxt?'<span class="nxt">NXT</span>':''}${hot}</td>
-          <td>${won(r.p)}</td><td style="color:#8b98ab">${amt(r.v)}</td>
-          <td class="${cls(r.pct)}" style="font-weight:800">${pctTxt(r.pct)}</td>`;
-        tr.dataset.tip = JSON.stringify({k:'s', v:r});
-        body.appendChild(tr);
-      });
-      tb.appendChild(body);
-      head.addEventListener('click', () => card.classList.toggle('folded'));
-      card.append(head, ratio, rt, tb);
-      grid.appendChild(card);
+  const search = $('#search');
+  const SORTS = [
+    {id:'pct-desc', label:'등락률 높은순 ↓'},
+    {id:'pct-asc',  label:'등락률 낮은순 ↑'},
+    {id:'val-desc', label:'거래대금 많은순 ↓'},
+    {id:'val-asc',  label:'거래대금 적은순 ↑'},
+  ];
+  const SLIM_N = 10;
+  let sortIdx = 0, slim = true, foldedAll = false;
+  const foldedSet = new Set();                  // 접힌 테마 이름 — 재렌더·시세 갱신에도 유지
+  const sortKey = () => SORTS[sortIdx].id.startsWith('val') ? 'val' : 'avg';
+  const sortAsc = () => SORTS[sortIdx].id.endsWith('asc');
+  const metricLabel = () => sortKey() === 'val' ? '거래대금' : '등락';
+
+  function sortThemes(list){
+    const k = sortKey(), dir = sortAsc() ? 1 : -1;
+    return [...list].sort((a,b) => (a[k]-b[k])*dir || String(a.name).localeCompare(String(b.name)));
+  }
+
+  function makeCard(t, rows){
+    const c = t.avg>0?'up':(t.avg<0?'dn':'flat');
+    const upPct = Math.round(t.up/Math.max(t.count,1)*100);
+    const card = el('div','card');
+    card.dataset.th = t.name;
+    if (foldedAll || foldedSet.has(t.name)) card.classList.add('folded');
+    const head = el('div','ch',
+      `<span class="nm">▼ ${t.name} <em>${t.count}</em></span>
+       <span class="st"><span class="am">${amt(t.val)}</span><span class="rt ${c}">${pctTxt(t.avg)}</span></span>`);
+    head.dataset.tip = JSON.stringify({k:'t', v:{name:t.name,count:t.count,avg:t.avg,why:t.why,whyNews:t.whyNews}});
+    const ratio = el('div','ratio', `<i class="bup" style="width:${upPct}%"></i><i class="bdn" style="width:${100-upPct}%"></i>`);
+    const rt = el('div','rt-text', `<span>상승 <b>${t.up}</b> / ${t.count}</span><span>${upPct}% 상승 · 하락 ${t.down}</span>`);
+    const tb = el('table');
+    const body = el('tbody');
+    (rows || t.rows).forEach(r => {
+      const tr = el('tr');
+      tr.dataset.c = r.c;
+      const dot = r.th>=4?'#a855f7':(r.th===3?'#f97316':(r.th===2?'#22c55e':'transparent'));
+      const hot = r.pct>=5 ? '<span class="hot">▲</span>' : '';
+      tr.innerHTML = `<td class="name" title="${r.n}"><span class="d" style="background:${dot}"></span>${r.n}${r.nxt?'<span class="nxt">NXT</span>':''}${hot}</td>
+        <td>${won(r.p)}</td><td style="color:#8b98ab">${amt(r.v)}</td>
+        <td class="${cls(r.pct)}" style="font-weight:800">${pctTxt(r.pct)}</td>`;
+      tr.dataset.tip = JSON.stringify({k:'s', v:r});
+      body.appendChild(tr);
     });
-    $('#themeCount').textContent = D.themes.length + '개 테마';
+    tb.appendChild(body);
+    head.addEventListener('click', () => {
+      const on = card.classList.toggle('folded');
+      if (on) foldedSet.add(t.name); else foldedSet.delete(t.name);
+    });
+    card.append(head, ratio, rt, tb);
+    return card;
+  }
+
+  function sepEl(kind, label){ return el('div','slimsep ' + kind, `<span class="sm">${label}</span>`); }
+
+  function buildBoard(){
+    const raw = String(search.value || '').trim();
+    const q = raw.toLowerCase();
+    const all = D.themes;
+    grid.innerHTML = '';
+    const cnt = $('#themeCount'), note = $('#boardNote'), vbtn = $('#viewBtn');
+
+    if (q){                                  /* 검색: 슬림 여부와 무관하게 전체 테마·전 종목 대상 */
+      const hits = [];
+      sortThemes(all).forEach(t => {
+        const byName = String(t.name).toLowerCase().includes(q);
+        const rows = byName ? t.rows : t.rows.filter(r => String(r.n).toLowerCase().includes(q));
+        if (rows.length) hits.push({t:t, rows:rows});
+      });
+      hits.forEach(h => grid.appendChild(makeCard(h.t, h.rows)));
+      if (!hits.length) grid.innerHTML = `<div class="empty">‘${raw}’ 검색 결과가 없습니다 · 테마명이나 종목명으로 다시 찾아보세요.</div>`;
+      cnt.textContent = `검색 ${hits.length}/${all.length} 테마`;
+      note.textContent = `전체 ${all.length}개 테마·전 종목을 대상으로 찾은 결과입니다`;
+      vbtn.hidden = true;
+      return;
+    }
+    vbtn.hidden = false;
+    if (!slim){                              /* 전체 테마 보기 */
+      sortThemes(all).forEach(t => grid.appendChild(makeCard(t)));
+      cnt.textContent = all.length + '개 테마';
+      note.textContent = '테마 헤더에 마우스를 올리면 ‘왜 오르나요?’ 근거가 뜹니다 · 종목 클릭 시 상세 · 헤더를 누르면 접힙니다';
+      vbtn.textContent = '슬림 보기로 접기';
+      return;
+    }
+    const k = sortKey();                     /* 슬림: 현재 기준 상위 10 + 하위 10 */
+    const desc = [...all].sort((a,b) => b[k]-a[k] || String(a.name).localeCompare(String(b.name)));
+    const top = desc.slice(0, SLIM_N), bot = desc.slice(-SLIM_N);
+    const topNames = new Set(top.map(t => t.name));
+    const ids = new Set(topNames);
+    bot.forEach(t => ids.add(t.name));
+    let topDone = false, botDone = false;
+    sortThemes(all.filter(t => ids.has(t.name))).forEach(t => {
+      const isTop = topNames.has(t.name);
+      if (isTop && !topDone){ grid.appendChild(sepEl('up', `${metricLabel()} 상위 ${top.length}`)); topDone = true; }
+      if (!isTop && !botDone){ grid.appendChild(sepEl('dn', `${metricLabel()} 하위 ${bot.length}`)); botDone = true; }
+      grid.appendChild(makeCard(t));
+    });
+    const more = el('button','morecard', `전체 테마 보기 · <b>${all.length}개</b> 펼치기`);
+    more.type = 'button';
+    more.addEventListener('click', () => {
+      slim = false; buildBoard();
+      document.getElementById('board').scrollIntoView({behavior:'smooth', block:'start'});
+    });
+    grid.appendChild(more);
+    cnt.textContent = `${top.length + bot.length}/${all.length} 테마`;
+    note.textContent = `슬림 보기 · ${metricLabel()} 상위 ${SLIM_N}·하위 ${SLIM_N} 테마만 표시 — 검색하면 전체 ${all.length}개에서 찾습니다`;
+    vbtn.textContent = '전체 테마 보기';
   }
 
   /* ---------- 시장 전체 수급 (장중 잠정 = Worker /flow · 폴백 = data.js 확정치) ---------- */
@@ -1070,38 +1158,22 @@ footer b{color:#a9b8cb}
   buildBoard();
   paintFlow();
   $('#sortBtn').addEventListener('click', function(){
-    themeOrder = themeOrder==='pct' ? 'val' : 'pct';
-    this.textContent = themeOrder==='pct' ? '등락률순' : '거래대금순';
-    this.classList.toggle('on', themeOrder==='val');
-    buildBoard(); applyFilter();
+    sortIdx = (sortIdx + 1) % SORTS.length;
+    this.textContent = SORTS[sortIdx].label;
+    this.classList.toggle('on', sortIdx !== 0);
+    buildBoard();
   });
-  let foldedAll = false;
   $('#foldBtn').addEventListener('click', function(){
     foldedAll = !foldedAll;
+    if (!foldedAll) foldedSet.clear();
     document.querySelectorAll('#grid .card').forEach(c => c.classList.toggle('folded', foldedAll));
     this.textContent = foldedAll ? '모두 펼치기' : '모두 접기';
   });
+  $('#viewBtn').addEventListener('click', () => { slim = !slim; buildBoard(); });
 
-  /* ---------- 검색 ---------- */
-  const search = $('#search');
-  function applyFilter(){
-    const v = search.value.trim().toLowerCase();
-    document.querySelectorAll('#grid .card').forEach(card => {
-      const title = card.querySelector('.ch .nm').textContent.toLowerCase();
-      let hit = 0;
-      card.querySelectorAll('tbody tr').forEach(tr => {
-        const t = tr.textContent.toLowerCase();
-        if (!v){ tr.style.display=''; return; }
-        if (t.includes(v) || title.includes(v)) { tr.style.display=''; hit++; }
-        else tr.style.display='none';
-      });
-      if (!v) card.style.display='';
-      else card.style.display = (hit>0 || title.includes(v)) ? '' : 'none';
-      if (v && card.style.display!=='none') card.classList.remove('folded');
-    });
-  }
-  search.addEventListener('input', applyFilter);
-  function jumpSearch(q){ search.value = q; applyFilter(); document.getElementById('board').scrollIntoView({behavior:'smooth'}); }
+  /* ---------- 검색 (테마·종목) ---------- */
+  search.addEventListener('input', buildBoard);
+  function jumpSearch(q){ search.value = q; buildBoard(); document.getElementById('board').scrollIntoView({behavior:'smooth'}); }
 
   /* ---------- 전체 종목 실시간 검색 (Worker /search) ---------- */
   const sall = $('#searchAll');
@@ -1159,7 +1231,7 @@ footer b{color:#a9b8cb}
     sallTimer = setTimeout(() => pullSearch(q), 300);
   });
   search.addEventListener('keydown', e => { if (e.key === 'Escape') sallHide(); });
-  $('#searchAllClose').addEventListener('click', () => { search.value = ''; applyFilter(); sallHide(); });
+  $('#searchAllClose').addEventListener('click', () => { search.value = ''; buildBoard(); sallHide(); });
   sallBody.addEventListener('click', e => {
     const tr = e.target.closest('tr[data-url]'); if (!tr) return;
     if (tr.dataset.url) window.open(tr.dataset.url, '_blank', 'noopener');
@@ -1671,11 +1743,8 @@ footer b{color:#a9b8cb}
   }
 
   function rebuildBoardKeepState(){
-    const folded = new Set([...document.querySelectorAll('#grid .card.folded')].map(c => c.dataset.th));
     const y = window.scrollY;
     buildBoard();
-    document.querySelectorAll('#grid .card').forEach(c => { if (foldedAll || folded.has(c.dataset.th)) c.classList.add('folded'); });
-    applyFilter();
     window.scrollTo({ top:y, behavior:'instant' });
   }
 

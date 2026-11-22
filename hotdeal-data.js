@@ -8,7 +8,7 @@
      링크는 sharelink.toss.im '링크 발급'으로 직접 발급한 공개용 쉐어링크(toss.shopping/_m/…)만 쓴다.
    ※ 본문은 JSON 호환 형식(키·문자열 큰따옴표) — projects/build_hotdeal.py 가 그대로 파싱해 hotdeal.html 을 만든다. */
 window.HOTDEAL = {
-  "asOf": "2026-11-22 17:45 KST",
+  "asOf": "2026-11-23 05:05 KST",
   "coupangTag": "AF2387959",
   "disclosure": "이 페이지는 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.",
   "priceNotice": "표시된 가격 및 할인율은 확인 시점 기준이며, 쿠팡 실시간 판매가·재고에 따라 변동되거나 품절될 수 있습니다. '아낌 금액'은 쿠팡 상세페이지에 함께 표기된 정가(기준가)에서 현재 판매가를 뺀 값이고, 정가 표기가 없는 상품은 정가 대신 확인된 포인트만 적었습니다.",
@@ -40,29 +40,6 @@ window.HOTDEAL = {
     {
       "platform": "coupang",
       "cat": "겨울",
-      "title": "해피데이 찜질패드 목어깨용 핫팩",
-      "option": "60g · 30개",
-      "price": 17280,
-      "origin": null,
-      "discount": null,
-      "unit": "1개당 576원",
-      "reviews": "3,569건 · 최고 83%",
-      "badges": [
-        "로켓배송",
-        "한 달 800명 이상 구매"
-      ],
-      "delivery": "내일(월) 11/23 도착 보장",
-      "shipping": "로켓배송 19,800원 이상 무료 — 2,520원 차이로 기준 미달입니다.",
-      "note": "목·어깨에 붙이고 다니면 난방비가 아깝지 않다 카더라. 30개면 한 달은 버팁니다.",
-      "image": "/assets/hotdeal/hotpack-neck.webp",
-      "image_alt": "해피데이 찜질패드 목어깨용 핫팩 60g 30개 상품 이미지",
-      "affiliate_url": "https://link.coupang.com/a/iR9NwKyVMq",
-      "product_url": "https://www.coupang.com/vp/products/9673444790",
-      "updated_at": "2026-11-22 08:35 KST"
-    },
-    {
-      "platform": "coupang",
-      "cat": "겨울",
       "title": "불곰하사 포켓형 핫핸드 핫팩 100g",
       "option": "100g · 30개 · 1개당 299원",
       "price": 8970,
@@ -83,29 +60,6 @@ window.HOTDEAL = {
       "affiliate_url": "https://link.coupang.com/a/iSLkUlEo44",
       "product_url": "https://www.coupang.com/vp/products/8990153687",
       "updated_at": "2026-11-22 17:12 KST"
-    },
-    {
-      "platform": "coupang",
-      "cat": "식품",
-      "title": "핫앤쿡 발열도시락 발열전투식량 5종",
-      "option": "쇠고기+제육+김치비빔밥+라면애밥 짬뽕맛+김치찌개 · 1세트 580g",
-      "price": 25900,
-      "origin": 28000,
-      "discount": 7,
-      "unit": "100g당 4,466원",
-      "reviews": "203건 · 최고 65% · 좋음 22%",
-      "badges": [
-        "무료배송",
-        "물만 부으면 따뜻한 밥"
-      ],
-      "delivery": "수요일 11/25 도착 예정",
-      "shipping": "무료배송(CJ대한통운). 도서산간·제주는 추가 배송비.",
-      "note": "전기 없이 물만 부으면 김이 오른다 카더라. 캠핑·등산·정전 대비용으로 한 세트 채워두면 든든.",
-      "image": "/assets/hotdeal/meal-kit.webp",
-      "image_alt": "핫앤쿡 발열도시락 발열전투식량 5종 상품 이미지",
-      "affiliate_url": "https://link.coupang.com/a/iR9Ppq7nWK",
-      "product_url": "https://www.coupang.com/vp/products/8502868916",
-      "updated_at": "2026-11-22 08:38 KST"
     },
     {
       "platform": "coupang",
@@ -211,6 +165,7 @@ window.HOTDEAL = {
       "price": 5170,
       "origin": 10000,
       "discount": 48,
+      "limited": true,
       "unit": "100g당 1,397원",
       "reviews": "8,636건 · 평점 4.5",
       "badges": [
@@ -345,43 +300,97 @@ window.HOTDEAL = {
       "affiliate_url": "https://link.coupang.com/a/iSNgB3IREq",
       "product_url": "https://www.coupang.com/vp/products/7299719601",
       "updated_at": "2026-11-22 17:40 KST"
+    },
+    {
+      "platform": "coupang",
+      "cat": "식품",
+      "limited": true,
+      "title": "할매 안흥 쌀찐빵 4가지맛",
+      "option": "쌀·단호박·흑미·새싹순보리 · 25개 · 1.25kg",
+      "price": 11160,
+      "origin": 16900,
+      "discount": 33,
+      "unit": "1개당 446원",
+      "reviews": "3,039건 · 최고 66% · 좋음 20%",
+      "badges": [
+        "2,000명 이상 만족",
+        "무료배송",
+        "한 달 900명 이상 구매"
+      ],
+      "delivery": "내일(화) 11/24 도착 예정",
+      "shipping": "판매자 무료배송(롯데택배) — 신선식품이라 도서산간은 배송되지 않습니다.",
+      "note": "겨울 간식으로 25개 11,160원, 1개당 446원 카더라. 목록에 '할인 6일 남음'이 붙은 기간한정가라 언제 끝날지는 모릅니다.",
+      "image": "/assets/hotdeal/ricebun.webp",
+      "image_alt": "할매 안흥 쌀찐빵 4가지맛 25개 1.25kg 상품 이미지",
+      "affiliate_url": "https://link.coupang.com/a/iTAzdW4Gse",
+      "product_url": "https://www.coupang.com/vp/products/260328635",
+      "updated_at": "2026-11-23 05:02 KST"
+    },
+    {
+      "platform": "coupang",
+      "cat": "생활",
+      "title": "코멧 베이직 3겹 롤화장지 27m",
+      "option": "3겹 · 27m · 30롤 · 1팩",
+      "price": 10000,
+      "origin": 17800,
+      "discount": 43,
+      "unit": "10m당 123원",
+      "reviews": "7,365건 · 최고 86% · 6,000명 이상 만족",
+      "badges": [
+        "한 달 7,000명 이상 구매",
+        "로켓배송",
+        "내일 도착 보장"
+      ],
+      "delivery": "내일(화) 11/24 도착 보장",
+      "shipping": "로켓배송 19,800원 이상 무료 — 단품 10,000원만 담으면 배송비가 붙습니다(와우 회원 제외).",
+      "note": "30롤에 10,000원, 10m당 123원 카더라. 코멧은 후기 7,365건에 '정말 부드러워요'가 51%인 기본기.",
+      "image": "/assets/hotdeal/toiletroll.webp",
+      "image_alt": "코멧 베이직 3겹 롤화장지 27m 30롤 상품 이미지",
+      "affiliate_url": "https://link.coupang.com/a/iTABoGzTmS",
+      "product_url": "https://www.coupang.com/vp/products/7665800925?itemId=20435260552",
+      "updated_at": "2026-11-23 05:03 KST"
     }
   ],
   "naverShop": {
     "label": "네이버 쇼핑커넥트 · 크리에이터샵",
     "title": "월억버핏 네이버 크리에이터샵 추천 · 고마진",
     "disclosure": "이 섹션은 네이버 쇼핑 커넥트 활동의 일환으로, 구매가 발생하면 일정액의 수수료를 제공받습니다. 위 쿠팡파트너스 상품과는 다른 스토어이며, 가격은 네이버 크리에이터샵 표시가입니다.",
-    "note": "쿠팡 핫딜과 별개로, 월억버핏이 직접 골라 크리에이터샵에 올린 고마진 상품입니다. 할인율이 아니라 스토어 표시가 그대로 적었습니다.",
+    "note": "쿠팡 핫딜과 별개로, 월억버핏이 직접 골라 크리에이터샵에 올린 고마진 상품입니다. 할인율이 아니라 스토어 표시가 그대로 적었습니다. 카테고리 필터는 이 5건을 모두 '생활·위생'으로 묶습니다.",
     "url": "https://cshop.naver.com/buffettlife",
     "shopLabel": "🛍️ 크리에이터샵 전체 보기 (buffettlife)",
     "checkedAt": "2026-11-22 12:15 KST",
     "items": [
       {
         "label": "슬립라인 경추베개 — 목디스크·거북목 기능성 베개",
+        "cat": "생활",
         "price": 69000,
         "note": "트레이딩 데스크에서 목이 굳는 사람용",
         "url": "https://brandconnect.naver.com/affiliates/1018193119022803?channelProductNo=5059571514&ac=crtshp&cid=1017835745140128&ctid=1018193449229728&t=AWsCXUAAA523WgddoAAAAAEtku86DB_L72OGN_g"
       },
       {
         "label": "판테놀 5% PDRN 리쥬잇 장벽 크림 50ml",
+        "cat": "생활",
         "price": 19900,
         "note": "겨울 장벽 크림 · 50ml 1개",
         "url": "https://brandconnect.naver.com/affiliates/1018193119022797?channelProductNo=13814131092&ac=crtshp&cid=1017835745140128&ctid=1018193449229728&t=AWsCXUAAA523WgddoAAAAAM3YumUX3mcMDUynYc"
       },
       {
         "label": "[잇퓨] 요철제로 3종 세트 (율무 크림 + 앰플 + 토너 패드)",
+        "cat": "생활",
         "price": 65700,
         "note": "세트 구성 그대로",
         "url": "https://brandconnect.naver.com/affiliates/1018193119022796?channelProductNo=13279113795&ac=crtshp&cid=1017835745140128&ctid=1018193449229728&t=AWsCXUAAA523WgddoAAAAAMXfzJDSD9n8YajwOI"
       },
       {
         "label": "[잇퓨] 패스트 샴푸 — 모발 단백질 샴푸",
+        "cat": "생활",
         "price": 24900,
         "note": "손상모·두피용 데일리 샴푸",
         "url": "https://brandconnect.naver.com/affiliates/1018193119022795?channelProductNo=5956679379&ac=crtshp&cid=1017835745140128&ctid=1018193449229728&t=AWsCXUAAA523WgddoAAAAAFjC7bTC_q8djMZvGI"
       },
       {
         "label": "대용량 스텐 빨대 텀블러 (보온·보냉 · 손잡이형)",
+        "cat": "생활",
         "price": 10900,
         "note": "사무실 책상용 · 1개",
         "url": "https://brandconnect.naver.com/affiliates/1018193119022792?channelProductNo=13336447099&ac=crtshp&cid=1017835745140128&ctid=1018193449229728&t=AWsCXUAAA523WgddoAAAAAMa6gh78Zc23BsEqjg"
@@ -392,11 +401,11 @@ window.HOTDEAL = {
     "label": "토스쇼핑 쉐어링크 · 하루특가",
     "title": "토스 하루특가 · BEST 특가 8건",
     "disclosure": "광고 · 이 섹션은 토스쇼핑 쉐어링크 활동의 일환으로, 링크를 통한 구매 시 일정액의 수수료를 제공받습니다.",
-    "note": "토스쇼핑 쉐어링크에서 직접 발급한 공개용 링크로 연결됩니다. 가격은 확인 시점의 하루특가·최대할인가이고, 하루특가는 매일 0시에 바뀝니다. 8건 모두 무료배송으로 확인했습니다.",
+    "note": "토스쇼핑 쉐어링크에서 직접 발급한 공개용 링크로 연결됩니다. 가격은 11/22 17:45에 확인한 하루특가·최대할인가이고, 하루특가는 매일 0시에 바뀝니다 — 오늘(11/23) 값은 카드의 링크에서 확인하세요. 8건 모두 무료배송으로 확인했습니다.",
     "checkedAt": "2026-11-22 17:45 KST",
     "bannerUrl": "https://toss.shopping/_m/FmTGpFFw",
     "bannerTitle": "오늘만 이 가격 · 토스 하루특가",
-    "bannerSub": "하루특가 1위 스파클 생수 2L 30개 12,380원 · 토스쇼핑 쉐어링크",
+    "bannerSub": "감귤 70% · 키친타올 68% · 구운란 49% 등 8건 모아보기 ↓",
     "tabs": "토스 하루특가"
   },
   "tossDeals": [
@@ -482,6 +491,7 @@ window.HOTDEAL = {
       "discount": 50,
       "unit": "100ml당 21원",
       "reviews": "4.8 · 1만 5,784건",
+      "limited": true,
       "badges": [
         "하루특가 1위",
         "선착순특가",

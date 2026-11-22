@@ -1,16 +1,18 @@
-/* 버핏카세 /hotdeal 데이터 (2026-11-22 17:15 KST 실사 · 3차 업데이트)
+/* 버핏카세 /hotdeal 데이터 (2026-11-22 17:45 KST 실사 · 4차 업데이트 — 토스쇼핑 쉐어링크 하루특가 섹션 추가)
    구조 확장 규칙: items[] 각 항목은
    { platform: "coupang" | "toss" | "naver", title, price, affiliate_url, note, updated_at, ... }
    platform 값만 늘리면 토스쇼핑 셰어링크·네이버 쇼핑커넥트를 같은 카드로 붙일 수 있게 설계했다.
    ※ 가격·재고는 확인 시점 기준. 링크는 쿠팡파트너스에서 직접 발급받은 단축링크(lptag=AF2387959)만 사용.
    ※ naverShop = 네이버 크리에이터샵(buffettlife) 고마진 섹션. 쿠팡파트너스 영역과 섞지 않도록 분리해 렌더한다.
+   ※ tossShop/tossDeals = 토스쇼핑 쉐어링크 하루특가 섹션. 쿠팡·네이버와 대가성 고지가 다르므로 반드시 별도 섹션으로 렌더한다.
+     링크는 sharelink.toss.im '링크 발급'으로 직접 발급한 공개용 쉐어링크(toss.shopping/_m/…)만 쓴다.
    ※ 본문은 JSON 호환 형식(키·문자열 큰따옴표) — projects/build_hotdeal.py 가 그대로 파싱해 hotdeal.html 을 만든다. */
 window.HOTDEAL = {
-  "asOf": "2026-11-22 17:15 KST",
+  "asOf": "2026-11-22 17:45 KST",
   "coupangTag": "AF2387959",
   "disclosure": "이 페이지는 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.",
   "priceNotice": "표시된 가격 및 할인율은 확인 시점 기준이며, 쿠팡 실시간 판매가·재고에 따라 변동되거나 품절될 수 있습니다. '아낌 금액'은 쿠팡 상세페이지에 함께 표기된 정가(기준가)에서 현재 판매가를 뺀 값이고, 정가 표기가 없는 상품은 정가 대신 확인된 포인트만 적었습니다.",
-  "tossNotice": "토스쇼핑 셰어링크 상품은 다음 업데이트부터 같은 카드 형식으로 추가됩니다. 네이버 크리에이터샵 상품은 아래 별도 섹션(쿠팡파트너스와 무관)에 모았습니다.",
+  "tossNotice": "토스쇼핑 하루특가·BEST 특가는 위쪽 토스 섹션에 모았습니다. 토스 링크는 토스쇼핑 쉐어링크에서 직접 발급한 공개용 링크이고, 수수료 고지는 그 섹션 안에 따로 적었습니다. 네이버 크리에이터샵 상품은 맨 아래 별도 섹션(쿠팡파트너스와 무관)에 모았습니다.",
   "items": [
     {
       "platform": "coupang",
@@ -319,6 +321,30 @@ window.HOTDEAL = {
       "affiliate_url": "https://link.coupang.com/a/iSp8Fw6x3I",
       "product_url": "https://www.coupang.com/vp/products/9304032433",
       "updated_at": "2026-11-22 12:11 KST"
+    },
+    {
+      "platform": "coupang",
+      "cat": "반려동물",
+      "title": "탐사 실속형 배변패드 50×40cm",
+      "option": "100매입 × 4팩 · 총 400매",
+      "price": 23200,
+      "origin": 38690,
+      "discount": 40,
+      "unit": "1매당 58원",
+      "reviews": "18만 6,849건 · 최고 86%",
+      "badges": [
+        "한 달 9,000명 이상 구매",
+        "로켓배송",
+        "내일 도착 보장"
+      ],
+      "delivery": "내일(월) 11/23 도착 보장",
+      "shipping": "로켓배송 19,800원 이상 무료 — 23,200원 단독 주문도 무료배송입니다. 결제 화면에 와우 쿠폰할인가 4,200원(89%)이 함께 떠 있었지만 회원·쿠폰 조건이라 기본가는 일반판매가입니다.",
+      "note": "400매면 하루 두 장 써도 두 달이다 카더라. 1매당 58원이면 배변패드값으로 고민할 일은 없음.",
+      "image": "/assets/hotdeal/pad-tamsa.webp",
+      "image_alt": "탐사 실속형 배변패드 50x40cm 100매 4팩 상품 이미지",
+      "affiliate_url": "https://link.coupang.com/a/iSNgB3IREq",
+      "product_url": "https://www.coupang.com/vp/products/7299719601",
+      "updated_at": "2026-11-22 17:40 KST"
     }
   ],
   "naverShop": {
@@ -361,5 +387,210 @@ window.HOTDEAL = {
         "url": "https://brandconnect.naver.com/affiliates/1018193119022792?channelProductNo=13336447099&ac=crtshp&cid=1017835745140128&ctid=1018193449229728&t=AWsCXUAAA523WgddoAAAAAMa6gh78Zc23BsEqjg"
       }
     ]
-  }
+  },
+  "tossShop": {
+    "label": "토스쇼핑 쉐어링크 · 하루특가",
+    "title": "토스 하루특가 · BEST 특가 8건",
+    "disclosure": "광고 · 이 섹션은 토스쇼핑 쉐어링크 활동의 일환으로, 링크를 통한 구매 시 일정액의 수수료를 제공받습니다.",
+    "note": "토스쇼핑 쉐어링크에서 직접 발급한 공개용 링크로 연결됩니다. 가격은 확인 시점의 하루특가·최대할인가이고, 하루특가는 매일 0시에 바뀝니다. 8건 모두 무료배송으로 확인했습니다.",
+    "checkedAt": "2026-11-22 17:45 KST",
+    "bannerUrl": "https://toss.shopping/_m/FmTGpFFw",
+    "bannerTitle": "오늘만 이 가격 · 토스 하루특가",
+    "bannerSub": "하루특가 1위 스파클 생수 2L 30개 12,380원 · 토스쇼핑 쉐어링크",
+    "tabs": "토스 하루특가"
+  },
+  "tossDeals": [
+    {
+      "platform": "toss",
+      "cat": "식품",
+      "title": "맛꾼 구운란 대란 30구",
+      "option": "대란 · 30구 · 1개",
+      "price": 10000,
+      "origin": 19900,
+      "discount": 49,
+      "unit": "1구당 333원",
+      "reviews": "4.7 · 1만 7,194건",
+      "badges": [
+        "구운계란·훈제란 1위",
+        "맛꾼 공식",
+        "무료배송",
+        "내일도착 · 늦으면 보상"
+      ],
+      "delivery": "내일도착 · 늦으면 보상 · 무료배송",
+      "shipping": "무료배송(확인 시점). 토스 앱 결제 화면에서 최종 배송비를 확인하세요.",
+      "note": "삶는 시간 아끼려고 30구 쌓아두는 집 많다 카더라. 1구 333원이면 계란값 걱정은 접는 셈.",
+      "image": "/assets/hotdeal/toss-egg.webp",
+      "image_alt": "맛꾼 구운란 대란 30구 상품 이미지",
+      "affiliate_url": "https://toss.shopping/_m/dmI4OpJc",
+      "updated_at": "2026-11-22 17:38 KST"
+    },
+    {
+      "platform": "toss",
+      "cat": "생활",
+      "title": "스파클 생수 무라벨 500ml 80병",
+      "option": "무라벨 · 500ml · 80개",
+      "price": 13900,
+      "origin": 24000,
+      "discount": 42,
+      "unit": "100ml당 35원",
+      "reviews": "4.9 · 7만 6,743건",
+      "badges": [
+        "국산생수 2위",
+        "스파클 공식",
+        "무료배송",
+        "내일출발"
+      ],
+      "delivery": "내일출발 · 무료배송",
+      "shipping": "무료배송(확인 시점). 물은 무게로 배송비가 붙기 쉬운데 여기는 무료입니다.",
+      "note": "한 병에 175원꼴 카더라. 80병이면 하루 한 병씩 두 달 반, 물 무거워서 직접 안 사도 되는 게 핵심.",
+      "image": "/assets/hotdeal/toss-water500.webp",
+      "image_alt": "스파클 생수 무라벨 500ml 80개 상품 이미지",
+      "affiliate_url": "https://toss.shopping/_m/fTeCKCfa",
+      "updated_at": "2026-11-22 17:39 KST"
+    },
+    {
+      "platform": "toss",
+      "cat": "식품",
+      "title": "서귀포 조생 감귤 최고 15Brix 10kg",
+      "option": "최고 15Brix · 10kg · 1개",
+      "price": 11800,
+      "origin": 40000,
+      "discount": 70,
+      "unit": "100g당 118원",
+      "reviews": "4.3 · 189건",
+      "badges": [
+        "70% 특가",
+        "지금 30일 내 최저가",
+        "귤 3위",
+        "무료배송"
+      ],
+      "delivery": "무료배송 · 확인 시점 기준",
+      "shipping": "무료배송(확인 시점). 산지 직송 상품이라 배송일은 결제 화면 안내를 따르세요.",
+      "note": "10kg에 11,800원이면 100g당 118원 카더라. 두 사람이 한 달 먹고 남는 양, 리뷰 189건은 적지만 귤 3위.",
+      "image": "/assets/hotdeal/toss-tangerine.webp",
+      "image_alt": "서귀포 조생 감귤 10kg 상품 이미지",
+      "affiliate_url": "https://toss.shopping/_m/DW6uUpZn",
+      "updated_at": "2026-11-22 17:39 KST"
+    },
+    {
+      "platform": "toss",
+      "cat": "생활",
+      "title": "스파클 생수 무라벨 2L 30병",
+      "option": "무라벨 · 2L · 30개",
+      "price": 12380,
+      "origin": 25000,
+      "discount": 50,
+      "unit": "100ml당 21원",
+      "reviews": "4.8 · 1만 5,784건",
+      "badges": [
+        "하루특가 1위",
+        "선착순특가",
+        "지금 30일 내 최저가",
+        "스파클 공식"
+      ],
+      "delivery": "내일출발 · 무료배송",
+      "shipping": "무료배송(확인 시점). 60L가 넘는 무게라 직접 들고 오기 버거운데 배송까지 무료입니다.",
+      "note": "정수기 없이 한 달 버티는 조합 카더라. 2L 30병이면 100ml당 21원, 하루특가 1위값.",
+      "image": "/assets/hotdeal/toss-water2l.webp",
+      "image_alt": "스파클 생수 무라벨 2L 30개 상품 이미지",
+      "affiliate_url": "https://toss.shopping/_m/FmTGpFFw",
+      "updated_at": "2026-11-22 17:40 KST"
+    },
+    {
+      "platform": "toss",
+      "cat": "생활",
+      "title": "베라 4ZERO 팝업 뽑아쓰는 키친타올 3겹 100매 9팩",
+      "option": "3겹 · 100매 · 9팩",
+      "price": 6200,
+      "origin": 19900,
+      "discount": 68,
+      "unit": "1팩당 689원",
+      "reviews": "4.7 · 669건",
+      "badges": [
+        "각키친타올 2위",
+        "쇼우몰 공식",
+        "내일도착 · 늦으면 보상",
+        "무료배송"
+      ],
+      "delivery": "내일도착 · 늦으면 보상 · 무료배송",
+      "shipping": "무료배송(확인 시점).",
+      "note": "3겹 100매 9팩에 6,200원, 1팩 689원 카더라. 뽑아쓰는 팝업형이라 한 장씩 아깝지 않음.",
+      "image": "/assets/hotdeal/toss-towel.webp",
+      "image_alt": "베라 4ZERO 팝업 뽑아쓰는 키친타올 9팩 상품 이미지",
+      "affiliate_url": "https://toss.shopping/_m/jNXl6Ov1",
+      "updated_at": "2026-11-22 17:40 KST"
+    },
+    {
+      "platform": "toss",
+      "cat": "식품",
+      "title": "한촌 사골 양지고기 설렁탕 500g 5팩",
+      "option": "500g · 5개",
+      "price": 12900,
+      "origin": 24900,
+      "discount": 48,
+      "unit": "1팩당 2,580원",
+      "reviews": "4.6 · 5,889건",
+      "badges": [
+        "즉석탕·찌개 22위",
+        "이랜드팜앤푸드",
+        "내일도착 · 늦으면 보상",
+        "무료배송"
+      ],
+      "delivery": "내일도착 · 늦으면 보상 · 무료배송",
+      "shipping": "무료배송(확인 시점).",
+      "note": "한 그릇 2,580원이면 국밥집 반값 카더라. 500g에 고기가 들어간 사골 설렁탕.",
+      "image": "/assets/hotdeal/toss-seolleongtang.webp",
+      "image_alt": "한촌 사골 양지고기 설렁탕 500g 5개 상품 이미지",
+      "affiliate_url": "https://toss.shopping/_m/LCwgvO9a",
+      "updated_at": "2026-11-22 17:41 KST"
+    },
+    {
+      "platform": "toss",
+      "cat": "식품",
+      "title": "노랑 곱빼기 왕 떡갈비 160g 5봉",
+      "option": "160g · 5봉",
+      "price": 9000,
+      "origin": 19900,
+      "discount": 54,
+      "unit": "1봉당 1,800원",
+      "reviews": "4.6 · 9,942건",
+      "badges": [
+        "떡갈비 3위",
+        "사이다마트",
+        "내일도착 · 늦으면 보상",
+        "무료배송"
+      ],
+      "delivery": "내일도착 · 늦으면 보상 · 무료배송",
+      "shipping": "무료배송(확인 시점).",
+      "note": "1봉 1,800원이면 고기 반찬값이 안 나온다 카더라. 에어프라이어에 돌리면 저녁 한 끼.",
+      "image": "/assets/hotdeal/toss-tteokgalbi.webp",
+      "image_alt": "노랑 곱빼기 왕 떡갈비 160g 5봉 상품 이미지",
+      "affiliate_url": "https://toss.shopping/_m/NFeKwLog",
+      "updated_at": "2026-11-22 17:41 KST"
+    },
+    {
+      "platform": "toss",
+      "cat": "생활",
+      "title": "메르헨트 퍼퓸 대용량 바디워시 1L 2개",
+      "option": "피치블라썸 · 1L · 2개",
+      "price": 9200,
+      "origin": 30000,
+      "discount": 69,
+      "unit": "100ml당 460원",
+      "reviews": "4.6 · 3,619건",
+      "badges": [
+        "바디워시 3위",
+        "디에스엠인터내셔널 공식",
+        "내일도착 · 늦으면 보상",
+        "무료배송"
+      ],
+      "delivery": "내일도착 · 늦으면 보상 · 무료배송",
+      "shipping": "무료배송(확인 시점).",
+      "note": "1L 두 통이면 겨울 내내 쓴다 카더라. 100ml당 460원, 퍼퓸이라 샤워 후 향이 남음.",
+      "image": "/assets/hotdeal/toss-bodywash.webp",
+      "image_alt": "메르헨트 퍼퓸 대용량 바디워시 1L 2개 상품 이미지",
+      "affiliate_url": "https://toss.shopping/_m/ndZP3EVs",
+      "updated_at": "2026-11-22 17:42 KST"
+    }
+  ]
 };

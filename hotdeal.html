@@ -3,14 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>카더라 핫딜 — 쿠팡 핫딜 13건(실사 가격·단축링크) | 월억버핏 버핏카세</title>
-<meta name="description" content="월억버핏이 직접 열어보고 가격·배송·단축링크까지 확인한 쿠팡 핫딜 모음. 생활·겨울·식품·IT 13건, 확인 시각과 배송 조건 그대로. '핫딜이라 카더라' 카더라 통신 1호.">
+<title>카더라 핫딜 — 쿠팡 14건 · 토스 하루특가 8건(실사 가격·단축링크) | 월억버핏 버핏카세</title>
+<meta name="description" content="월억버핏이 직접 열어보고 가격·배송·단축링크까지 확인한 핫딜 모음. 쿠팡 14건 + 토스쇼핑 하루특가 8건 + 네이버 고마진 — 생활·겨울·식품·IT·반려동물. 확인 시각과 배송 조건 그대로. '핫딜이라 카더라' 카더라 통신 1호.">
 <link rel="canonical" href="https://buffettkase.pages.dev/hotdeal">
 <meta name="robots" content="index,follow">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="버핏카세 · 월억버핏">
-<meta property="og:title" content="카더라 핫딜 — 쿠팡 핫딜 13건 | 월억버핏 버핏카세">
-<meta property="og:description" content="핫딜이라 카더라, 최저가일껄.?.? 월억버핏이 직접 확인한 쿠팡 핫딜 13건 — 확인 시각·배송 조건·단축링크 그대로.">
+<meta property="og:title" content="카더라 핫딜 — 쿠팡 14건 · 토스 하루특가 8건 | 월억버핏 버핏카세">
+<meta property="og:description" content="핫딜이라 카더라, 최저가일껄.?.? 월억버핏이 직접 확인한 쿠팡 14건과 토스 하루특가 8건 — 확인 시각·배송 조건·단축링크 그대로.">
 <meta property="og:url" content="https://buffettkase.pages.dev/hotdeal">
 <meta property="og:image" content="https://buffettkase.pages.dev/assets/hotdeal/wetissue.webp">
 <meta name="twitter:image" content="https://buffettkase.pages.dev/assets/hotdeal/wetissue.webp">
@@ -22,6 +22,7 @@
   :root {
     --bg:#0B1120; --card:#131F37; --line:#1E2E4E; --primary:#38BDF8;
     --accent:#FBBF24; --text:#F8FAFC; --muted:#94A3B8; --hot:#FB7185;
+    --toss:#3182F6; --toss-soft:#7CC0FF;
   }
   * { box-sizing:border-box; margin:0; padding:0;
        font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Pretendard",Roboto,sans-serif; }
@@ -35,6 +36,7 @@
            font-size:11px; font-weight:700; line-height:1.45; padding:8px 14px;
            text-align:center; }
   .disc b { color:#FBBF24; }
+  .disc .disc2 { display:block; margin-top:3px; font-size:10px; font-weight:700; color:#C9B98A; }
 
   header { padding:16px 0 12px; text-align:center; }
   .hd-badge { display:inline-block; background:rgba(251,113,133,.14); color:#FDA4AF;
@@ -45,27 +47,58 @@
   .sub { font-size:12.5px; color:var(--muted); font-weight:600; }
   .asof { margin-top:9px; font-size:11px; color:#7C8CA6; font-weight:700; }
 
+  /* 상단 특가 배너 2종 — 쿠팡 골드박스(황금) + 토스 하루특가(블루) 나란히 */
+  .bans { display:grid; grid-template-columns:1fr 1fr; gap:8px; margin:0 0 12px; }
+  .ban { display:flex; align-items:center; gap:7px; padding:9px 9px; border-radius:12px;
+          text-decoration:none; min-height:62px; }
+  .ban .bic { flex:0 0 auto; width:28px; height:28px; border-radius:9px;
+               display:grid; place-items:center; font-size:15px; line-height:1; }
+  .ban .btx { flex:1; min-width:0; }
+  .ban .btx b { display:block; font-size:11.5px; font-weight:900; letter-spacing:-.3px;
+                 line-height:1.3; word-break:keep-all; }
+  .ban .btx span { display:block; font-size:9.5px; font-weight:700; margin-top:2px;
+                    line-height:1.35; word-break:keep-all; }
+  .ban .bgo { flex:0 0 auto; font-size:12px; font-weight:900; }
+  .ban.gb { border:1px solid rgba(251,191,36,.42);
+             background:linear-gradient(120deg,rgba(251,191,36,.16),rgba(19,31,55,.85)); }
+  .ban.gb .bic { background:rgba(251,191,36,.2); border:1px solid rgba(251,191,36,.4); }
+  .ban.gb .btx b { color:#FDE68A; }
+  .ban.gb .btx span { color:#A9B8CC; }
+  .ban.gb .bgo { color:#FCD34D; }
+  .ban.tb { border:1px solid rgba(49,130,246,.5);
+             background:linear-gradient(120deg,rgba(49,130,246,.22),rgba(19,31,55,.85)); }
+  .ban.tb .bic { background:rgba(49,130,246,.24); border:1px solid rgba(124,192,255,.45); }
+  .ban.tb .btx b { color:#CFE6FF; }
+  .ban.tb .btx span { color:#9EC3EA; }
+  .ban.tb .bgo { color:var(--toss-soft); }
+  .ban:active { opacity:.88; }
+
+  /* 몰 필터 탭 */
+  /* 390px 폭에서 4개 탭이 잘리지 않도록 줄바꿈 허용(가로 스크롤 없음) */
+  .tabs { display:flex; flex-wrap:wrap; gap:6px; margin:0 0 13px; }
+  .tab { flex:0 0 auto; font-size:11px; font-weight:800; color:#B9C6D9;
+          background:rgba(255,255,255,.04); border:1px solid var(--line);
+          padding:7px 10px; border-radius:999px; cursor:pointer; white-space:nowrap; }
+  .tab.on { color:#07121F; background:linear-gradient(135deg,#7DD3FC,#38BDF8);
+             border-color:transparent; }
+  section.hide { display:none; }
+
   .notice { background:rgba(56,189,248,.07); border:1px solid rgba(56,189,248,.26);
-             border-radius:12px; padding:11px 12px; margin:12px 0 14px;
+             border-radius:12px; padding:11px 12px; margin:0 0 14px;
              font-size:11px; color:#B9C6D9; font-weight:600; }
   .notice b { color:#7DD3FC; }
 
-  /* 오늘의 쿠팡 골드박스 — 파트너스 단축링크 1개 (2026-11-22 추가) */
-  .goldbox { display:flex; align-items:center; gap:11px; margin:0 0 14px;
-              padding:12px 14px; border-radius:13px; text-decoration:none;
-              border:1px solid rgba(251,191,36,.42);
-              background:linear-gradient(120deg,rgba(251,191,36,.16),rgba(19,31,55,.85)); }
-  .goldbox .gb-ic { flex:0 0 auto; width:34px; height:34px; border-radius:10px;
-                     display:grid; place-items:center; font-size:17px; line-height:1;
-                     background:rgba(251,191,36,.2); border:1px solid rgba(251,191,36,.4); }
-  .goldbox .gb-tx { flex:1; min-width:0; }
-  .goldbox .gb-tx b { display:block; font-size:13px; font-weight:900; color:#FDE68A; letter-spacing:-.3px; }
-  .goldbox .gb-tx span { display:block; font-size:10.5px; font-weight:700; color:#A9B8CC; margin-top:2px; }
-  .goldbox .gb-go { flex:0 0 auto; font-size:14px; font-weight:900; color:#FCD34D; }
-  .goldbox:active { opacity:.88; }
+  /* 섹션 머리 */
+  .sechead { display:flex; align-items:baseline; gap:7px; margin:16px 0 8px; flex-wrap:wrap; }
+  .sechead h2 { font-size:14.5px; font-weight:900; letter-spacing:-.4px; }
+  .sechead .cnt { font-size:10.5px; font-weight:800; color:#7C8CA6; }
+  .secdisc { font-size:10.5px; font-weight:700; color:#A9B8CC; line-height:1.55;
+              background:rgba(251,191,36,.07); border-left:3px solid rgba(251,191,36,.55);
+              border-radius:0 8px 8px 0; padding:7px 9px; margin:0 0 11px; }
 
   .card { background:var(--card); border:1px solid var(--line); border-radius:16px;
            padding:14px; margin-bottom:13px; overflow:hidden; }
+  .card.toss { border-color:rgba(49,130,246,.34); }
 
   /* 상품 대표 이미지 — 카드 폭까지 꽉 차게(4:3 · contain 이라 상품이 잘리지 않는다) */
   .thumb { margin:-14px -14px 12px; background:#fff; }
@@ -88,8 +121,10 @@
   .crow1 { display:flex; align-items:center; gap:6px; flex-wrap:wrap; margin-bottom:9px; }
   .cat { background:rgba(251,191,36,.15); color:#FCD34D; font-size:10.5px; font-weight:900;
           padding:3px 8px; border-radius:6px; }
+  .card.toss .cat { background:rgba(49,130,246,.18); color:#9CC9FF; }
   .pf { background:rgba(56,189,248,.13); color:#7DD3FC; font-size:10.5px; font-weight:900;
          padding:3px 8px; border-radius:6px; }
+  .card.toss .pf { background:rgba(49,130,246,.2); color:#BFDBFE; }
   .chk { margin-left:auto; font-size:10px; color:#7C8CA6; font-weight:700; }
   .tit { font-size:15px; font-weight:900; letter-spacing:-.3px; line-height:1.35; }
   .opt { font-size:11.5px; color:var(--muted); font-weight:600; margin-top:3px; }
@@ -106,16 +141,29 @@
   .note { margin-top:9px; font-size:12px; color:#E2E8F0; font-weight:600;
            background:rgba(255,255,255,.04); border-left:2px solid var(--accent);
            border-radius:0 9px 9px 0; padding:8px 10px; }
+  .card.toss .note { border-left-color:var(--toss); }
   .ship { margin-top:7px; font-size:10.5px; color:#8FA3BC; font-weight:600; }
   .buy { display:block; margin-top:11px; text-align:center; text-decoration:none;
           background:linear-gradient(135deg,#38BDF8,#0EA5E9); color:#07121F;
           font-size:13.5px; font-weight:900; padding:11px; border-radius:11px; }
+  .card.toss .buy { background:linear-gradient(135deg,#4C9BFF,var(--toss)); color:#fff; }
   .buy:active { opacity:.85; }
   .plink { margin-top:6px; font-size:9.5px; color:#64748B; word-break:break-all; }
   .plink a { color:#64748B; text-decoration:none; }
 
+  /* 토스 하루특가 섹션 — 쿠팡 영역과 색·고지를 분리 */
+  .tsec { margin-top:20px; border-top:1px solid rgba(49,130,246,.3); padding-top:16px; }
+  .tlabel { display:inline-block; font-size:10.5px; font-weight:900; color:#BFDBFE;
+             background:rgba(49,130,246,.2); border:1px solid rgba(124,192,255,.4);
+             padding:3px 9px; border-radius:999px; }
+  .ttitle { margin-top:8px; font-size:16px; font-weight:900; letter-spacing:-.4px; color:#EAF4FF; }
+  .tdisc { margin-top:7px; font-size:10.5px; font-weight:800; color:#CFE0F5; line-height:1.55;
+            background:rgba(49,130,246,.14); border-left:3px solid var(--toss);
+            border-radius:0 8px 8px 0; padding:7px 9px; }
+  .tintro { margin:9px 0 12px; font-size:10.5px; color:#8FA3BC; font-weight:600; line-height:1.6; }
+
   /* 네이버 크리에이터샵 · 쇼핑커넥트 — 쿠팡파트너스 영역과 시각·문구를 분리한 별도 섹션 */
-  .nshop { margin-top:18px; border:1px solid rgba(3,199,90,.32); border-radius:16px;
+  .nshop { margin-top:20px; border:1px solid rgba(3,199,90,.32); border-radius:16px;
             padding:14px; background:linear-gradient(180deg,rgba(3,199,90,.10),rgba(19,31,55,.9)); }
   .nslabel { display:inline-block; font-size:10.5px; font-weight:900; color:#6EE7A8;
               background:rgba(3,199,90,.16); border:1px solid rgba(3,199,90,.38);
@@ -153,27 +201,48 @@
   <!-- ▼ 쿠팡파트너스 대가성 고지 (정책 필수 · 페이지 최상단) -->
   <div class="disc" role="note">
     <b>광고</b> · 이 페이지는 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.
+    <span class="disc2">💙 토스쇼핑 섹션은 토스쇼핑 쉐어링크 활동 고지를 그 섹션 안에 따로 적었습니다.</span>
   </div>
 
   <header>
     <div class="hd-badge">🔥 카더라 통신 제1호</div>
     <h1>핫딜이라 <em>카더라</em></h1>
     <p class="sub">최저가일껄.?.? — 직접 열어보고 확인한 것만 올립니다</p>
-    <p class="asof">마지막 가격 확인 2026-11-22 17:15 KST · 13건</p>
+    <p class="asof">마지막 가격 확인 2026-11-22 17:45 KST · 전체 27건 (쿠팡 14 · 토스 8 · 네이버 5)</p>
   </header>
 
-  <a class="goldbox" href="https://link.coupang.com/a/iSeZ7iEDFA" target="_blank" rel="noopener noreferrer sponsored"
-     aria-label="오늘의 쿠팡 골드박스 전체 보기 (새 창)">
-    <span class="gb-ic" aria-hidden="true">🎁</span>
-    <span class="gb-tx"><b>오늘의 쿠팡 골드박스 전체 보기</b><span>지금 뜨는 특가를 한 번에 — 쿠팡파트너스 링크</span></span>
-    <span class="gb-go" aria-hidden="true">→</span>
-  </a>
+  <div class="bans">
+    <a class="ban gb" href="https://link.coupang.com/a/iSeZ7iEDFA" target="_blank" rel="noopener noreferrer sponsored"
+       aria-label="오늘의 쿠팡 골드박스 전체 보기 (새 창)">
+      <span class="bic" aria-hidden="true">🎁</span>
+      <span class="btx"><b>오늘만 열리는<br>쿠팡 골드박스</b><span>지금 뜨는 특가 한 번에</span></span>
+      <span class="bgo" aria-hidden="true">→</span>
+    </a>
+    <a class="ban tb" href="https://toss.shopping/_m/FmTGpFFw" target="_blank" rel="noopener noreferrer sponsored"
+       aria-label="오늘만 이 가격 토스 하루특가 보기 (새 창)">
+      <span class="bic" aria-hidden="true">💙</span>
+      <span class="btx"><b>오늘만 이 가격<br>토스 하루특가</b><span>하루특가 1위 스파클 생수 2L 30개 12,380원 · 토스쇼핑 쉐어링크</span></span>
+      <span class="bgo" aria-hidden="true">→</span>
+    </a>
+  </div>
+
+  <div class="tabs" id="tabs" role="tablist" aria-label="몰별 특가 필터">
+    <button class="tab on" role="tab" data-filter="all" aria-selected="true">전체 보기</button>
+    <button class="tab" role="tab" data-filter="coupang" aria-selected="false">🔵 쿠팡 특가 14</button>
+    <button class="tab" role="tab" data-filter="toss" aria-selected="false">💙 토스 하루특가 8</button>
+    <button class="tab" role="tab" data-filter="naver" aria-selected="false">🟢 네이버 고마진</button>
+  </div>
 
   <div class="notice" role="note">
     <b>가격 고지</b> · 표시된 가격 및 할인율은 확인 시점 기준이며, 쿠팡 실시간 판매가·재고에 따라 변동되거나 품절될 수 있습니다. '아낌 금액'은 쿠팡 상세페이지에 함께 표기된 정가(기준가)에서 현재 판매가를 뺀 값이고, 정가 표기가 없는 상품은 정가 대신 확인된 포인트만 적었습니다.<br>
     카드마다 <b>확인 시각</b>을 적어뒀습니다. 그 시각 이후에 바뀌었으면 이 페이지가 틀린 것이고,
-    쿠팡이 맞습니다. 좋은 딜은 늘 빨리 사라진다 카더라.
+    쿠팡·토스가 맞습니다. 좋은 딜은 늘 빨리 사라진다 카더라.
   </div>
+
+  <!-- ▼ 쿠팡파트너스 영역 -->
+  <section id="coupang" aria-label="쿠팡 특가">
+    <div class="sechead"><h2>🔵 쿠팡 특가</h2><span class="cnt">14건 · 로켓배송 위주</span></div>
+    <p class="secdisc">광고 · 이 페이지는 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.</p>
 
     <article class="card" id="deal-1">
       <figure class="thumb">
@@ -185,7 +254,7 @@
         <span class="pf">쿠팡</span>
         <span class="chk">확인 2026-11-22 08:33 KST</span>
       </div>
-      <h2 class="tit">코멧 오리지널 유아용 아기물티슈 캡형</h2>
+      <h3 class="tit">코멧 오리지널 유아용 아기물티슈 캡형</h3>
       <p class="opt">50g · 100매 · 10개</p>
       <div class="savebar"><span class="save">7,110원 아낌</span><span class="off">-39%</span><span class="base">정가 <s>18,000원</s></span></div>
       <div class="price"><b>10,890원</b><span class="unit">1매당 11원</span></div>
@@ -207,7 +276,7 @@
         <span class="pf">쿠팡</span>
         <span class="chk">확인 2026-11-22 08:35 KST</span>
       </div>
-      <h2 class="tit">해피데이 찜질패드 목어깨용 핫팩</h2>
+      <h3 class="tit">해피데이 찜질패드 목어깨용 핫팩</h3>
       <p class="opt">60g · 30개</p>
       <div class="savebar point"><span class="pt">로켓배송</span><span class="pt">한 달 800명 이상 구매</span></div>
       <div class="price"><b>17,280원</b><span class="unit">1개당 576원</span></div>
@@ -229,7 +298,7 @@
         <span class="pf">쿠팡</span>
         <span class="chk">확인 2026-11-22 17:12 KST</span>
       </div>
-      <h2 class="tit">불곰하사 포켓형 핫핸드 핫팩 100g</h2>
+      <h3 class="tit">불곰하사 포켓형 핫핸드 핫팩 100g</h3>
       <p class="opt">100g · 30개 · 1개당 299원</p>
       <div class="savebar"><span class="save">3,930원 아낌</span><span class="off">-30%</span><span class="base">정가 <s>12,900원</s></span></div>
       <div class="price"><b>8,970원</b><span class="unit">1개당 299원</span></div>
@@ -251,7 +320,7 @@
         <span class="pf">쿠팡</span>
         <span class="chk">확인 2026-11-22 08:38 KST</span>
       </div>
-      <h2 class="tit">핫앤쿡 발열도시락 발열전투식량 5종</h2>
+      <h3 class="tit">핫앤쿡 발열도시락 발열전투식량 5종</h3>
       <p class="opt">쇠고기+제육+김치비빔밥+라면애밥 짬뽕맛+김치찌개 · 1세트 580g</p>
       <div class="savebar"><span class="save">2,100원 아낌</span><span class="off">-7%</span><span class="base">정가 <s>28,000원</s></span></div>
       <div class="price"><b>25,900원</b><span class="unit">100g당 4,466원</span></div>
@@ -273,7 +342,7 @@
         <span class="pf">쿠팡</span>
         <span class="chk">확인 2026-11-22 08:40 KST</span>
       </div>
-      <h2 class="tit">KLIFE 고속충전 대용량 보조배터리 20000mAh</h2>
+      <h3 class="tit">KLIFE 고속충전 대용량 보조배터리 20000mAh</h3>
       <p class="opt">PD 22.5W QC3.0 잔량표시 · PD-Q2 블랙</p>
       <div class="savebar"><span class="save">38,000원 아낌</span><span class="off">-66%</span><span class="base">정가 <s>56,800원</s></span></div>
       <div class="price"><b>18,800원</b><span class="unit">3포트 · LCD 잔량표시</span></div>
@@ -295,7 +364,7 @@
         <span class="pf">쿠팡</span>
         <span class="chk">확인 2026-11-22 08:42 KST</span>
       </div>
-      <h2 class="tit">한일의료기 1인용 전기방석 HL-100(20)</h2>
+      <h3 class="tit">한일의료기 1인용 전기방석 HL-100(20)</h3>
       <p class="opt">45 × 45cm · 황토</p>
       <div class="savebar"><span class="save">16,440원 아낌</span><span class="off">-53%</span><span class="base">정가 <s>30,800원</s></span></div>
       <div class="price"><b>14,360원</b><span class="unit">코드분리형 · 인조가죽</span></div>
@@ -317,7 +386,7 @@
         <span class="pf">쿠팡</span>
         <span class="chk">확인 2026-11-22 12:08 KST</span>
       </div>
-      <h2 class="tit">에르먼 국내 제조 PIO 2단 쿠션 발받침대 기본형</h2>
+      <h3 class="tit">에르먼 국내 제조 PIO 2단 쿠션 발받침대 기본형</h3>
       <p class="opt">네이비 · 460 × 320 × 330mm · 국내 제조((주)디에스피)</p>
       <div class="savebar"><span class="save">20,200원 아낌</span><span class="off">-40%</span><span class="base">정가 <s>50,000원</s></span></div>
       <div class="price"><b>29,800원</b><span class="unit">쿠팡 BEST AWARDS</span></div>
@@ -339,7 +408,7 @@
         <span class="pf">쿠팡</span>
         <span class="chk">확인 2026-11-22 12:06 KST</span>
       </div>
-      <h2 class="tit">하리보 골드베어 사우어 젤리</h2>
+      <h3 class="tit">하리보 골드베어 사우어 젤리</h3>
       <p class="opt">55개입 · 870g · 1개</p>
       <div class="savebar"><span class="save">7,770원 아낌</span><span class="off">-42%</span><span class="base">정가 <s>18,480원</s></span></div>
       <div class="price"><b>10,710원</b><span class="unit">10g당 123원</span></div>
@@ -361,7 +430,7 @@
         <span class="pf">쿠팡</span>
         <span class="chk">확인 2026-11-22 12:07 KST</span>
       </div>
-      <h2 class="tit">팔도 비빔장 저칼로리</h2>
+      <h3 class="tit">팔도 비빔장 저칼로리</h3>
       <p class="opt">185g × 2개 · 100g당 1,397원</p>
       <div class="savebar"><span class="save">4,830원 아낌</span><span class="off">-48%</span><span class="base">정가 <s>10,000원</s></span></div>
       <div class="price"><b>5,170원</b><span class="unit">100g당 1,397원</span></div>
@@ -383,7 +452,7 @@
         <span class="pf">쿠팡</span>
         <span class="chk">확인 2026-11-22 12:09 KST</span>
       </div>
-      <h2 class="tit">MIFAN 극세사 USB 온열 담요</h2>
+      <h3 class="tit">MIFAN 극세사 USB 온열 담요</h3>
       <p class="opt">그레이 · 80 × 150cm · USB 전원(무선 휴대용)</p>
       <div class="savebar"><span class="save">46,000원 아낌</span><span class="off">-66%</span><span class="base">정가 <s>68,900원</s></span></div>
       <div class="price"><b>22,900원</b><span class="unit">무릎 담요 겸용</span></div>
@@ -405,7 +474,7 @@
         <span class="pf">쿠팡</span>
         <span class="chk">확인 2026-11-22 17:13 KST</span>
       </div>
-      <h2 class="tit">USB 발열 숄담요 인조 토끼털 지퍼형</h2>
+      <h3 class="tit">USB 발열 숄담요 인조 토끼털 지퍼형</h3>
       <p class="opt">그레이 · 152 × 85cm · 9구역 발열 3단 온도조절</p>
       <div class="savebar"><span class="save">14,000원 아낌</span><span class="off">-28%</span><span class="base">정가 <s>49,800원</s></span></div>
       <div class="price"><b>35,800원</b><span class="unit">USB 5V · 보조배터리 전원</span></div>
@@ -427,7 +496,7 @@
         <span class="pf">쿠팡</span>
         <span class="chk">확인 2026-11-22 12:10 KST</span>
       </div>
-      <h2 class="tit">오설록 블루밍 티 기프트</h2>
+      <h3 class="tit">오설록 블루밍 티 기프트</h3>
       <p class="opt">티백 9종 × 5p + 쇼핑백 · 1세트(티백 45개)</p>
       <div class="savebar"><span class="save">17,030원 아낌</span><span class="off">-37%</span><span class="base">정가 <s>45,000원</s></span></div>
       <div class="price"><b>27,970원</b><span class="unit">1세트당 27,970원</span></div>
@@ -449,7 +518,7 @@
         <span class="pf">쿠팡</span>
         <span class="chk">확인 2026-11-22 12:11 KST</span>
       </div>
-      <h2 class="tit">세타필 모이스춰라이징 크림</h2>
+      <h3 class="tit">세타필 모이스춰라이징 크림</h3>
       <p class="opt">100g · 1개</p>
       <div class="savebar"><span class="save">4,800원 아낌</span><span class="off">-32%</span><span class="base">정가 <s>14,700원</s></span></div>
       <div class="price"><b>9,900원</b><span class="unit">와우 할인가 9,800원</span></div>
@@ -461,6 +530,214 @@
          aria-label="세타필 모이스춰라이징 크림 쿠팡에서 보기 (새 창)">쿠팡에서 보기 →</a>
       <p class="plink">링크: <a href="https://link.coupang.com/a/iSp8Fw6x3I" target="_blank" rel="noopener noreferrer sponsored">link.coupang.com/a/iSp8Fw6x3I</a></p>
     </article>
+    <article class="card" id="deal-14">
+      <figure class="thumb">
+        <img src="/assets/hotdeal/pad-tamsa.webp" alt="탐사 실속형 배변패드 50x40cm 100매 4팩 상품 이미지" width="480" height="480"
+             loading="lazy" decoding="async">
+      </figure>
+      <div class="crow1">
+        <span class="cat">반려동물</span>
+        <span class="pf">쿠팡</span>
+        <span class="chk">확인 2026-11-22 17:40 KST</span>
+      </div>
+      <h3 class="tit">탐사 실속형 배변패드 50×40cm</h3>
+      <p class="opt">100매입 × 4팩 · 총 400매</p>
+      <div class="savebar"><span class="save">15,490원 아낌</span><span class="off">-40%</span><span class="base">정가 <s>38,690원</s></span></div>
+      <div class="price"><b>23,200원</b><span class="unit">1매당 58원</span></div>
+      <div class="badges"><span class="bdg">한 달 9,000명 이상 구매</span><span class="bdg">로켓배송</span><span class="bdg">내일 도착 보장</span></div>
+      <p class="meta">⭐ 18만 6,849건 · 최고 86%<br>🚚 내일(월) 11/23 도착 보장</p>
+      <p class="note"><span aria-hidden="true">💬</span> 400매면 하루 두 장 써도 두 달이다 카더라. 1매당 58원이면 배변패드값으로 고민할 일은 없음.</p>
+      <p class="ship">로켓배송 19,800원 이상 무료 — 23,200원 단독 주문도 무료배송입니다. 결제 화면에 와우 쿠폰할인가 4,200원(89%)이 함께 떠 있었지만 회원·쿠폰 조건이라 기본가는 일반판매가입니다.</p>
+      <a class="buy" href="https://link.coupang.com/a/iSNgB3IREq" target="_blank" rel="noopener noreferrer sponsored"
+         aria-label="탐사 실속형 배변패드 50×40cm 쿠팡에서 보기 (새 창)">쿠팡에서 보기 →</a>
+      <p class="plink">링크: <a href="https://link.coupang.com/a/iSNgB3IREq" target="_blank" rel="noopener noreferrer sponsored">link.coupang.com/a/iSNgB3IREq</a></p>
+    </article>
+  </section>
+
+  <!-- ▼ 토스쇼핑 쉐어링크 · 하루특가 (쿠팡파트너스 영역과 분리한 별도 섹션) -->
+  <section class="tsec" id="toss" aria-label="토스 하루특가 · BEST 특가">
+    <span class="tlabel">💙 토스쇼핑 쉐어링크 · 하루특가</span>
+    <h2 class="ttitle">토스 하루특가 · BEST 특가 8건</h2>
+    <p class="tdisc" role="note">광고 · 이 섹션은 토스쇼핑 쉐어링크 활동의 일환으로, 링크를 통한 구매 시 일정액의 수수료를 제공받습니다.</p>
+    <p class="tintro">토스쇼핑 쉐어링크에서 직접 발급한 공개용 링크로 연결됩니다. 가격은 확인 시점의 하루특가·최대할인가이고, 하루특가는 매일 0시에 바뀝니다. 8건 모두 무료배송으로 확인했습니다. · 확인 2026-11-22 17:45 KST</p>
+
+    <article class="card toss" id="deal-15">
+      <figure class="thumb">
+        <img src="/assets/hotdeal/toss-egg.webp" alt="맛꾼 구운란 대란 30구 상품 이미지" width="480" height="480"
+             loading="eager" decoding="async">
+      </figure>
+      <div class="crow1">
+        <span class="cat">식품</span>
+        <span class="pf">토스쇼핑</span>
+        <span class="chk">확인 2026-11-22 17:38 KST</span>
+      </div>
+      <h3 class="tit">맛꾼 구운란 대란 30구</h3>
+      <p class="opt">대란 · 30구 · 1개</p>
+      <div class="savebar"><span class="save">9,900원 아낌</span><span class="off">-49%</span><span class="base">정가 <s>19,900원</s></span></div>
+      <div class="price"><b>10,000원</b><span class="unit">1구당 333원</span></div>
+      <div class="badges"><span class="bdg">구운계란·훈제란 1위</span><span class="bdg">맛꾼 공식</span><span class="bdg">무료배송</span><span class="bdg">내일도착 · 늦으면 보상</span></div>
+      <p class="meta">⭐ 4.7 · 1만 7,194건<br>🚚 내일도착 · 늦으면 보상 · 무료배송</p>
+      <p class="note"><span aria-hidden="true">💬</span> 삶는 시간 아끼려고 30구 쌓아두는 집 많다 카더라. 1구 333원이면 계란값 걱정은 접는 셈.</p>
+      <p class="ship">무료배송(확인 시점). 토스 앱 결제 화면에서 최종 배송비를 확인하세요.</p>
+      <a class="buy" href="https://toss.shopping/_m/dmI4OpJc" target="_blank" rel="noopener noreferrer sponsored"
+         aria-label="맛꾼 구운란 대란 30구 토스쇼핑에서 보기 (새 창)">토스에서 보기 →</a>
+      <p class="plink">링크: <a href="https://toss.shopping/_m/dmI4OpJc" target="_blank" rel="noopener noreferrer sponsored">toss.shopping/_m/dmI4OpJc</a></p>
+    </article>
+    <article class="card toss" id="deal-16">
+      <figure class="thumb">
+        <img src="/assets/hotdeal/toss-water500.webp" alt="스파클 생수 무라벨 500ml 80개 상품 이미지" width="480" height="480"
+             loading="lazy" decoding="async">
+      </figure>
+      <div class="crow1">
+        <span class="cat">생활</span>
+        <span class="pf">토스쇼핑</span>
+        <span class="chk">확인 2026-11-22 17:39 KST</span>
+      </div>
+      <h3 class="tit">스파클 생수 무라벨 500ml 80병</h3>
+      <p class="opt">무라벨 · 500ml · 80개</p>
+      <div class="savebar"><span class="save">10,100원 아낌</span><span class="off">-42%</span><span class="base">정가 <s>24,000원</s></span></div>
+      <div class="price"><b>13,900원</b><span class="unit">100ml당 35원</span></div>
+      <div class="badges"><span class="bdg">국산생수 2위</span><span class="bdg">스파클 공식</span><span class="bdg">무료배송</span><span class="bdg">내일출발</span></div>
+      <p class="meta">⭐ 4.9 · 7만 6,743건<br>🚚 내일출발 · 무료배송</p>
+      <p class="note"><span aria-hidden="true">💬</span> 한 병에 175원꼴 카더라. 80병이면 하루 한 병씩 두 달 반, 물 무거워서 직접 안 사도 되는 게 핵심.</p>
+      <p class="ship">무료배송(확인 시점). 물은 무게로 배송비가 붙기 쉬운데 여기는 무료입니다.</p>
+      <a class="buy" href="https://toss.shopping/_m/fTeCKCfa" target="_blank" rel="noopener noreferrer sponsored"
+         aria-label="스파클 생수 무라벨 500ml 80병 토스쇼핑에서 보기 (새 창)">토스에서 보기 →</a>
+      <p class="plink">링크: <a href="https://toss.shopping/_m/fTeCKCfa" target="_blank" rel="noopener noreferrer sponsored">toss.shopping/_m/fTeCKCfa</a></p>
+    </article>
+    <article class="card toss" id="deal-17">
+      <figure class="thumb">
+        <img src="/assets/hotdeal/toss-tangerine.webp" alt="서귀포 조생 감귤 10kg 상품 이미지" width="480" height="480"
+             loading="lazy" decoding="async">
+      </figure>
+      <div class="crow1">
+        <span class="cat">식품</span>
+        <span class="pf">토스쇼핑</span>
+        <span class="chk">확인 2026-11-22 17:39 KST</span>
+      </div>
+      <h3 class="tit">서귀포 조생 감귤 최고 15Brix 10kg</h3>
+      <p class="opt">최고 15Brix · 10kg · 1개</p>
+      <div class="savebar"><span class="save">28,200원 아낌</span><span class="off">-70%</span><span class="base">정가 <s>40,000원</s></span></div>
+      <div class="price"><b>11,800원</b><span class="unit">100g당 118원</span></div>
+      <div class="badges"><span class="bdg">70% 특가</span><span class="bdg">지금 30일 내 최저가</span><span class="bdg">귤 3위</span><span class="bdg">무료배송</span></div>
+      <p class="meta">⭐ 4.3 · 189건<br>🚚 무료배송 · 확인 시점 기준</p>
+      <p class="note"><span aria-hidden="true">💬</span> 10kg에 11,800원이면 100g당 118원 카더라. 두 사람이 한 달 먹고 남는 양, 리뷰 189건은 적지만 귤 3위.</p>
+      <p class="ship">무료배송(확인 시점). 산지 직송 상품이라 배송일은 결제 화면 안내를 따르세요.</p>
+      <a class="buy" href="https://toss.shopping/_m/DW6uUpZn" target="_blank" rel="noopener noreferrer sponsored"
+         aria-label="서귀포 조생 감귤 최고 15Brix 10kg 토스쇼핑에서 보기 (새 창)">토스에서 보기 →</a>
+      <p class="plink">링크: <a href="https://toss.shopping/_m/DW6uUpZn" target="_blank" rel="noopener noreferrer sponsored">toss.shopping/_m/DW6uUpZn</a></p>
+    </article>
+    <article class="card toss" id="deal-18">
+      <figure class="thumb">
+        <img src="/assets/hotdeal/toss-water2l.webp" alt="스파클 생수 무라벨 2L 30개 상품 이미지" width="480" height="480"
+             loading="lazy" decoding="async">
+      </figure>
+      <div class="crow1">
+        <span class="cat">생활</span>
+        <span class="pf">토스쇼핑</span>
+        <span class="chk">확인 2026-11-22 17:40 KST</span>
+      </div>
+      <h3 class="tit">스파클 생수 무라벨 2L 30병</h3>
+      <p class="opt">무라벨 · 2L · 30개</p>
+      <div class="savebar"><span class="save">12,620원 아낌</span><span class="off">-50%</span><span class="base">정가 <s>25,000원</s></span></div>
+      <div class="price"><b>12,380원</b><span class="unit">100ml당 21원</span></div>
+      <div class="badges"><span class="bdg">하루특가 1위</span><span class="bdg">선착순특가</span><span class="bdg">지금 30일 내 최저가</span><span class="bdg">스파클 공식</span></div>
+      <p class="meta">⭐ 4.8 · 1만 5,784건<br>🚚 내일출발 · 무료배송</p>
+      <p class="note"><span aria-hidden="true">💬</span> 정수기 없이 한 달 버티는 조합 카더라. 2L 30병이면 100ml당 21원, 하루특가 1위값.</p>
+      <p class="ship">무료배송(확인 시점). 60L가 넘는 무게라 직접 들고 오기 버거운데 배송까지 무료입니다.</p>
+      <a class="buy" href="https://toss.shopping/_m/FmTGpFFw" target="_blank" rel="noopener noreferrer sponsored"
+         aria-label="스파클 생수 무라벨 2L 30병 토스쇼핑에서 보기 (새 창)">토스에서 보기 →</a>
+      <p class="plink">링크: <a href="https://toss.shopping/_m/FmTGpFFw" target="_blank" rel="noopener noreferrer sponsored">toss.shopping/_m/FmTGpFFw</a></p>
+    </article>
+    <article class="card toss" id="deal-19">
+      <figure class="thumb">
+        <img src="/assets/hotdeal/toss-towel.webp" alt="베라 4ZERO 팝업 뽑아쓰는 키친타올 9팩 상품 이미지" width="480" height="480"
+             loading="lazy" decoding="async">
+      </figure>
+      <div class="crow1">
+        <span class="cat">생활</span>
+        <span class="pf">토스쇼핑</span>
+        <span class="chk">확인 2026-11-22 17:40 KST</span>
+      </div>
+      <h3 class="tit">베라 4ZERO 팝업 뽑아쓰는 키친타올 3겹 100매 9팩</h3>
+      <p class="opt">3겹 · 100매 · 9팩</p>
+      <div class="savebar"><span class="save">13,700원 아낌</span><span class="off">-68%</span><span class="base">정가 <s>19,900원</s></span></div>
+      <div class="price"><b>6,200원</b><span class="unit">1팩당 689원</span></div>
+      <div class="badges"><span class="bdg">각키친타올 2위</span><span class="bdg">쇼우몰 공식</span><span class="bdg">내일도착 · 늦으면 보상</span><span class="bdg">무료배송</span></div>
+      <p class="meta">⭐ 4.7 · 669건<br>🚚 내일도착 · 늦으면 보상 · 무료배송</p>
+      <p class="note"><span aria-hidden="true">💬</span> 3겹 100매 9팩에 6,200원, 1팩 689원 카더라. 뽑아쓰는 팝업형이라 한 장씩 아깝지 않음.</p>
+      <p class="ship">무료배송(확인 시점).</p>
+      <a class="buy" href="https://toss.shopping/_m/jNXl6Ov1" target="_blank" rel="noopener noreferrer sponsored"
+         aria-label="베라 4ZERO 팝업 뽑아쓰는 키친타올 3겹 100매 9팩 토스쇼핑에서 보기 (새 창)">토스에서 보기 →</a>
+      <p class="plink">링크: <a href="https://toss.shopping/_m/jNXl6Ov1" target="_blank" rel="noopener noreferrer sponsored">toss.shopping/_m/jNXl6Ov1</a></p>
+    </article>
+    <article class="card toss" id="deal-20">
+      <figure class="thumb">
+        <img src="/assets/hotdeal/toss-seolleongtang.webp" alt="한촌 사골 양지고기 설렁탕 500g 5개 상품 이미지" width="480" height="480"
+             loading="lazy" decoding="async">
+      </figure>
+      <div class="crow1">
+        <span class="cat">식품</span>
+        <span class="pf">토스쇼핑</span>
+        <span class="chk">확인 2026-11-22 17:41 KST</span>
+      </div>
+      <h3 class="tit">한촌 사골 양지고기 설렁탕 500g 5팩</h3>
+      <p class="opt">500g · 5개</p>
+      <div class="savebar"><span class="save">12,000원 아낌</span><span class="off">-48%</span><span class="base">정가 <s>24,900원</s></span></div>
+      <div class="price"><b>12,900원</b><span class="unit">1팩당 2,580원</span></div>
+      <div class="badges"><span class="bdg">즉석탕·찌개 22위</span><span class="bdg">이랜드팜앤푸드</span><span class="bdg">내일도착 · 늦으면 보상</span><span class="bdg">무료배송</span></div>
+      <p class="meta">⭐ 4.6 · 5,889건<br>🚚 내일도착 · 늦으면 보상 · 무료배송</p>
+      <p class="note"><span aria-hidden="true">💬</span> 한 그릇 2,580원이면 국밥집 반값 카더라. 500g에 고기가 들어간 사골 설렁탕.</p>
+      <p class="ship">무료배송(확인 시점).</p>
+      <a class="buy" href="https://toss.shopping/_m/LCwgvO9a" target="_blank" rel="noopener noreferrer sponsored"
+         aria-label="한촌 사골 양지고기 설렁탕 500g 5팩 토스쇼핑에서 보기 (새 창)">토스에서 보기 →</a>
+      <p class="plink">링크: <a href="https://toss.shopping/_m/LCwgvO9a" target="_blank" rel="noopener noreferrer sponsored">toss.shopping/_m/LCwgvO9a</a></p>
+    </article>
+    <article class="card toss" id="deal-21">
+      <figure class="thumb">
+        <img src="/assets/hotdeal/toss-tteokgalbi.webp" alt="노랑 곱빼기 왕 떡갈비 160g 5봉 상품 이미지" width="480" height="480"
+             loading="lazy" decoding="async">
+      </figure>
+      <div class="crow1">
+        <span class="cat">식품</span>
+        <span class="pf">토스쇼핑</span>
+        <span class="chk">확인 2026-11-22 17:41 KST</span>
+      </div>
+      <h3 class="tit">노랑 곱빼기 왕 떡갈비 160g 5봉</h3>
+      <p class="opt">160g · 5봉</p>
+      <div class="savebar"><span class="save">10,900원 아낌</span><span class="off">-54%</span><span class="base">정가 <s>19,900원</s></span></div>
+      <div class="price"><b>9,000원</b><span class="unit">1봉당 1,800원</span></div>
+      <div class="badges"><span class="bdg">떡갈비 3위</span><span class="bdg">사이다마트</span><span class="bdg">내일도착 · 늦으면 보상</span><span class="bdg">무료배송</span></div>
+      <p class="meta">⭐ 4.6 · 9,942건<br>🚚 내일도착 · 늦으면 보상 · 무료배송</p>
+      <p class="note"><span aria-hidden="true">💬</span> 1봉 1,800원이면 고기 반찬값이 안 나온다 카더라. 에어프라이어에 돌리면 저녁 한 끼.</p>
+      <p class="ship">무료배송(확인 시점).</p>
+      <a class="buy" href="https://toss.shopping/_m/NFeKwLog" target="_blank" rel="noopener noreferrer sponsored"
+         aria-label="노랑 곱빼기 왕 떡갈비 160g 5봉 토스쇼핑에서 보기 (새 창)">토스에서 보기 →</a>
+      <p class="plink">링크: <a href="https://toss.shopping/_m/NFeKwLog" target="_blank" rel="noopener noreferrer sponsored">toss.shopping/_m/NFeKwLog</a></p>
+    </article>
+    <article class="card toss" id="deal-22">
+      <figure class="thumb">
+        <img src="/assets/hotdeal/toss-bodywash.webp" alt="메르헨트 퍼퓸 대용량 바디워시 1L 2개 상품 이미지" width="480" height="480"
+             loading="lazy" decoding="async">
+      </figure>
+      <div class="crow1">
+        <span class="cat">생활</span>
+        <span class="pf">토스쇼핑</span>
+        <span class="chk">확인 2026-11-22 17:42 KST</span>
+      </div>
+      <h3 class="tit">메르헨트 퍼퓸 대용량 바디워시 1L 2개</h3>
+      <p class="opt">피치블라썸 · 1L · 2개</p>
+      <div class="savebar"><span class="save">20,800원 아낌</span><span class="off">-69%</span><span class="base">정가 <s>30,000원</s></span></div>
+      <div class="price"><b>9,200원</b><span class="unit">100ml당 460원</span></div>
+      <div class="badges"><span class="bdg">바디워시 3위</span><span class="bdg">디에스엠인터내셔널 공식</span><span class="bdg">내일도착 · 늦으면 보상</span><span class="bdg">무료배송</span></div>
+      <p class="meta">⭐ 4.6 · 3,619건<br>🚚 내일도착 · 늦으면 보상 · 무료배송</p>
+      <p class="note"><span aria-hidden="true">💬</span> 1L 두 통이면 겨울 내내 쓴다 카더라. 100ml당 460원, 퍼퓸이라 샤워 후 향이 남음.</p>
+      <p class="ship">무료배송(확인 시점).</p>
+      <a class="buy" href="https://toss.shopping/_m/ndZP3EVs" target="_blank" rel="noopener noreferrer sponsored"
+         aria-label="메르헨트 퍼퓸 대용량 바디워시 1L 2개 토스쇼핑에서 보기 (새 창)">토스에서 보기 →</a>
+      <p class="plink">링크: <a href="https://toss.shopping/_m/ndZP3EVs" target="_blank" rel="noopener noreferrer sponsored">toss.shopping/_m/ndZP3EVs</a></p>
+    </article>
+  </section>
 
   <!-- ▼ 네이버 크리에이터샵 · 쇼핑커넥트 (쿠팡파트너스 영역과 분리한 별도 섹션) -->
   <section class="nshop" id="nshop" aria-label="월억버핏 네이버 크리에이터샵 추천 · 고마진">
@@ -518,7 +795,9 @@
     지금 들어가면 품절이거나 값이 올라 있을 수 있습니다. 그럴 땐 다음 카드로 넘어가면 됩니다.<br><br>
     <b>사진</b> · 각 상품 페이지의 대표 이미지를 내려받아 썼습니다. 색상·구성은 고른 옵션에 따라
     달라 보일 수 있으니 결제 전에 옵션을 한 번 더 확인하세요.<br><br>
-    <b>다음 플랫폼</b> · 토스쇼핑 셰어링크 상품은 다음 업데이트부터 같은 카드 형식으로 추가됩니다. 네이버 크리에이터샵 상품은 아래 별도 섹션(쿠팡파트너스와 무관)에 모았습니다.
+    <b>토스 하루특가</b> · 하루특가는 이름 그대로 하루 단위라 자정에 값이 바뀝니다. 카드의 확인 시각이
+    오늘인지 먼저 보세요. 토스 링크는 토스쇼핑 쉐어링크에서 직접 발급한 공개용 링크입니다.<br><br>
+    <b>다른 몰</b> · 토스쇼핑 하루특가·BEST 특가는 위쪽 토스 섹션에 모았습니다. 토스 링크는 토스쇼핑 쉐어링크에서 직접 발급한 공개용 링크이고, 수수료 고지는 그 섹션 안에 따로 적었습니다. 네이버 크리에이터샵 상품은 맨 아래 별도 섹션(쿠팡파트너스와 무관)에 모았습니다.
   </div>
 
   <div class="more" aria-label="버핏카세 다른 페이지">
@@ -533,12 +812,37 @@
 
   <footer>
     월억버핏 · 버핏카세 (buffettkase.pages.dev)<br>
-    쿠팡파트너스 ID AF2387959 · 링크는 쿠팡파트너스에서 직접 발급받은 단축링크만 사용합니다.
+    쿠팡파트너스 ID AF2387959 · 토스쇼핑 쉐어링크 — 링크는 각 플랫폼에서 직접 발급받은 링크만 사용합니다.
     <div class="fine">
-      이 페이지는 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.
-      가격·재고는 쿠팡 판매자 사정에 따라 수시로 바뀝니다.
+      이 페이지는 쿠팡 파트너스 및 토스쇼핑 쉐어링크 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.
+      가격·재고는 판매자 사정에 따라 수시로 바뀝니다.
     </div>
   </footer>
 </div>
+<script>
+(function () {
+  var tabs = [].slice.call(document.querySelectorAll('.tab'));
+  var secs = { coupang: document.getElementById('coupang'),
+                toss: document.getElementById('toss'),
+                naver: document.getElementById('nshop') };
+  tabs.forEach(function (b) {
+    b.addEventListener('click', function () {
+      var f = b.getAttribute('data-filter');
+      tabs.forEach(function (x) {
+        var on = (x === b);
+        x.classList.toggle('on', on);
+        x.setAttribute('aria-selected', on ? 'true' : 'false');
+      });
+      Object.keys(secs).forEach(function (k) {
+        var el = secs[k];
+        if (!el) return;
+        el.classList.toggle('hide', f !== 'all' && f !== k);
+      });
+      var target = (f === 'all') ? document.getElementById('tabs') : secs[f];
+      if (target && target.scrollIntoView) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+})();
+</script>
 </body>
 </html>

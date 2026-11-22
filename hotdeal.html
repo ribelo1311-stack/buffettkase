@@ -3,14 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>카더라 핫딜 — 쿠팡 14건 · 토스 하루특가 8건(실사 가격·단축링크) | 월억버핏 버핏카세</title>
-<meta name="description" content="월억버핏이 직접 열어보고 가격·배송·단축링크까지 확인한 핫딜 모음. 쿠팡 14건 + 토스쇼핑 하루특가 8건 + 네이버 고마진 — 생활·겨울·IT·식품·반려동물. 몰별 탭과 카테고리(겨울·식품·생활·반려동물·IT) 필터로 바로 좁혀 보세요. 선착순·한정 특가는 상단에 모았습니다. 확인 시각과 배송 조건 그대로. '핫딜이라 카더라' 카더라 통신 1호.">
+<title>카더라 핫딜 — 쿠팡 14건 · 토스 선착순특가 8건(실사 가격·단축링크) | 월억버핏 버핏카세</title>
+<meta name="description" content="월억버핏이 직접 열어보고 가격·배송·단축링크까지 확인한 핫딜 모음. 쿠팡 14건 + 토스쇼핑 선착순특가 8건 + 네이버 고마진 — 생활·겨울·IT·식품·반려동물. 몰별 탭과 카테고리(겨울·식품·생활·반려동물·IT) 필터로 바로 좁혀 보세요. 선착순·한정 특가는 상단에 모았습니다. 확인 시각과 배송 조건 그대로. '핫딜이라 카더라' 카더라 통신 1호.">
 <link rel="canonical" href="https://buffettkase.pages.dev/hotdeal">
 <meta name="robots" content="index,follow">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="버핏카세 · 월억버핏">
-<meta property="og:title" content="카더라 핫딜 — 쿠팡 14건 · 토스 하루특가 8건 | 월억버핏 버핏카세">
-<meta property="og:description" content="핫딜이라 카더라, 최저가일껄.?.? 월억버핏이 직접 확인한 쿠팡 14건과 토스 하루특가 8건 — 확인 시각·배송 조건·단축링크 그대로.">
+<meta property="og:title" content="카더라 핫딜 — 쿠팡 14건 · 토스 선착순특가 8건 | 월억버핏 버핏카세">
+<meta property="og:description" content="핫딜이라 카더라, 최저가일껄.?.? 월억버핏이 직접 확인한 쿠팡 14건과 토스 선착순특가 8건 — 확인 시각·배송 조건·단축링크 그대로.">
 <meta property="og:url" content="https://buffettkase.pages.dev/hotdeal">
 <meta property="og:image" content="https://buffettkase.pages.dev/assets/hotdeal/wetissue.webp">
 <meta name="twitter:image" content="https://buffettkase.pages.dev/assets/hotdeal/wetissue.webp">
@@ -66,12 +66,25 @@
   .ban.gb .btx b { color:#FDE68A; }
   .ban.gb .btx span { color:#A9B8CC; }
   .ban.gb .bgo { color:#FCD34D; }
-  .ban.tb { border:1px solid rgba(49,130,246,.5);
+  /* 토스 배너는 동작이 둘: ①본문 = 오늘 선착순특가 상품(외부) ②아래 줄 = #toss 모아보기 */
+  .ban.tb { display:block; padding:0; min-height:0;
+             border:1px solid rgba(49,130,246,.5);
              background:linear-gradient(120deg,rgba(49,130,246,.22),rgba(19,31,55,.85)); }
   .ban.tb .bic { background:rgba(49,130,246,.24); border:1px solid rgba(124,192,255,.45); }
   .ban.tb .btx b { color:#CFE6FF; }
   .ban.tb .btx span { color:#9EC3EA; }
   .ban.tb .bgo { color:var(--toss-soft); }
+  .tbanmain { display:flex; align-items:center; gap:7px; padding:9px 9px 7px;
+               text-decoration:none; }
+  .tbanmain .bgo { font-size:12px; }
+  .tbanacts { display:flex; flex-direction:column; gap:4px; padding:0 9px 8px; }
+  .tact { display:block; text-align:center; text-decoration:none;
+           font-size:9.5px; font-weight:900; line-height:1.2; padding:5px 4px;
+           border-radius:8px; white-space:nowrap; letter-spacing:-.3px; }
+  .tact.go { color:#08131F; background:linear-gradient(135deg,#9CC9FF,#3182F6); }
+  .tact.jump { color:#BFDBFE; background:rgba(49,130,246,.16);
+                border:1px solid rgba(124,192,255,.4); }
+  .tact:active { opacity:.85; }
   .ban:active { opacity:.88; }
 
   /* 몰 필터 탭 + 카테고리 칩 — 390px 에서 줄바꿈만 하고 가로 스크롤은 만들지 않는다 */
@@ -230,7 +243,7 @@
     <div class="hd-badge">🔥 카더라 통신 제1호</div>
     <h1>핫딜이라 <em>카더라</em></h1>
     <p class="sub">최저가일껄.?.? — 직접 열어보고 확인한 것만 올립니다</p>
-    <p class="asof">마지막 가격 확인 2026-11-23 05:05 KST · 전체 27건 (쿠팡 14 · 토스 8 · 네이버 5)</p>
+    <p class="asof">마지막 가격 확인 2026-11-23 07:10 KST · 전체 27건 (쿠팡 14 · 토스 8 · 네이버 5)</p>
   </header>
 
   <div class="bans">
@@ -240,29 +253,37 @@
       <span class="btx"><b>오늘만 열리는<br>쿠팡 골드박스</b><span>지금 뜨는 특가 한 번에</span></span>
       <span class="bgo" aria-hidden="true">→</span>
     </a>
-    <a class="ban tb" href="#toss" data-jump="toss"
-       aria-label="토스 하루특가 전체 모아보기 — 아래 토스 섹션으로 이동">
-      <span class="bic" aria-hidden="true">💙</span>
-      <span class="btx"><b>오늘만 이 가격<br>토스 하루특가</b><span>감귤 70% · 키친타올 68% · 구운란 49% 등 8건 모아보기 ↓</span></span>
-      <span class="bgo" aria-hidden="true">↓</span>
-    </a>
+    <div class="ban tb">
+      <a class="tbanmain" href="https://toss.shopping/_m/vsu59ely" target="_blank" rel="noopener noreferrer sponsored"
+         aria-label="오늘 선착순특가 대표 상품 바로 보기 — 제주 서귀포 노지 조생 감귤 10kg 10,560원(78%) (새 창)">
+        <span class="bic" aria-hidden="true">💙</span>
+        <span class="btx"><b>오늘 0시 선착순특가<br>매일 0시 새로 열립니다</b><span>감귤 78% · 사과 75% · 화장지 53% 등 8건</span></span>
+        <span class="bgo" aria-hidden="true">→</span>
+      </a>
+      <div class="tbanacts">
+        <a class="tact go" href="https://toss.shopping/_m/vsu59ely" target="_blank" rel="noopener noreferrer sponsored"
+           aria-label="오늘 선착순특가 대표 상품 바로 보기 — 제주 서귀포 노지 조생 감귤 10kg 10,560원(78%) (새 창)">⚡ 선착순특가 바로 가기 →</a>
+        <a class="tact jump" href="#toss" data-jump="toss"
+           aria-label="아래 토스 선착순특가 8건 모아보기로 이동">토스 8건 모아보기 ↓</a>
+      </div>
+    </div>
   </div>
 
   <div class="tabs" id="tabs" role="tablist" aria-label="몰별 특가 필터">
     <button class="tab on" role="tab" data-filter="all" data-label="전체 보기" aria-selected="true">전체 보기</button>
     <button class="tab" role="tab" data-filter="coupang" data-label="쿠팡 특가" aria-selected="false">🔵 쿠팡 특가 14</button>
-    <button class="tab" role="tab" data-filter="toss" data-label="토스 하루특가" aria-selected="false">💙 토스 하루특가 8</button>
+    <button class="tab" role="tab" data-filter="toss" data-label="토스 선착순특가" aria-selected="false">💙 토스 선착순특가 8</button>
     <button class="tab" role="tab" data-filter="naver" data-label="네이버 고마진" aria-selected="false">🟢 네이버 고마진 5</button>
   </div>
   <div class="fcats" id="cats" role="group" aria-label="상품 카테고리 필터">
-    <button class="tab chip on" data-cat="all" data-label="전체 카테고리" aria-pressed="true">전체 카테고리 27</button><button class="tab chip" data-cat="겨울" data-label="❄️ 겨울·방한" aria-pressed="false">❄️ 겨울·방한 4</button><button class="tab chip" data-cat="식품" data-label="🍜 식품·간식" aria-pressed="false">🍜 식품·간식 8</button><button class="tab chip" data-cat="생활" data-label="🧴 생활·위생" aria-pressed="false">🧴 생활·위생 13</button><button class="tab chip" data-cat="반려동물" data-label="🐾 반려동물" aria-pressed="false">🐾 반려동물 1</button><button class="tab chip" data-cat="IT" data-label="🔋 IT·가전" aria-pressed="false">🔋 IT·가전 1</button>
+    <button class="tab chip on" data-cat="all" data-label="전체 카테고리" aria-pressed="true">전체 카테고리 27</button><button class="tab chip" data-cat="겨울" data-label="❄️ 겨울·방한" aria-pressed="false">❄️ 겨울·방한 4</button><button class="tab chip" data-cat="식품" data-label="🍜 식품·간식" aria-pressed="false">🍜 식품·간식 9</button><button class="tab chip" data-cat="생활" data-label="🧴 생활·위생" aria-pressed="false">🧴 생활·위생 12</button><button class="tab chip" data-cat="반려동물" data-label="🐾 반려동물" aria-pressed="false">🐾 반려동물 1</button><button class="tab chip" data-cat="IT" data-label="🔋 IT·가전" aria-pressed="false">🔋 IT·가전 1</button>
   </div>
   <p class="fresult" id="fresult" aria-live="polite">전체 카테고리 · 모든 몰 · 27건 보기</p>
   <p class="fempty hide" id="fempty">이 조합에는 지금 상품이 없습니다 — 바로 위에서 다른 카테고리나 몰을 눌러보세요.</p>
 
   <div class="notice" role="note">
     <b>가격 고지</b> · 표시된 가격 및 할인율은 확인 시점 기준이며, 쿠팡 실시간 판매가·재고에 따라 변동되거나 품절될 수 있습니다. '아낌 금액'은 쿠팡 상세페이지에 함께 표기된 정가(기준가)에서 현재 판매가를 뺀 값이고, 정가 표기가 없는 상품은 정가 대신 확인된 포인트만 적었습니다.<br>
-    <b>⚡ 선착순·한정</b> · 하루특가·기간한정·50% 이상 특가는 카드에 배지를 달고 섹션 맨 위에 세웠습니다. 그만큼 빨리 사라집니다.<br>
+    <b>⚡ 선착순·한정</b> · 토스 선착순특가·쿠팡 기간한정·50% 이상 특가는 카드에 배지를 달고 섹션 맨 위에 세웠습니다. 그만큼 빨리 사라집니다.<br>
     카드마다 <b>확인 시각</b>을 적어뒀습니다. 그 시각 이후에 바뀌었으면 이 페이지가 틀린 것이고,
     쿠팡·토스가 맞습니다. 좋은 딜은 늘 빨리 사라진다 카더라.
   </div>
@@ -596,197 +617,197 @@
     </article>
   </section>
 
-  <!-- ▼ 토스쇼핑 쉐어링크 · 하루특가 (쿠팡파트너스 영역과 분리한 별도 섹션) -->
-  <section class="tsec" id="toss" aria-label="토스 하루특가 · BEST 특가">
-    <span class="tlabel">💙 토스쇼핑 쉐어링크 · 하루특가</span>
-    <h2 class="ttitle">토스 하루특가 · BEST 특가 8건</h2>
+  <!-- ▼ 토스쇼핑 쉐어링크 · 매일 0시 선착순특가 (쿠팡파트너스 영역과 분리한 별도 섹션) -->
+  <section class="tsec" id="toss" aria-label="토스 선착순특가 · 하루특가">
+    <span class="tlabel">💙 토스쇼핑 쉐어링크 · 매일 0시 선착순특가</span>
+    <h2 class="ttitle">토스 선착순특가 · 하루특가 8건 (11/23 월)</h2>
     <p class="tdisc" role="note">광고 · 이 섹션은 토스쇼핑 쉐어링크 활동의 일환으로, 링크를 통한 구매 시 일정액의 수수료를 제공받습니다.</p>
-    <p class="tintro">토스쇼핑 쉐어링크에서 직접 발급한 공개용 링크로 연결됩니다. 가격은 11/22 17:45에 확인한 하루특가·최대할인가이고, 하루특가는 매일 0시에 바뀝니다 — 오늘(11/23) 값은 카드의 링크에서 확인하세요. 8건 모두 무료배송으로 확인했습니다. · 확인 2026-11-22 17:45 KST</p>
-    <p class="tbest"><a href="https://toss.shopping/_m/FmTGpFFw" target="_blank" rel="noopener noreferrer sponsored">💙 하루특가 1위 상품 바로 보기 →</a></p>
+    <p class="tintro">토스쇼핑 쉐어링크 '링크 발급'으로 오늘(11/23) 새로 발급한 공개용 링크입니다. 11/23 07:10에 상품 상세에서 실판매가·정가·배송비를 직접 확인했고 8건 모두 무료배송·품절 없음입니다. 이 8건은 오늘 0시에 새로 열린 선착순특가·하루특가라 오늘 24:00에 끝나고 내일 0시에 새 값으로 바뀝니다 — 결제 전에 카드 링크에서 가격을 한 번 더 확인하세요. · 확인 2026-11-23 07:10 KST</p>
+    <p class="tbest"><a href="https://toss.shopping/_m/vsu59ely" target="_blank" rel="noopener noreferrer sponsored" aria-label="오늘 선착순특가 대표 상품 바로 보기 — 제주 서귀포 노지 조생 감귤 10kg 10,560원(78%) (새 창)">💙 오늘 선착순특가 대표 상품 바로 보기 — 제주 서귀포 노지 조생 감귤 10kg 10,560원(78%) →</a></p>
 
-    <article class="card toss hot" id="deal-15" data-platform="toss" data-cat="생활">
+    <article class="card toss hot" id="deal-15" data-platform="toss" data-cat="식품">
       <figure class="thumb">
-        <img src="/assets/hotdeal/toss-water2l.webp" alt="스파클 생수 무라벨 2L 30개 상품 이미지" width="480" height="480"
+        <img src="/assets/hotdeal/toss-tangerine.webp" alt="제주 서귀포 노지 조생 감귤 10kg 상자 이미지" width="480" height="480"
              loading="eager" decoding="async">
       </figure>
       <div class="crow1">
         <span class="hotb">⚡ 선착순·한정 특가</span>
-        <span class="cat">생활</span>
+        <span class="cat">식품</span>
         <span class="pf">토스쇼핑</span>
-        <span class="chk">확인 2026-11-22 17:40 KST</span>
+        <span class="chk">확인 2026-11-23 07:10 KST</span>
       </div>
-      <h3 class="tit">스파클 생수 무라벨 2L 30병</h3>
-      <p class="opt">무라벨 · 2L · 30개</p>
-      <div class="savebar"><span class="save">12,620원 아낌</span><span class="off">-50%</span><span class="base">정가 <s>25,000원</s></span></div>
-      <div class="price"><b>12,380원</b><span class="unit">100ml당 21원</span></div>
-      <div class="badges"><span class="bdg">하루특가 1위</span><span class="bdg">선착순특가</span><span class="bdg">지금 30일 내 최저가</span><span class="bdg">스파클 공식</span></div>
-      <p class="meta">⭐ 4.8 · 1만 5,784건<br>🚚 내일출발 · 무료배송</p>
-      <p class="note"><span aria-hidden="true">💬</span> 정수기 없이 한 달 버티는 조합 카더라. 2L 30병이면 100ml당 21원, 하루특가 1위값.</p>
-      <p class="ship">무료배송(확인 시점). 60L가 넘는 무게라 직접 들고 오기 버거운데 배송까지 무료입니다.</p>
-      <a class="buy" href="https://toss.shopping/_m/FmTGpFFw" target="_blank" rel="noopener noreferrer sponsored"
-         aria-label="스파클 생수 무라벨 2L 30병 토스쇼핑에서 보기 (새 창)">토스에서 보기 →</a>
-      <p class="plink">링크: <a href="https://toss.shopping/_m/FmTGpFFw" target="_blank" rel="noopener noreferrer sponsored">toss.shopping/_m/FmTGpFFw</a></p>
+      <h3 class="tit">제주 서귀포 노지 조생 감귤 중대과 10kg</h3>
+      <p class="opt">중대과 · 10kg · 1박스</p>
+      <div class="savebar"><span class="save">39,440원 아낌</span><span class="off">-78%</span><span class="base">정가 <s>50,000원</s></span></div>
+      <div class="price"><b>10,560원</b><span class="unit">100g당 106원</span></div>
+      <div class="badges"><span class="bdg">오늘 0시 선착순특가</span><span class="bdg">78% 특가</span><span class="bdg">판매자 콘술</span><span class="bdg">무료배송</span></div>
+      <p class="meta">⭐ 4.1 · 367건<br>🚚 무료배송 · 11/27(금) 도착 예정</p>
+      <p class="note"><span aria-hidden="true">💬</span> 10kg 한 상자에 10,560원이면 100g당 106원 카더라. 두 사람이 두어 달 먹는 양, 리뷰 367건은 적지만 평점 4.1.</p>
+      <p class="ship">무료배송(11/23 07:10 확인). 산지 직송이라 도착일은 결제 화면 안내를 따르세요.</p>
+      <a class="buy" href="https://toss.shopping/_m/vsu59ely" target="_blank" rel="noopener noreferrer sponsored"
+         aria-label="제주 서귀포 노지 조생 감귤 중대과 10kg 토스쇼핑에서 보기 (새 창)">토스에서 보기 →</a>
+      <p class="plink">링크: <a href="https://toss.shopping/_m/vsu59ely" target="_blank" rel="noopener noreferrer sponsored">toss.shopping/_m/vsu59ely</a></p>
     </article>
     <article class="card toss hot" id="deal-16" data-platform="toss" data-cat="식품">
       <figure class="thumb">
-        <img src="/assets/hotdeal/toss-egg.webp" alt="맛꾼 구운란 대란 30구 상품 이미지" width="480" height="480"
+        <img src="/assets/hotdeal/toss-samgyeop.webp" alt="파파네정육점 통삼겹살 수육용 1kg 2개 상품 이미지" width="480" height="480"
              loading="lazy" decoding="async">
       </figure>
       <div class="crow1">
         <span class="hotb">⚡ 선착순·한정 특가</span>
         <span class="cat">식품</span>
         <span class="pf">토스쇼핑</span>
-        <span class="chk">확인 2026-11-22 17:38 KST</span>
+        <span class="chk">확인 2026-11-23 07:10 KST</span>
       </div>
-      <h3 class="tit">맛꾼 구운란 대란 30구</h3>
-      <p class="opt">대란 · 30구 · 1개</p>
-      <div class="savebar"><span class="save">9,900원 아낌</span><span class="off">-49%</span><span class="base">정가 <s>19,900원</s></span></div>
-      <div class="price"><b>10,000원</b><span class="unit">1구당 333원</span></div>
-      <div class="badges"><span class="bdg">구운계란·훈제란 1위</span><span class="bdg">맛꾼 공식</span><span class="bdg">무료배송</span><span class="bdg">내일도착 · 늦으면 보상</span></div>
-      <p class="meta">⭐ 4.7 · 1만 7,194건<br>🚚 내일도착 · 늦으면 보상 · 무료배송</p>
-      <p class="note"><span aria-hidden="true">💬</span> 삶는 시간 아끼려고 30구 쌓아두는 집 많다 카더라. 1구 333원이면 계란값 걱정은 접는 셈.</p>
-      <p class="ship">무료배송(확인 시점). 토스 앱 결제 화면에서 최종 배송비를 확인하세요.</p>
-      <a class="buy" href="https://toss.shopping/_m/dmI4OpJc" target="_blank" rel="noopener noreferrer sponsored"
-         aria-label="맛꾼 구운란 대란 30구 토스쇼핑에서 보기 (새 창)">토스에서 보기 →</a>
-      <p class="plink">링크: <a href="https://toss.shopping/_m/dmI4OpJc" target="_blank" rel="noopener noreferrer sponsored">toss.shopping/_m/dmI4OpJc</a></p>
+      <h3 class="tit">파파네정육점 통삼겹살 수육용 1kg 2개</h3>
+      <p class="opt">수육용 · 1kg · 2개</p>
+      <div class="savebar"><span class="save">19,700원 아낌</span><span class="off">-55%</span><span class="base">정가 <s>35,600원</s></span></div>
+      <div class="price"><b>15,900원</b><span class="unit">100g당 795원</span></div>
+      <div class="badges"><span class="bdg">오늘 0시 선착순특가</span><span class="bdg">베스트 판매자</span><span class="bdg">무료배송</span><span class="bdg">내일도착 · 늦으면 보상</span></div>
+      <p class="meta">⭐ 4.3 · 8,365건<br>🚚 내일(화) 11/24 도착 · 늦으면 보상 · 무료배송</p>
+      <p class="note"><span aria-hidden="true">💬</span> 1kg 두 덩이에 15,900원, 100g당 795원 카더라. 수육용이라 삶아서 썰면 끝, 겨울에 제일 많이 나가는 부위.</p>
+      <p class="ship">무료배송(11/23 07:10 확인). 냉장 배송이라 받는 날 시간을 비워두세요.</p>
+      <a class="buy" href="https://toss.shopping/_m/lQFpSczl" target="_blank" rel="noopener noreferrer sponsored"
+         aria-label="파파네정육점 통삼겹살 수육용 1kg 2개 토스쇼핑에서 보기 (새 창)">토스에서 보기 →</a>
+      <p class="plink">링크: <a href="https://toss.shopping/_m/lQFpSczl" target="_blank" rel="noopener noreferrer sponsored">toss.shopping/_m/lQFpSczl</a></p>
     </article>
     <article class="card toss hot" id="deal-17" data-platform="toss" data-cat="생활">
       <figure class="thumb">
-        <img src="/assets/hotdeal/toss-water500.webp" alt="스파클 생수 무라벨 500ml 80개 상품 이미지" width="480" height="480"
+        <img src="/assets/hotdeal/toss-lotion.webp" alt="메르헨트 바세린 바디로션 1L 2개 상품 이미지" width="480" height="480"
              loading="lazy" decoding="async">
       </figure>
       <div class="crow1">
         <span class="hotb">⚡ 선착순·한정 특가</span>
         <span class="cat">생활</span>
         <span class="pf">토스쇼핑</span>
-        <span class="chk">확인 2026-11-22 17:39 KST</span>
+        <span class="chk">확인 2026-11-23 07:10 KST</span>
       </div>
-      <h3 class="tit">스파클 생수 무라벨 500ml 80병</h3>
-      <p class="opt">무라벨 · 500ml · 80개</p>
-      <div class="savebar"><span class="save">10,100원 아낌</span><span class="off">-42%</span><span class="base">정가 <s>24,000원</s></span></div>
-      <div class="price"><b>13,900원</b><span class="unit">100ml당 35원</span></div>
-      <div class="badges"><span class="bdg">국산생수 2위</span><span class="bdg">스파클 공식</span><span class="bdg">무료배송</span><span class="bdg">내일출발</span></div>
-      <p class="meta">⭐ 4.9 · 7만 6,743건<br>🚚 내일출발 · 무료배송</p>
-      <p class="note"><span aria-hidden="true">💬</span> 한 병에 175원꼴 카더라. 80병이면 하루 한 병씩 두 달 반, 물 무거워서 직접 안 사도 되는 게 핵심.</p>
-      <p class="ship">무료배송(확인 시점). 물은 무게로 배송비가 붙기 쉬운데 여기는 무료입니다.</p>
-      <a class="buy" href="https://toss.shopping/_m/fTeCKCfa" target="_blank" rel="noopener noreferrer sponsored"
-         aria-label="스파클 생수 무라벨 500ml 80병 토스쇼핑에서 보기 (새 창)">토스에서 보기 →</a>
-      <p class="plink">링크: <a href="https://toss.shopping/_m/fTeCKCfa" target="_blank" rel="noopener noreferrer sponsored">toss.shopping/_m/fTeCKCfa</a></p>
+      <h3 class="tit">메르헨트 딥 모이스춰 바세린 바디로션 1L 2개</h3>
+      <p class="opt">1L · 2개 · 1개당 4,995원</p>
+      <div class="savebar"><span class="save">30,010원 아낌</span><span class="off">-75%</span><span class="base">정가 <s>40,000원</s></span></div>
+      <div class="price"><b>9,990원</b><span class="unit">1개당 4,995원</span></div>
+      <div class="badges"><span class="bdg">오늘 0시 선착순특가</span><span class="bdg">지금 30일 내 최저가</span><span class="bdg">바디로션 1위</span><span class="bdg">무료배송</span></div>
+      <p class="meta">⭐ 4.6 · 2,272건<br>🚚 내일(화) 11/24 도착 · 늦으면 보상 · 무료배송</p>
+      <p class="note"><span aria-hidden="true">💬</span> 1L 두 통에 9,990원이면 통당 4,995원 카더라. 겨울에 다리 긁는 집은 한 통 놓고 씁니다.</p>
+      <p class="ship">무료배송(11/23 07:10 확인).</p>
+      <a class="buy" href="https://toss.shopping/_m/N75znYyq" target="_blank" rel="noopener noreferrer sponsored"
+         aria-label="메르헨트 딥 모이스춰 바세린 바디로션 1L 2개 토스쇼핑에서 보기 (새 창)">토스에서 보기 →</a>
+      <p class="plink">링크: <a href="https://toss.shopping/_m/N75znYyq" target="_blank" rel="noopener noreferrer sponsored">toss.shopping/_m/N75znYyq</a></p>
     </article>
     <article class="card toss hot" id="deal-18" data-platform="toss" data-cat="식품">
       <figure class="thumb">
-        <img src="/assets/hotdeal/toss-tangerine.webp" alt="서귀포 조생 감귤 10kg 상품 이미지" width="480" height="480"
+        <img src="/assets/hotdeal/toss-ashley.webp" alt="애슐리 주먹밥 20개 세트 상품 이미지" width="480" height="480"
              loading="lazy" decoding="async">
       </figure>
       <div class="crow1">
         <span class="hotb">⚡ 선착순·한정 특가</span>
         <span class="cat">식품</span>
         <span class="pf">토스쇼핑</span>
-        <span class="chk">확인 2026-11-22 17:39 KST</span>
+        <span class="chk">확인 2026-11-23 07:10 KST</span>
       </div>
-      <h3 class="tit">서귀포 조생 감귤 최고 15Brix 10kg</h3>
-      <p class="opt">최고 15Brix · 10kg · 1개</p>
-      <div class="savebar"><span class="save">28,200원 아낌</span><span class="off">-70%</span><span class="base">정가 <s>40,000원</s></span></div>
-      <div class="price"><b>11,800원</b><span class="unit">100g당 118원</span></div>
-      <div class="badges"><span class="bdg">70% 특가</span><span class="bdg">지금 30일 내 최저가</span><span class="bdg">귤 3위</span><span class="bdg">무료배송</span></div>
-      <p class="meta">⭐ 4.3 · 189건<br>🚚 무료배송 · 확인 시점 기준</p>
-      <p class="note"><span aria-hidden="true">💬</span> 10kg에 11,800원이면 100g당 118원 카더라. 두 사람이 한 달 먹고 남는 양, 리뷰 189건은 적지만 귤 3위.</p>
-      <p class="ship">무료배송(확인 시점). 산지 직송 상품이라 배송일은 결제 화면 안내를 따르세요.</p>
-      <a class="buy" href="https://toss.shopping/_m/DW6uUpZn" target="_blank" rel="noopener noreferrer sponsored"
-         aria-label="서귀포 조생 감귤 최고 15Brix 10kg 토스쇼핑에서 보기 (새 창)">토스에서 보기 →</a>
-      <p class="plink">링크: <a href="https://toss.shopping/_m/DW6uUpZn" target="_blank" rel="noopener noreferrer sponsored">toss.shopping/_m/DW6uUpZn</a></p>
+      <h3 class="tit">애슐리 주먹밥 20개 세트 (4가지 맛)</h3>
+      <p class="opt">버터와규·치즈케이준치킨·치즈갈릭스테이크·김치콘치즈 각 5개</p>
+      <div class="savebar"><span class="save">18,190원 아낌</span><span class="off">-42%</span><span class="base">정가 <s>42,800원</s></span></div>
+      <div class="price"><b>24,610원</b><span class="unit">1개당 1,231원</span></div>
+      <div class="badges"><span class="bdg">오늘 0시 선착순특가</span><span class="bdg">베스트 판매자</span><span class="bdg">냉장·냉동 즉석밥 4위</span><span class="bdg">무료배송</span></div>
+      <p class="meta">⭐ 4.7 · 1,063건<br>🚚 내일(화) 11/24 도착 · 늦으면 보상 · 무료배송</p>
+      <p class="note"><span aria-hidden="true">💬</span> 한 개 1,231원이면 편의점 김밥값보다 싸다 카더라. 20개면 냉동실 한 칸, 전자레인지 2분이면 한 끼.</p>
+      <p class="ship">무료배송(11/23 07:10 확인).</p>
+      <a class="buy" href="https://toss.shopping/_m/BCyucKUw" target="_blank" rel="noopener noreferrer sponsored"
+         aria-label="애슐리 주먹밥 20개 세트 (4가지 맛) 토스쇼핑에서 보기 (새 창)">토스에서 보기 →</a>
+      <p class="plink">링크: <a href="https://toss.shopping/_m/BCyucKUw" target="_blank" rel="noopener noreferrer sponsored">toss.shopping/_m/BCyucKUw</a></p>
     </article>
-    <article class="card toss hot" id="deal-19" data-platform="toss" data-cat="생활">
+    <article class="card toss hot" id="deal-19" data-platform="toss" data-cat="식품">
       <figure class="thumb">
-        <img src="/assets/hotdeal/toss-towel.webp" alt="베라 4ZERO 팝업 뽑아쓰는 키친타올 9팩 상품 이미지" width="480" height="480"
+        <img src="/assets/hotdeal/toss-monaka.webp" alt="쥬르본 종합 모나카 550g 1박스 상품 이미지" width="480" height="480"
+             loading="lazy" decoding="async">
+      </figure>
+      <div class="crow1">
+        <span class="hotb">⚡ 선착순·한정 특가</span>
+        <span class="cat">식품</span>
+        <span class="pf">토스쇼핑</span>
+        <span class="chk">확인 2026-11-23 07:10 KST</span>
+      </div>
+      <h3 class="tit">쥬르본 종합 모나카 550g 1박스</h3>
+      <p class="opt">550g · 1박스 · 1개당 203원</p>
+      <div class="savebar"><span class="save">10,100원 아낌</span><span class="off">-56%</span><span class="base">정가 <s>18,000원</s></span></div>
+      <div class="price"><b>7,900원</b><span class="unit">1개당 203원</span></div>
+      <div class="badges"><span class="bdg">오늘 0시 선착순특가</span><span class="bdg">화과자 1위</span><span class="bdg">베스트 판매자</span><span class="bdg">무료배송</span></div>
+      <p class="meta">⭐ 4.5 · 1,801건<br>🚚 내일(화) 11/24 도착 · 늦으면 보상 · 무료배송</p>
+      <p class="note"><span aria-hidden="true">💬</span> 한 개 203원 카더라. 아이 간식·사무실 탕비실에 두면 하루 만에 사라지는 종류.</p>
+      <p class="ship">무료배송(11/23 07:10 확인).</p>
+      <a class="buy" href="https://toss.shopping/_m/vGvoRfLb" target="_blank" rel="noopener noreferrer sponsored"
+         aria-label="쥬르본 종합 모나카 550g 1박스 토스쇼핑에서 보기 (새 창)">토스에서 보기 →</a>
+      <p class="plink">링크: <a href="https://toss.shopping/_m/vGvoRfLb" target="_blank" rel="noopener noreferrer sponsored">toss.shopping/_m/vGvoRfLb</a></p>
+    </article>
+    <article class="card toss hot" id="deal-20" data-platform="toss" data-cat="생활">
+      <figure class="thumb">
+        <img src="/assets/hotdeal/toss-water500.webp" alt="에브리워터 무라벨 500ml 40개 상품 이미지" width="480" height="480"
              loading="lazy" decoding="async">
       </figure>
       <div class="crow1">
         <span class="hotb">⚡ 선착순·한정 특가</span>
         <span class="cat">생활</span>
         <span class="pf">토스쇼핑</span>
-        <span class="chk">확인 2026-11-22 17:40 KST</span>
+        <span class="chk">확인 2026-11-23 07:10 KST</span>
       </div>
-      <h3 class="tit">베라 4ZERO 팝업 뽑아쓰는 키친타올 3겹 100매 9팩</h3>
-      <p class="opt">3겹 · 100매 · 9팩</p>
-      <div class="savebar"><span class="save">13,700원 아낌</span><span class="off">-68%</span><span class="base">정가 <s>19,900원</s></span></div>
-      <div class="price"><b>6,200원</b><span class="unit">1팩당 689원</span></div>
-      <div class="badges"><span class="bdg">각키친타올 2위</span><span class="bdg">쇼우몰 공식</span><span class="bdg">내일도착 · 늦으면 보상</span><span class="bdg">무료배송</span></div>
-      <p class="meta">⭐ 4.7 · 669건<br>🚚 내일도착 · 늦으면 보상 · 무료배송</p>
-      <p class="note"><span aria-hidden="true">💬</span> 3겹 100매 9팩에 6,200원, 1팩 689원 카더라. 뽑아쓰는 팝업형이라 한 장씩 아깝지 않음.</p>
-      <p class="ship">무료배송(확인 시점).</p>
-      <a class="buy" href="https://toss.shopping/_m/jNXl6Ov1" target="_blank" rel="noopener noreferrer sponsored"
-         aria-label="베라 4ZERO 팝업 뽑아쓰는 키친타올 3겹 100매 9팩 토스쇼핑에서 보기 (새 창)">토스에서 보기 →</a>
-      <p class="plink">링크: <a href="https://toss.shopping/_m/jNXl6Ov1" target="_blank" rel="noopener noreferrer sponsored">toss.shopping/_m/jNXl6Ov1</a></p>
-    </article>
-    <article class="card toss hot" id="deal-20" data-platform="toss" data-cat="식품">
-      <figure class="thumb">
-        <img src="/assets/hotdeal/toss-seolleongtang.webp" alt="한촌 사골 양지고기 설렁탕 500g 5개 상품 이미지" width="480" height="480"
-             loading="lazy" decoding="async">
-      </figure>
-      <div class="crow1">
-        <span class="hotb">⚡ 선착순·한정 특가</span>
-        <span class="cat">식품</span>
-        <span class="pf">토스쇼핑</span>
-        <span class="chk">확인 2026-11-22 17:41 KST</span>
-      </div>
-      <h3 class="tit">한촌 사골 양지고기 설렁탕 500g 5팩</h3>
-      <p class="opt">500g · 5개</p>
-      <div class="savebar"><span class="save">12,000원 아낌</span><span class="off">-48%</span><span class="base">정가 <s>24,900원</s></span></div>
-      <div class="price"><b>12,900원</b><span class="unit">1팩당 2,580원</span></div>
-      <div class="badges"><span class="bdg">즉석탕·찌개 22위</span><span class="bdg">이랜드팜앤푸드</span><span class="bdg">내일도착 · 늦으면 보상</span><span class="bdg">무료배송</span></div>
-      <p class="meta">⭐ 4.6 · 5,889건<br>🚚 내일도착 · 늦으면 보상 · 무료배송</p>
-      <p class="note"><span aria-hidden="true">💬</span> 한 그릇 2,580원이면 국밥집 반값 카더라. 500g에 고기가 들어간 사골 설렁탕.</p>
-      <p class="ship">무료배송(확인 시점).</p>
-      <a class="buy" href="https://toss.shopping/_m/LCwgvO9a" target="_blank" rel="noopener noreferrer sponsored"
-         aria-label="한촌 사골 양지고기 설렁탕 500g 5팩 토스쇼핑에서 보기 (새 창)">토스에서 보기 →</a>
-      <p class="plink">링크: <a href="https://toss.shopping/_m/LCwgvO9a" target="_blank" rel="noopener noreferrer sponsored">toss.shopping/_m/LCwgvO9a</a></p>
+      <h3 class="tit">에브리워터 무라벨 500ml 40개</h3>
+      <p class="opt">무라벨 · 500ml · 40개</p>
+      <div class="savebar"><span class="save">13,510원 아낌</span><span class="off">-68%</span><span class="base">정가 <s>19,800원</s></span></div>
+      <div class="price"><b>6,290원</b><span class="unit">100ml당 32원</span></div>
+      <div class="badges"><span class="bdg">오늘 68% 특가</span><span class="bdg">지금 30일 내 최저가</span><span class="bdg">오늘 베스트 11위</span><span class="bdg">무료배송</span></div>
+      <p class="meta">⭐ 4.8 · 7만 4,379건<br>🚚 무료배송 · 12/3(목) 도착 예정</p>
+      <p class="note"><span aria-hidden="true">💬</span> 500ml 40병에 6,290원이면 한 병 157원 카더라. 20L 무게를 직접 안 들고 오는 게 핵심.</p>
+      <p class="ship">무료배송(11/23 07:10 확인). 물은 무게로 배송비가 붙기 쉬운데 여기는 무료입니다.</p>
+      <a class="buy" href="https://toss.shopping/_m/1vtoelH6" target="_blank" rel="noopener noreferrer sponsored"
+         aria-label="에브리워터 무라벨 500ml 40개 토스쇼핑에서 보기 (새 창)">토스에서 보기 →</a>
+      <p class="plink">링크: <a href="https://toss.shopping/_m/1vtoelH6" target="_blank" rel="noopener noreferrer sponsored">toss.shopping/_m/1vtoelH6</a></p>
     </article>
     <article class="card toss hot" id="deal-21" data-platform="toss" data-cat="식품">
       <figure class="thumb">
-        <img src="/assets/hotdeal/toss-tteokgalbi.webp" alt="노랑 곱빼기 왕 떡갈비 160g 5봉 상품 이미지" width="480" height="480"
+        <img src="/assets/hotdeal/toss-apple.webp" alt="프로프룻 껍질째 먹는 세척사과 3kg 상품 이미지" width="480" height="480"
              loading="lazy" decoding="async">
       </figure>
       <div class="crow1">
         <span class="hotb">⚡ 선착순·한정 특가</span>
         <span class="cat">식품</span>
         <span class="pf">토스쇼핑</span>
-        <span class="chk">확인 2026-11-22 17:41 KST</span>
+        <span class="chk">확인 2026-11-23 07:10 KST</span>
       </div>
-      <h3 class="tit">노랑 곱빼기 왕 떡갈비 160g 5봉</h3>
-      <p class="opt">160g · 5봉</p>
-      <div class="savebar"><span class="save">10,900원 아낌</span><span class="off">-54%</span><span class="base">정가 <s>19,900원</s></span></div>
-      <div class="price"><b>9,000원</b><span class="unit">1봉당 1,800원</span></div>
-      <div class="badges"><span class="bdg">떡갈비 3위</span><span class="bdg">사이다마트</span><span class="bdg">내일도착 · 늦으면 보상</span><span class="bdg">무료배송</span></div>
-      <p class="meta">⭐ 4.6 · 9,942건<br>🚚 내일도착 · 늦으면 보상 · 무료배송</p>
-      <p class="note"><span aria-hidden="true">💬</span> 1봉 1,800원이면 고기 반찬값이 안 나온다 카더라. 에어프라이어에 돌리면 저녁 한 끼.</p>
-      <p class="ship">무료배송(확인 시점).</p>
-      <a class="buy" href="https://toss.shopping/_m/NFeKwLog" target="_blank" rel="noopener noreferrer sponsored"
-         aria-label="노랑 곱빼기 왕 떡갈비 160g 5봉 토스쇼핑에서 보기 (새 창)">토스에서 보기 →</a>
-      <p class="plink">링크: <a href="https://toss.shopping/_m/NFeKwLog" target="_blank" rel="noopener noreferrer sponsored">toss.shopping/_m/NFeKwLog</a></p>
+      <h3 class="tit">프로프룻 껍질째 먹는 세척사과 3kg</h3>
+      <p class="opt">3kg · 1박스</p>
+      <div class="savebar"><span class="save">34,000원 아낌</span><span class="off">-75%</span><span class="base">정가 <s>44,900원</s></span></div>
+      <div class="price"><b>10,900원</b><span class="unit">100g당 364원</span></div>
+      <div class="badges"><span class="bdg">오늘 0시 선착순특가</span><span class="bdg">75% 특가</span><span class="bdg">판매자 프로프룻</span><span class="bdg">무료배송</span></div>
+      <p class="meta">⭐ 4.3 · 6,515건<br>🚚 무료배송 · 11/26(수) 도착 예정</p>
+      <p class="note"><span aria-hidden="true">💬</span> 3kg에 10,900원이면 100g당 364원 카더라. 껍질째 먹는 세척사과라 씻어서 바로 먹으면 됩니다.</p>
+      <p class="ship">무료배송(11/23 07:10 확인).</p>
+      <a class="buy" href="https://toss.shopping/_m/DNWCY4Ig" target="_blank" rel="noopener noreferrer sponsored"
+         aria-label="프로프룻 껍질째 먹는 세척사과 3kg 토스쇼핑에서 보기 (새 창)">토스에서 보기 →</a>
+      <p class="plink">링크: <a href="https://toss.shopping/_m/DNWCY4Ig" target="_blank" rel="noopener noreferrer sponsored">toss.shopping/_m/DNWCY4Ig</a></p>
     </article>
     <article class="card toss hot" id="deal-22" data-platform="toss" data-cat="생활">
       <figure class="thumb">
-        <img src="/assets/hotdeal/toss-bodywash.webp" alt="메르헨트 퍼퓸 대용량 바디워시 1L 2개 상품 이미지" width="480" height="480"
+        <img src="/assets/hotdeal/toss-tissue.webp" alt="한예지 페르니 3겹 화장지 30롤입 2개 상품 이미지" width="480" height="480"
              loading="lazy" decoding="async">
       </figure>
       <div class="crow1">
         <span class="hotb">⚡ 선착순·한정 특가</span>
         <span class="cat">생활</span>
         <span class="pf">토스쇼핑</span>
-        <span class="chk">확인 2026-11-22 17:42 KST</span>
+        <span class="chk">확인 2026-11-23 07:10 KST</span>
       </div>
-      <h3 class="tit">메르헨트 퍼퓸 대용량 바디워시 1L 2개</h3>
-      <p class="opt">피치블라썸 · 1L · 2개</p>
-      <div class="savebar"><span class="save">20,800원 아낌</span><span class="off">-69%</span><span class="base">정가 <s>30,000원</s></span></div>
-      <div class="price"><b>9,200원</b><span class="unit">100ml당 460원</span></div>
-      <div class="badges"><span class="bdg">바디워시 3위</span><span class="bdg">디에스엠인터내셔널 공식</span><span class="bdg">내일도착 · 늦으면 보상</span><span class="bdg">무료배송</span></div>
-      <p class="meta">⭐ 4.6 · 3,619건<br>🚚 내일도착 · 늦으면 보상 · 무료배송</p>
-      <p class="note"><span aria-hidden="true">💬</span> 1L 두 통이면 겨울 내내 쓴다 카더라. 100ml당 460원, 퍼퓸이라 샤워 후 향이 남음.</p>
-      <p class="ship">무료배송(확인 시점).</p>
-      <a class="buy" href="https://toss.shopping/_m/ndZP3EVs" target="_blank" rel="noopener noreferrer sponsored"
-         aria-label="메르헨트 퍼퓸 대용량 바디워시 1L 2개 토스쇼핑에서 보기 (새 창)">토스에서 보기 →</a>
-      <p class="plink">링크: <a href="https://toss.shopping/_m/ndZP3EVs" target="_blank" rel="noopener noreferrer sponsored">toss.shopping/_m/ndZP3EVs</a></p>
+      <h3 class="tit">한예지 페르니 도톰 순수 3겹 화장지 30m 30롤입 2개</h3>
+      <p class="opt">3겹 · 30m · 30롤입 × 2개(총 60롤)</p>
+      <div class="savebar"><span class="save">20,510원 아낌</span><span class="off">-53%</span><span class="base">정가 <s>38,000원</s></span></div>
+      <div class="price"><b>17,490원</b><span class="unit">1롤당 292원</span></div>
+      <div class="badges"><span class="bdg">오늘 0시 선착순특가</span><span class="bdg">지금 30일 내 최저가</span><span class="bdg">고급롤화장지 17위</span><span class="bdg">무료배송</span></div>
+      <p class="meta">⭐ 4.6 · 1만 2,491건<br>🚚 내일(화) 11/24 도착 · 늦으면 보상 · 무료배송</p>
+      <p class="note"><span aria-hidden="true">💬</span> 60롤에 17,490원이면 1롤 292원 카더라. 3겹 30m라 두 겹짜리보다 확실히 도톰.</p>
+      <p class="ship">무료배송(11/23 07:10 확인). 60롤은 부피가 커서 직접 들기 버겁습니다.</p>
+      <a class="buy" href="https://toss.shopping/_m/J0WOWJGv" target="_blank" rel="noopener noreferrer sponsored"
+         aria-label="한예지 페르니 도톰 순수 3겹 화장지 30m 30롤입 2개 토스쇼핑에서 보기 (새 창)">토스에서 보기 →</a>
+      <p class="plink">링크: <a href="https://toss.shopping/_m/J0WOWJGv" target="_blank" rel="noopener noreferrer sponsored">toss.shopping/_m/J0WOWJGv</a></p>
     </article>
   </section>
 
@@ -846,7 +867,7 @@
     지금 들어가면 품절이거나 값이 올라 있을 수 있습니다. 그럴 땐 다음 카드로 넘어가면 됩니다.<br><br>
     <b>사진</b> · 각 상품 페이지의 대표 이미지를 내려받아 썼습니다. 색상·구성은 고른 옵션에 따라
     달라 보일 수 있으니 결제 전에 옵션을 한 번 더 확인하세요.<br><br>
-    <b>토스 하루특가</b> · 하루특가는 이름 그대로 하루 단위라 자정에 값이 바뀝니다. 카드의 확인 시각이
+    <b>토스 선착순특가</b> · '매일 00시 선착순특가'는 이름 그대로 하루 단위라 자정에 새 값으로 바뀝니다. 카드의 확인 시각이
     오늘인지 먼저 보세요. 토스 링크는 토스쇼핑 쉐어링크에서 직접 발급한 공개용 링크입니다.<br><br>
     <b>다른 몰</b> · 토스쇼핑 하루특가·BEST 특가는 위쪽 토스 섹션에 모았습니다. 토스 링크는 토스쇼핑 쉐어링크에서 직접 발급한 공개용 링크이고, 수수료 고지는 그 섹션 안에 따로 적었습니다. 네이버 크리에이터샵 상품은 맨 아래 별도 섹션(쿠팡파트너스와 무관)에 모았습니다.
   </div>

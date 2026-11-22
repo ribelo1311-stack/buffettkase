@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>주식 물타기 &amp; 본전 탈출 계산기 (/calc) | 버핏카세 월억버핏</title>
+  <meta name="naver-site-verification" content="179eab886c7dde3e52341835dab2969e66cdc807" />
+  <meta name="google-site-verification" content="_ft3sJsLoNq8qK5OzqchVg0ZBUdR3TMiyNhJTISoV9o" />
+  <meta name="description" content="평단가·보유수량·추가매수 금액을 넣으면 새 평단가와 본전 탈출가를 1초에 계산합니다. 15년 직장근무를 마무리하고 월백·월천·월억에 도전하는 월억버핏의 실전 물타기 계산기 — 회원가입·로그인 없이 무료.">
+  <link rel="canonical" href="https://buffettkase.pages.dev/calc">
+  <meta name="robots" content="index,follow">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="버핏카세 · 월억버핏">
+  <meta property="og:title" content="실전 주식 물타기 & 본전 탈출 계산기 | 월억버핏">
+  <meta property="og:description" content="평단가를 낮추고 본전 탈출가를 1초에 확인하는 무료 계산기. 회원가입 없이 바로.">
+  <meta property="og:url" content="https://buffettkase.pages.dev/calc">
+  <style>
+    :root {
+      --bg: #0B1120;
+      --card-bg: #131F37;
+      --card-border: #1E2E4E;
+      --primary: #38BDF8;
+      --primary-hover: #0284C7;
+      --accent: #F59E0B;
+      --text: #F8FAFC;
+      --text-muted: #94A3B8;
+      --red: #EF4444;
+      --green: #10B981;
+      --input-bg: #0A0F1D;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Pretendard", Roboto, sans-serif; }
+    body { background-color: var(--bg); color: var(--text); padding: 16px; display: flex; justify-content: center; }
+    .container { width: 100%; max-width: 480px; }
+    
+    header { text-align: center; margin-bottom: 20px; padding: 12px 0; }
+    .badge { display: inline-block; background: rgba(56, 189, 248, 0.15); color: var(--primary); font-size: 12px; font-weight: 600; padding: 4px 10px; border-radius: 12px; margin-bottom: 8px; }
+    h1 { font-size: 22px; font-weight: 700; margin-bottom: 6px; letter-spacing: -0.5px; }
+    .subtitle { font-size: 13px; color: var(--text-muted); }
+    
+    .card { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 16px; padding: 18px; margin-bottom: 16px; box-shadow: 0 4px 20px rgba(0,0,0,0.3); }
+    .card-title { font-size: 15px; font-weight: 600; color: var(--primary); margin-bottom: 14px; display: flex; align-items: center; gap: 6px; }
+    
+    .input-group { margin-bottom: 12px; }
+    label { display: block; font-size: 12px; color: var(--text-muted); margin-bottom: 6px; font-weight: 500; }
+    .input-row { display: flex; gap: 10px; }
+    .input-wrapper { flex: 1; position: relative; }
+    input { width: 100%; background: var(--input-bg); border: 1px solid var(--card-border); color: #fff; font-size: 16px; font-weight: 600; padding: 12px 14px; border-radius: 10px; outline: none; transition: border 0.2s; }
+    input:focus { border-color: var(--primary); }
+    .unit { position: absolute; right: 12px; top: 50%; transform: translateY(-50%); font-size: 13px; color: var(--text-muted); pointer-events: none; }
+    
+    .tab-switch { display: flex; background: var(--input-bg); border-radius: 10px; p: 3px; margin-bottom: 14px; padding: 3px; border: 1px solid var(--card-border); }
+    .tab-btn { flex: 1; padding: 8px; font-size: 13px; font-weight: 600; background: none; border: none; color: var(--text-muted); border-radius: 8px; cursor: pointer; transition: all 0.2s; }
+    .tab-btn.active { background: var(--card-bg); color: var(--primary); box-shadow: 0 2px 6px rgba(0,0,0,0.2); }
+    
+    .btn-calc { width: 100%; background: var(--primary); color: #0B1120; font-size: 16px; font-weight: 700; padding: 14px; border: none; border-radius: 12px; cursor: pointer; transition: background 0.2s; margin-top: 6px; }
+    .btn-calc:active { background: var(--primary-hover); transform: scale(0.99); }
+    
+    /* Result section */
+    .result-box { display: none; margin-top: 16px; }
+    .highlight-banner { background: linear-gradient(135deg, rgba(56, 189, 248, 0.15), rgba(16, 185, 129, 0.15)); border: 1px solid rgba(56, 189, 248, 0.3); border-radius: 14px; padding: 16px; text-align: center; margin-bottom: 16px; }
+    .highlight-sub { font-size: 12px; color: var(--text-muted); margin-bottom: 4px; }
+    .highlight-val { font-size: 26px; font-weight: 800; color: #fff; }
+    .highlight-diff { font-size: 13px; margin-top: 6px; font-weight: 600; }
+    
+    .result-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 16px; }
+    .result-item { background: var(--input-bg); border: 1px solid var(--card-border); border-radius: 12px; padding: 12px; }
+    .res-label { font-size: 11px; color: var(--text-muted); margin-bottom: 4px; }
+    .res-val { font-size: 16px; font-weight: 700; color: #fff; }
+    
+    .target-table { width: 100%; border-collapse: collapse; font-size: 13px; text-align: right; }
+    .target-table th { color: var(--text-muted); font-weight: 500; padding: 8px 4px; border-bottom: 1px solid var(--card-border); }
+    .target-table td { padding: 10px 4px; border-bottom: 1px solid rgba(255,255,255,0.05); font-weight: 600; }
+    .target-table th:first-child, .target-table td:first-child { text-align: left; }
+    
+    .ad-placeholder { background: rgba(255,255,255,0.03); border: 1px dashed var(--card-border); border-radius: 12px; padding: 20px; text-align: center; color: var(--text-muted); font-size: 12px; margin-top: 20px; }
+    footer { text-align: center; font-size: 12px; color: var(--text-muted); margin-top: 24px; padding-bottom: 30px; }
+    /* 방문자 카운터 (실제 집계 · KST 자정 기준) */
+    .vcount { display: none; align-items: center; justify-content: center; gap: 5px; flex-wrap: nowrap; width: -moz-fit-content; width: fit-content; max-width: 100%; margin: 0 auto 10px; padding: 4px 11px; border-radius: 999px; background: rgba(56, 189, 248, 0.10); border: 1px solid rgba(56, 189, 248, 0.28); color: #cbd5e1; font-size: 11px; font-weight: 700; letter-spacing: 0.1px; white-space: nowrap; }
+    .vcount b { color: var(--primary); font-weight: 800; font-variant-numeric: tabular-nums; }
+    .vcount .vcsep { opacity: 0.45; }
+    /* 정책·소개 페이지 링크 (애드센스 심사 대비) */
+    .flinks { margin-top: 9px; display: flex; align-items: center; justify-content: center; gap: 7px; flex-wrap: wrap; font-size: 11.5px; }
+    .flinks a { color: #8FA0BA; font-weight: 700; text-decoration: none; padding: 4px 9px; border-radius: 7px; border: 1px solid rgba(148, 163, 184, 0.22); }
+    .flinks a:hover { color: #CBD5E1; border-color: rgba(148, 163, 184, 0.42); }
+    .flinks .sep { opacity: 0.3; }
+
+    /* ===== 하단 큰 바로가기 3종 (푸터 바로 위) ===== */
+    .biglinks { margin-top: 22px; padding: 16px 14px 15px; border: 1px solid #26374f; border-radius: 16px; background: linear-gradient(160deg, #101b2e, #0d1626); }
+    .biglinks .bh { font-size: 13.5px; font-weight: 900; letter-spacing: -0.3px; margin-bottom: 11px; color: #f1f5f9; }
+    .biglinks .bh em { font-style: normal; color: #fbbf24; }
+    .blgrid { display: flex; flex-direction: column; gap: 9px; }
+    .blcard { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 11px; padding: 14px 13px; border-radius: 13px; border: 1px solid #2b3d57; background: #0f1a2b; text-decoration: none; transition: transform 0.15s, border-color 0.15s, box-shadow 0.15s; }
+    .blcard:hover { transform: translateY(-1px); box-shadow: 0 14px 30px -18px rgba(0,0,0,0.9); }
+    .blcard .ic { font-size: 23px; line-height: 1; }
+    .blcard .t { display: block; font-size: 14.5px; font-weight: 900; letter-spacing: -0.4px; color: #f1f5f9; }
+    .blcard .d { display: block; font-size: 11px; font-weight: 600; color: #94a3b8; margin-top: 3px; line-height: 1.5; }
+    .blcard .ar { font-size: 14px; font-weight: 900; }
+    .blcard.sup { border-color: #4a3a12; background: linear-gradient(160deg, #221a08, #151006); }
+    .blcard.sup .ar { color: #fbbf24; }
+    .blcard.calc { border-color: #123a4f; background: linear-gradient(160deg, #081e2b, #07131d); }
+    .blcard.calc .ar { color: #38bdf8; }
+    .blcard.pets { border-color: #123f33; background: linear-gradient(160deg, #08241d, #07160f); }
+    .blcard.pets .ar { color: #34d399; }
+
+    /* ===== 플로팅 맨 위/맨 아래 버튼 ===== */
+    .scrollnav { position: fixed; right: 10px; bottom: 14px; z-index: 120; display: flex; flex-direction: column; gap: 6px; }
+    .scrollnav button { width: 44px; height: 40px; display: flex; flex-direction: column; align-items: center; justify-content: center; border-radius: 11px; border: 1px solid #33465e; background: rgba(13,22,38,0.93); color: #cbd5e1; cursor: pointer; font-family: inherit; line-height: 1; backdrop-filter: blur(6px); box-shadow: 0 8px 20px -12px rgba(0,0,0,0.9); transition: opacity 0.15s, border-color 0.15s, color 0.15s; }
+    .scrollnav button b { font-size: 14px; font-weight: 900; line-height: 1; }
+    .scrollnav button i { font-style: normal; font-size: 7.5px; font-weight: 800; color: #8b98ab; margin-top: 3px; letter-spacing: -0.2px; }
+    .scrollnav button:hover { border-color: #4a6382; color: #fff; }
+    .scrollnav button.off { opacity: 0.25; pointer-events: none; }
+    @media (max-width: 480px) { .scrollnav { right: 8px; bottom: 10px; gap: 5px; } .scrollnav button { width: 40px; height: 37px; } }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div style="display: flex; justify-content: center; gap: 7px; flex-wrap: wrap; margin-bottom: 12px;">
+        <a href="index.html" style="display: inline-flex; align-items: center; gap: 5px; background: rgba(245, 158, 11, 0.13); border: 1px solid rgba(245, 158, 11, 0.38); color: #FCD34D; padding: 5px 12px; border-radius: 20px; font-size: 12px; font-weight: 800; text-decoration: none;">🏠 버핏카세 홈</a>
+        <a href="dashboard.html" style="display: inline-flex; align-items: center; gap: 5px; background: rgba(59, 130, 246, 0.15); border: 1px solid rgba(59, 130, 246, 0.4); color: #60A5FA; padding: 5px 12px; border-radius: 20px; font-size: 12px; font-weight: 700; text-decoration: none;">📊 시황판</a>
+        <a href="pets.html" style="display: inline-flex; align-items: center; gap: 5px; background: rgba(52, 211, 153, 0.13); border: 1px solid rgba(52, 211, 153, 0.36); color: #6EE7B7; padding: 5px 12px; border-radius: 20px; font-size: 12px; font-weight: 700; text-decoration: none;">🐾 유기동물</a>
+      </div>
+      <div class="badge">🔥 전업투자자 실전 툴 #1</div>
+      <h1>실전 주식 물타기 계산기</h1>
+      <div class="subtitle">평단가 낮추고 본전 탈출 분기점 1초 만에 확인하기</div>
+    </header>
+
+    <!-- hotdeal.html 연결 띠 배너 -->
+    <a href="hotdeal.html" style="display:flex;align-items:center;gap:10px;margin:0 0 10px;padding:11px 13px;border-radius:13px;
+       border:1px solid rgba(251,113,133,.4);background:linear-gradient(120deg,rgba(251,113,133,.14),rgba(19,31,55,.75));
+       text-decoration:none;">
+      <span style="flex:0 0 auto;width:30px;height:30px;border-radius:9px;display:grid;place-items:center;
+           background:rgba(251,113,133,.18);color:#FDA4AF;font-size:13px;font-weight:900;">핫딜</span>
+      <span style="flex:1;min-width:0;">
+        <b style="display:block;font-size:13px;font-weight:900;color:#F1F5F9;letter-spacing:-.3px;">카더라 핫딜 · 직접 확인한 쿠팡 딜</b>
+        <span style="display:block;font-size:10.5px;color:#94A3B8;font-weight:700;margin-top:2px;">가격·배송·단축링크까지 확인한 6건 (쿠팡파트너스)</span>
+      </span>
+      <span style="flex:0 0 auto;font-size:13px;font-weight:900;color:#FDA4AF;">→</span>
+    </a>
+
+    <!-- food.html 연결 띠 배너 -->
+    <a href="food.html" style="display:flex;align-items:center;gap:10px;margin:0 0 14px;padding:11px 13px;border-radius:13px;
+       border:1px solid rgba(245,158,11,.38);background:linear-gradient(120deg,rgba(245,158,11,.13),rgba(19,31,55,.75));
+       text-decoration:none;">
+      <span style="flex:0 0 auto;width:30px;height:30px;border-radius:9px;display:grid;place-items:center;
+           background:rgba(245,158,11,.18);color:#FBBF24;font-size:13px;font-weight:900;">겨울</span>
+      <span style="flex:1;min-width:0;">
+        <b style="display:block;font-size:13px;font-weight:900;color:#F1F5F9;letter-spacing:-.3px;">겨울 붕세권 · 전국 축제·야시장 일정</b>
+        <span style="display:block;font-size:10.5px;color:#94A3B8;font-weight:700;margin-top:2px;">공식 원문으로 확인한 19곳 + 동네 붕어빵 제보</span>
+      </span>
+      <span style="flex:0 0 auto;font-size:13px;font-weight:900;color:#FBBF24;">→</span>
+    </a>
+
+    <!-- 현재 보유 상황 -->
+    <div class="card">
+      <div class="card-title">📌 현재 보유 상태</div>
+      <div class="input-row">
+        <div class="input-group input-wrapper">
+          <label>현재 평단가</label>
+          <input type="number" id="currPrice" placeholder="50,000" value="50000">
+          <span class="unit">원</span>
+        </div>
+        <div class="input-group input-wrapper">
+          <label>보유 수량</label>
+          <input type="number" id="currQty" placeholder="100" value="100">
+          <span class="unit">주</span>
+        </div>
+      </div>
+      <div style="font-size: 12px; color: var(--text-muted); text-align: right;">
+        현재 총 매수금액: <span id="currTotal" style="color:#fff; font-weight:600;">5,000,000</span>원
+      </div>
+    </div>
+
+    <!-- 추가 매수 (물타기) 계획 -->
+    <div class="card">
+      <div class="card-title">💧 추가 매수(물타기) 계획</div>
+      
+      <div class="input-group">
+        <label>추가 매수할 주가 (현재 시장가)</label>
+        <div class="input-wrapper">
+          <input type="number" id="addPrice" placeholder="35,000" value="35000">
+          <span class="unit">원</span>
+        </div>
+      </div>
+
+      <div class="tab-switch">
+        <button class="tab-btn active" id="tabQty" onclick="switchMode('qty')">수량(주)으로 입력</button>
+        <button class="tab-btn" id="tabAmt" onclick="switchMode('amt')">추가 투입 금액(원)으로 입력</button>
+      </div>
+
+      <div class="input-group" id="qtyInputGroup">
+        <label>추가 매수 수량</label>
+        <div class="input-wrapper">
+          <input type="number" id="addQty" placeholder="100" value="100">
+          <span class="unit">주</span>
+        </div>
+      </div>
+
+      <div class="input-group" id="amtInputGroup" style="display: none;">
+        <label>추가 투입할 예수금</label>
+        <div class="input-wrapper">
+          <input type="number" id="addAmt" placeholder="3,500,000">
+          <span class="unit">원</span>
+        </div>
+      </div>
+
+      <button class="btn-calc" onclick="calculate()">🚀 최종 평단가 & 본전 탈출가 계산</button>
+    </div>
+
+    <!-- 계산 결과 출력 -->
+    <div class="card result-box" id="resultCard">
+      <div class="card-title">🎯 물타기 시뮬레이션 결과</div>
+      
+      <div class="highlight-banner">
+        <div class="highlight-sub">최종 변경 평단가</div>
+        <div class="highlight-val" id="resAvgPrice">42,500원</div>
+        <div class="highlight-diff" id="resDiff" style="color: var(--green);">기존 대비 -15.0% 인하 성공!</div>
+      </div>
+
+      <div class="result-grid">
+        <div class="result-item">
+          <div class="res-label">총 보유 수량</div>
+          <div class="res-val" id="resTotalQty">200주</div>
+        </div>
+        <div class="result-item">
+          <div class="res-label">총 누적 투자금</div>
+          <div class="res-val" id="resTotalAmt">8,500,000원</div>
+        </div>
+        <div class="result-item">
+          <div class="res-label">물타기 전 본전 필요상승률</div>
+          <div class="res-val" style="color: var(--red);" id="resOldReq">+42.9%</div>
+        </div>
+        <div class="result-item">
+          <div class="res-label">물타기 후 본전 필요상승률</div>
+          <div class="res-val" style="color: var(--primary);" id="resNewReq">+21.4%</div>
+        </div>
+      </div>
+
+      <div class="card-title" style="margin-top: 14px; font-size: 14px;">📈 목표 수익률 도달 가격표</div>
+      <table class="target-table">
+        <thead>
+          <tr>
+            <th>목표</th>
+            <th>도달 주가</th>
+            <th>예상 평가손익</th>
+          </tr>
+        </thead>
+        <tbody id="targetTableBody">
+          <!-- JS로 동적 생성 -->
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 구글 애드센스 광고 영역 자리 -->
+    <div class="ad-placeholder">
+      [ 구글 애드센스 반응형 배너 광고 영역 ]<br>
+      <span style="font-size: 11px; opacity: 0.7;">매월 달러 광고 수익이 적립되는 공간</span>
+    </div>
+
+    <!-- ===== 하단 큰 바로가기 3종 ===== -->
+    <section class="biglinks" aria-label="버핏카세 주요 바로가기">
+      <div class="bh">버핏카세에서 바로 쓰는 <em>3가지</em></div>
+      <div class="blgrid">
+        <a class="blcard sup" href="dashboard.html#support">
+          <span class="ic" aria-hidden="true">☕</span>
+          <span><span class="t">버핏카세 후원하기</span><span class="d">더 정밀한 전광판과 무료 트레이딩 툴 개발을 응원해 주세요.</span></span>
+          <span class="ar" aria-hidden="true">→</span>
+        </a>
+        <a class="blcard calc" href="index.html">
+          <span class="ic" aria-hidden="true">🏠</span>
+          <span><span class="t">버핏카세 홈 · 전체 메뉴</span><span class="d">시황판·핫딜·겨울 붕세권·유기동물까지 6개 코너를 한 화면에서.</span></span>
+          <span class="ar" aria-hidden="true">→</span>
+        </a>
+        <a class="blcard pets" href="pets.html">
+          <span class="ic" aria-hidden="true">🐾</span>
+          <span><span class="t">유기동물 · 임보 전용</span><span class="d">평택 보호소 공고 + 전국 임보·구조, 실제 사진과 직통 연락처.</span></span>
+          <span class="ar" aria-hidden="true">→</span>
+        </a>
+      </div>
+    </section>
+
+    <footer>
+      <div class="vcount" id="vcount"><span aria-hidden="true">👀</span> 오늘 <b id="vcToday">–</b> <span class="vcsep">·</span> 누적 <b id="vcTotal">–</b></div>
+      전업투자자 월억버핏의 실전 트레이딩 연구소 @chatstrange9<br>
+      <span style="opacity: 0.8; font-size: 11px;">📩 비즈니스 & 제휴 문의: <a href="mailto:ribelo1311@naver.com" style="color: var(--primary); text-decoration: none;">ribelo1311@naver.com</a></span><br>
+      © 2026 월억버핏. All rights reserved.
+      <div class="flinks">
+        <a href="about.html">ℹ️ 사이트 소개</a>
+        <a href="privacy.html">🔒 개인정보처리방침</a>
+      </div>
+    </footer>
+  </div>
+
+  <!-- 플로팅 맨 위/맨 아래 이동 버튼 -->
+  <div class="scrollnav" aria-label="페이지 이동">
+    <button type="button" id="snTop" aria-label="맨 위로" title="맨 위로"><b>↑</b><i>맨 위로</i></button>
+    <button type="button" id="snBottom" aria-label="맨 아래로" title="맨 아래로"><b>↓</b><i>맨 아래</i></button>
+  </div>
+
+  <script>
+    let currentMode = 'qty';
+
+    function switchMode(mode) {
+      currentMode = mode;
+      document.getElementById('tabQty').classList.toggle('active', mode === 'qty');
+      document.getElementById('tabAmt').classList.toggle('active', mode === 'amt');
+      document.getElementById('qtyInputGroup').style.display = mode === 'qty' ? 'block' : 'none';
+      document.getElementById('amtInputGroup').style.display = mode === 'amt' ? 'block' : 'none';
+    }
+
+    function calculate() {
+      const currP = parseFloat(document.getElementById('currPrice').value) || 0;
+      const currQ = parseFloat(document.getElementById('currQty').value) || 0;
+      const addP = parseFloat(document.getElementById('addPrice').value) || 0;
+      
+      let addQ = 0;
+      let addAmt = 0;
+
+      if (currentMode === 'qty') {
+        addQ = parseFloat(document.getElementById('addQty').value) || 0;
+        addAmt = addP * addQ;
+      } else {
+        addAmt = parseFloat(document.getElementById('addAmt').value) || 0;
+        addQ = addP > 0 ? Math.floor(addAmt / addP) : 0;
+        addAmt = addQ * addP; // 실 매수가능 금액
+      }
+
+      if (currP <= 0 || currQ <= 0 || addP <= 0 || addQ <= 0) {
+        alert('모든 가격과 수량을 올바르게 입력해 주세요.');
+        return;
+      }
+
+      const totalAmt = (currP * currQ) + addAmt;
+      const totalQ = currQ + addQ;
+      const newAvgP = Math.round(totalAmt / totalQ);
+
+      const priceReduction = ((newAvgP - currP) / currP * 100).toFixed(1);
+      const oldReqGain = ((currP - addP) / addP * 100).toFixed(1);
+      const newReqGain = ((newAvgP - addP) / addP * 100).toFixed(1);
+
+      document.getElementById('resAvgPrice').innerText = newAvgP.toLocaleString() + '원';
+      document.getElementById('resDiff').innerText = `기존 평단 대비 ${Math.abs(priceReduction)}% 인하 성공!`;
+      document.getElementById('resTotalQty').innerText = totalQ.toLocaleString() + '주';
+      document.getElementById('resTotalAmt').innerText = Math.round(totalAmt).toLocaleString() + '원';
+      document.getElementById('resOldReq').innerText = '+' + oldReqGain + '%';
+      document.getElementById('resNewReq').innerText = '+' + newReqGain + '%';
+
+      // 목표 수익률 계산 (본전 0%, +3%, +5%, +10%)
+      const targets = [
+        { label: '본전 탈출 (0%)', rate: 0 },
+        { label: '소소한 익절 (+3%)', rate: 0.03 },
+        { label: '만족 익절 (+5%)', rate: 0.05 },
+        { label: '슈퍼 탈출 (+10%)', rate: 0.10 }
+      ];
+
+      const tbody = document.getElementById('targetTableBody');
+      tbody.innerHTML = '';
+      targets.forEach(t => {
+        const targetPrice = Math.round(newAvgP * (1 + t.rate));
+        const profit = Math.round(totalAmt * t.rate);
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td>${t.label}</td>
+          <td style="color: #38BDF8;">${targetPrice.toLocaleString()}원</td>
+          <td style="color: ${profit > 0 ? '#10B981' : '#94A3B8'};">+${profit.toLocaleString()}원</td>
+        `;
+        tbody.appendChild(tr);
+      });
+
+      document.getElementById('resultCard').style.display = 'block';
+      document.getElementById('resultCard').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // 초기 계산 1회 실행
+    calculate();
+  </script>
+
+  <!-- 플로팅 맨 위/맨 아래 -->
+  <script>
+  (function () {
+    var top = document.getElementById('snTop'), bot = document.getElementById('snBottom');
+    function sync() {
+      var y = window.pageYOffset || document.documentElement.scrollTop || 0;
+      var max = document.documentElement.scrollHeight - window.innerHeight;
+      if (top) top.classList.toggle('off', y < 40);
+      if (bot) bot.classList.toggle('off', max - y < 40);
+    }
+    if (top) top.addEventListener('click', function () { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+    if (bot) bot.addEventListener('click', function () { window.scrollTo({ top: document.documentElement.scrollHeight, behavior: 'smooth' }); });
+    window.addEventListener('scroll', sync, { passive: true });
+    window.addEventListener('resize', sync);
+    sync();
+  })();
+  </script>
+
+  <!-- 방문자 카운터: 실제 방문 집계 (Worker + Durable Object) · 같은 탭 세션에서 새로고침은 중복 집계하지 않음 -->
+  <script>
+  (function () {
+    var API = 'https://buffettkase-visits.ribelo1311.workers.dev';
+    var box = document.getElementById('vcount');
+    if (!box || !window.fetch) return;
+    var KEY = 'bk_visit_v1', seen = false;
+    try { seen = sessionStorage.getItem(KEY) === '1'; } catch (e) {}
+    fetch(API + (seen ? '/stats' : '/hit'), { cache: 'no-store' })
+      .then(function (r) { return r.ok ? r.json() : null; })
+      .then(function (d) {
+        if (!d || typeof d.total !== 'number' || typeof d.today !== 'number') return;
+        document.getElementById('vcToday').textContent = d.today.toLocaleString('ko-KR');
+        document.getElementById('vcTotal').textContent = d.total.toLocaleString('ko-KR');
+        box.title = d.date + '(KST) 기준 · 오늘 방문자는 한국시간 자정에 새로 시작합니다';
+        box.style.display = 'block';
+        if (!seen) { try { sessionStorage.setItem(KEY, '1'); } catch (e) {} }
+      })
+      .catch(function () {});
+  })();
+  </script>
+</body>
+</html>

@@ -167,6 +167,8 @@
     color:#FDE68A;text-decoration:none;white-space:nowrap}
   .maplink:hover{background:rgba(254,229,0,.18);border-color:rgba(254,229,0,.55);color:#FEF3C7}
   .bc .f-act{margin-top:8px}
+  .maplink.mapshow{background:var(--amberSoft);border-color:var(--amberLine);color:var(--amber2);cursor:pointer;font-family:inherit}
+  .maplink.mapshow:hover{background:rgba(245,158,11,.2);border-color:var(--amber2);color:#FDE68A}
 
   .empty{padding:26px 18px;border:1px dashed var(--line2);border-radius:14px;text-align:center;color:var(--mut);font-size:12.5px}
   .empty b{display:block;color:var(--tx2);font-size:13.5px;margin-bottom:4px}
@@ -193,7 +195,7 @@
   .mapcard .mh .mypos:disabled{opacity:.55;cursor:default}
   /* 지도 컨테이너는 각자 stacking context를 만든다 — Leaflet 팬(z-index 400)이
      제보 모달(.modal z-index 100) 위로 튀어나오지 않게 하는 핵심 */
-  #boardMap{position:relative;z-index:0;width:100%;height:240px;background:#0A1220}
+  #boardMap{position:relative;z-index:0;width:100%;height:300px;background:#0A1220}
   #pickMap{position:relative;z-index:0;width:100%;height:220px;border-radius:11px;border:1px solid var(--line);background:#0A1220;margin-top:6px}
   .mapfall{display:grid;place-items:center;height:100%;padding:14px;font-size:10.5px;color:var(--dim);text-align:center;line-height:1.55}
   .mapfoot{padding:6px 11px;border-top:1px solid var(--line);font-size:10px;color:var(--dim);line-height:1.5}
@@ -202,6 +204,25 @@
   .mapstat.err{color:#FCA5A5}
   .mapstat .applyAddr{margin-left:6px;border:1px solid var(--amberLine);background:var(--amberSoft);color:var(--amber2);
     font-size:10px;font-weight:900;padding:3px 7px;border-radius:7px;cursor:pointer}
+  /* 상단 지도 ‘동네·역 찾기’ */
+  .mapsearch{display:flex;gap:6px;padding:8px 11px 0;flex-wrap:wrap}
+  .mapsearch input{flex:1 1 100%;min-width:0;background:#0A1220;border:1px solid var(--line2);border-radius:10px;color:#fff;
+    padding:8px 10px;font-size:12px;outline:none;font-family:inherit}
+  .mapsearch input:focus{border-color:var(--skyLine)}
+  .mapsearch input::placeholder{color:#5b6b83}
+  .mapsearch button{flex:1 1 auto;border:1px solid var(--skyLine);background:var(--skySoft);color:#7DD3FC;
+    font-size:11px;font-weight:900;padding:0 10px;border-radius:10px;cursor:pointer;white-space:nowrap;min-height:34px}
+  .mapsearch button.reset{border-color:var(--line2);background:rgba(255,255,255,.03);color:var(--mut);padding:0 8px}
+  .mapsearch button:disabled{opacity:.5;cursor:default}
+  @media(min-width:480px){
+    .mapsearch{flex-wrap:nowrap}
+    .mapsearch input{flex:1 1 auto}
+    .mapsearch button{flex:0 0 auto}
+  }
+  .boardstat{margin:6px 11px 0;font-size:10.5px;color:var(--mut);line-height:1.5;min-height:15px}
+  .boardstat b{color:var(--amber2)}
+  .boardstat.err{color:#FCA5A5}
+  .mapcard.flash{box-shadow:0 0 0 2px var(--amber2),var(--shadow)}
   .pickrow{display:flex;gap:6px}
   .pickrow input{flex:1;min-width:0;background:var(--card2);border:1px solid var(--line);border-radius:10px;color:#fff;
     padding:9px 11px;font-size:12.5px;outline:none}
@@ -266,7 +287,7 @@
   .b-badge.c{background:var(--greenSoft);color:#6EE7B7;border:1px solid var(--greenLine)}
   .b-badge.t{background:var(--amberSoft);color:var(--amber2);border:1px solid var(--amberLine)}
   .b-badge.e{background:rgba(148,163,184,.1);color:#94A3B8;border:1px solid rgba(148,163,184,.25)}
-  .b-badge.demo{background:rgba(148,163,184,.08);color:#94A3B8;border:1px dashed rgba(148,163,184,.35)}
+  .b-badge.demo{background:rgba(251,191,36,.12);color:#FDE68A;border:1px dashed rgba(251,191,36,.5)}
   .bc .meta{margin-top:8px;display:flex;align-items:center;gap:7px;flex-wrap:wrap;font-size:10.5px;color:var(--dim);font-weight:700}
   .bc .timer{margin-left:auto;font-weight:900;color:var(--amber2);font-variant-numeric:tabular-nums}
   .bc .timer.urgent{color:#FCA5A5}
@@ -439,8 +460,14 @@
         <span class="n" id="mapCount">핀 0개</span>
         <button class="mypos" id="myPosBtn" type="button">📍 내 위치로</button>
       </div>
+      <div class="mapsearch">
+        <input id="boardSearchInput" type="search" placeholder="동네·역 찾기 (예: 평택역, 비전동)" autocomplete="off" enterkeyhint="search" aria-label="동네·역 이름으로 붕세권 지도 찾기">
+        <button id="boardSearchBtn" type="button" aria-label="동네·역으로 지도 찾기">🔍 찾기</button>
+        <button id="boardResetBtn" type="button" class="reset" aria-label="전체 붕세권 핀 보기">↺ 전체 핀</button>
+      </div>
       <div id="boardMap" role="application" aria-label="제보된 붕세권 위치 지도"></div>
-      <div class="mapfoot">핀을 누르면 가게명·메뉴·제보 상태가 뜨고 <b>카카오맵 길찾기</b>로 바로 연결됩니다. 좌표는 제보한 가게 위치만 저장합니다.</div>
+      <div class="boardstat" id="boardStat" aria-live="polite">동네·역을 찾거나 지도의 핀을 눌러 보세요.</div>
+      <div class="mapfoot">핀을 누르면 가게명·메뉴·제보 상태가 뜨고 <b>카카오맵 길찾기</b>는 <b>새 창</b>으로 카카오맵이 열립니다(이 페이지는 그대로 유지). 아래 목록의 <b>📍 지도에서 보기</b>를 누르면 그 핀으로 바로 이동합니다. 좌표는 제보한 장소 위치만 저장합니다.</div>
     </div>
 
     <div class="rules">
@@ -470,7 +497,7 @@
 
     <div class="bnote">
       <b>운영 범위</b> : 제보는 서버에 저장되어 모든 방문자에게 보입니다. 사진은 올릴 때 640px·JPEG로 줄여 저장하고(촬영 위치 정보 제거), 좌표는 지도에서 찍은 가게 위치만 남깁니다. 만료된 제보는 목록에서 흐리게 남깁니다. 같은 기기 1회 확인 제한, 신고 3회 누적 시 자동 숨김, 7일 지난 제보는 자동 삭제됩니다.
-      <div style="margin-top:6px">‘시연 예시’ 항목은 실제 가게가 아니라 동작 확인용으로 넣은 표본이며, 카드에 <b>시연 예시</b>로 표시됩니다.</div>
+      <div style="margin-top:6px">‘시연 예시’ 항목은 실제 가게가 아니라 동작 확인용 표본입니다. 실제 제보가 들어오기 전까지 지도 핀·목록에서 활성 상태(체험용 예시)로 유지되고, 실제 제보가 하나라도 들어오면 목록에서 빠집니다.</div>
     </div>
   </section>
 
@@ -513,7 +540,7 @@
           <button class="example del" id="delPhotoBtn" type="button" style="display:none">사진 지우기</button>
         </div>
       </div>
-      <div class="hint">가게 앞에서 찍은 실제 사진만 올려 주세요. 사진 속 위치정보(EXIF)는 저장 전에 지웁니다.</div>
+      <div class="hint">실제 현장(도로명·주변 장소)에서 찍은 사진만 올려 주세요. 사진 속 위치정보(EXIF)는 저장 전에 지웁니다.</div>
     </div>
 
     <div class="field">
@@ -538,13 +565,13 @@
         <button type="button" id="mapSearchBtn" aria-label="지도에서 동네·역 검색">🔍</button>
       </div>
       <div id="pickMap" role="application" aria-label="제보 위치를 찍는 지도"></div>
-      <div class="mapstat" id="pickStat">지도를 눌러 가게 위치를 찍으면 주소가 자동으로 입력됩니다.</div>
+      <div class="mapstat" id="pickStat">지도를 눌러 위치를 찍으면 주소가 자동으로 입력됩니다.</div>
     </div>
 
     <div class="field">
-      <label for="placeInput">위치 (동네 · 가게 앞)</label>
+      <label for="placeInput">위치 (동네 · 도로명/장소)</label>
       <input type="text" id="placeInput" placeholder="예: 평택 비전동 ○○아파트 정문 앞" autocomplete="off">
-      <div class="hint">정확한 집 주소는 적지 마세요. 동네·역명·가게명 기준으로 적으면 카카오맵 길찾기와 바로 연결됩니다. 지도에서 핀을 찍으면 주소가 자동으로 채워집니다.</div>
+      <div class="hint">정확한 집 주소는 적지 마세요. 동네·역명·도로명·주변 장소 기준으로 적으면 지도 핀과 함께 정확히 표시됩니다. 지도에서 핀을 찍으면 주소가 자동으로 채워집니다.</div>
     </div>
 
     <div class="field">
@@ -933,6 +960,7 @@ async function pullReports(){
   }catch(err){
     apiOk = false;
   }
+  ensureDemoSeed();   /* 실제 제보 0건이면 시연 예시 3건을 활성 상태로 채워 둔다 */
   renderBungeoChips(); renderBungeo();
 }
 function pushReport(s){
@@ -983,6 +1011,7 @@ function save(){
   }catch(err){ toast('저장 공간이 부족해 이번 제보는 남지 않습니다.'); }
 }
 function statusOfStore(s){
+  if(s.demo) return s.reports >= PROMOTE_AT ? 'confirmed' : 'temp';   /* 시연 예시는 만료로 흐려지지 않는다 */
   if(s.reports >= PROMOTE_AT) return 'confirmed';
   if(Date.now() - s.createdAt < TEMP_MIN*60000) return 'temp';
   return 'expired';
@@ -997,14 +1026,20 @@ function agoText(ts){
   return Math.floor(h/24) + '일 전';
 }
 function timerText(s){
+  if(s.demo) return '체험용 예시';
   const st = statusOfStore(s);
   if(st === 'confirmed') return '확정';
   if(st === 'expired') return '만료';
   const m = minutesLeft(s);
   return m + '분 남음';
 }
+function boardStores(){
+  /* 실제 제보가 하나라도 있으면 시연 예시는 감추고, 0건일 때만 예시를 보여준다 */
+  const real = stores.filter(s => !s.demo);
+  return real.length ? real : stores.filter(s => s.demo);
+}
 function bungeoList(){
-  return stores
+  return boardStores()
     .filter(s => uiCat === 'all' || s.cat === uiCat)
     .slice()
     .sort((a,b) => {
@@ -1016,18 +1051,23 @@ function bungeoList(){
 }
 function storeCardHTML(s){
   const st = statusOfStore(s);
-  const badge = st === 'confirmed'
-    ? '<span class="b-badge c">확정 영업 중</span>'
-    : st === 'temp'
-      ? '<span class="b-badge t">방금 제보 · 임시</span>'
-      : '<span class="b-badge e">영업 종료 추정</span>';
-  const demo = s.demo ? '<span class="b-badge demo">시연 예시</span>' : '';
+  const badge = s.demo
+    ? '<span class="b-badge demo">시연 예시 · 실제 가게 아님</span>'
+    : st === 'confirmed'
+      ? '<span class="b-badge c">확정 영업 중</span>'
+      : st === 'temp'
+        ? '<span class="b-badge t">방금 제보 · 임시</span>'
+        : '<span class="b-badge e">영업 종료 추정</span>';
   const dots = Array.from({length:PROMOTE_AT}, (_,i) => `<i class="${i < Math.min(s.reports, PROMOTE_AT) ? 'on':''}"></i>`).join('');
   const cntText = st === 'expired' ? `확인 ${s.reports}명` : `확인 ${s.reports}/${PROMOTE_AT}명`;
   const done = myConfirms.has(s.id) || st === 'expired' || st === 'confirmed';
   const btnLabel = st === 'confirmed' ? '확정됨' : (myConfirms.has(s.id) ? '확인함' : '＋1 나도 봤어요');
-  const timerCls = (st === 'temp' && minutesLeft(s) <= 15) ? ' urgent' : (st === 'confirmed' ? ' done' : '');
-  return `<article class="bc ${st}" data-card="${s.id}">
+  const timerCls = s.demo ? '' : (st === 'temp' && minutesLeft(s) <= 15) ? ' urgent' : (st === 'confirmed' ? ' done' : '');
+  /* 목록 카드에는 주소 글자로 길찾기를 걸지 않는다 — 위 지도 핀으로 이동해 좌표 기준으로 길찾기 */
+  const mapAction = coordsOf(s)
+    ? `<div class="f-act"><button type="button" class="maplink mapshow" data-show="${s.id}" aria-label="${esc(s.name)} 위치를 위 지도에서 보기">📍 지도에서 보기</button></div>`
+    : '';
+  return `<article class="bc ${st} ${s.demo ? 'demo' : ''}" data-card="${s.id}">
     <div class="top">
       <div class="thumb">${s.photo ? `<img src="${s.photo}" alt="${esc(CATS[s.cat].label)} 제보 사진">` : '<span class="ph">無</span>'}</div>
       <div class="id">
@@ -1036,9 +1076,9 @@ function storeCardHTML(s){
         <div class="place">${esc(s.place || '위치 미기재')}</div>
       </div>
     </div>
-    <div class="meta">${badge}${demo}<span>${agoText(s.createdAt)}</span><span class="timer${timerCls}" data-timer="${s.id}">${timerText(s)}</span></div>
+    <div class="meta">${badge}<span>${agoText(s.createdAt)}</span><span class="timer${timerCls}" data-timer="${s.id}">${timerText(s)}</span></div>
     ${s.memo ? `<div class="f-note">${esc(s.memo)}</div>` : ''}
-    ${mapBtn(s.name, s.place)}
+    ${mapAction}
     <div class="foot">
       <span class="dots" aria-hidden="true">${dots}</span>
       <span class="cnt">${cntText}</span>
@@ -1051,16 +1091,16 @@ function storeCardHTML(s){
 function renderBungeo(){
   const list = bungeoList();
   $('bungeoBoard').innerHTML = list.map(storeCardHTML).join('');
-  $('bungeoEmpty').style.display = stores.length ? 'none' : 'block';
-  $('cntConf').textContent = stores.filter(s => statusOfStore(s) === 'confirmed').length;
-  $('cntTemp').textContent = stores.filter(s => statusOfStore(s) === 'temp').length;
-  $('cntExp').textContent = stores.filter(s => statusOfStore(s) === 'expired').length;
+  $('bungeoEmpty').style.display = boardStores().length ? 'none' : 'block';
+  $('cntConf').textContent = boardStores().filter(s => statusOfStore(s) === 'confirmed').length;
+  $('cntTemp').textContent = boardStores().filter(s => statusOfStore(s) === 'temp').length;
+  $('cntExp').textContent = boardStores().filter(s => statusOfStore(s) === 'expired').length;
   syncBoardMarkers();
 }
 function renderBungeoChips(){
   const items = [['all','전체'], ...Object.entries(CATS).map(([k,v]) => [k, v.label])];
   $('bungeoChips').innerHTML = items.map(([k,label]) => {
-    const n = k === 'all' ? stores.length : stores.filter(s => s.cat === k).length;
+    const n = k === 'all' ? boardStores().length : boardStores().filter(s => s.cat === k).length;
     return `<button class="chip ${uiCat===k?'on':''}" data-bcat="${k}">${label}<span class="n">${n}</span></button>`;
   }).join('');
 }
@@ -1100,6 +1140,7 @@ function mapFallback(id, msg){ const el = $(id); if(el) el.innerHTML = '<div cla
 
 /* --- 보드 지도 --- */
 let boardMap = null, boardLayer = null, boardFitted = false, boardTried = false, boardSig = '', myPosLayer = null;
+let markerById = {};   /* 카드의 ‘📍 지도에서 보기’ → 해당 마커 팝업 열기 */
 function ensureBoardMap(){
   if(boardMap){ setTimeout(() => boardMap.invalidateSize(), 80); return; }
   if(boardTried) return;
@@ -1119,6 +1160,7 @@ function popupHTML(s, c){
     + '<div class="pm">' + esc(s.place || '위치 미기재') + '</div>'
     + '<div class="pm">' + esc(label) + ' · 확인 ' + s.reports + '/' + PROMOTE_AT + '명' + (s.demo ? ' · 시연 예시' : '') + '</div>'
     + '<a class="maplink" href="' + kakaoCoordHref(s.name, c.lat, c.lng) + '" target="_blank" rel="noopener noreferrer">🗺️ 카카오맵 길찾기</a>'
+    + '<div class="pm" style="margin-top:5px;color:#94A3B8">새 창으로 열립니다 · 이 페이지는 그대로 유지</div>'
     + '</div>';
 }
 function syncBoardMarkers(force){
@@ -1130,11 +1172,14 @@ function syncBoardMarkers(force){
   if(sig === boardSig && !force) return;
   boardSig = sig;
   boardLayer.clearLayers();
+  markerById = {};
   pinned.forEach(s => {
     const c = coordsOf(s), st = statusOfStore(s);
     const icon = L.divIcon({className:'', iconSize:[26,26], iconAnchor:[13,13], popupAnchor:[0,-14],
       html:'<div class="bpin ' + st + (s.demo ? ' demo' : '') + '">' + (CAT_EMOJI[s.cat] || '🍢') + '</div>'});
-    L.marker([c.lat, c.lng], {icon, title:s.name, keyboard:true}).bindPopup(popupHTML(s, c)).addTo(boardLayer);
+    const mk = L.marker([c.lat, c.lng], {icon, title:s.name, keyboard:true})
+      .bindPopup(popupHTML(s, c), {autoPan:true, autoPanPadding:[18,18]}).addTo(boardLayer);
+    markerById[s.id] = mk;
   });
   if(pinned.length && !boardFitted){
     boardFitted = true;
@@ -1166,6 +1211,109 @@ function goMyLocation(){
   }, {enableHighAccuracy:true, timeout:9000, maximumAge:60000});
 }
 $('myPosBtn').addEventListener('click', goMyLocation);
+
+/* --- 목록 카드 ‘📍 지도에서 보기’ → 상단 지도로 올라가 해당 핀 팝업 열기 --- */
+function showOnBoard(id){
+  const s = stores.find(x => x.id === id);
+  if(!s){ toast('제보를 찾지 못했습니다.'); return; }
+  const c = coordsOf(s);
+  if(!c){ toast('이 제보에는 좌표가 없어 지도에 표시할 수 없습니다. 위치 문구로만 확인해 주세요.'); return; }
+  ensureBoardMap();
+  if(!boardMap){ toast('지도를 불러오지 못했습니다(네트워크·차단). 아래 카드의 위치 문구를 확인해 주세요.'); return; }
+  const card = $('boardMap').closest('.mapcard');
+  if(card){
+    card.scrollIntoView({behavior:'smooth', block:'center'});
+    card.classList.add('flash');
+    setTimeout(() => card.classList.remove('flash'), 1600);
+  }
+  setTimeout(() => {
+    if(!boardMap) return;
+    boardMap.invalidateSize();
+    boardMap.setView([c.lat, c.lng], 17, {animate:false});   /* 애니메이션 중 팝업을 열면 autoPan이 어긋난다 */
+    const mk = markerById[id];
+    if(mk) setTimeout(() => mk.openPopup(), 80);
+  }, 240);
+  boardStatSet('📍 ' + esc(s.name) + ' 위치로 지도를 이동했습니다. 핀 팝업에서 <b>카카오맵 길찾기</b>를 누르면 새 창으로 열립니다.');
+}
+function boardStatSet(html, isErr){
+  const st = $('boardStat');
+  if(!st) return false;
+  st.classList.toggle('err', !!isErr);
+  st.innerHTML = html;
+  return true;
+}
+
+/* --- 상단 지도: 동네·역 찾기 (Nominatim · API 키 0원) --- */
+let boardSearchLayer = null, boardSearchAt = 0;
+function metersBetween(a, b){
+  const R = 6371000, toR = Math.PI / 180;
+  const dLat = (b.lat - a.lat) * toR, dLng = (b.lng - a.lng) * toR;
+  const h = Math.sin(dLat/2) ** 2 + Math.cos(a.lat*toR) * Math.cos(b.lat*toR) * Math.sin(dLng/2) ** 2;
+  return 2 * R * Math.asin(Math.min(1, Math.sqrt(h)));
+}
+function clearBoardSearch(){
+  if(boardSearchLayer && boardMap){ boardMap.removeLayer(boardSearchLayer); }
+  boardSearchLayer = null;
+}
+async function searchBoardPlace(){
+  const q = $('boardSearchInput').value.trim();
+  if(!q){ toast('동네·역 이름을 먼저 입력해 주세요.'); return; }
+  ensureBoardMap();
+  if(!boardMap){ toast('지도를 불러오지 못해 찾기를 쓸 수 없습니다. 아래 목록에서 위치를 확인해 주세요.'); return; }
+  const btn = $('boardSearchBtn');
+  btn.disabled = true; btn.textContent = '찾는 중…';
+  boardStatSet('🔍 ‘' + esc(q) + '’ 찾는 중…');
+  try{
+    /* Nominatim 무료 정책: 연속 호출 간격을 1.15초 이상 둔다 */
+    const wait = Math.max(0, 1150 - (Date.now() - boardSearchAt));
+    if(wait) await new Promise(r => setTimeout(r, wait));
+    boardSearchAt = Date.now();
+    const r = await fetch(NOMI + '/search?format=jsonv2&q=' + encodeURIComponent(q) + '&accept-language=ko&limit=1&countrycodes=kr&addressdetails=1',
+      {headers:{'accept':'application/json'}, cache:'no-store'});
+    if(!r.ok) throw new Error('http ' + r.status);
+    const j = await r.json();
+    const hit = Array.isArray(j) && j[0];
+    if(!hit) throw new Error('empty');
+    const la = Number(hit.lat), lo = Number(hit.lon);
+    if(!Number.isFinite(la) || !Number.isFinite(lo)) throw new Error('coord');
+    const center = {lat:la, lng:lo};
+    const label = String(hit.name || q);
+    clearBoardSearch();
+    boardSearchLayer = L.layerGroup([
+      L.circleMarker([la, lo], {radius:8, color:'#38BDF8', weight:2, fillColor:'#38BDF8', fillOpacity:.55})
+        .bindPopup('<div class="pop"><b>🔍 ' + esc(label) + '</b><div class="pm">찾은 위치 — 주변 붕세권 핀을 눌러 확인하세요</div></div>')
+    ]).addTo(boardMap);
+    boardMap.setView([la, lo], 15);
+    const near = bungeoList().filter(s => { const c = coordsOf(s); return c && metersBetween(center, c) <= 3000; });
+    if(near.length){
+      boardMap.fitBounds(L.latLngBounds([[la, lo]].concat(near.map(s => { const c = coordsOf(s); return [c.lat, c.lng]; }))), {padding:[30,30], maxZoom:15});
+      boardStatSet('🔍 <b>' + esc(label) + '</b> 주변 붕세권 <b>' + near.length + '건</b> · 반경 3km · 핀을 눌러 확인하세요.');
+    } else {
+      boardStatSet('🔍 <b>' + esc(label) + '</b> 주변 3km에 등록된 붕세권이 아직 없습니다 · 다른 동네를 찾아보거나 첫 제보를 남겨 주세요.');
+    }
+  }catch(err){
+    boardStatSet('‘' + esc(q) + '’ 찾기 실패 — 다른 동네·역 이름으로 다시 찾아보세요. (지도를 직접 끌어 이동해도 됩니다)', true);
+  }finally{
+    btn.disabled = false; btn.textContent = '🔍 찾기';
+  }
+}
+function resetBoardView(){
+  ensureBoardMap();
+  if(!boardMap) return;
+  clearBoardSearch();
+  $('boardSearchInput').value = '';
+  boardFitted = false;   /* 다음 동기화에서 전체 핀을 한 화면에 맞춘다 */
+  boardSig = '';
+  syncBoardMarkers(true);
+  const pinned = bungeoList().filter(s => coordsOf(s));
+  if(!pinned.length) boardMap.setView(HOME_CENTER, BOARD_ZOOM);
+  boardStatSet(pinned.length
+    ? '전체 붕세권 핀 <b>' + pinned.length + '개</b>를 한 화면에 맞췄습니다.'
+    : '아직 좌표가 있는 제보가 없습니다 · 첫 제보를 남겨 주세요.');
+}
+$('boardSearchBtn').addEventListener('click', searchBoardPlace);
+$('boardSearchInput').addEventListener('keydown', e => { if(e.key === 'Enter'){ e.preventDefault(); searchBoardPlace(); } });
+$('boardResetBtn').addEventListener('click', resetBoardView);
 
 /* --- 제보 모달: 핀 찍기 + 역지오코딩 --- */
 let pickMap = null, pickMarker = null, pickLatLng = null, pickTried = false;
@@ -1238,7 +1386,7 @@ async function reverseGeocode(lat, lng){
     const stat = $('pickStat');
     if(stat){
       stat.classList.add('err');
-      stat.innerHTML = '📍 ' + lat.toFixed(5) + ', ' + lng.toFixed(5) + ' · 주소 자동 변환 실패 — 아래 위치 칸에 동네·가게명을 직접 적어 주세요. (좌표는 그대로 저장됩니다)';
+      stat.innerHTML = '📍 ' + lat.toFixed(5) + ', ' + lng.toFixed(5) + ' · 주소 자동 변환 실패 — 아래 위치 칸에 동네·도로명을 직접 적어 주세요. (좌표는 그대로 저장됩니다)';
     }
   }
 }
@@ -1288,11 +1436,13 @@ function centerPickOnMe(pm){
 
 /* --- 제보 모달 --- */
 let pendingPhoto = null;
+let modalHistory = false;   /* 뒤로가기 1회로 모달만 닫히게 하는 히스토리 상태 */
 
 function renderMenuSelect(cat){
   $('menuInput').innerHTML = CATS[cat].menus.map(m => `<option value="${esc(m)}">${esc(m)}</option>`).join('');
 }
 function openReport(){
+  if($('reportModal').classList.contains('on')) return;
   if(!$('panelBungeo').classList.contains('on')) switchTab('bungeo');
   pendingPhoto = null;
   $('photoPrev').innerHTML = '<span>사진<br>없음</span>';
@@ -1306,6 +1456,8 @@ function openReport(){
   $('msgErr').classList.remove('on');
   $('reportModal').classList.add('on');
   document.body.style.overflow = 'hidden';
+  /* 갤럭시 뒤로가기·브라우저 뒤로가기로 모달만 닫히고 홈페이지에서 이탈하지 않게 히스토리 1칸 추가 */
+  try{ history.pushState({modal:'report'}, ''); modalHistory = true; }catch(e){ modalHistory = false; }
   document.querySelector('.sheet').scrollTop = 0;
   renderMenuSelect('bungeoppang');
   document.querySelectorAll('#catPick button').forEach(b => b.classList.toggle('on', b.dataset.cat === 'bungeoppang'));
@@ -1316,15 +1468,28 @@ function openReport(){
   $('mapSearchInput').value = '';
   const stat = $('pickStat');
   stat.classList.remove('err');
-  stat.textContent = '지도를 눌러 가게 위치를 찍으면 주소가 자동으로 입력됩니다.';
+  stat.textContent = '지도를 눌러 위치를 찍으면 주소가 자동으로 입력됩니다.';
   const pm = ensurePickMap();
   if(pm){ setTimeout(() => pm.invalidateSize(), 120); centerPickOnMe(pm); }
 }
 let uiPendingCat = 'bungeoppang';
-function closeReport(){
-  $('reportModal').classList.remove('on');
+function closeReport(fromPop){
+  const el = $('reportModal');
+  if(!el.classList.contains('on')){ modalHistory = false; return; }
+  el.classList.remove('on');
   document.body.style.overflow = '';
+  if(!fromPop && modalHistory){
+    /* 닫기 버튼·배경 탭: 쌓아둔 히스토리 1칸을 되돌려 다음 뒤로가기가 홈페이지 이탈로 이어진다 */
+    modalHistory = false;
+    try{ history.back(); }catch(e){}
+    return;
+  }
+  modalHistory = false;
 }
+/* 뒤로가기·뒤로 제스처: 모달만 닫고 페이지는 그대로 둔다 */
+window.addEventListener('popstate', () => {
+  if($('reportModal') && $('reportModal').classList.contains('on')) closeReport(true);
+});
 $('catPick').addEventListener('click', e => {
   const b = e.target.closest('[data-cat]');
   if(!b) return;
@@ -1441,7 +1606,7 @@ function submitReport(){
   const err = $('msgErr');
   const place = $('placeInput').value.trim();
   if(!pendingPhoto){ err.textContent = '사진을 한 장 첨부해 주세요.'; err.classList.add('on'); return; }
-  if(!place){ err.textContent = '가게 위치를 동네 수준으로 적어 주세요.'; err.classList.add('on'); return; }
+  if(!place){ err.textContent = '위치를 동네·도로명 수준으로 적어 주세요.'; err.classList.add('on'); return; }
   if(!$('agreeInput').checked){ err.textContent = '사진·위치 표시 동의에 체크해 주세요.'; err.classList.add('on'); return; }
   err.classList.remove('on');
   const cat = uiPendingCat;
@@ -1468,8 +1633,10 @@ function submitReport(){
           : '제보를 올렸습니다. 지도 핀을 찍으면 지도에도 표시됩니다. (지금은 주소 문구로만 노출)' );
 }
 
-/* +1 확인 */
+/* +1 확인 · 목록 카드의 📍 지도에서 보기 */
 document.addEventListener('click', ev => {
+  const sh = ev.target.closest('[data-show]');
+  if(sh){ showOnBoard(sh.dataset.show); return; }
   const b = ev.target.closest('[data-act="confirm"]');
   if(b){
     const s = stores.find(x => x.id === b.dataset.id);
@@ -1495,16 +1662,30 @@ document.addEventListener('click', ev => {
   }
 });
 
-/* 시연 예시 — 실제 가게 아님 */
-function loadDemo(){
+/* 시연 예시 — 실제 가게 아님. 실제 제보 0건일 때만 자동으로 채워 지도·목록이 비어 보이지 않게 한다. */
+function demoPhoto(){
+  return 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 360"><rect width="480" height="360" fill="#243349"/><rect x="60" y="160" width="360" height="110" rx="12" fill="#3d5273"/><rect x="90" y="120" width="300" height="42" rx="9" fill="#8d5b2c"/><text x="240" y="148" font-size="24" fill="#ffe3b8" text-anchor="middle" font-family="sans-serif">시연 예시</text></svg>`);
+}
+function demoEntries(){
   const now = Date.now();
-  const photoA = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 360"><rect width="480" height="360" fill="#243349"/><rect x="60" y="160" width="360" height="110" rx="12" fill="#3d5273"/><rect x="90" y="120" width="300" height="42" rx="9" fill="#8d5b2c"/><text x="240" y="148" font-size="24" fill="#ffe3b8" text-anchor="middle" font-family="sans-serif">시연 예시</text></svg>`);
-  const demos = [
-    {id:'demo1', demo:true, cat:'bungeoppang', name:'붕어빵 · 예시 가게 A', menu:'붕어빵 3개 2,000원', place:'평택 비전동 ○○아파트 정문 앞', memo:'오늘 21시까지 · 줄 김', photo:photoA, reports:7, createdAt: now - 22*60000, lat:36.9958, lng:127.1128},
-    {id:'demo2', demo:true, cat:'truck', name:'푸드트럭 · 예시 가게 B', menu:'타코 3,500원', place:'평택 고덕동 ○○공원 입구', memo:'18시 오픈', photo:photoA, reports:10, createdAt: now - 3*60000, lat:36.9998, lng:127.1472},
-    {id:'demo3', demo:true, cat:'hotteok', name:'호떡 · 예시 가게 C', menu:'호떡 1개 1,000원', place:'평택역 광장 쪽', memo:'어제 봤던 자리', photo:photoA, reports:3, createdAt: now - 95*60000, lat:36.9905, lng:127.0855}
+  const photo = demoPhoto();
+  return [
+    {id:'demo1', demo:true, cat:'bungeoppang', name:'붕어빵 · 예시 가게 A', menu:'붕어빵 3개 2,000원', place:'평택 비전동 ○○아파트 정문 앞', memo:'오늘 21시까지 · 줄 김', photo, reports:7, createdAt: now - 22*60000, lat:36.9958, lng:127.1128},
+    {id:'demo2', demo:true, cat:'truck', name:'푸드트럭 · 예시 가게 B', menu:'타코 3,500원', place:'평택 고덕동 ○○공원 입구', memo:'18시 오픈', photo, reports:10, createdAt: now - 3*60000, lat:36.9998, lng:127.1472},
+    {id:'demo3', demo:true, cat:'hotteok', name:'호떡 · 예시 가게 C', menu:'호떡 1개 1,000원', place:'평택역 광장 쪽', memo:'어제 봤던 자리', photo, reports:3, createdAt: now - 35*60000, lat:36.9905, lng:127.0855}
   ];
-  stores = demos.concat(stores.filter(s => !s.demo));
+}
+/* 실제 제보가 하나도 없을 때만 시연 예시 3건을 활성 상태로 채운다 (실제 제보가 들어오면 boardStores()가 예시를 감춘다) */
+function ensureDemoSeed(){
+  if(stores.some(s => !s.demo)) return;
+  const ids = new Set(stores.filter(s => s.demo).map(s => s.id));
+  const add = demoEntries().filter(d => !ids.has(d.id));
+  if(!add.length) return;
+  stores = stores.concat(add);
+  save();
+}
+function loadDemo(){
+  stores = demoEntries().concat(stores.filter(s => !s.demo));
   myConfirms = new Set();
   save(); renderBungeoChips(); renderBungeo();
   toast('시연 예시 3건을 불러왔습니다. 실제 가게 정보가 아닙니다.');

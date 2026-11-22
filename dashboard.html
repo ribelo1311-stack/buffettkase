@@ -158,7 +158,25 @@ td.name .d{display:inline-block;width:5px;height:5px;border-radius:50%;margin-ri
   color:#dbe6f3;font-size:12px;font-weight:800;cursor:pointer;font-family:inherit;transition:.15s}
 .morecard:hover{border-color:#2563eb;background:#122033;color:#fff}
 .morecard b{color:#93c5fd}
-@media(max-width:720px){.slimsep .sm{font-size:10px}.morecard{padding:10px;font-size:11.5px}}
+.morecard.back{border-style:solid;border-color:#7c4a12;background:#1b1408;color:#fcd34d}
+.morecard.back:hover{border-color:#b45309;background:#241a09;color:#fde68a}
+/* 슬림 ↔ 전체 토글 컨트롤 바 (전광판 상단) */
+.boardbar{display:flex;align-items:center;gap:8px;margin:0 2px 9px;flex-wrap:wrap}
+.boardbar[hidden]{display:none}
+.boardbar .bstate{font-size:11px;font-weight:800;color:#9fb0c6;padding:4px 10px;border-radius:20px;
+  border:1px solid #26364c;background:#101a26;white-space:nowrap}
+.boardbar .bstate b{color:#93c5fd}
+.btn.view2{margin-left:auto;display:inline-flex;align-items:center;justify-content:center;gap:6px;
+  min-height:38px;padding:8px 14px;border-radius:8px;cursor:pointer;font-family:inherit;
+  font-size:12px;font-weight:900;letter-spacing:-.2px;background:#0e2a20;border:1px solid #1f8a5c;
+  color:#7ff0b8;transition:.15s;white-space:nowrap}
+.btn.view2:hover{background:#123a2b;color:#a7f3d0;border-color:#2aaa73}
+.btn.view2 b{color:#bbf7d0}
+.btn.view2.on{background:#2a1a10;border-color:#b45309;color:#fcd34d}
+.btn.view2.on b{color:#fde68a}
+.btn.view2.on:hover{background:#3a2312;color:#fde68a;border-color:#d97706}
+@media(max-width:720px){.slimsep .sm{font-size:10px}.morecard{padding:10px;font-size:11.5px}
+  .boardbar{gap:6px}.btn.view2{width:100%;margin-left:0;font-size:12px}}
 /* 상단 시장 전체 수급 막대 */
 .flowbars{margin-top:10px}
 .flowbars .fbh{font-size:14px;font-weight:900;color:#e5ecf6;margin-bottom:4px;letter-spacing:-.3px}
@@ -615,6 +633,10 @@ footer b{color:#a9b8cb}
       <span class="tag g">실데이터</span>
       <p id="boardNote">슬림 보기 · 등락 상위 10·하위 10 테마만 표시 — 검색하면 전체 69개에서 찾습니다</p>
     </div>
+    <div class="boardbar" id="boardbar">
+      <span class="bstate" id="boardState">📖 슬림 보기 · <b>20/69</b> 테마</span>
+      <button class="btn view2" id="viewBtnTop" type="button" aria-controls="grid" aria-expanded="false">▾ 전체 <b>69개</b> 테마 보기</button>
+    </div>
     <div class="legend">
       <span><b>종목명 색</b> = 오늘 여러 테마에 겹친 수</span>
       <span><span class="d" style="display:inline-block;width:6px;height:6px;border-radius:50%;background:#22c55e"></span> 2개</span>
@@ -1046,12 +1068,49 @@ footer b{color:#a9b8cb}
 
   function sepEl(kind, label){ return el('div','slimsep ' + kind, `<span class="sm">${label}</span>`); }
 
+  /* ---------- 슬림 보기 ↔ 전체 테마 보기 양방향 토글 ----------
+     상단 컨트롤 바(#viewBtnTop) · 상단 툴바(#viewBtn) · 하단 버튼(.morecard)이
+     모두 같은 syncView()로 문구·상태를 맞추기 때문에 검색·5분 갱신 뒤에도 어긋나지 않는다. */
+  function boardScrollTop(){
+    const b = document.getElementById('board');
+    if (b) b.scrollIntoView({behavior:'smooth', block:'start'});
+  }
+  function setSlim(next, scroll){
+    slim = !!next;
+    buildBoard();
+    if (scroll) boardScrollTop();
+  }
+  function syncView(){
+    const raw = String(search.value || '').trim();
+    const all = D.themes || [];
+    const bar = document.getElementById('boardbar');
+    const top = document.getElementById('viewBtnTop');
+    const tb  = document.getElementById('viewBtn');
+    const st  = document.getElementById('boardState');
+    if (bar) bar.hidden = !!raw;            /* 검색 중에는 전체 69테마 대상이라 토글을 숨김 */
+    if (tb)  tb.hidden  = !!raw;
+    if (raw) return;
+    if (top){
+      top.innerHTML = slim
+        ? `▾ 전체 <b>${all.length}개</b> 테마 보기`
+        : `▴ 슬림 보기(상위 10·하위 10)로 접기`;
+      top.classList.toggle('on', !slim);
+      top.setAttribute('aria-expanded', String(!slim));
+    }
+    if (tb) tb.textContent = slim ? '전체 테마 보기' : '슬림 보기로 접기';
+    if (st){
+      st.innerHTML = slim
+        ? `📖 슬림 보기 · <b>${Math.min(SLIM_N * 2, all.length)}/${all.length}</b> 테마`
+        : `📚 전체 보기 · <b>${all.length}</b>개 테마 모두 표시`;
+    }
+  }
+
   function buildBoard(){
     const raw = String(search.value || '').trim();
     const q = raw.toLowerCase();
     const all = D.themes;
     grid.innerHTML = '';
-    const cnt = $('#themeCount'), note = $('#boardNote'), vbtn = $('#viewBtn');
+    const cnt = $('#themeCount'), note = $('#boardNote');
 
     if (q){                                  /* 검색: 슬림 여부와 무관하게 전체 테마·전 종목 대상 */
       const hits = [];
@@ -1064,15 +1123,18 @@ footer b{color:#a9b8cb}
       if (!hits.length) grid.innerHTML = `<div class="empty">‘${raw}’ 검색 결과가 없습니다 · 테마명이나 종목명으로 다시 찾아보세요.</div>`;
       cnt.textContent = `검색 ${hits.length}/${all.length} 테마`;
       note.textContent = `전체 ${all.length}개 테마·전 종목을 대상으로 찾은 결과입니다`;
-      vbtn.hidden = true;
+      syncView();
       return;
     }
-    vbtn.hidden = false;
     if (!slim){                              /* 전체 테마 보기 */
       sortThemes(all).forEach(t => grid.appendChild(makeCard(t)));
       cnt.textContent = all.length + '개 테마';
       note.textContent = '테마 헤더에 마우스를 올리면 ‘왜 오르나요?’ 근거가 뜹니다 · 종목 클릭 시 상세 · 헤더를 누르면 접힙니다';
-      vbtn.textContent = '슬림 보기로 접기';
+      const back = el('button','morecard back', `▴ 슬림 보기(상위 10·하위 10)로 접기`);
+      back.type = 'button';
+      back.addEventListener('click', () => setSlim(true, true));
+      grid.appendChild(back);
+      syncView();
       return;
     }
     const k = sortKey();                     /* 슬림: 현재 기준 상위 10 + 하위 10 */
@@ -1090,14 +1152,11 @@ footer b{color:#a9b8cb}
     });
     const more = el('button','morecard', `전체 테마 보기 · <b>${all.length}개</b> 펼치기`);
     more.type = 'button';
-    more.addEventListener('click', () => {
-      slim = false; buildBoard();
-      document.getElementById('board').scrollIntoView({behavior:'smooth', block:'start'});
-    });
+    more.addEventListener('click', () => setSlim(false, true));
     grid.appendChild(more);
     cnt.textContent = `${top.length + bot.length}/${all.length} 테마`;
     note.textContent = `슬림 보기 · ${metricLabel()} 상위 ${SLIM_N}·하위 ${SLIM_N} 테마만 표시 — 검색하면 전체 ${all.length}개에서 찾습니다`;
-    vbtn.textContent = '전체 테마 보기';
+    syncView();
   }
 
   /* ---------- 시장 전체 수급 (장중 잠정 = Worker /flow · 폴백 = data.js 확정치) ---------- */
@@ -1169,7 +1228,8 @@ footer b{color:#a9b8cb}
     document.querySelectorAll('#grid .card').forEach(c => c.classList.toggle('folded', foldedAll));
     this.textContent = foldedAll ? '모두 펼치기' : '모두 접기';
   });
-  $('#viewBtn').addEventListener('click', () => { slim = !slim; buildBoard(); });
+  $('#viewBtn').addEventListener('click', () => setSlim(!slim, true));
+  $('#viewBtnTop').addEventListener('click', () => setSlim(!slim, true));
 
   /* ---------- 검색 (테마·종목) ---------- */
   search.addEventListener('input', buildBoard);

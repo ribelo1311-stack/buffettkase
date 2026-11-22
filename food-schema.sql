@@ -11,8 +11,13 @@ CREATE TABLE IF NOT EXISTS food_reports (
   created_at INTEGER NOT NULL,
   expires_at INTEGER NOT NULL,
   status TEXT NOT NULL DEFAULT 'temp',
-  flagged INTEGER NOT NULL DEFAULT 0
+  flagged INTEGER NOT NULL DEFAULT 0,
+  lat REAL,
+  lng REAL
 );
+-- 2026-11-22: 지도 핀 좌표(선택). 기존 DB에는 아래 마이그레이션을 먼저 적용한다.
+--   ALTER TABLE food_reports ADD COLUMN lat REAL;
+--   ALTER TABLE food_reports ADD COLUMN lng REAL;
 CREATE TABLE IF NOT EXISTS food_confirms (
   report_id TEXT NOT NULL,
   device_hash TEXT NOT NULL,

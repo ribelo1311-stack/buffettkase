@@ -46,6 +46,11 @@ function clean(v, max) {
     .trim()
     .slice(0, max);
 }
+function numOrNull(v) {
+  if (v === null || v === undefined || v === "") return null;
+  const n = typeof v === "number" ? v : parseFloat(v);
+  return Number.isFinite(n) ? n : null;
+}
 function maskPII(s) {
   return s
     .replace(/\b01[016789][-.\s]?\d{3,4}[-.\s]?\d{4}\b/g, "[전화번호]")
@@ -74,7 +79,7 @@ async function listReports(req, env, url) {
   const now = Date.now();
   const cat = clean(url.searchParams.get("cat"), 20);
   const st = env.DB.prepare(
-    `SELECT id, cat, menu, place, memo, reports, created_at, (photo IS NOT NULL) AS has_photo
+    `SELECT id, cat, menu, place, memo, reports, created_at, lat, lng, (photo IS NOT NULL) AS has_photo
        FROM food_reports
       WHERE flagged = 0 AND created_at > ?1 AND (reports >= ?3 OR created_at > ?2)
       ORDER BY (reports >= ?3) DESC, created_at DESC
@@ -92,6 +97,8 @@ async function listReports(req, env, url) {
       memo: r.memo || "",
       reports: r.reports,
       createdAt: r.created_at,
+      lat: r.lat == null ? null : Number(r.lat),
+      lng: r.lng == null ? null : Number(r.lng),
       status: derive(r, now),
       photo: r.has_photo ? `${origin}/api/food/photo/${encodeURIComponent(r.id)}` : null,
     }));
@@ -120,6 +127,13 @@ async function createReport(req, env) {
   const memo = maskPII(clean(body.memo, 200));
   if (menu.length < 1) return txt("메뉴를 적어 주세요.");
   if (place.length < 2) return txt("가게 위치를 동네 수준으로 적어 주세요.");
+  /* 지도 핀 좌표(선택) — 지도에서 찍은 가게 위치만 받는다. 범위를 벗어나면 버린다. */
+  let lat = numOrNull(body.lat);
+  let lng = numOrNull(body.lng);
+  if (lat === null || lng === null || Math.abs(lat) > 90 || Math.abs(lng) > 180 || (lat === 0 && lng === 0)) {
+    lat = null;
+    lng = null;
+  }
 
   const photo = typeof body.photo === "string" ? body.photo : "";
   const m = /^data:image\/(jpeg|jpg|png);base64,([A-Za-z0-9+/=\s]+)$/.exec(photo);
@@ -138,9 +152,9 @@ async function createReport(req, env) {
   const expiresAt = now + TEMP_MIN * 60000;
   await env.DB.batch([
     env.DB.prepare(
-      `INSERT INTO food_reports (id, cat, menu, place, memo, photo, photo_type, reports, created_at, expires_at, status)
-       VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, 1, ?8, ?9, 'temp')`
-    ).bind(id, cat, menu, place, memo, bytes, m[1] === "png" ? "image/png" : "image/jpeg", now, expiresAt),
+      `INSERT INTO food_reports (id, cat, menu, place, memo, photo, photo_type, reports, created_at, expires_at, status, lat, lng)
+       VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, 1, ?8, ?9, 'temp', ?10, ?11)`
+    ).bind(id, cat, menu, place, memo, bytes, m[1] === "png" ? "image/png" : "image/jpeg", now, expiresAt, lat, lng),
     env.DB.prepare("INSERT INTO food_events (ip_hash, kind, created_at) VALUES (?1, 'create', ?2)").bind(ipHash, now),
   ]);
 
@@ -155,6 +169,8 @@ async function createReport(req, env) {
         memo,
         reports: 1,
         createdAt: now,
+        lat,
+        lng,
         status: "temp",
         photo: `${new URL(req.url).origin}/api/food/photo/${id}`,
       },

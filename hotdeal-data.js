@@ -1,4 +1,4 @@
-/* 버핏카세 /hotdeal 데이터 (2026-11-23 07:10 KST 실사 · 5차 업데이트 — 토스 매일 0시 선착순특가 8건으로 교체)
+/* 버핏카세 /hotdeal 데이터 (2026-11-23 10:20 KST 실사 · 8차 업데이트 — 쿠팡 신규 3건 편입·3건 교체: 발열조끼·복합식 가습기 5L·에스트라 수딩크림 / 겨울 담요 2건·세타필 교체)
    구조 확장 규칙: items[] 각 항목은
    { platform: "coupang" | "toss" | "naver", title, price, affiliate_url, note, updated_at, ... }
    platform 값만 늘리면 토스쇼핑 셰어링크·네이버 쇼핑커넥트를 같은 카드로 붙일 수 있게 설계했다.
@@ -10,7 +10,7 @@
      타  상단 토스 배너(tossShop.dealsUrl)만 API 발급 링크를 쓴다 — API 키는 공개 저장소에 올리지 않는다.
    ※ 본문은 JSON 호환 형식(키·문자열 큰따옴표) — projects/build_hotdeal.py 가 그대로 파싱해 hotdeal.html 을 만든다. */
 window.HOTDEAL = {
-  "asOf": "2026-11-23 07:10 KST",
+  "asOf": "2026-11-23 10:20 KST",
   "coupangTag": "AF2387959",
   "disclosure": "이 페이지는 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.",
   "priceNotice": "표시된 가격 및 할인율은 확인 시점 기준이며, 쿠팡 실시간 판매가·재고에 따라 변동되거나 품절될 수 있습니다. '아낌 금액'은 쿠팡 상세페이지에 함께 표기된 정가(기준가)에서 현재 판매가를 뺀 값이고, 정가 표기가 없는 상품은 정가 대신 확인된 포인트만 적었습니다.",
@@ -186,50 +186,51 @@ window.HOTDEAL = {
     },
     {
       "platform": "coupang",
-      "cat": "겨울",
-      "title": "MIFAN 극세사 USB 온열 담요",
-      "option": "그레이 · 80 × 150cm · USB 전원(무선 휴대용)",
-      "price": 22900,
-      "origin": 68900,
-      "discount": 66,
-      "unit": "무릎 담요 겸용",
-      "reviews": "1,952건",
+      "cat": "IT",
+      "title": "한경희생활과학 복합식 가습기 5L",
+      "option": "HA-HD800HA · 5L · 복합식(가열+초음파) · 125W · 리모컨",
+      "price": 79900,
+      "origin": 129000,
+      "discount": 38,
+      "unit": "시간당 분무량 350ml",
+      "reviews": "235건 · 최고 96% · 200명 이상 만족",
       "badges": [
+        "내일 도착 보장",
         "무료배송",
-        "캠핑·차량 USB"
+        "KC 인증"
       ],
-      "delivery": "수요일 11/25 도착 예정",
-      "shipping": "판매자 무료배송(소담무역 · CJ대한통운). 베이지·브라운은 일시품절이라 지금은 그레이만 고를 수 있습니다.",
-      "note": "콘센트 없이 보조배터리로 켜는 담요 카더라. 캠핑이나 차 안에서 무릎 덮개로 쓰기엔 22,900원이 아깝지 않은 값.",
-      "image": "/assets/hotdeal/electric-blanket.webp",
-      "image_alt": "MIFAN 극세사 USB 온열 담요 그레이 상품 이미지",
-      "affiliate_url": "https://link.coupang.com/a/iSp5P996Bg",
-      "product_url": "https://www.coupang.com/vp/products/8409016423",
-      "updated_at": "2026-11-22 12:09 KST"
+      "delivery": "내일(화) 11/24 도착 보장",
+      "shipping": "판매자 쿠팡(주) · 무료배송(79,900원 단독 주문도 무료). 와우 가입 쿠폰가 60,900원은 가입 조건이라 대표가로 쓰지 않았습니다.",
+      "note": "가열식+초음파 복합식에 5L 통세척, 리모컨까지 붙은 모델 카더라. 다만 상품평 235건 중 상당수가 쿠팡체험단(무료 제공) 후기라 후기 수는 적은 편입니다.",
+      "image": "/assets/hotdeal/humidifier-5l.webp",
+      "image_alt": "한경희생활과학 초저소음 대용량 통세척 리모컨형 복합식 가습기 5L 상품 이미지",
+      "affiliate_url": "https://link.coupang.com/a/iTWweqzNe0",
+      "product_url": "https://www.coupang.com/vp/products/9138704178",
+      "updated_at": "2026-11-23 10:10 KST"
     },
     {
       "platform": "coupang",
       "cat": "겨울",
-      "title": "USB 발열 숄담요 인조 토끼털 지퍼형",
-      "option": "그레이 · 152 × 85cm · 9구역 발열 3단 온도조절",
-      "price": 35800,
-      "origin": 49800,
-      "discount": 28,
-      "unit": "USB 5V · 보조배터리 전원",
-      "reviews": "227건 · 최고 84% · 200명 이상 만족",
+      "title": "Mosashoe 발열조끼 20구역",
+      "option": "S~XXXL · 블랙 · USB/DC 겸용 3단 온도조절",
+      "price": 29520,
+      "origin": 100000,
+      "discount": 70,
+      "unit": "무료배송 · 무료반품",
+      "reviews": "756건 · 최고 80% · 600명 이상 만족",
       "badges": [
-        "한 달 1,000명 이상 구매",
+        "내일 도착 보장",
         "무료배송",
-        "KC 전자파 적합"
+        "KCs 자율안전확인 PFg-20223"
       ],
-      "delivery": "내일(월) 11/23 도착 보장",
-      "shipping": "판매자 무료배송(신영테크날라지 · 순차배송). 색상 그레이·베이지, 와우 가입쿠폰가 16,800원은 가입 조건이라 대표가로 쓰지 않았습니다.",
-      "note": "콘센트 없이 보조배터리로 켜서 입고 다니는 담요라 카더라. 9구역 발열에 지퍼형이라 어깨에 걸치고 손을 넣을 수 있어 사무실·차 안에서 쓰기 좋습니다.",
-      "image": "/assets/hotdeal/blanket-shawl.webp",
-      "image_alt": "USB 발열 숄담요 인조 토끼털 지퍼형 그레이 152x85cm 상품 이미지",
-      "affiliate_url": "https://link.coupang.com/a/iSLlYmeWtg",
-      "product_url": "https://www.coupang.com/vp/products/9730302110",
-      "updated_at": "2026-11-22 17:13 KST"
+      "delivery": "내일(화) 11/24 도착 보장",
+      "shipping": "판매자 무료배송(장부코퍼레이션 · 순차배송 1~2일). 와우 가입 쿠폰가 9,200원은 가입 조건이라 대표가로 쓰지 않았습니다.",
+      "note": "보조배터리만 꽂으면 등판 20구역이 따뜻해진다 카더라. 보조배터리는 별매라 같이 담아야 하고, 후기 756건에 사이즈는 정사이즈라는 응답이 77%입니다.",
+      "image": "/assets/hotdeal/vest-heating.webp",
+      "image_alt": "Mosashoe 발열조끼 20구역 열선조끼 블랙 상품 이미지",
+      "affiliate_url": "https://link.coupang.com/a/iTWGrHcE8G",
+      "product_url": "https://www.coupang.com/vp/products/8442643565",
+      "updated_at": "2026-11-23 10:12 KST"
     },
     {
       "platform": "coupang",
@@ -258,26 +259,26 @@ window.HOTDEAL = {
     {
       "platform": "coupang",
       "cat": "생활",
-      "title": "세타필 모이스춰라이징 크림",
-      "option": "100g · 1개",
-      "price": 9900,
-      "origin": 14700,
-      "discount": 32,
-      "unit": "와우 할인가 9,800원",
-      "reviews": "4,656건 · 최고 85% · 4,000명 이상 만족",
+      "title": "에스트라 아토베리어 365 하이드로 수딩크림",
+      "option": "80ml · 1개 · 수부지·복합성용",
+      "price": 20460,
+      "origin": 33000,
+      "discount": 38,
+      "unit": "10ml당 2,558원",
+      "reviews": "1,479건 · 최고 86% · 1,000명 이상 만족",
       "badges": [
-        "한 달 1,000명 이상 구매",
-        "로켓배송",
-        "내일 새벽 도착"
+        "한 달 1만명 이상 구매",
+        "내일 도착 보장",
+        "무료배송"
       ],
-      "delivery": "내일(월) 11/23 새벽 7시 전 도착 보장",
-      "shipping": "로켓배송 — 단품 9,900원은 무료배송 기준(19,800원)에 못 미쳐 배송비가 붙을 수 있습니다(와우 회원은 할인가 9,800원).",
-      "note": "겨울 되면 손등이 먼저 아는 크림 카더라. 100g은 가방에 넣고 다니기 좋은 사이즈.",
-      "image": "/assets/hotdeal/cetaphil.webp",
-      "image_alt": "세타필 모이스춰라이징 크림 100g 상품 이미지",
-      "affiliate_url": "https://link.coupang.com/a/iSp8Fw6x3I",
-      "product_url": "https://www.coupang.com/vp/products/9304032433",
-      "updated_at": "2026-11-22 12:11 KST"
+      "delivery": "내일(화) 11/24 도착 보장(오후 9시 전 주문 시 새벽 7시 전)",
+      "shipping": "판매자 쿠팡(주) · 20,460원이라 로켓 무료배송 기준(19,800원)을 넘겨 무료배송. 와우 카드 즉시할인 18,410원은 와우 전용이라 대표가로 쓰지 않았습니다.",
+      "note": "유분 많은 피부용으로 나온 산뜻한 장벽 크림이라 카더라. 후기 1,479건 중 피부 자극 '없어요'가 97%, 유통기한은 2028-04-12 이후입니다.",
+      "image": "/assets/hotdeal/aestura-cream.webp",
+      "image_alt": "에스트라 아토베리어 365 하이드로 수딩크림 80ml 상품 이미지",
+      "affiliate_url": "https://link.coupang.com/a/iTWykgKGku",
+      "product_url": "https://www.coupang.com/vp/products/9648097024",
+      "updated_at": "2026-11-23 10:12 KST"
     },
     {
       "platform": "coupang",

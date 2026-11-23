@@ -1,4 +1,4 @@
-/* 버핏카세 /hotdeal 데이터 (2026-11-23 10:20 KST 실사 · 8차 업데이트 — 쿠팡 신규 3건 편입·3건 교체: 발열조끼·복합식 가습기 5L·에스트라 수딩크림 / 겨울 담요 2건·세타필 교체)
+/* 버핏카세 /hotdeal 데이터 (2026-11-23 19:45 KST 실사 · 9차 업데이트 — 쿠팡 신규 2건 편입: 브리타 정수기 필터 막스트라 프로 3p·오색바람 감귤 5kg / 기간한정 끝난 팔도 비빔장(48%→25%) 교체 아웃, 쿠팡 15건)
    구조 확장 규칙: items[] 각 항목은
    { platform: "coupang" | "toss" | "naver", title, price, affiliate_url, note, updated_at, ... }
    platform 값만 늘리면 토스쇼핑 셰어링크·네이버 쇼핑커넥트를 같은 카드로 붙일 수 있게 설계했다.
@@ -7,15 +7,61 @@
    ※ tossShop/tossDeals = 토스쇼핑 쉐어링크 하루특가 섹션. 쿠팡·네이버와 대가성 고지가 다르므로 반드시 별도 섹션으로 렌더한다.
      링크는 sharelink.toss.im '링크 발급'으로 직접 발급한 공개용 쉐어링크(toss.shopping/_m/…)만 쓴다.
      단, 특가지면(SHOPPING_DEALS) 전체 링크는 쉐어링크 Open API `POST /openapi/links`로만 발급되므로
-     타  상단 토스 배너(tossShop.dealsUrl)만 API 발급 링크를 쓴다 — API 키는 공개 저장소에 올리지 않는다.
+     상단 토스 배너(tossShop.dealsUrl)만 API 발급 링크를 쓴다 — API 키는 공개 저장소에 올리지 않는다.
    ※ 본문은 JSON 호환 형식(키·문자열 큰따옴표) — projects/build_hotdeal.py 가 그대로 파싱해 hotdeal.html 을 만든다. */
 window.HOTDEAL = {
-  "asOf": "2026-11-23 10:20 KST",
+  "asOf": "2026-11-23 19:45 KST",
   "coupangTag": "AF2387959",
   "disclosure": "이 페이지는 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.",
-  "priceNotice": "표시된 가격 및 할인율은 확인 시점 기준이며, 쿠팡 실시간 판매가·재고에 따라 변동되거나 품절될 수 있습니다. '아낌 금액'은 쿠팡 상세페이지에 함께 표기된 정가(기준가)에서 현재 판매가를 뺀 값이고, 정가 표기가 없는 상품은 정가 대신 확인된 포인트만 적었습니다.",
+  "priceNotice": "표시된 가격 및 할인율은 확인 시점 기준이며, 쿠팡 실시간 판매가·재고에 따라 변동되거나 품절될 수 있습니다. '아낌 금액'은 쿠팡 상세페이지에 함께 표기된 정가(기준가)에서 현재 판매가를 뺀 값이고, 정가 표기가 없는 상품은 정가 대신 확인된 포인트만 적었습니다. '다음 날 도착 보장'은 확인 시점 기준 다음 영업일이며, 실제 도착일은 주문 시점의 결제 화면 안내를 따릅니다. 와우 가입 쿠폰가는 회원 조건이라 대표가로 쓰지 않았습니다.",
   "tossNotice": "토스쇼핑 하루특가·BEST 특가는 위쪽 토스 섹션에 모았습니다. 토스 링크는 토스쇼핑 쉐어링크에서 직접 발급한 공개용 링크이고, 수수료 고지는 그 섹션 안에 따로 적었습니다. 네이버 크리에이터샵 상품은 맨 아래 별도 섹션(쿠팡파트너스와 무관)에 모았습니다.",
   "items": [
+    {
+      "platform": "coupang",
+      "cat": "IT",
+      "title": "브리타 정수기 필터 막스트라 프로 퓨어 퍼포먼스 3p",
+      "option": "필터 3개입 · 1개 · 정품 3p",
+      "price": 23900,
+      "origin": 28500,
+      "discount": 16,
+      "unit": "1개당 23,900원",
+      "reviews": "2만 9,552건 · 최고 87%",
+      "badges": [
+        "한 달 2만명 이상 구매",
+        "로켓배송",
+        "무료배송"
+      ],
+      "delivery": "내일(화) 11/24 도착 보장(19:37 기준 4시간 23분 내 주문 시)",
+      "shipping": "판매자 쿠팡(주) · 로켓배송 무료배송(19,800원 기준 충족). 위쪽 와우 가입 쿠폰할인가 4,900원은 가입 조건이라 대표가로 쓰지 않았고, 같은 화면의 막스트라 호환 저가 필터(1개당 3,307원)와는 다른 정품 3p 기준입니다.",
+      "note": "정수기 쓰는 집은 두세 달마다 3개씩 갈아야 하는 소모품이라 카더라. 한 달 2만명이 산 게 그 근거인데, 할인 폭 16%는 크지 않습니다.",
+      "image": "/assets/hotdeal/brita-filter.webp",
+      "image_alt": "브리타 정수기 필터 막스트라 프로 퓨어 퍼포먼스 3p 상품 이미지",
+      "affiliate_url": "https://link.coupang.com/a/iUAXXUSgvY",
+      "product_url": "https://www.coupang.com/vp/products/9682171979",
+      "updated_at": "2026-11-23 19:37 KST"
+    },
+    {
+      "platform": "coupang",
+      "cat": "식품",
+      "title": "오색바람 감귤 5kg(대과), 1박스",
+      "option": "대과 · 5kg · 1박스 · 100g당 215원",
+      "price": 10750,
+      "unit": "100g당 215원",
+      "reviews": "평점 4.5 · 1만 122건 · 최고 72%",
+      "badges": [
+        "한 달 1만명 이상 구매",
+        "로켓프레시",
+        "8,000명 이상 만족"
+      ],
+      "delivery": "내일(화) 11/24 새벽 7시 전 도착 보장(밤 12시 전 주문 시)",
+      "shipping": "로켓프레시 15,000원 이상 무료배송(서비스 가능 지역 한함) — 1박스 10,750원 단독은 기준 미달이라 2박스(21,500원)·3박스(31,280원)나 장보기 묶음으로 담아야 무료입니다. 원산지는 상세 표기가 '컨텐츠 참조'뿐이라 제주산인지 확인되지 않았습니다.",
+      "note": "제철 감귤 5kg이 10,750원이면 100g당 215원 카더라. 새벽 도착에 평점 4.5지만, 10kg 대용량(100g당 98~149원)보다 단가는 높으니 많이 먹는 집은 대용량이 낫습니다.",
+      "image": "/assets/hotdeal/tangerine-5kg.webp",
+      "image_alt": "오색바람 감귤 5kg(대과) 1박스 상품 이미지",
+      "affiliate_url": "https://link.coupang.com/a/iUsrH8MgH6",
+      "product_url": "https://www.coupang.com/vp/products/7605687592?itemId=20130595762&vendorItemId=87224619808",
+      "updated_at": "2026-11-23 19:41 KST"
+    },
     {
       "platform": "coupang",
       "cat": "생활",
@@ -25,19 +71,19 @@ window.HOTDEAL = {
       "origin": 18000,
       "discount": 39,
       "unit": "1매당 11원",
-      "reviews": "49만 2,028건 · 최고 85%",
+      "reviews": "49만 2,567건 · 최고 85%",
       "badges": [
         "한 달 10만명 이상 구매",
         "로켓배송"
       ],
-      "delivery": "내일(월) 11/23 도착 보장",
+      "delivery": "내일(화) 11/24 도착 보장(19:41 기준 4시간 22분 내 주문 시)",
       "shipping": "로켓배송 19,800원 이상 무료 — 단품 10,890원만 담으면 배송비가 붙습니다.",
       "note": "아기 있는 집은 이거 10팩 쌓아두고 겨울 난다 카더라. 1매당 11원이면 물티슈값 걱정은 접는 셈.",
       "image": "/assets/hotdeal/wetissue.webp",
       "image_alt": "코멧 오리지널 유아용 아기물티슈 캡형 10팩 상품 이미지",
       "affiliate_url": "https://link.coupang.com/a/iR9DRSjjem",
       "product_url": "https://www.coupang.com/vp/products/188227098",
-      "updated_at": "2026-11-22 08:33 KST"
+      "updated_at": "2026-11-23 19:41 KST"
     },
     {
       "platform": "coupang",
@@ -54,7 +100,7 @@ window.HOTDEAL = {
         "로켓배송",
         "유통기한 2028-01-08 이후"
       ],
-      "delivery": "내일(월) 11/23 도착 보장",
+      "delivery": "로켓배송 · 다음 날 도착 보장(주문 마감 전)",
       "shipping": "로켓배송 19,800원 이상 무료 — 단품 8,970원은 배송비가 붙습니다. 20개 7,180원·60개 17,940원·90개 26,910원 옵션도 있습니다.",
       "note": "군인들이 쓰는 그 핫팩이라 카더라. 100g이면 주머니에 넣고 하루는 버틴다는 후기가 많고, 30개면 한 겨울은 갑니다. 다만 1개당 283원짜리 코멧이 더 싸니 '최저가'는 아닙니다.",
       "image": "/assets/hotdeal/hotpack-bulgom.webp",
@@ -72,20 +118,20 @@ window.HOTDEAL = {
       "origin": 56800,
       "discount": 66,
       "unit": "3포트 · LCD 잔량표시",
-      "reviews": "9,837건 · 최고 86% · 좋음 8%",
+      "reviews": "9,849건 · 최고 86% · 좋음 8%",
       "badges": [
         "한 달 1,000명 이상 구매",
         "로켓배송",
         "KC 인증"
       ],
-      "delivery": "내일(월) 11/23 도착 보장",
+      "delivery": "내일(화) 11/24 도착 보장(19:42 기준 4시간 20분 내 주문 시)",
       "shipping": "로켓배송 19,800원 이상 무료 — 1,000원 차이로 기준 미달입니다.",
       "note": "2만 밀리암페어를 2만 원 아래로 사는 건 흔한 일이 아니다 카더라. 잔량이 숫자로 보이는 것도 은근 편하고.",
       "image": "/assets/hotdeal/powerbank.webp",
       "image_alt": "KLIFE 고속충전 대용량 보조배터리 20000mAh 블랙 상품 이미지",
       "affiliate_url": "https://link.coupang.com/a/iPtqGEgPvw",
       "product_url": "https://www.coupang.com/vp/products/7295770123",
-      "updated_at": "2026-11-22 08:40 KST"
+      "updated_at": "2026-11-23 19:42 KST"
     },
     {
       "platform": "coupang",
@@ -102,7 +148,7 @@ window.HOTDEAL = {
         "국산 탄소열선",
         "KC 인증"
       ],
-      "delivery": "내일(월) 11/23 도착 보장",
+      "delivery": "로켓배송 · 다음 날 도착 보장(주문 마감 전)",
       "shipping": "로켓배송 19,800원 이상 무료 — 단품은 배송비가 붙습니다.",
       "note": "큰 전기장판 켜기 애매할 때 의자에 하나 깔면 그게 난로다 카더라. 색상·옵션에 따라 가격이 다를 수 있습니다.",
       "image": "/assets/hotdeal/heating-pad.webp",
@@ -126,7 +172,7 @@ window.HOTDEAL = {
         "로켓배송",
         "무료배송"
       ],
-      "delivery": "내일(월) 11/23 도착 보장",
+      "delivery": "로켓배송 · 다음 날 도착 보장(주문 마감 전)",
       "shipping": "로켓배송 19,800원 이상 무료 — 29,800원이라 기준 충족(무료배송). 색상 네이비·그레이·베이지, 패드형은 39,800원.",
       "note": "책상 아래 발 하나 올려두면 허리가 편하다 카더라. 국내 제조에 2단 쿠션, 후기 7,970건이 붙은 물건.",
       "image": "/assets/hotdeal/footrest.webp",
@@ -150,7 +196,7 @@ window.HOTDEAL = {
         "로켓배송",
         "소비기한 2027-03-01 이후"
       ],
-      "delivery": "내일(월) 11/23 도착 보장",
+      "delivery": "로켓배송 · 다음 날 도착 보장(주문 마감 전)",
       "shipping": "로켓배송 19,800원 이상 무료 — 단품 10,710원은 배송비가 붙습니다.",
       "note": "새콤한 골드베어 55봉지가 한 통에 온다 카더라. 간식 서랍 하나는 이걸로 채워두면 됩니다.",
       "image": "/assets/hotdeal/haribo.webp",
@@ -158,31 +204,6 @@ window.HOTDEAL = {
       "affiliate_url": "https://link.coupang.com/a/iSp3zSrtQW",
       "product_url": "https://www.coupang.com/vp/products/7780930280?itemId=22731283377",
       "updated_at": "2026-11-22 12:06 KST"
-    },
-    {
-      "platform": "coupang",
-      "cat": "식품",
-      "title": "팔도 비빔장 저칼로리",
-      "option": "185g × 2개 · 100g당 1,397원",
-      "price": 5170,
-      "origin": 10000,
-      "discount": 48,
-      "limited": true,
-      "unit": "100g당 1,397원",
-      "reviews": "8,636건 · 평점 4.5",
-      "badges": [
-        "로켓배송",
-        "기간한정 할인",
-        "소비기한 2027-02-09"
-      ],
-      "delivery": "내일(월) 11/23 도착 보장",
-      "shipping": "로켓배송 19,800원 이상 무료 — 단품이라 배송비가 붙습니다. 1개 2,740원보다 2개 묶음이 개당 155원 쌉니다.",
-      "note": "비빔면에 두 숟갈이면 끝나는 장맛 카더라. 다만 목록에 '할인' 표시가 붙은 기간한정가라 언제 끝날지는 모릅니다.",
-      "image": "/assets/hotdeal/bibimjang.webp",
-      "image_alt": "팔도 비빔장 저칼로리 185g 2개 상품 이미지",
-      "affiliate_url": "https://link.coupang.com/a/iSp4ODGTyS",
-      "product_url": "https://www.coupang.com/vp/products/7193811446?itemId=18316571407",
-      "updated_at": "2026-11-22 12:07 KST"
     },
     {
       "platform": "coupang",
@@ -217,20 +238,20 @@ window.HOTDEAL = {
       "origin": 100000,
       "discount": 70,
       "unit": "무료배송 · 무료반품",
-      "reviews": "756건 · 최고 80% · 600명 이상 만족",
+      "reviews": "757건 · 최고 80% · 600명 이상 만족",
       "badges": [
         "내일 도착 보장",
         "무료배송",
         "KCs 자율안전확인 PFg-20223"
       ],
-      "delivery": "내일(화) 11/24 도착 보장",
-      "shipping": "판매자 무료배송(장부코퍼레이션 · 순차배송 1~2일). 와우 가입 쿠폰가 9,200원은 가입 조건이라 대표가로 쓰지 않았습니다.",
-      "note": "보조배터리만 꽂으면 등판 20구역이 따뜻해진다 카더라. 보조배터리는 별매라 같이 담아야 하고, 후기 756건에 사이즈는 정사이즈라는 응답이 77%입니다.",
+      "delivery": "내일(화) 11/24 도착 보장(19:44 기준 4시간 21분 내 주문 시)",
+      "shipping": "판매자 장부코퍼레이션 유한회사 · 순차배송 1~2일 · 무료배송. 와우 가입 쿠폰할인가 10,520원(89%)은 가입 조건이라 대표가로 쓰지 않았습니다.",
+      "note": "보조배터리만 꽂으면 등판 20구역이 따뜻해진다 카더라. 보조배터리는 별매라 같이 담아야 하고, 후기 757건에 사이즈는 정사이즈라는 응답이 77%입니다.",
       "image": "/assets/hotdeal/vest-heating.webp",
       "image_alt": "Mosashoe 발열조끼 20구역 열선조끼 블랙 상품 이미지",
       "affiliate_url": "https://link.coupang.com/a/iTWGrHcE8G",
       "product_url": "https://www.coupang.com/vp/products/8442643565",
-      "updated_at": "2026-11-23 10:12 KST"
+      "updated_at": "2026-11-23 19:44 KST"
     },
     {
       "platform": "coupang",
@@ -247,7 +268,7 @@ window.HOTDEAL = {
         "무료배송",
         "쇼핑백 포함"
       ],
-      "delivery": "내일(월) 11/23 도착 보장",
+      "delivery": "무료배송 · 다음 날 도착 보장(주문 마감 전)",
       "shipping": "무료배송.",
       "note": "선물용으로 물어보면 늘 나오는 이름 카더라. 쇼핑백까지 세트라 연말 인사에 손이 덜 갑니다.",
       "image": "/assets/hotdeal/tea-gift.webp",
@@ -265,7 +286,7 @@ window.HOTDEAL = {
       "origin": 33000,
       "discount": 38,
       "unit": "10ml당 2,558원",
-      "reviews": "1,479건 · 최고 86% · 1,000명 이상 만족",
+      "reviews": "1,486건 · 최고 86% · 1,000명 이상 만족",
       "badges": [
         "한 달 1만명 이상 구매",
         "내일 도착 보장",
@@ -273,12 +294,12 @@ window.HOTDEAL = {
       ],
       "delivery": "내일(화) 11/24 도착 보장(오후 9시 전 주문 시 새벽 7시 전)",
       "shipping": "판매자 쿠팡(주) · 20,460원이라 로켓 무료배송 기준(19,800원)을 넘겨 무료배송. 와우 카드 즉시할인 18,410원은 와우 전용이라 대표가로 쓰지 않았습니다.",
-      "note": "유분 많은 피부용으로 나온 산뜻한 장벽 크림이라 카더라. 후기 1,479건 중 피부 자극 '없어요'가 97%, 유통기한은 2028-04-12 이후입니다.",
+      "note": "유분 많은 피부용으로 나온 산뜻한 장벽 크림이라 카더라. 후기 1,486건 중 피부 자극 '없어요'가 97%, 유통기한은 2028-04-12 이후입니다.",
       "image": "/assets/hotdeal/aestura-cream.webp",
       "image_alt": "에스트라 아토베리어 365 하이드로 수딩크림 80ml 상품 이미지",
       "affiliate_url": "https://link.coupang.com/a/iTWykgKGku",
       "product_url": "https://www.coupang.com/vp/products/9648097024",
-      "updated_at": "2026-11-23 10:12 KST"
+      "updated_at": "2026-11-23 17:34 KST"
     },
     {
       "platform": "coupang",
@@ -295,7 +316,7 @@ window.HOTDEAL = {
         "로켓배송",
         "내일 도착 보장"
       ],
-      "delivery": "내일(월) 11/23 도착 보장",
+      "delivery": "로켓배송 · 다음 날 도착 보장(주문 마감 전)",
       "shipping": "로켓배송 19,800원 이상 무료 — 23,200원 단독 주문도 무료배송입니다. 결제 화면에 와우 쿠폰할인가 4,200원(89%)이 함께 떠 있었지만 회원·쿠폰 조건이라 기본가는 일반판매가입니다.",
       "note": "400매면 하루 두 장 써도 두 달이다 카더라. 1매당 58원이면 배변패드값으로 고민할 일은 없음.",
       "image": "/assets/hotdeal/pad-tamsa.webp",

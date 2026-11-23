@@ -1046,7 +1046,11 @@ footer b{color:#a9b8cb}
     const rt = el('div','rt-text', `<span>상승 <b>${t.up}</b> / ${t.count}</span><span>${upPct}% 상승 · 하락 ${t.down}</span>`);
     const tb = el('table');
     const body = el('tbody');
-    (rows || t.rows).forEach(r => {
+    /* 카드 안 종목은 항상 등락률(상승률) 높은순(내림차순) — 원본 t.rows 순서는 건드리지 않는다 */
+    [...(rows || t.rows)].sort((a,b) => {
+      const d = (Number(b.pct)||0) - (Number(a.pct)||0);
+      return d || (Number(b.v)||0) - (Number(a.v)||0) || String(a.n).localeCompare(String(b.n),'ko');
+    }).forEach(r => {
       const tr = el('tr');
       tr.dataset.c = r.c;
       const dot = r.th>=4?'#a855f7':(r.th===3?'#f97316':(r.th===2?'#22c55e':'transparent'));

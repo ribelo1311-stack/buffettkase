@@ -130,6 +130,21 @@ code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12px;back
 .contact .row:last-child{margin-bottom:0}
 .contact .k{font-weight:900;color:#8a5a06;min-width:64px}
 
+/* BIZ CONTACT (배너·제휴 문의 · 복사 버튼) */
+.bizcontact{margin-top:12px;border:1px solid #d9e5fb;background:linear-gradient(105deg,#f7fbff,#eef4ff 70%);border-radius:14px;padding:14px 16px}
+.bizcontact .bc-h{font-size:13.5px;font-weight:900;color:#1d4ed8;margin-bottom:6px}
+.bizcontact p{font-size:12.5px;color:var(--tx2);margin-bottom:8px}
+.bizcontact .bc-row{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:8px 0}
+.bizcontact code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:14px;font-weight:800;color:#0f172a;
+  background:#fff;border:1px solid #cfdcf3;border-radius:8px;padding:8px 12px;word-break:break-all;
+  user-select:all;-webkit-user-select:all}
+.bc-copy{font-family:inherit;font-size:12px;font-weight:900;padding:8px 13px;border-radius:9px;cursor:pointer;
+  background:linear-gradient(135deg,#2563eb,#1d4ed8);border:1px solid #1e40af;color:#fff;transition:.15s}
+.bc-copy:hover{filter:brightness(1.07)}
+.bc-copy:active{transform:translateY(1px)}
+.bc-copy.ok{background:linear-gradient(135deg,#10b981,#047857);border-color:#047857}
+.bizcontact .bc-note{font-size:12px;color:#4b5a75;margin-bottom:0}
+
 /* FOOTER */
 footer{margin-top:26px;border-top:1px solid var(--line);padding-top:16px;font-size:11px;color:var(--mut);line-height:1.75}
 footer b{color:var(--tx2)}
@@ -259,12 +274,21 @@ footer{padding-bottom:44px}
     <div class="box warn"><span class="h">⚠️ 유기동물 안내에도 같은 원칙</span>공고 내용은 사정에 따라 수시로 바뀝니다. 입양·임보·제보 전에는 반드시 <b>보호소나 원문 게시글에 직접 확인</b>해 주세요.</div>
   </section>
 
-  <section>
+  <section id="contact">
     <h2><span class="n">6</span>문의</h2>
     <p>기능 제안, 데이터 오류 제보, 제휴·광고 문의는 아래로 보내 주세요. 운영자는 대외 명의 <b>"월억버핏"</b>으로 활동하며, 아래 연락처가 유일한 공식 창구입니다.</p>
+    <div class="bizcontact">
+      <div class="bc-h">🤝 배너·광고 제휴 문의</div>
+      <p>대시보드 상단·중간 배너, 스레드·유튜브 협찬, 브랜디드 콘텐츠 모두 같은 창구로 받습니다. 아래 주소를 <b>복사 버튼</b>으로 복사한 뒤 쓰시는 메일에서 보내 주세요. (휴대폰 인앱 브라우저에서는 메일 앱이 바로 열리지 않을 수 있어 복사 방식을 함께 두었습니다.)</p>
+      <div class="bc-row">
+        <code id="bizMail">ribelo1311@naver.com</code>
+        <button type="button" class="bc-copy" id="bizCopy" data-copy="ribelo1311@naver.com">📋 이메일 복사</button>
+      </div>
+      <p class="bc-note">메일 제목에 <b>[배너 제휴 문의]</b>를 적어 주시면 더 빠르게 확인합니다. 영업일 기준 3일 이내 회신드립니다.</p>
+    </div>
     <div class="contact">
       <div class="row"><span class="k">운영자</span><span>월억버핏 (버핏카세 운영자)</span></div>
-      <div class="row"><span class="k">이메일</span><span><a class="lk" href="mailto:ribelo1311@gmail.com">ribelo1311@gmail.com</a></span></div>
+      <div class="row"><span class="k">이메일</span><span><a class="lk" href="mailto:ribelo1311@gmail.com">ribelo1311@gmail.com</a> <span style="color:var(--mut)">(일반 문의)</span></span></div>
       <div class="row"><span class="k">블로그</span><span><a class="lk" href="https://blog.naver.com/ribelo1311" target="_blank" rel="noopener noreferrer">blog.naver.com/ribelo1311</a> (비밀 댓글·쪽지)</span></div>
       <div class="row"><span class="k">회신</span><span>영업일 기준 3일 이내</span></div>
       <div class="row"><span class="k">개인정보</span><span><a class="lk" href="privacy.html">개인정보처리방침</a>에서 처리 방식을 확인할 수 있습니다.</span></div>
@@ -305,6 +329,49 @@ footer{padding-bottom:44px}
   window.addEventListener('scroll', sync, { passive: true });
   window.addEventListener('resize', sync);
   sync();
+})();
+
+/* 제휴 이메일 원클릭 복사 (인앱 브라우저 대응: 클립보드 → execCommand → 직접 선택 안내) */
+(function () {
+  var btn = document.getElementById('bizCopy');
+  if (!btn) return;
+  var mail = btn.getAttribute('data-copy') || 'ribelo1311@naver.com';
+  var label = btn.textContent;
+  function done() {
+    btn.textContent = '✅ 복사됨';
+    btn.classList.add('ok');
+    setTimeout(function () { btn.textContent = label; btn.classList.remove('ok'); }, 1800);
+  }
+  function selectGuide() {
+    var el = document.getElementById('bizMail');
+    if (el) {
+      try {
+        var r = document.createRange(); r.selectNodeContents(el);
+        var s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
+      } catch (e) {}
+    }
+    btn.textContent = '☝️ 길게 눌러 복사';
+    setTimeout(function () { btn.textContent = label; }, 2600);
+  }
+  function fallback() {
+    try {
+      var ta = document.createElement('textarea');
+      ta.value = mail; ta.setAttribute('readonly', '');
+      ta.style.position = 'fixed'; ta.style.top = '-1000px'; ta.style.opacity = '0';
+      document.body.appendChild(ta); ta.select(); ta.setSelectionRange(0, mail.length);
+      var ok = document.execCommand('copy');
+      document.body.removeChild(ta);
+      if (ok) { done(); return; }
+    } catch (e) {}
+    selectGuide();
+  }
+  btn.addEventListener('click', function () {
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(mail).then(done).catch(fallback);
+    } else {
+      fallback();
+    }
+  });
 })();
 </script>
 

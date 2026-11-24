@@ -62,6 +62,45 @@ span.nxt{font-size:8px;font-weight:900;letter-spacing:.2px;color:#7dd3fc;border:
 .updnote .tx{flex:1;min-width:0}
 .updnote .tx i{font-style:normal;color:#9fb0c6}
 @media(max-width:720px){.updnote{font-size:10.5px;padding:7px 10px}}
+/* ===== MARKET SUMMARY (오늘 시장 핵심 요약) ===== */
+.mkt-summary{background:linear-gradient(180deg,#121c2e,#0e1524);border:1px solid #28395a;border-radius:10px;
+  padding:9px 11px 10px;margin-bottom:8px}
+.ms-head{display:flex;align-items:center;gap:7px;flex-wrap:wrap;margin-bottom:8px}
+.ms-head h2{font-size:13px;font-weight:900;letter-spacing:-.3px;display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.ms-head .ms-date{font-size:10px;font-weight:800;color:#93c5fd;background:rgba(59,130,246,.12);
+  border:1px solid rgba(59,130,246,.28);padding:2px 7px;border-radius:20px;white-space:nowrap}
+.ms-toggle{margin-left:auto;background:#16202f;border:1px solid var(--line2);color:var(--tx2);
+  font-size:10.5px;font-weight:800;padding:4px 9px;border-radius:6px;cursor:pointer;font-family:inherit;white-space:nowrap}
+.ms-toggle:hover{background:#1f2c3f;color:#fff}
+.ms-body{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.ms-body[hidden]{display:none}
+.ms-card{background:#0e1727;border:1px solid #22314a;border-radius:8px;padding:8px 10px;min-width:0}
+.ms-card .ms-ct{display:flex;align-items:center;gap:5px;font-size:11px;font-weight:900;color:var(--gold2);margin-bottom:6px;flex-wrap:wrap}
+.ms-card .ms-ct .ms-when{font-size:9.5px;font-weight:800;color:#8b98ab;background:rgba(148,163,184,.1);
+  border:1px solid rgba(148,163,184,.22);border-radius:10px;padding:1px 6px;white-space:nowrap}
+.ms-idx{list-style:none;display:flex;flex-wrap:wrap;gap:3px 12px;margin:0 0 6px;padding:0}
+.ms-idx li{display:flex;align-items:baseline;gap:4px;font-size:10.5px;color:#a9b6c8;font-variant-numeric:tabular-nums}
+.ms-idx li b{font-size:11.5px;color:var(--tx);font-weight:800}
+.ms-idx li i{font-style:normal;font-weight:900;font-size:10.5px}
+.ms-note{font-size:10.5px;line-height:1.6;color:#b6c2d2;margin:0}
+.ms-note b{color:var(--tx);font-weight:800}
+.ms-note em{font-style:normal;color:var(--gold2);font-weight:800}
+.ms-flows{display:flex;flex-wrap:wrap;gap:3px 11px;margin:0 0 6px;font-size:10.5px;font-variant-numeric:tabular-nums;color:#a9b6c8}
+.ms-flows span b{font-weight:900}
+.ms-todo{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:4px;font-size:10.5px;line-height:1.55;color:#b6c2d2}
+.ms-todo li{display:flex;gap:5px;align-items:baseline}
+.ms-todo li .tm{flex:0 0 auto;font-size:9.5px;font-weight:900;color:#7dd3fc;background:rgba(56,189,248,.1);
+  border:1px solid rgba(56,189,248,.3);border-radius:4px;padding:0 5px;font-variant-numeric:tabular-nums;white-space:nowrap}
+.ms-todo li .tm.d2{color:#fcd34d;background:rgba(240,180,41,.1);border-color:rgba(240,180,41,.3)}
+.ms-hint{grid-column:1/-1;border-top:1px dashed #22314a;padding-top:6px;font-size:10.5px;line-height:1.6;color:#94a3b8}
+.ms-hint b{color:var(--gold2)}
+@media(max-width:1080px){.ms-body{grid-template-columns:1fr 1fr}}
+@media(max-width:720px){
+  .mkt-summary{padding:8px 9px 9px}
+  .ms-body{grid-template-columns:1fr;gap:6px}
+  .ms-head h2{font-size:12px}
+  .ms-idx li,.ms-note,.ms-todo{font-size:10px}
+}
 /* ===== LIVE QUOTES ===== */
 .basisline{display:flex;flex-wrap:wrap;gap:3px 6px;align-items:center;font-size:10.5px;color:#7c8ba1;
   padding:0 4px 8px;font-variant-numeric:tabular-nums}
@@ -589,10 +628,53 @@ footer b{color:#a9b8cb}
       정규장 전후에는 <b>넥스트레이드(NXT) 프리마켓 08:00~08:50 · 애프터마켓 15:40~20:00</b> 체결가를 반영하고, 그 시세를 쓰는 종목 이름 옆에 <b>NXT</b> 표시가 붙습니다.
       값 옆 ⓘ/칸에 마우스를 올리면 그 값의 <b>기준 시각</b>이 나옵니다.
       <b>실시간 시장 속보</b>는 네이버 금융 주요뉴스에서 5분마다 자동으로 받아오고, 검색창에 종목명을 입력하면 <b>코스피·코스닥·ETF 전체</b>에서 찾아 실시간 시세와 함께 보여 줍니다.
-      <i>단, <b>종목별 외인·기관 수급·쌍끌이</b>는 <b>2026-11-20(금) 정규장 마감 확정 기준</b>(당일 종목별 전수 집계는 익일 공개), <b>테마 해설·시세와 AI 뉴스·증권사 목표주가 레이더</b>는 <b>2026-11-24(화) 07:30 개장 전 기준</b>(국내 시세·테마·급등은 11/23 정규장 마감, 미국 지수·금리·VIX는 11/23 미장 마감)으로 정기 업데이트됩니다. 11/23(월) 코스피는 2.77% 하락 출발해 장중 <b>4,586.80(-5.8%)</b>까지 밀리며 <b>11:33 매도 사이드카</b>가 발동(11/20에 이어 2거래일 연속)됐고, 오후 저가 매수로 낙폭을 줄여 <b>4,708.54(-3.31%)</b>로 마감했습니다(종가 기준 1월 14일 이후 10개월 만 최저). 코스닥은 <b>635.45(-1.58%)</b>로 2024년 12월 이후 종가 최저입니다. 간밤(11/23 미장)에는 엔비디아 이사회가 젠슨 황 CEO를 만장일치로 복귀시키면서 <b>나스닥 +6.51%(24,089.56) · S&amp;P500 +4.73%(7,237.17) · 필라델피아반도체 +14.03% · 엔비디아 +31.48%</b>로 폭등했고 나스닥 상장 SK하이닉스 ADR도 20% 올랐습니다(코스피200 야간선물 +7%대). 상단 <b>시장 전체 수급 막대</b>(코스피·코스닥 외국인·기관·개인)는 장중 <b>5분마다 자동 갱신</b>되는 집계이며(라벨에 기준 시각 표시), 개장 전·수급 서버 오류 시에는 아래 기준치를 그대로 표시합니다. 정적 데이터·뉴스 카드의 종목 가격은 <b>11/23 정규장 마감 시세</b>이고, 실시간 보드의 등락률은 <b>현재 시세(지연 0~20분, 15:40 이후 NXT 애프터마켓 체결 포함)</b>라 두 값이 다를 수 있습니다. 거래소 지연 시세라 장중·마감 후 값이 실제 체결가와 다를 수 있으니 “왜 올랐는지 · 어디로 수급이 몰리는지” 방향성 참고용으로 봐 주세요.</i>
+      <i>단, <b>종목별 외인·기관 수급·쌍끌이</b>는 <b>2026-11-20(금) 정규장 마감 확정 기준</b>(당일 종목별 전수 집계는 익일 공개), <b>테마 해설·시세와 AI 뉴스·증권사 목표주가 레이더</b>는 <b>2026-11-24(화) 07:30 개장 전 기준</b>(국내 시세·테마·급등은 11/23 정규장 마감, 미국 지수·금리·VIX는 11/23 미장 마감)으로 정기 업데이트됩니다. 상단 <b>시장 전체 수급 막대</b>(코스피·코스닥 외국인·기관·개인)는 장중 <b>5분마다 자동 갱신</b>되는 집계이며(라벨에 기준 시각 표시), 개장 전·수급 서버 오류 시에는 아래 기준치를 그대로 표시합니다. 정적 데이터·뉴스 카드의 종목 가격은 <b>11/23 정규장 마감 시세</b>이고, 실시간 보드의 등락률은 <b>현재 시세(지연 0~20분, 15:40 이후 NXT 애프터마켓 체결 포함)</b>라 두 값이 다를 수 있습니다. 거래소 지연 시세라 장중·마감 후 값이 실제 체결가와 다를 수 있으니 “왜 올랐는지 · 어디로 수급이 몰리는지” 방향성 참고용으로 봐 주세요.</i>
       <div id="flowLine" style="margin-top:7px;font-size:11.5px;line-height:1.6;color:#94a3b8"></div>
     </div>
   </div>
+
+  <!-- ================= MARKET SUMMARY (오늘 시장 핵심 요약) ================= -->
+  <section class="mkt-summary" id="mktSummary" aria-labelledby="msTitle">
+    <div class="ms-head">
+      <h2 id="msTitle">📌 오늘 시장 핵심 요약 <span class="ms-date">2026-11-25 (수) 07:30 기준</span></h2>
+      <button class="ms-toggle" id="msToggle" type="button" aria-expanded="true" aria-controls="msBody">접기 ▴</button>
+    </div>
+    <div class="ms-body" id="msBody">
+      <article class="ms-card">
+        <div class="ms-ct">🇺🇸 간밤 뉴욕증시 <span class="ms-when">11/24 마감</span></div>
+        <ul class="ms-idx">
+          <li><span>다우</span><b>50,018.70</b><i class="up">+0.85%</i></li>
+          <li><span>나스닥</span><b>23,733.54</b><i class="dn">-1.48%</i></li>
+          <li><span>S&amp;P500</span><b>7,201.09</b><i class="dn">-0.50%</i></li>
+          <li><span>SOX</span><b>8,832.50</b><i class="dn">-7.88%</i></li>
+        </ul>
+        <p class="ms-note"><b>다우만 5만 선 회복</b>, 반도체는 <b>차익실현 매물</b>에 밀렸습니다 — 엔비디아 <b>$155.38(-5.9%)</b> · 마이크론 <b>-11.01%</b> · SK하이닉스 ADR <b>-9.90%</b>. 반면 <b>델(DELL)</b>은 장 마감 후 AI 서버 매출 <b>+291%</b> 서프라이즈로 시간외 <em>+6%</em> 반등했습니다.</p>
+      </article>
+      <article class="ms-card">
+        <div class="ms-ct">🇰🇷 전날 국내 증시 <span class="ms-when">11/24 마감</span></div>
+        <ul class="ms-idx">
+          <li><span>코스피</span><b>5,006.03</b><i class="up">+6.32%</i></li>
+        </ul>
+        <div class="ms-flows">
+          <span>외국인 <b class="up">+7,391억</b></span>
+          <span>기관 <b class="up">+8,692억</b></span>
+          <span>개인 <b class="dn">-2조 430억</b></span>
+        </div>
+        <p class="ms-note">코스피가 <b>5,000선을 회복</b>했습니다. 외국인·기관이 함께 담고 <b>개인은 2조 원 넘게 순매도</b>한 하루였습니다.</p>
+      </article>
+      <article class="ms-card">
+        <div class="ms-ct">🗓️ 오늘·내일 일정과 대응</div>
+        <ul class="ms-todo">
+          <li><span class="tm">오늘 22:30</span><span>미국 10월 <b>PCE</b> 발표 (예상 3.8%)</span></li>
+          <li><span class="tm">오늘</span><span><b>USTR 16개국 과잉생산 관세</b> 발표 대기</span></li>
+          <li><span class="tm d2">내일 11/26</span><span><b>한국은행 금통위</b></span></li>
+          <li><span class="tm d2">내일 11/26</span><span><b>분기배당 매수 마감일</b></span></li>
+          <li><span class="tm d2">내일 11/26</span><span>미국 <b>추수감사절 휴장</b></span></li>
+        </ul>
+      </article>
+      <p class="ms-hint"><b>대응</b> — 시초가 추격보다 <b>분할 대응 · 현금 비중 유지</b>. 종목별 수급과 테마 흐름은 아래 전광판에서 확인하세요.</p>
+    </div>
+  </section>
 
   <!-- ================= TICKER ================= -->
   <div class="ticker" id="ticker"></div>
@@ -637,7 +719,7 @@ footer b{color:#a9b8cb}
         <b>월억버핏 프리미엄 금융·증권 브랜드 공식 스폰서십</b>
         <span class="ad-desc">전업투자자 타깃 1일 수천 회 상시 노출 구좌 · 애드센스 자동 반응형 광고 규격 호환</span>
       </div>
-      <a class="ad-btn" href="mailto:ribelo1311@naver.com?subject=[월억버핏%20배너광고%20제휴문의]">배너 제휴 문의 ↗</a>
+      <a class="ad-btn" href="about.html#contact">배너 제휴 문의 →</a>
     </div>
   </div>
 
@@ -750,7 +832,7 @@ footer b{color:#a9b8cb}
         <b>실전 매매 증권 앱 · HTS 트레이딩 도구 제휴 배너 영역</b>
         <span class="ad-desc">구글 애드센스 인피드 반응형 광고(In-feed Ad) 탑재 최적화 슬롯</span>
       </div>
-      <a class="ad-btn" href="mailto:ribelo1311@naver.com?subject=[월억버핏%20인피드광고%20문의]">광고 안내 ↗</a>
+      <a class="ad-btn" href="about.html#contact">광고 안내 →</a>
     </div>
   </div>
 
@@ -2161,6 +2243,18 @@ footer b{color:#a9b8cb}
   window.addEventListener('scroll', snSync, { passive:true });
   window.addEventListener('resize', snSync);
   snSync();
+})();
+
+/* ---------- 오늘 시장 핵심 요약 접기/펼치기 ---------- */
+(function () {
+  var btn = document.getElementById('msToggle'), body = document.getElementById('msBody');
+  if (!btn || !body) return;
+  btn.addEventListener('click', function () {
+    var open = btn.getAttribute('aria-expanded') !== 'false';
+    btn.setAttribute('aria-expanded', open ? 'false' : 'true');
+    body.hidden = open;
+    btn.textContent = open ? '펼치기 ▾' : '접기 ▴';
+  });
 })();
 </script>
 

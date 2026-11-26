@@ -1,5 +1,8 @@
-/* 버핏카세 /hotdeal 데이터 (2026-11-24 12:10 KST 실사 · 11차 업데이트 — 쿠팡 신규 1건 편입: 홈플래닛 LED 모니터 조명 터치식 스크린바(11:30 스레드 추천분) / 내일(화) 11/24로 지난 배송일 8건 날짜 없는 문구로 정정, 쿠팡 17건)
-   ※ 2026-11-24 토스: 쉐어링크 Open API 토큰은 발급되지만 상품 조회·지면 링크 발급이 SHARELINK_OPENAPI_ACCESS_DENIED(출발지 IP 변경 35.167.12.107 → 54.68.45.118, sharelink.toss.im 재등록 필요)로 막혔고 토스 특가 개별 가격은 앱 전용이라 웹에서 재확인할 수 없어, 토스 8건은 11/23 07:10 확인값 그대로 두고 섹션 안내문에 그 사실을 적었다. 상단 배너(dealsUrl·bannerLabel·jumpLabel)는 보존.
+/* 버핏카세 /hotdeal 데이터 (2026-11-26 20:20 KST 실사 · 12차 업데이트 — 쿠팡 12건)
+   ※ 2026-11-26 20:10 회차: 신규 4건 편입 — 깨끗한나라 순수 시그니처 3겹 화장지 27m·30롤(16,900원·39%, 20:05 단축링크 재사용),
+      오뚜기옛날 사골곰탕 500g·10개(11,680원·46%), 액츠 퍼펙트 실내건조 3.2L(10,900원·39%), 일리윤 세라마이드 비건 핸드크림 50ml(6,060원·53%).
+      오래됐거나 할인폭이 떨어진 9건(방한 장갑·브리타 필터·감귤 5kg·발받침대·하리보·한경희 가습기·오설록 티·쌀찐빵·코멧 화장지)을 정리해 쿠팡 12건 유지.
+      지난 회차 배송일(내일(수) 11/25)이 박혀 있던 2건은 날짜 없는 문구로 정정. 토스 대표배너(dealsUrl·bannerLabel·jumpLabel)와 네이버 섹션은 그대로 보존.
    구조 확장 규칙: items[] 각 항목은
    { platform: "coupang" | "toss" | "naver", title, price, affiliate_url, note, updated_at, ... }
    platform 값만 늘리면 토스쇼핑 셰어링크·네이버 쇼핑커넥트를 같은 카드로 붙일 수 있게 설계했다.
@@ -11,12 +14,107 @@
      상단 토스 배너(tossShop.dealsUrl)만 API 발급 링크를 쓴다 — API 키는 공개 저장소에 올리지 않는다.
    ※ 본문은 JSON 호환 형식(키·문자열 큰따옴표) — projects/build_hotdeal.py 가 그대로 파싱해 hotdeal.html 을 만든다. */
 window.HOTDEAL = {
-  "asOf": "2026-11-24 12:10 KST",
+  "asOf": "2026-11-26 20:20 KST",
   "coupangTag": "AF2387959",
   "disclosure": "이 페이지는 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.",
   "priceNotice": "표시된 가격 및 할인율은 확인 시점 기준이며, 쿠팡 실시간 판매가·재고에 따라 변동되거나 품절될 수 있습니다. '아낌 금액'은 쿠팡 상세페이지에 함께 표기된 정가(기준가)에서 현재 판매가를 뺀 값이고, 정가 표기가 없는 상품은 정가 대신 확인된 포인트만 적었습니다. '다음 날 도착 보장'은 확인 시점 기준 다음 영업일이며, 실제 도착일은 주문 시점의 결제 화면 안내를 따릅니다. 와우 가입 쿠폰가는 회원 조건이라 대표가로 쓰지 않았습니다.",
   "tossNotice": "토스쇼핑 하루특가·BEST 특가는 위쪽 토스 섹션에 모았습니다. 토스 링크는 토스쇼핑 쉐어링크에서 직접 발급한 공개용 링크이고, 수수료 고지는 그 섹션 안에 따로 적었습니다. 네이버 크리에이터샵 상품은 맨 아래 별도 섹션(쿠팡파트너스와 무관)에 모았습니다.",
   "items": [
+    {
+      "platform": "coupang",
+      "cat": "생활",
+      "title": "깨끗한나라 순수 시그니처 천연펄프 3겹 롤화장지 27m 30롤",
+      "option": "27m · 30개입 · 1개 · 3겹 천연펄프",
+      "price": 16900,
+      "origin": 27900,
+      "discount": 39,
+      "unit": "10m당 209원",
+      "reviews": "18만 7,073건 · 최고 81% · 좋음 13%",
+      "badges": [
+        "한 달 4만명 이상 구매",
+        "10만명 이상 만족",
+        "로켓배송"
+      ],
+      "delivery": "로켓배송 · 내일(금) 11/27 도착(오늘 자정 전 주문 시)",
+      "shipping": "판매자 쿠팡(주) · 로켓배송 19,800원 이상 무료 — 단품 16,900원만 담으면 배송비가 붙습니다(장보기·다른 로켓상품과 묶으면 면제, 도서산간 추가비용 없음). 화면의 와우 가입 쿠폰가(12,870원)는 가입 조건이라 대표가로 쓰지 않았습니다.",
+      "note": "겨울에 화장지 떨어지면 난리라 30롤씩 쟁여둔다 카더라. 27m×30롤이면 총 810m, 10m당 209원입니다. 상품평 18만 7천 건에 한 달 4만 명이 넘게 사 갔고, 후기에서 촉감 '정말 부드러워요' 66%·두께 '보통' 58%였습니다. 다만 매당 단가로는 코멧 순백 3겹(30m·30롤 2개 21,990원, 10m당 122원)·탐사 화이트밀크(30m·30롤 12,990원, 144원)가 더 싸서 '최저가'는 아닙니다.",
+      "image": "/assets/hotdeal/toiletroll-kkeutnara.webp",
+      "image_alt": "깨끗한나라 순수 시그니처 천연펄프 3겹 롤화장지 27m 30롤 상품 이미지",
+      "affiliate_url": "https://link.coupang.com/a/iZBEwIEqjI",
+      "product_url": "https://www.coupang.com/vp/products/6570687310?itemId=17553901185&vendorItemId=76365551329",
+      "updated_at": "2026-11-26 20:17 KST"
+    },
+    {
+      "platform": "coupang",
+      "cat": "식품",
+      "title": "오뚜기옛날 사골곰탕 500g 10개",
+      "option": "500g × 10개 · 1세트 · 실온보관",
+      "price": 11680,
+      "origin": 21800,
+      "discount": 46,
+      "unit": "100g당 234원",
+      "reviews": "6만 2,615건 · 최고 83% · 좋음 12%",
+      "badges": [
+        "5만명 이상 만족",
+        "한 달 3,000명 이상 구매",
+        "로켓배송"
+      ],
+      "delivery": "로켓배송 · 내일(금) 11/27 도착(오늘 자정 전 주문 시)",
+      "shipping": "판매자 쿠팡 · 로켓배송 19,800원 이상 무료 — 단품 11,680원은 배송비가 붙습니다(도서산간 추가비용 없음). 화면의 와우 가입 쿠폰할인가(0원·100%)는 가입 조건이라 대표가로 쓰지 않았습니다.",
+      "note": "찬 바람 불 때 국물 한 그릇 값이라 카더라. 500g 10개 11,680원이면 100g당 234원이고, 상품평 6만 2,615건(최고 83%)에 맛 만족도 '맛있어요' 73%, 소비기한은 2027-01-04 이후입니다. 다만 비비고 사골곰탕 500g 10개 10,500원(100g당 210원)·양반 진국 사골곰탕 500g 20개 16,500원(165원)·오뚜기옛날 1kg 2개 4,120원(206원)이 100g당 더 싸서 '최저가'는 아닙니다.",
+      "image": "/assets/hotdeal/gomtang-ottogi.webp",
+      "image_alt": "오뚜기옛날 사골곰탕 500g 10개 상품 이미지",
+      "affiliate_url": "https://link.coupang.com/a/iZCxk5PoC4",
+      "product_url": "https://www.coupang.com/vp/products/8107064523?itemId=228757418",
+      "updated_at": "2026-11-26 20:17 KST"
+    },
+    {
+      "platform": "coupang",
+      "cat": "생활",
+      "title": "액츠 퍼펙트 실내건조 액상세제 3.2L",
+      "option": "3.2L · 1개 · 프레시 플로럴향 · 일반용",
+      "price": 10900,
+      "origin": 17900,
+      "discount": 39,
+      "unit": "100ml당 341원",
+      "reviews": "11만 9,250건 · 최고 85% · 좋음 11%",
+      "badges": [
+        "한 달 4만명 이상 구매",
+        "10만명 이상 만족",
+        "로켓배송"
+      ],
+      "delivery": "로켓배송 · 내일(금) 11/27 도착(오늘 자정 전 주문 시)",
+      "shipping": "판매자 쿠팡(주) · 로켓배송 19,800원 이상 무료 — 단품 10,900원은 배송비가 붙습니다(묶음배송 가능, 도서산간 추가비용 없음). 와우 가입 쿠폰할인가는 가입 조건이라 대표가로 쓰지 않았습니다.",
+      "note": "실내건조용이라 겨울에 방 안에서 말려도 냄새가 덜하다 카더라. 3.2L 10,900원이면 100ml당 341원이고, 상품평 11만 9,250건에 한 달 4만 명 이상 구매입니다. 용량 단가로는 퍼플리 2.5L×4 7,620원(100ml당 76원)·탐사 파워워시 2.5L×4 10,990원(110원)이 훨씬 싸서 '최저가'는 아닙니다(농축도·브랜드 차이).",
+      "image": "/assets/hotdeal/detergent-aekcheu.webp",
+      "image_alt": "액츠 퍼펙트 실내건조 액상세제 3.2L 상품 이미지",
+      "affiliate_url": "https://link.coupang.com/a/iZCyPyWWwm",
+      "product_url": "https://www.coupang.com/vp/products/9711973763?itemId=23804197823&vendorItemId=85574305199",
+      "updated_at": "2026-11-26 20:17 KST"
+    },
+    {
+      "platform": "coupang",
+      "cat": "생활",
+      "title": "일리윤 세라마이드 비건 핸드크림 무향 50ml",
+      "option": "50ml · 1개 · 무향 · 세라마이드",
+      "price": 6060,
+      "origin": 12900,
+      "discount": 53,
+      "unit": "10ml당 1,212원",
+      "reviews": "2,907건 · 최고 87% · 2,000명 이상 만족",
+      "badges": [
+        "한 달 5,000명 이상 구매",
+        "로켓배송"
+      ],
+      "delivery": "로켓배송 · 내일(금) 11/27 도착(오늘 자정 전 주문 시)",
+      "shipping": "판매자 쿠팡(주) · 로켓배송 19,800원 이상 무료 — 단품 6,060원은 배송비가 붙습니다. 사용기한 2028-04-05 이후 표기분입니다. 와우 가입 쿠폰할인가는 가입 조건이라 대표가로 쓰지 않았습니다.",
+      "note": "손 트는 계절에 무향 핸드크림이 반값이라 카더라. 50ml 6,060원이면 10ml당 1,212원이고, 상품평 2,907건(최고 87%)에 향 만족도 '아주 만족' 86%·보습력 '아주 만족' 73%, 한 달 5,000명 이상 구매입니다. 단품만 담으면 배송비가 붙으니 다른 로켓상품과 같이 담으세요.",
+      "image": "/assets/hotdeal/handcream-illiyoon.webp",
+      "image_alt": "일리윤 세라마이드 비건 핸드크림 무향 50ml 상품 이미지",
+      "affiliate_url": "https://link.coupang.com/a/iZCzTTxSkT",
+      "product_url": "https://www.coupang.com/vp/products/8254940545?itemId=24616923410",
+      "updated_at": "2026-11-26 20:17 KST"
+    },
     {
       "platform": "coupang",
       "cat": "IT",
@@ -32,7 +130,7 @@ window.HOTDEAL = {
         "내일 도착 보장",
         "로켓배송"
       ],
-      "delivery": "로켓배송 · 내일(수) 11/25 도착 보장(주문 마감 전)",
+      "delivery": "로켓배송 · 다음 날 도착 보장(주문 마감 전)",
       "shipping": "로켓배송 19,800원 이상 무료 — 단품 16,730원은 배송비가 붙습니다(와우 회원 제외). 판매자 쿠팡(주). 충전식이 아니라 동봉 케이블을 꽂아 쓰는 유선형이고, 모니터 두께 45mm 이하·후면이 평평한 모델에 거치됩니다.",
       "note": "모니터 위에 얹으면 책상만 밝혀주는 스크린바라 카더라. 상품평 760건(최고 85%)에 한 달 900명 이상 구매, 16,730원이면 정가 대비 41%입니다. 다만 상위 후기에 '고정이 약하다'·'수평이 안 맞는다'는 평이 있어 모니터 두께와 후면 형태를 먼저 확인하세요.",
       "image": "/assets/hotdeal/monitor-lightbar.webp",
@@ -40,27 +138,6 @@ window.HOTDEAL = {
       "affiliate_url": "https://link.coupang.com/a/iVHflhZEnQ",
       "product_url": "https://www.coupang.com/vp/products/8561386520?itemId=24793590989&vendorItemId=91801392937",
       "updated_at": "2026-11-24 12:08 KST"
-    },
-    {
-      "platform": "coupang",
-      "cat": "겨울",
-      "title": "아웃도어 방한 스포츠 논슬립 터치 기모 장갑 1+1",
-      "option": "1+1(2켤레) · 기모 안감 · 터치 · 논슬립 실리콘",
-      "price": 11800,
-      "unit": "1켤레당 5,900원",
-      "reviews": "90건 · 최고 85%",
-      "badges": [
-        "로켓배송",
-        "무료배송(19,800원 이상)"
-      ],
-      "delivery": "로켓배송 · 내일(수) 11/25 도착 보장(주문 마감 전)",
-      "shipping": "로켓배송 19,800원 이상 무료 — 단품 11,800원은 배송비가 붙습니다. 1+1이라 한 켤레당 5,900원이고, 안감 기모·손등 터치·손바닥 논슬립 실리콘 구성입니다.",
-      "note": "1+1에 11,800원이면 한 켤레 5,900원이라 카더라. 정가 표기가 없는 상품이라 '몇 % 할인'은 적지 않았고, 후기는 90건으로 아직 적은 편(최고 85%)입니다. 자전거·러닝 할 때 끼기 좋은 두께입니다.",
-      "image": "/assets/hotdeal/gloves-touch-1plus1.webp",
-      "image_alt": "아웃도어 방한 스포츠 논슬립 터치 기모 장갑 1+1 상품 이미지",
-      "affiliate_url": "https://link.coupang.com/a/iVBlFAc1a8",
-      "product_url": "https://www.coupang.com/vp/products/9140360838",
-      "updated_at": "2026-11-24 10:14 KST"
     },
     {
       "platform": "coupang",
@@ -77,7 +154,7 @@ window.HOTDEAL = {
         "로켓배송",
         "무료배송(19,800원 이상)"
       ],
-      "delivery": "내일(수) 11/25 도착 보장(주문 마감 전)",
+      "delivery": "로켓배송 · 다음 날 도착 보장(주문 마감 전)",
       "shipping": "로켓배송 19,800원 이상 무료 — 단품 13,380원은 배송비가 붙습니다. 모델명 kd001·KC 인증 R-R-8CD-kd07001, 판매자 주식회사 코딩. 같은 화면의 와우 가입 쿠폰가는 가입 조건이라 대표가로 쓰지 않았습니다.",
       "note": "4.5L 가습기가 1만 3천원대라 카더라. 후기 요약이 세척 편리성 91%·소음 85%·가습 용량 90%로 좋은 편이고 200명 이상 만족 표시가 붙었습니다. 다만 상부급수 초음파식이라 필터를 물에 적셔 관리해야 하고(문의 게시판에 분사가 안 된다는 질문과 판매자의 '필터를 물에 2분 담그라' 답변이 있습니다), 단품 구매 시 배송비가 붙습니다.",
       "image": "/assets/hotdeal/humidifier-4.5l.webp",
@@ -85,52 +162,6 @@ window.HOTDEAL = {
       "affiliate_url": "https://link.coupang.com/a/iVBnWRrj1E",
       "product_url": "https://www.coupang.com/vp/products/9037515464",
       "updated_at": "2026-11-24 10:12 KST"
-    },
-    {
-      "platform": "coupang",
-      "cat": "IT",
-      "title": "브리타 정수기 필터 막스트라 프로 퓨어 퍼포먼스 3p",
-      "option": "필터 3개입 · 1개 · 정품 3p",
-      "price": 23900,
-      "origin": 28500,
-      "discount": 16,
-      "unit": "1개당 23,900원",
-      "reviews": "2만 9,552건 · 최고 87%",
-      "badges": [
-        "한 달 2만명 이상 구매",
-        "로켓배송",
-        "무료배송"
-      ],
-      "delivery": "로켓배송 · 다음 날 도착 보장(주문 마감 전)",
-      "shipping": "판매자 쿠팡(주) · 로켓배송 무료배송(19,800원 기준 충족). 위쪽 와우 가입 쿠폰할인가 4,900원은 가입 조건이라 대표가로 쓰지 않았고, 같은 화면의 막스트라 호환 저가 필터(1개당 3,307원)와는 다른 정품 3p 기준입니다.",
-      "note": "정수기 쓰는 집은 두세 달마다 3개씩 갈아야 하는 소모품이라 카더라. 한 달 2만명이 산 게 그 근거인데, 할인 폭 16%는 크지 않습니다.",
-      "image": "/assets/hotdeal/brita-filter.webp",
-      "image_alt": "브리타 정수기 필터 막스트라 프로 퓨어 퍼포먼스 3p 상품 이미지",
-      "affiliate_url": "https://link.coupang.com/a/iUAXXUSgvY",
-      "product_url": "https://www.coupang.com/vp/products/9682171979",
-      "updated_at": "2026-11-23 19:37 KST"
-    },
-    {
-      "platform": "coupang",
-      "cat": "식품",
-      "title": "오색바람 감귤 5kg(대과), 1박스",
-      "option": "대과 · 5kg · 1박스 · 100g당 215원",
-      "price": 10750,
-      "unit": "100g당 215원",
-      "reviews": "평점 4.5 · 1만 122건 · 최고 72%",
-      "badges": [
-        "한 달 1만명 이상 구매",
-        "로켓프레시",
-        "8,000명 이상 만족"
-      ],
-      "delivery": "로켓프레시 · 다음 날 새벽 7시 전 도착 보장(밤 12시 전 주문 시)",
-      "shipping": "로켓프레시 15,000원 이상 무료배송(서비스 가능 지역 한함) — 1박스 10,750원 단독은 기준 미달이라 2박스(21,500원)·3박스(31,280원)나 장보기 묶음으로 담아야 무료입니다. 원산지는 상세 표기가 '컨텐츠 참조'뿐이라 제주산인지 확인되지 않았습니다.",
-      "note": "제철 감귤 5kg이 10,750원이면 100g당 215원 카더라. 새벽 도착에 평점 4.5지만, 10kg 대용량(100g당 98~149원)보다 단가는 높으니 많이 먹는 집은 대용량이 낫습니다.",
-      "image": "/assets/hotdeal/tangerine-5kg.webp",
-      "image_alt": "오색바람 감귤 5kg(대과) 1박스 상품 이미지",
-      "affiliate_url": "https://link.coupang.com/a/iUsrH8MgH6",
-      "product_url": "https://www.coupang.com/vp/products/7605687592?itemId=20130595762&vendorItemId=87224619808",
-      "updated_at": "2026-11-23 19:41 KST"
     },
     {
       "platform": "coupang",
@@ -205,78 +236,6 @@ window.HOTDEAL = {
     },
     {
       "platform": "coupang",
-      "cat": "생활",
-      "title": "에르먼 국내 제조 PIO 2단 쿠션 발받침대 기본형",
-      "option": "네이비 · 460 × 320 × 330mm · 국내 제조((주)디에스피)",
-      "price": 29800,
-      "origin": 50000,
-      "discount": 40,
-      "unit": "쿠팡 BEST AWARDS",
-      "reviews": "7,971건 · 최고 84% · 좋음 10%",
-      "badges": [
-        "한 달 3,000명 이상 구매",
-        "로켓배송",
-        "무료배송"
-      ],
-      "delivery": "로켓배송 · 다음 날 도착 보장(주문 마감 전)",
-      "shipping": "로켓배송 19,800원 이상 무료 — 29,800원이라 기준 충족(무료배송). 색상 네이비·그레이·베이지, 패드형은 39,800원.",
-      "note": "책상 아래 발 하나 올려두면 허리가 편하다 카더라. 국내 제조에 2단 쿠션, 후기 7,970건이 붙은 물건.",
-      "image": "/assets/hotdeal/footrest.webp",
-      "image_alt": "에르먼 국내 제조 PIO 2단 쿠션 발받침대 네이비 상품 이미지",
-      "affiliate_url": "https://link.coupang.com/a/iSnB4jam5Y",
-      "product_url": "https://www.coupang.com/vp/products/7830616996?itemId=21259952418",
-      "updated_at": "2026-11-22 12:08 KST"
-    },
-    {
-      "platform": "coupang",
-      "cat": "식품",
-      "title": "하리보 골드베어 사우어 젤리",
-      "option": "55개입 · 870g · 1개",
-      "price": 10710,
-      "origin": 18480,
-      "discount": 42,
-      "unit": "10g당 123원",
-      "reviews": "2,542건 · 최고 90%",
-      "badges": [
-        "한 달 2,000명 이상 구매",
-        "로켓배송",
-        "소비기한 2027-03-01 이후"
-      ],
-      "delivery": "로켓배송 · 다음 날 도착 보장(주문 마감 전)",
-      "shipping": "로켓배송 19,800원 이상 무료 — 단품 10,710원은 배송비가 붙습니다.",
-      "note": "새콤한 골드베어 55봉지가 한 통에 온다 카더라. 간식 서랍 하나는 이걸로 채워두면 됩니다.",
-      "image": "/assets/hotdeal/haribo.webp",
-      "image_alt": "하리보 골드베어 사우어 젤리 870g 55개입 상품 이미지",
-      "affiliate_url": "https://link.coupang.com/a/iSp3zSrtQW",
-      "product_url": "https://www.coupang.com/vp/products/7780930280?itemId=22731283377",
-      "updated_at": "2026-11-22 12:06 KST"
-    },
-    {
-      "platform": "coupang",
-      "cat": "IT",
-      "title": "한경희생활과학 복합식 가습기 5L",
-      "option": "HA-HD800HA · 5L · 복합식(가열+초음파) · 125W · 리모컨",
-      "price": 79900,
-      "origin": 129000,
-      "discount": 38,
-      "unit": "시간당 분무량 350ml",
-      "reviews": "235건 · 최고 96% · 200명 이상 만족",
-      "badges": [
-        "내일 도착 보장",
-        "무료배송",
-        "KC 인증"
-      ],
-      "delivery": "로켓배송 · 내일(수) 11/25 도착 보장(주문 마감 전)",
-      "shipping": "판매자 쿠팡(주) · 무료배송(79,900원 단독 주문도 무료). 와우 가입 쿠폰가 60,900원은 가입 조건이라 대표가로 쓰지 않았습니다.",
-      "note": "가열식+초음파 복합식에 5L 통세척, 리모컨까지 붙은 모델 카더라. 다만 상품평 235건 중 상당수가 쿠팡체험단(무료 제공) 후기라 후기 수는 적은 편입니다.",
-      "image": "/assets/hotdeal/humidifier-5l.webp",
-      "image_alt": "한경희생활과학 초저소음 대용량 통세척 리모컨형 복합식 가습기 5L 상품 이미지",
-      "affiliate_url": "https://link.coupang.com/a/iTWweqzNe0",
-      "product_url": "https://www.coupang.com/vp/products/9138704178",
-      "updated_at": "2026-11-24 10:12 KST (가격 재확인)"
-    },
-    {
-      "platform": "coupang",
       "cat": "겨울",
       "title": "Mosashoe 발열조끼 20구역",
       "option": "S~XXXL · 블랙 · USB/DC 겸용 3단 온도조절",
@@ -298,30 +257,6 @@ window.HOTDEAL = {
       "affiliate_url": "https://link.coupang.com/a/iTWGrHcE8G",
       "product_url": "https://www.coupang.com/vp/products/8442643565",
       "updated_at": "2026-11-23 19:44 KST"
-    },
-    {
-      "platform": "coupang",
-      "cat": "식품",
-      "title": "오설록 블루밍 티 기프트",
-      "option": "티백 9종 × 5p + 쇼핑백 · 1세트(티백 45개)",
-      "price": 27970,
-      "origin": 45000,
-      "discount": 37,
-      "unit": "1세트당 27,970원",
-      "reviews": "12,986건 · 최고 88%",
-      "badges": [
-        "한 달 1,000명 이상 구매",
-        "무료배송",
-        "쇼핑백 포함"
-      ],
-      "delivery": "무료배송 · 다음 날 도착 보장(주문 마감 전)",
-      "shipping": "무료배송.",
-      "note": "선물용으로 물어보면 늘 나오는 이름 카더라. 쇼핑백까지 세트라 연말 인사에 손이 덜 갑니다.",
-      "image": "/assets/hotdeal/tea-gift.webp",
-      "image_alt": "오설록 블루밍 티 기프트 티백 9종 세트 상품 이미지",
-      "affiliate_url": "https://link.coupang.com/a/iSp7NiIF8S",
-      "product_url": "https://www.coupang.com/vp/products/8776291010?itemId=25532636984",
-      "updated_at": "2026-11-22 12:10 KST"
     },
     {
       "platform": "coupang",
@@ -370,55 +305,6 @@ window.HOTDEAL = {
       "affiliate_url": "https://link.coupang.com/a/iSNgB3IREq",
       "product_url": "https://www.coupang.com/vp/products/7299719601",
       "updated_at": "2026-11-22 17:40 KST"
-    },
-    {
-      "platform": "coupang",
-      "cat": "식품",
-      "limited": true,
-      "title": "할매 안흥 쌀찐빵 4가지맛",
-      "option": "쌀·단호박·흑미·새싹순보리 · 25개 · 1.25kg",
-      "price": 11160,
-      "origin": 16900,
-      "discount": 33,
-      "unit": "1개당 446원",
-      "reviews": "3,039건 · 최고 66% · 좋음 20%",
-      "badges": [
-        "2,000명 이상 만족",
-        "무료배송",
-        "한 달 900명 이상 구매"
-      ],
-      "delivery": "다음 날 도착 예정",
-      "shipping": "판매자 무료배송(롯데택배) — 신선식품이라 도서산간은 배송되지 않습니다.",
-      "note": "겨울 간식으로 25개 11,160원, 1개당 446원 카더라. 목록에 '할인 6일 남음'이 붙은 기간한정가라 언제 끝날지는 모릅니다.",
-      "image": "/assets/hotdeal/ricebun.webp",
-      "image_alt": "할매 안흥 쌀찐빵 4가지맛 25개 1.25kg 상품 이미지",
-      "affiliate_url": "https://link.coupang.com/a/iTAzdW4Gse",
-      "product_url": "https://www.coupang.com/vp/products/260328635",
-      "updated_at": "2026-11-23 05:02 KST"
-    },
-    {
-      "platform": "coupang",
-      "cat": "생활",
-      "title": "코멧 베이직 3겹 롤화장지 27m",
-      "option": "3겹 · 27m · 30롤 · 1팩",
-      "price": 10000,
-      "origin": 17800,
-      "discount": 43,
-      "unit": "10m당 123원",
-      "reviews": "7,365건 · 최고 86% · 6,000명 이상 만족",
-      "badges": [
-        "한 달 7,000명 이상 구매",
-        "로켓배송",
-        "내일 도착 보장"
-      ],
-      "delivery": "로켓배송 · 다음 날 도착 보장(주문 마감 전)",
-      "shipping": "로켓배송 19,800원 이상 무료 — 단품 10,000원만 담으면 배송비가 붙습니다(와우 회원 제외).",
-      "note": "30롤에 10,000원, 10m당 123원 카더라. 코멧은 후기 7,365건에 '정말 부드러워요'가 51%인 기본기.",
-      "image": "/assets/hotdeal/toiletroll.webp",
-      "image_alt": "코멧 베이직 3겹 롤화장지 27m 30롤 상품 이미지",
-      "affiliate_url": "https://link.coupang.com/a/iTABoGzTmS",
-      "product_url": "https://www.coupang.com/vp/products/7665800925?itemId=20435260552",
-      "updated_at": "2026-11-23 05:03 KST"
     }
   ],
   "naverShop": {
@@ -472,7 +358,7 @@ window.HOTDEAL = {
     "title": "토스 선착순특가 · 하루특가 8건 (11/23 확인분)",
     "disclosure": "광고 · 이 섹션은 토스쇼핑 쉐어링크 활동의 일환으로, 링크를 통한 구매 시 일정액의 수수료를 제공받습니다.",
     "note": "토스쇼핑 쉐어링크 '링크 발급'으로 발급한 공개용 상품 링크이고, 가격은 11/23 07:10에 상품 상세에서 직접 확인한 값(8건 모두 무료배송·품절 없음)입니다. 토스 하루특가는 매일 24:00에 끝나고 0시에 새 값으로 바뀌는데, 2026-11-24 12:10 확인 시점에 토스쇼핑 특가의 개별 가격은 토스 앱에서만 보여 웹에서 재확인할 수 없었습니다 — 아래 8건은 이미 기간이 끝났거나 가격이 바뀌었을 수 있으니 결제 전 위쪽 파란 배너(오늘의 선착순·하루특가 전체 지면)에서 오늘 가격을 꼭 확인하세요.",
-    "checkedAt": "2026-11-23 07:10 KST (2026-11-24 재확인 불가 — 토스 앱 전용)", 
+    "checkedAt": "2026-11-23 07:10 KST (2026-11-24 재확인 불가 — 토스 앱 전용)",
     "leadLabel": "오늘 선착순특가 대표 상품 바로 보기 — 제주 서귀포 노지 조생 감귤 10kg 10,560원(78%)",
     "bannerUrl": "https://toss.shopping/_m/vsu59ely",
     "dealsUrl": "https://toss.shopping/_m/BNgoJEhv",

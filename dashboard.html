@@ -389,6 +389,9 @@ td.name .d{display:inline-block;width:5px;height:5px;border-radius:50%;margin-ri
 
 /* ===== DUAL ===== */
 .dualgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:8px}
+.duallegend{display:flex;flex-wrap:wrap;gap:10px;margin-top:5px;font-size:10.5px;color:#94a3b8}
+.duallegend .lg{display:inline-flex;align-items:center;gap:4px}
+.duallegend .lg i{display:inline-block;width:14px;height:5px;border-radius:2px}
 .dual{background:var(--card);border:1px solid #26313f;border-radius:8px;padding:10px 12px}
 .dual .top{display:flex;justify-content:space-between;align-items:baseline;gap:8px;margin-bottom:6px}
 .dual .nm{font-size:12.5px;font-weight:900;color:#f1f5f9}
@@ -839,9 +842,10 @@ footer b{color:#a9b8cb}
   <!-- ================= DUAL ================= -->
   <section id="dual">
     <div class="sec-head">
-      <h2>🤝 외인·기관 쌍끌이 순매수 TOP10 <span class="tag">2026-11-25 마감 확정</span></h2>
-      <p>2026-11-25(수) 정규장 마감 확정 — 외국인·기관이 동시에 순매수한 종목 중 합산 순매수 <b>상위 10종목</b>(코스피·코스닥 시총 상위 400종목 유니버스) · 막대 = 순매수 금액(억원) · 수급은 11-25 정규장 마감 확정, 카드 가격은 화면 갱신 시세</p>
-      <p style="margin-top:3px;font-size:11px;color:#94a3b8">11-25는 외국인이 1조8,994억원 순매도한 급락일로, 유니버스 400종목 가운데 두 주체가 함께 담은 종목은 79개였고 그중 합산 순매수 상위 10종목입니다. 반도체에서 빠진 기관 자금이 LG에너지솔루션(+4,363억)·셀트리온·알테오젠 등 방어·바이오 쪽으로 옮겨간 하루였습니다.</p>
+      <h2>🤝 외인·기관 쌍끌이 순매수 TOP10 <span class="tag" id="dualTag">2026-11-25 마감 확정</span></h2>
+      <p id="dualBasis">2026-11-25(수) 정규장 마감 확정 — 외국인·기관이 동시에 순매수한 종목 중 합산 순매수 <b>상위 10종목</b>(코스피·코스닥 시총 상위 400종목 유니버스) · 막대 = 순매수 금액(억원) · 수급은 11-25 정규장 마감 확정, 카드 가격은 화면 갱신 시세</p>
+      <p class="duallegend"><span class="lg"><i style="background:linear-gradient(90deg,#ef4444,#fb7185)"></i>외인 순매수</span><span class="lg"><i style="background:linear-gradient(90deg,#10b981,#34d399)"></i>기관 순매수</span><span class="lg"><i style="background:linear-gradient(90deg,#3b82f6,#60a5fa)"></i>순매도(파랑은 매도일 때만)</span></p>
+      <p id="dualStory" style="margin-top:3px;font-size:11px;color:#94a3b8">11-25는 외국인이 1조8,994억원 순매도한 급락일로, 유니버스 400종목 가운데 두 주체가 함께 담은 종목은 79개였고 그중 합산 순매수 상위 10종목입니다. 반도체에서 빠진 기관 자금이 LG에너지솔루션(+4,363억)·셀트리온·알테오젠 등 방어·바이오 쪽으로 옮겨간 하루였습니다.</p>
     </div>
     <div class="dualgrid" id="dualGrid"></div>
   </section>
@@ -954,6 +958,8 @@ footer b{color:#a9b8cb}
     본 페이지는 투자 참고용 데이터 전광판이며 투자 권유가 아닙니다. 모든 투자의 판단과 책임은 투자자 본인에게 있습니다.<br>
     제휴·광고 문의: ribelo1311@naver.com
     <div class="flinks">
+      <a href="season2026.html">📅 12월 시즌 계산기</a>
+      <a href="terms.html">📜 이용약관</a>
       <a href="about.html">ℹ️ 사이트 소개</a>
       <a href="privacy.html">🔒 개인정보처리방침</a>
     </div>
@@ -1718,21 +1724,40 @@ footer b{color:#a9b8cb}
 
   /* ---------- 쌍끌이 ---------- */
   const dg = $('#dualGrid');
-  const maxTot = Math.max(...D.dual.map(d=>d.tot), 1);
-  D.dual.forEach((d,i) => {
-    const c = d.pct>0?'up':(d.pct<0?'dn':'flat');
-    const box = el('div','dual');
-    box.innerHTML = `<div class="top"><div><span style="color:#475569;font-weight:900;margin-right:6px">${i+1}</span>
+  /* 막대 색: 순매수는 외인=빨강·기관=초록, 순매도는 공통 파랑 (2026-11-26 김경림 님 요청) */
+  const DUAL_COL = {
+    fBuy: 'linear-gradient(90deg,#ef4444,#fb7185)',
+    oBuy: 'linear-gradient(90deg,#10b981,#34d399)',
+    sell: 'linear-gradient(90deg,#3b82f6,#60a5fa)',
+  };
+  const dualFill = (v, who) => v < 0 ? DUAL_COL.sell : (who === 'f' ? DUAL_COL.fBuy : DUAL_COL.oBuy);
+  const dualVal = v => (v > 0 ? '+' : (v < 0 ? '-' : '')) + Math.abs(v || 0).toLocaleString();
+  function paintDual(rows, meta){
+    if (!dg || !Array.isArray(rows) || !rows.length) return;
+    dg.innerHTML = '';
+    const maxTot = Math.max(...rows.map(d => Math.max(Math.abs(d.tot || 0), Math.abs(d.fv || 0), Math.abs(d.ov || 0))), 1);
+    rows.forEach((d, i) => {
+      const c = d.pct>0?'up':(d.pct<0?'dn':'flat');
+      const box = el('div','dual');
+      box.innerHTML = `<div class="top"><div><span style="color:#475569;font-weight:900;margin-right:6px">${i+1}</span>
         <span class="nm">${d.n}</span> <span class="pv" style="font-size:10px;color:#64748b">${won(d.p)}원</span></div>
         <span class="pc ${c}">${pctTxt(d.pct)}</span></div>
       <div class="bars">
-        <div class="bar"><span class="k">외인</span><span class="track"><span class="fill" style="width:${Math.min(100,Math.abs(d.fv)/maxTot*100)}%;background:linear-gradient(90deg,#ef4444,#fb7185)"></span></span><span class="v">+${d.fv}억</span></div>
-        <div class="bar"><span class="k">기관</span><span class="track"><span class="fill" style="width:${Math.min(100,Math.abs(d.ov)/maxTot*100)}%;background:linear-gradient(90deg,#3b82f6,#60a5fa)"></span></span><span class="v">+${d.ov}억</span></div>
+        <div class="bar"><span class="k">외인</span><span class="track"><span class="fill" style="width:${Math.min(100,Math.abs(d.fv)/maxTot*100)}%;background:${dualFill(d.fv,'f')}"></span></span><span class="v">${dualVal(d.fv)}억</span></div>
+        <div class="bar"><span class="k">기관</span><span class="track"><span class="fill" style="width:${Math.min(100,Math.abs(d.ov)/maxTot*100)}%;background:${dualFill(d.ov,'o')}"></span></span><span class="v">${dualVal(d.ov)}억</span></div>
       </div>
       <div style="margin-top:6px;font-size:10px;color:#64748b">합산 순매수 <b style="color:#fde68a">${d.tot}억</b></div>`;
-    dg.appendChild(box);
-    box._d = d;
-  });
+      dg.appendChild(box);
+      box._d = d;
+    });
+    const tag = $('#dualTag'), basis = $('#dualBasis'), story = $('#dualStory');
+    if (story && meta && meta.auto) story.hidden = true;   /* 자동 수집 값이 적용되면 정적 서사 문단은 숨긴다 */
+    if (tag && meta && meta.asOf) tag.textContent = meta.auto ? '자동 수집 · ' + meta.asOf.replace(/\s*\(.*$/, '') : tag.textContent;
+    if (basis && meta && meta.auto){
+      basis.innerHTML = `${meta.asOf} — 외국인·기관이 동시에 순매수한 종목 중 합산 순매수 <b>상위 ${rows.length}종목</b>(시총 상위 ${meta.universe || 400}종목 유니버스) · 막대 = 순매수 금액(억원) · 무료 자동 수집(${meta.collectedAt || ''})이 화면 값에 우선 적용됩니다`;
+    }
+  }
+  paintDual(D.dual);
 
   /* ---------- 급등 ---------- */
   const sg = $('#surgeGrid');
@@ -1913,6 +1938,60 @@ footer b{color:#a9b8cb}
 
   /* ================= 실시간 시세 연동 (Cloudflare Worker, 무료) ================= */
   const WORKER = 'https://buffettkase-quote.ribelo1311.workers.dev';
+
+  /* ===== 공개데이터 무료 자동 수집 Worker (Cron+KV · 크레딧 0원) =====
+     외인·기관 쌍끌이(400종목 유니버스 재계산) · 테마 시세·거래대금 · 증권사 목표가 레이더를
+     서버에서 자동 갱신해 두고, 화면은 그 스냅샷을 우선 사용한 뒤 실시간 시세로 덮는다.
+     (AI 뉴스 감성·급등 사유·시장 요약은 기존 data.js 파이프라인 그대로) */
+  const AUTO = 'https://buffettkase-auto.ribelo1311.workers.dev';
+  function applyAutoDual(j){
+    if (!j || !j.ok || !Array.isArray(j.rows) || !j.rows.length) return false;
+    D.dual = j.rows;
+    paintDual(j.rows, j);
+    return true;
+  }
+  function applyAutoRadar(j){
+    if (!j || !j.ok || !Array.isArray(j.items) || !j.items.length) return false;
+    const key = r => r.code + '|' + String(r.date) + '|' + (r.broker||'');
+    const have = new Set((D.radar||[]).map(key));
+    const add = j.items.filter(r => r && r.code && r.price && !have.has(key(r)));
+    if (!add.length) return false;
+    D.radar = add.concat(D.radar||[]);
+    buildRadar();
+    return true;
+  }
+  function applyAutoThemes(j){
+    if (!j || !j.ok || !Array.isArray(j.themes) || !j.themes.length) return false;
+    const byName = new Map(j.themes.map(t => [t.name, t]));
+    const live = LIVE.stk || {};
+    let hit = 0;
+    (D.themes||[]).forEach(t => {
+      const a = byName.get(t.name);
+      if (!a || !Array.isArray(a.rows)) return;
+      const m = new Map(a.rows.map(r => [r.c, r]));
+      t.rows.forEach(r => {
+        const lq = live[r.c];
+        if (lq && lq.p != null) return;   /* 이미 실시간 시세로 덮은 종목은 건드리지 않는다 */
+        const q = m.get(r.c);
+        if (!q) return;
+        r.p = q.p; r.pct = q.pct; if (q.v != null) r.v = q.v; hit++;
+      });
+      const sum = t.rows.reduce((a,r) => a + (Number(r.pct)||0), 0);
+      t.avg = Math.round(sum / Math.max(t.rows.length,1) * 100) / 100;
+      t.up = t.rows.filter(r => r.pct > 0).length;
+      t.down = t.rows.filter(r => r.pct < 0).length;
+      t.val = Math.round(t.rows.reduce((a,r) => a + (Number(r.v)||0), 0) * 10) / 10;
+    });
+    if (hit) rebuildBoardKeepState();
+    return hit > 0;
+  }
+  async function pullAuto(){
+    try { applyAutoDual(await getJSON(AUTO + '/dual')); }
+    catch(e){ console.warn('[auto] 쌍끌이 갱신 실패 — data.js 값 유지:', e && e.message ? e.message : e); }
+    try { applyAutoThemes(await getJSON(AUTO + '/themes')); } catch(e){}
+    try { applyAutoRadar(await getJSON(AUTO + '/radar')); } catch(e){}
+  }
+
   const REFRESH_MS = 5 * 60 * 1000;
   let pulling = false, lastAt = null;
 
@@ -2128,6 +2207,7 @@ footer b{color:#a9b8cb}
       if (idxOk && !stkOk) LIVE.state = 'partial';
       applyStockQuotes();
       await pullFlow();      /* 시장 수급(장중 잠정) — 실패해도 paintFlow가 data.js 확정치를 그대로 유지 */
+      await pullAuto();      /* 무료 자동 수집 스냅샷(쌍끌이·테마·레이더) — 실패해도 기존 data.js 유지 */
       if (idxOk || stkOk) lastAt = new Date();
       repaintLive();
       if (sallQ && search.value.trim()) pullSearch(search.value.trim());

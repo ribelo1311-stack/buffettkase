@@ -238,6 +238,27 @@ img{display:block;max-width:100%}
 .cpbtn.cp:hover{background:#ffe9c7}
 .disclosure{margin-top:11px;font-size:10.5px;color:#98a2b6;line-height:1.65}
 
+/* ---------- 후원·협력 스토어 배너(확장형) ---------- */
+.partners{margin-top:26px;background:linear-gradient(160deg,#ffffff,#fbfcff);border:1px solid var(--line);
+  border-radius:18px;padding:18px 18px 16px;box-shadow:var(--sh)}
+.partners .pt{font-size:14.5px;font-weight:900;letter-spacing:-.4px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.partners .pd{font-size:12px;color:var(--mut);margin-top:5px;line-height:1.6}
+.partners .pd b{color:var(--mint2)}
+.partgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(268px,1fr));gap:10px;margin-top:13px}
+.pcard{display:flex;gap:11px;align-items:flex-start;background:#fff;border:1px solid var(--line2);border-radius:13px;padding:12px 13px;transition:.15s}
+.pcard:hover{border-color:#cfe6da;box-shadow:0 6px 18px -12px rgba(16,185,129,.5)}
+.pnum{flex:0 0 auto;font-size:10.5px;font-weight:900;color:#047857;background:#ecfdf5;border:1px solid #b9f0d8;border-radius:7px;padding:2px 6px;margin-top:2px}
+.pbody{min-width:0;flex:1}
+.phead{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.pname{font-size:13px;font-weight:900;color:var(--tx);letter-spacing:-.2px}
+.pchip{font-size:9.5px;font-weight:900;color:#047857;background:#ecfdf5;border:1px solid #b9f0d8;border-radius:999px;padding:1px 7px}
+.pdesc{font-size:11.5px;color:var(--mut);line-height:1.6;margin-top:4px}
+.pgive{font-size:10.5px;color:#047857;font-weight:800;margin-top:5px;line-height:1.5}
+.plink{display:inline-flex;align-items:center;gap:4px;margin-top:8px;font-size:11px;font-weight:900;color:#fff;background:#10b981;border-radius:8px;padding:6px 10px}
+.plink:hover{filter:brightness(.95)}
+.pnote{margin-top:11px;font-size:10.5px;color:#98a2b6;line-height:1.65}
+@media(max-width:520px){.partgrid{grid-template-columns:1fr}.partners{padding:15px 14px 14px}}
+
 /* ---------- FOOTER ---------- */
 footer{margin-top:30px;border-top:1px solid var(--line);padding-top:16px;font-size:11px;color:var(--mut);line-height:1.75}
 footer b{color:var(--tx2)}
@@ -517,6 +538,29 @@ footer .links a:hover{border-color:#c9d2e4}
     <div class="disclosure">이 페이지는 쿠팡 파트너스 활동의 일환으로 일정액의 수수료를 제공받으며, 네이버 쇼핑 커넥트 활동의 일환으로 판매 발생 시 수수료를 제공받습니다. 발생한 수익금의 일부는 유기견 보호소 지원 및 임시보호 아이들의 치료비 후원에 쓰입니다. (쿠팡 파트너스 ID: AF2387959)</div>
   </section>
 
+  <!-- ================= 후원·협력 스토어 (확장형 배너) ================= -->
+  <!-- 새 단체·스토어는 아래 PARTNERS 배열에 항목만 추가하면 카드가 자동으로 늘어납니다.
+       { name, tag, desc, give, url, link } 구조. 순번은 배열 순서대로 자동 부여. -->
+  <section class="partners" id="partners" aria-label="함께하는 후원·협력 스토어">
+    <div class="pt">🤝 함께하는 후원·협력 스토어 <span class="pill">수익금 일부 후원</span></div>
+    <div class="pd">버핏카세가 직접 확인한 유기견 후원·협력 스토어입니다. <b>이 배너를 통해 구매가 이루어지면 판매 수익금 일부가 유기견 보호센터 후원과 임시보호 아이들의 치료비·사료로 쓰입니다.</b> 앞으로 더 많은 단체·스토어가 이 자리에 함께합니다.</div>
+    <div class="partgrid" id="partGrid"></div>
+    <noscript>
+      <div class="partgrid">
+        <div class="pcard">
+          <div class="pnum">01</div>
+          <div class="pbody">
+            <div class="phead"><span class="pname">단군신화네</span><span class="pchip">1호 후원 스토어</span></div>
+            <div class="pdesc">유기견 아이들이 직접 모델로 함께하는 강아지옷·반려용품 스마트스토어</div>
+            <div class="pgive">수익금 일부가 유기견 보호센터 후원과 임시보호에 사용됩니다.</div>
+            <a class="plink" href="https://smartstore.naver.com/dangunshinhwa" target="_blank" rel="noopener">스토어 보기 ↗</a>
+          </div>
+        </div>
+      </div>
+    </noscript>
+    <div class="pnote">표시된 후원 문구는 각 스토어의 운영 방침과 판매 발생 시 전달되는 수수료를 기준으로 합니다. 버핏카세는 스토어의 상품·배송을 직접 운영하지 않으며, 구매·교환·환불은 해당 스토어에서 진행됩니다.</div>
+  </section>
+
   <!-- AD SLOT : 하단 (애드센스) -->
   <div class="adslot" id="adBottom" data-ad-slot="pets-bottom" hidden></div>
 
@@ -559,8 +603,10 @@ footer .links a:hover{border-color:#c9d2e4}
       <a href="https://pawday.kr/shelters/pyeongtaeksidongmulbohosenteo" target="_blank" rel="noopener">포데이 평택시동물보호센터 ↗</a>
       <a href="https://www.animal.go.kr/front/index.do" target="_blank" rel="noopener">국가동물보호정보시스템 ↗</a>
       <a href="https://blog.naver.com/ribelo1311/224480736370" target="_blank" rel="noopener noreferrer">🐾 강아지 훈련법</a>
+      <a href="season2026.html">📅 12월 시즌 계산기</a>
       <a href="about.html">ℹ️ 사이트 소개</a>
       <a href="privacy.html">🔒 개인정보처리방침</a>
+      <a href="terms.html">📜 이용약관</a>
     </div>
     <div><b>월억버핏 · 전국 임보·구조 + 평택 보호소 레이더</b> — 15년 직장 생활을 마무리하고 월백·월천·월억에 도전하는 사람이 매일 아침 직접 확인해 올리는 페이지입니다. 시황판은 <a href="dashboard.html" style="text-decoration:underline">/dashboard</a>, 물타기 계산기는 <a href="calc.html" style="text-decoration:underline">/calc</a>에서 보실 수 있습니다.</div>
     <div>출처: PAWARDING 입양/구조 게시판(pawarding.com · 카드별 원문 링크) · 국가동물보호정보시스템 공공데이터 · 포데이(pawday.kr) · 평택시 동물보호센터(031-8024-8080) · 평택 동기화 2026-11-20 07:07 · PAWARDING 확인 2026-11-20 07:40 · 스레드 @milklove1224 돌배 사연 2026-11-21 04:00 확인 · 사진은 각 글의 실제 첨부 이미지</div>
@@ -802,6 +848,35 @@ render();
       if (!seen) { try { sessionStorage.setItem(KEY, '1'); } catch (e) {} }
     })
     .catch(function () {});
+})();
+</script>
+<!-- 후원·협력 스토어 카드: PARTNERS 배열에 항목을 추가하면 그대로 늘어난다 -->
+<script>
+(function () {
+  var PARTNERS = [
+    {
+      name: '단군신화네',
+      tag: '1호 후원 스토어',
+      desc: '유기견 아이들이 직접 모델로 함께하는 강아지옷·반려용품 스마트스토어',
+      give: '수익금 일부가 유기견 보호센터 후원과 임시보호에 사용됩니다.',
+      url: 'https://smartstore.naver.com/dangunshinhwa',
+      link: '스토어 보기 ↗'
+    }
+    /* 예) { name: '단체명', tag: '2호', desc: '한 줄 설명', give: '수익금 일부가 ···에 쓰입니다.', url: 'https://...', link: '후원 참여 ↗' } */
+  ];
+  var grid = document.getElementById('partGrid');
+  if (!grid || !PARTNERS.length) return;
+  grid.innerHTML = PARTNERS.map(function (p, i) {
+    var num = String(i + 1).padStart(2, '0');
+    return '<div class="pcard">'
+      + '<div class="pnum">' + num + '</div>'
+      + '<div class="pbody">'
+      + '<div class="phead"><span class="pname">' + p.name + '</span><span class="pchip">' + (p.tag || '후원·협력') + '</span></div>'
+      + '<div class="pdesc">' + p.desc + '</div>'
+      + '<div class="pgive">' + p.give + '</div>'
+      + '<a class="plink" href="' + p.url + '" target="_blank" rel="noopener">' + (p.link || '스토어 보기 ↗') + '</a>'
+      + '</div></div>';
+  }).join('');
 })();
 </script>
 </body>

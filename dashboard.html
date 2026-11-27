@@ -1813,25 +1813,25 @@ footer b{color:#a9b8cb}
   //    data.js의 dogs 객체는 07:30·13:00·15:50 정기 갱신이 새로 만들기 때문에, 이 미리보기 데이터는
   //    dashboard.html 안에 둔다(정기 갱신에도 사라지지 않게). 원천은 projects/_build/pets_mix/paw_data.json.
   const PAW_PREVIEW = [
-    { name:'화성 흰 믹스견', sp:'강아지', flair:'보호소공고', badge:'공고 11/30 마감', status:'경기 화성 · 2025년생 · 수컷',
-      info:'2025년생 · 수컷 · 15kg · 경기 화성',
-      summary:'11월 19일 화성 비봉면 쌍학길 인근에서 구조된 믹스견. 사람을 조금 무서워하고 경계심이 있으나 공격성은 없어 보인다고 기록돼 있습니다.',
-      posted:'2026-11-19', author:'화성시민동물보호센터', url:'https://pawarding.com/ko/post/53688', photo:'assets/pets/pw/53688.webp' },
-    { name:'광주 50일령 아가', sp:'강아지', flair:'보호소공고', badge:'공고 11/30 마감', status:'경기 광주 · 50일령 9남매',
-      info:'2026년생(60일 미만) · 수컷 · 1.5kg · 경기 광주',
-      summary:'50일령 강아지 9남매 가운데 한 마리입니다. 같은 날 같은 곳에서 구조된 형제들이 함께 공고 중입니다.',
-      posted:'2026-11-19', author:'광주TNR동물병원', url:'https://pawarding.com/ko/post/53697', photo:'assets/pets/pw/53697.webp' },
-    { name:'론빵', sp:'고양이', flair:'임보/입양', badge:'재입양 대기', status:'입양 취소 후 재입양',
-      info:'나이 미표기 · 성별 미표기',
-      summary:'입양이 취소된 뒤에도 가족을 기다리는 아이. 뽀뽀·골골송이 가능하고 자기보다 큰 개와도 잘 지낼 만큼 사회성이 좋습니다.',
-      posted:'2026-11-08', author:'코코아', url:'https://pawarding.com/ko/post/29525', photo:'assets/pets/pw/29525.webp' }
+    { name:'서초 인형 같은 푸들', sp:'강아지', flair:'보호소공고', badge:'공고 12/07 마감', status:'서울 서초 · 2026년생 · 수컷',
+      info:'2026년생 · 수컷 · 3.5kg · 서울 서초',
+      summary:'11월 27일 서초 본마을길에서 구조된 갈색 푸들. 기록에 "온순하고 사람을 좋아함, 인형같이 생긴 미견"이라고 적혀 있습니다.',
+      posted:'2026-11-27', author:'서초 동물사랑센터', url:'https://pawarding.com/ko/post/55136', photo:'assets/pets/pw/55136.webp' },
+    { name:'인천 부평 러시안 블루', sp:'고양이', flair:'보호소공고', badge:'공고 12/07 마감', status:'인천 남동 · 2026년생(60일 미만)',
+      info:'2026년생(60일 미만) · 암컷 · 5.00kg · 인천 남동',
+      summary:'11월 26일 남동구 논현동에서 보호된 회색 러시안 블루. "눈이 땡그랗고 보들말랑하게 생겼음, 잘 늘어남"이라고 기록돼 있습니다.',
+      posted:'2026-11-27', author:'시민동물병원', url:'https://pawarding.com/ko/post/55148', photo:'assets/pets/pw/55148.webp' },
+    { name:'김제 말티즈', sp:'강아지', flair:'보호소공고', badge:'공고 12/14 마감', status:'전북 김제 · 2022년생 · 암컷',
+      info:'2022년생 · 암컷 · 2kg · 전북 김제',
+      summary:'11월 27일 김제 용지면 부근에서 보호된 흰색 말티즈. 보호소 기록에 "머리가 멋짐"이라고 적힌 2kg 소형견입니다.',
+      posted:'2026-11-27', author:'전북 말 산업복합센터', url:'https://pawarding.com/ko/post/55169', photo:'assets/pets/pw/55169.webp' }
   ];
   const pawStrip = $('#pawStrip');
   if (pawStrip) {
     pawStrip.innerHTML = `<div class="ps-head">
         <b>🏠 임보·구조 · 전국 (PAWARDING)</b>
-        <span>강아지·고양이 22건 중 3건 미리보기 · 사진은 각 글의 실제 첨부 이미지</span>
-        <a href="pets.html">전체 22건 보기 →</a>
+        <span>2026-11-27 최신 보호소 공고 12건 중 3건 미리보기 · 사진은 각 글의 실제 첨부 이미지</span>
+        <a href="pets.html">전체 18건 보기 →</a>
       </div>
       <div class="dogs">${PAW_PREVIEW.map(p => `
         <div class="dog paw">

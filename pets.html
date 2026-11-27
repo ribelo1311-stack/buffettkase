@@ -751,7 +751,7 @@ function card(p){ return p.kind==='paw' ? cardPaw(p) : cardPday(p); }
 
 function render(){
   const lostEl = document.getElementById('lostDday');
-  if(lostEl){ const dl = leftOf({nEnd:'2026. 11. 26.'}); lostEl.textContent = dl===null ? '' : '(' + dlabel(dl) + ')'; }
+  if(lostEl){ const dl = leftOf({nEnd:'2026. 12. 7.'}); lostEl.textContent = dl===null ? '' : '(' + dlabel(dl) + ')'; }
   const pdAll = PETS.filter(p=>p.kind==='pday');
   const near = pdAll.filter(p=>{ const d = leftOf(p); return d!==null && d>=0 && d<=1; }).length;
   const nearEl = document.getElementById('statNear'); if(nearEl) nearEl.textContent = near;
